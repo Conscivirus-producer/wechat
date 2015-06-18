@@ -37,13 +37,12 @@ if (isset($_GET['code'])){
 			<p class="text-left">
 			问题1：您的孩子是男生还是女生？
 			</p>
-			<div class="form-group">
-				<select class="form-control" name="sex" id="sex">
-					<option value="sex" selected="selected">性别</option>
-  					<option value="boy">男生</option>
-  					<option value="girl">女生</option>
-				</select>
-			</div>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="boy" id="boy">男生</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="girl" id="girl">女生</button>
 		</div>
 	</div>
 	
@@ -52,17 +51,24 @@ if (isset($_GET['code'])){
 			<p class="text-left">
 				问题2：年级是？
 			</p>
-			<div class="form-group">
-				<select class="form-control" name="grade" id="grade">
-					<option value="grade" selected="selected">年级</option>
-  					<option value="g1">1</option>
-  					<option value="g2">2</option>
-  					<option value="g3">3</option>
-  					<option value="g4">4</option>
-  					<option value="g5">5</option>
-  					<option value="g6">6</option>
-				</select>
-			</div>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade1" id="grade1">一年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade2" id="grade2">二年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade3" id="grade3">三年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade4" id="grade4">四年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade5" id="grade5">五年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade6" id="grade6">六年级</button>
 		</div>
 	</div>
 	
@@ -71,15 +77,18 @@ if (isset($_GET['code'])){
 			<p class="text-left">
 				问题3：他/她哪个科目最需要提高？
 			</p>
-			<div class="form-group">
-				<select class="form-control" name="subject" id="subject">
-					<option value="subject" selected="selected">科目</option>
-  					<option value="chi">语文</option>
-  					<option value="eng">英语</option>
-  					<option value="mat">数学</option>
-  					<option value="all">上面所有</option>
-				</select>
-			</div>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-default" name="chi" id="chi">语文</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-default" name="eng" id="eng">英语</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-default" name="mat" id="mat">数学</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:5px">
+			<button type="button" class="btn btn-lg btn-block btn-info" name="gradenext" id="gradenext">下一项</button>
 		</div>
 	</div>
 	
@@ -88,16 +97,24 @@ if (isset($_GET['code'])){
 			<p class="text-left">
 				问题4：您还希望您的孩子学什么？
 			</p>
-			<div class="form-group">
-				<select class="form-control" name="course" id="course">
-					<option value="course" selected="selected">课外课程</option>
-  					<option value="sci">科学</option>
-  					<option value="eco">经济</option>
-  					<option value="spo">运动</option>
-  					<option value="art">艺术</option>
-  					<option value="mus">音乐</option>
-				</select>
-			</div>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-default" name="sci" id="sci">科学</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-default" name="eco" id="eco">经济</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-default" name="spo" id="spo">运动</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-default" name="art" id="art">艺术</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-default" name="mus" id="mus">音乐</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:5px">
+			<button type="button" class="btn btn-lg btn-block btn-info" name="interestnext" id="interestnext">下一项</button>
 		</div>
 	</div>
 	
@@ -110,7 +127,7 @@ if (isset($_GET['code'])){
 				<input type="text" value="" class="form-control" name="contact" id="contact" placeholder="請輸入联系方式">
 			</div>
 		</div>
-		<div class="col-md-6 col-md-offset-2">
+		<div class="col-md-2 col-md-offset-6">
 			<button type="button" class="btn btn-primary btn-lg btn-block" name="save" id="save">提交</button>
 		</div>
 	</div>
@@ -122,36 +139,29 @@ if (isset($_GET['code'])){
 <script src="js/vendor/video.js"></script>
 <script src="js/flat-ui.min.js"></script>
 <script type="text/javascript">
-$("#sex").change(function(){
-	if($("#sex").val() != "sex"){
+$(".btn.btn-lg.btn-block").click(function(){
+	if($(this).attr("name") == "boy" || $(this).attr("name") == "girl"){
 		$("#q1").hide("fast",function(){
 			$("#q2").show();
 		});
-	}
-});
-
-$("#grade").change(function(){
-	if($("#grade").val() != "grade"){
+	}else if($(this).attr("name").indexOf("grade") >= 0){
 		$("#q2").hide("fast",function(){
 			$("#q3").show();
 		});
+	}else if($(this).attr("name") != "save"){
+		$(this).toggleClass("btn-primary");
+		$(this).toggleClass("btn-default");
 	}
 });
-
-$("#subject").change(function(){
-	if($("#subject").val() != "subject"){
-		$("#q3").hide("fast",function(){
-			$("#q4").show();
-		});
-	}
+$("#gradenext").click(function(){
+	$("#q3").hide("fast",function(){
+		$("#q4").show();
+	});
 });
-
-$("#course").change(function(){
-	if($("#course").val() != "course"){
-		$("#q4").hide("fast",function(){
-			$("#q5").show();
-		});
-	}
+$("#interestnext").click(function(){
+	$("#q4").hide("fast",function(){
+		$("#q5").show();
+	});
 });
 </script>
 </body>
