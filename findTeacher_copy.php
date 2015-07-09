@@ -8,7 +8,7 @@ if (isset($_GET['code'])){
 }else{
 	//need to be modified to show hint and qrcode image
     //echo "NO CODE";
-    $openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
+    $openid = "11111111";
 }
 ?>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ if (isset($_GET['code'])){
 <![endif]-->
 </head>
 <body>
-<div style="width:100%; background-color: #48C9B0; color: white"><span style="padding-left: 16px">我教你学</span></div>
+<div style="width:100%; background-color: #48C9B0; color: white; height: 40px; border-bottom: 1px solid #1B9C83"><span style="position: absolute; left: 10px; top:5px">我教你学</span></div>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <div class="container">
 	<div class="row" id="q0">
@@ -186,7 +186,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteA" id="A">舞蹈与音乐</button>
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteA" id="A">乐器与舞蹈</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteB" id="B">体育运动</button>
@@ -195,13 +195,13 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteC" id="C">书法与美术</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteD" id="D">编程软件应用与棋类</button>
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteD" id="D">益智类</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteE" id="E">演讲与播音主持</button>
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteE" id="E">演讲与口才</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteF" id="F">人文科学与小语种</button>
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteF" id="F">趣味课程</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep4" id="laststep4">上一步</button>
@@ -301,27 +301,19 @@ if (isset($_GET['code'])){
 				<img id="teacherImgUrl" alt="empty" class="img-circle center-block">
 			</div>
 			<h6 class="username center-block text-center" id="teacherName">Anderson</h6>
+			<div class="center-block text-center teacher-price"><span id="teacherPrice">50</span>元/小时</div>
 			<div class="row school-info">
 				<div class="col-xs-1"></div>
-				<div class="col-xs-10 text-center"><span>深圳大学</span><span id="teacherMajor">计算机学院</span></div>
-				<div class="col-xs-1"></div>
-			</div>
-			<div class="row subjects">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10">
-					<div class="col-xs-12 text-center subjects_label">课程</div>
-					<div class="col-xs-12" style="padding: 0px">
-						<div class="col-xs-6 subjects_value"><div class="text-center btn-info btn-doc">语文</div></div>
-						<div class="col-xs-6 subjects_value"><div class="text-center btn-info">数学</div></div>
-						<div class="col-xs-6 subjects_value"><div class="text-center btn-info">英语</div></div>
-					</div>
-				</div>
+				<div class="col-xs-10 text-center"><span id="teacherDescription">“您好，我是来自深圳大学 计算机学院 计算机科学与技术专业的李超超, 我擅长创业，希望我能帮到你和你的孩子”</span></div>
 				<div class="col-xs-1"></div>
 			</div>
 			<div class="row interests" id="interestsRow">
 				<div class="col-xs-1"></div>
 				<div class="col-xs-10">
-					<div class="col-xs-12 text-center interests_label">特长</div>
+					<div class="col-xs-3"></div>
+					<div class="col-xs-6 text-center subjects_label"><span>特长与经历</span></div>
+					<div class="col-xs-3"></div>
+					<!-- <div class="col-xs-12 text-center interests_label">特长</div> -->
 					<div class="col-xs-12" style="padding: 0px" id="availableInterests">
 						
 					</div>
@@ -330,10 +322,10 @@ if (isset($_GET['code'])){
 			</div>
 		</div>
 		<div class="row accept">
-			<div class="btn btn-lg btn-primary col-xs-8 col-xs-offset-2" name="compeleteRecord" id="compeleteRecord">免费预约</div>
+			<div class="btn btn-lg btn-primary col-xs-8 col-xs-offset-2" name="compeleteRecord" id="compeleteRecord">预约试听</div>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep7" id="laststep7">上一步</button>
+		<div class="row back-to-list">
+			<div class="btn btn-lg laststep col-xs-8 col-xs-offset-2" name="laststep1" id="laststep1">返回列表</div>
 		</div>
 	</div>
 	
@@ -365,7 +357,7 @@ if (isset($_GET['code'])){
 <script src="js/flat-ui.min.js"></script>
 <script type="text/javascript">
 var rootUrl = "www.hehe.life";
-rootUrl = "localhost";
+//rootUrl = "localhost";
 var gender="";
 var section;
 var grade;
@@ -530,17 +522,11 @@ $(".btn.btn-lg.btn-block").click(function(){
 		price = itemname;
 		$("#price").hide("normal",function(){
 			insertParentAndChild();
-			showDiv($("#resultNotification"));
+			//showDiv($("#resultNotification"));
+			//showDiv($("#q6"));
+			findTeacher();
+			//showDiv($("#q7"));
 		});
-	}else if(itemname.indexOf("notify") >= 0){
-		notifyMethod = itemname;
-		if(itemname == "notifywechat"){
-			saveRecord($("#resultNotification"));		
-		}else if(itemname == "notifymessage"){
-			$("#resultNotification").hide("normal",function(){
-				showDiv($("#q6"));
-			});	
-		}
 	}
 });
 
@@ -576,38 +562,73 @@ $("#myrecord").click(function(){
 	window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://'+rootUrl+'/myRecord.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
 });
 
-$("#save").click(function(){
-	mobile = $("#contact").val();
-	if(mobile == null || mobile.trim() == ""){
-		alert("请输入手机号");
-		return;
+function findTeacher(){
+	var url = "http://"+rootUrl+"/service.php?requestMethod=matchTeacher&parentOpenId="+
+	$("#openid").val()+"&choice="+choice+"&mobile="+mobile+"&gender="+gender+"&grade="+grade+"&section="+section;
+	if(choice == "contentsub"){
+		url += "&subject="+subject.toUpperCase();
+	}else if(choice == "contentinte"){
+		url += "&interest="+interest;
+	}else if(choice == "contentboth"){
+		url += "&subject="+subject.toUpperCase()+"&interest="+interest;
 	}
-	saveRecord($("#q6"));
-});
-
-function saveRecord($hideDiv){
-	var url = "http://"+rootUrl+"/service.php?requestMethod=saveTransaction&parentOpenId="+$("#openid").val()+"&childId="+childId+"&mobile="+mobile;
-	$.getJSON(url, function(data){
-		$hideDiv.hide("normal",function(){
-			showDiv($("#q10"));
-		});
+	$.getJSON(url,function(data){
+		teacherOpenId = data.teacherOpenId;
+		childId = data.childId[0];
+		var name = data.name;
+		var length = teacherOpenId.length;
+		var $ulGroup = $("<ul>", {class : "list-group", style: "margin-left: 10px;margin-right: 10px"});
+		for(var i = 0;i < length;i++){
+			var value = teacherOpenId[i]; 
+			var $a = $("<a>", {class: "list-group-item", id: value, href:"#"}).html('<img class="img-circle listHeader" src="'+data.imageUrl[i]+'"></img>'+
+			'<span style="margin-left:10px">'+name[i]+'</span><span style="margin-top:8px;float:right">' + data.major[i]+'</span>');
+			$a.click(function(){
+				var value = $(this).attr("id");
+				teacherOpenId = value;
+				//var text = $(this).text();
+				url = "http://"+rootUrl+"/service.php?requestMethod=teacherDetails&teacherOpenId="+teacherOpenId;
+				$.getJSON(url, function(data){
+					var studentName = data.name;
+					var interests = data.interests;
+					var interestName = interests.name;
+					var inteNameStr = "";
+					var description = data.description;
+					$("#teacherName").html(data.name);
+					$("#teacherPrice").html(data.price);
+					$("#teacherImgUrl").attr("src", data.imageUrl);
+					var length = interestName.length;
+					if(length == 0){
+						$('#interestsRow').hide();
+					}else{
+						$('#interestsRow').show();
+						for(var j=0; j < length;j++){
+							$parentDiv = $("<div>", {class: "col-xs-6 subjects_value"});
+							$childDiv = $("<div>", {class: "text-center btn-info btn-doc"}).text(interests.name[j]);
+							$parentDiv.append($childDiv);
+							$("#availableInterests").append($parentDiv);
+							inteNameStr += interests.name[j];
+							if(j < length - 1){
+								inteNameStr += ",";
+							}
+						}
+					}
+					description = description.replace("TBC", inteNameStr);
+					$("#teacherDescription").html(description);
+	 				$("#q7").hide("normal",function(){
+						showDiv($("#q8"));
+					});
+				});
+			});
+			$ulGroup.append($a);
+		}
+		$("#q7").append($ulGroup);
+		showDiv($("#q7"));
+		/*$("#q6").hide("normal",function(){
+			showDiv($("#q7"));
+		});*/
 	});	
 }
+
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

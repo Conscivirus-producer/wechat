@@ -1,0 +1,125 @@
+/*html,body{
+	background-image: url("/css/img/background.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: 100%;
+	width: 100%;
+}*/
+
+p.introduction{
+	margin-top: 20px;
+	font-size: 12px;
+}
+p.question{
+	margin-top: 60px;
+}
+button.laststep{
+	margin-top: 10px;	
+	margin-left:19px;
+}
+
+.center-block{
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+/*shadow*/
+div.teacher-photo{
+	padding:3px;
+	background-color:#fff;
+	position:relative;
+	z-index:5;
+}
+div.teacher-photo img{
+	height: 100px;
+	width: 100px;
+	/*shadow*/
+	-moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -khtml-border-radius: 50%;
+    border-radius: 50%;
+	background-color:rgba(0,0,0,.42);
+	z-index:3;
+}
+
+div.school-info{
+	font-size: 14px;
+}
+
+div.school-info div span{
+	padding-right: 5px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+div.subjects{
+	margin-top: 15px;
+}
+
+div.subjects_label{
+	/*font-size: 12px;*/
+	/*padding-top: 6px;*/
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+div.subjects_value{
+	padding-left: 0px;
+	padding-right: 2px;
+	padding-top: 2px;
+}
+
+div.interests{
+	margin-top: 15px;
+}
+
+div.interests_label{
+	/*font-size: 12px;
+	padding-top: 6px;*/
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+div.accept{
+	margin-top: 30px;
+}
+
+div.interests_value{
+	padding-left: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
