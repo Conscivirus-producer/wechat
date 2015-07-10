@@ -1,4 +1,5 @@
 <?php
+require_once("config.php");
 if (isset($_GET['code'])){
     $code = $_GET['code'];
     $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx9855e946fbde03ac&secret=a185dd60de19330b8eaaadf4d8ae00ef&code=".$code."&grant_type=authorization_code";
@@ -9,6 +10,7 @@ if (isset($_GET['code'])){
 	//need to be modified to show hint and qrcode image
     //echo "NO CODE";
     $openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
+	
 }
 ?>
 <!DOCTYPE html>
@@ -31,6 +33,7 @@ if (isset($_GET['code'])){
 <body>
 <div style="width:100%; background-color: #48C9B0; color: white"><span style="padding-left: 16px">我教你学</span></div>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
+<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <div class="container">
 	<div class="row" id="q0">
 		<div class="col-md-4 col-md-offset-4">
@@ -364,8 +367,7 @@ if (isset($_GET['code'])){
 <script src="js/vendor/video.js"></script>
 <script src="js/flat-ui.min.js"></script>
 <script type="text/javascript">
-var rootUrl = "www.hehe.life";
-rootUrl = "localhost";
+var rootUrl = $("#rootUrl").val();
 var gender="";
 var section;
 var grade;

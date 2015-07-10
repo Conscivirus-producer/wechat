@@ -1,4 +1,5 @@
 <?php
+require_once("config.php");
 if (isset($_GET['code'])){
     $code = $_GET['code'];
     $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx9855e946fbde03ac&secret=a185dd60de19330b8eaaadf4d8ae00ef&code=".$code."&grant_type=authorization_code";
@@ -31,6 +32,8 @@ if (isset($_GET['code'])){
 </head>
 <body>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
+<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
@@ -219,6 +222,7 @@ if (isset($_GET['code'])){
 			<div class="form-group">
 				<label for="location">可接受的地点</label>
 				<select class="form-control" name="location" id="location" multiple="multiple">
+					<option value="location1">不限</option>
   					<option value="location1">南山区</option>
   					<option value="location2">福田区</option>
   					<option value="location3">罗湖区</option>
@@ -260,8 +264,7 @@ if (isset($_GET['code'])){
 <script src="js/vendor/video.js"></script>
 <script src="js/flat-ui.min.js"></script>
 <script type="text/javascript">
-var rootUrl = "www.hehe.life";
-//rootUrl = "localhost";
+var rootUrl = $("#rootUrl").val();
 var typeCodes = ["A","B","C","D","E","F","SU"];
 var url = "http://"+rootUrl+"/service.php?typeCode="+$(this).attr("id");
 var optionData;

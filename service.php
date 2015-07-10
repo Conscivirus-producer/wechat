@@ -1,10 +1,6 @@
 ﻿<?php
-	require_once("process.php");
-	$host = "localhost";
-	$user = "root";
-	$password = "2324150778t";
-	$password = "123456";
-	$database = "wechat_schema";
+	require_once("config.php");
+
 	$conn = new mysqli($host, $user, $password, $database);
 	if($_GET&&$_GET["typeCode"]){
 		$typeCode = trim($_GET["typeCode"]);
@@ -164,7 +160,8 @@
 		" VALUES ('$parentOpenId','$childGender','$grade','$subject','$interest','$price','$teacherGender', sysdate())";
 		$result = $conn->query($query);
 		$resultArray = array("parentOpendId"=>$parentOpenId, "childId"=>mysqli_insert_id($conn));
-		return json_encode($resultArray);
+		return json_encode($resultArray); 
+		
 	}
 
 	function getUserDetails($openid){

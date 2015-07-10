@@ -1,6 +1,6 @@
 ﻿<?php
+require_once("config.php");
 
-	
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +23,7 @@
 </head>
 <body>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
+<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-2">
@@ -82,8 +83,7 @@
 <script src="js/vendor/video.js"></script>
 <script src="js/flat-ui.min.js"></script>
 <script type="text/javascript">
-var rootUrl = "www.hehe.life";
-rootUrl = "localhost";
+var rootUrl = $("#rootUrl").val();
 
 $("#submit").click(function(){
 	$("[id^=resultTr]").each(function(){
