@@ -2,7 +2,7 @@
 require_once("config.php");
 if (isset($_GET['code'])){
     $code = $_GET['code'];
-    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx9855e946fbde03ac&secret=a185dd60de19330b8eaaadf4d8ae00ef&code=".$code."&grant_type=authorization_code";
+    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
     $access_token_json = file_get_contents($access_token_get_url); 
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
@@ -53,95 +53,6 @@ if (isset($_GET['code'])){
 		</div>
 	</div>
 	
-	<div class="row" style="display:none" id="q1">
-		<div class="col-md-4 col-md-offset-4">
-			<p class="question text-left">
-				您的小孩目前在读？
-			</p>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="section1" id="section1">小学</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="section2" id="section2">初中</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="section3" id="section3">高中</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep1" id="laststep1">上一步</button>
-		</div>
-	</div>
-	
-	<div class="row" style="display:none" id="q11">
-		<div class="col-md-4 col-md-offset-4">
-			<p class="question text-left">
-				您小孩的年级是？
-			</p>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade1" id="grade1">一年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade2" id="grade2">二年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade3" id="grade3">三年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade4" id="grade4">四年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade5" id="grade5">五年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade6" id="grade6">六年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep11" id="laststep11">上一步</button>
-		</div>
-	</div>
-	
-	<div class="row" style="display:none" id="q12">
-		<div class="col-md-4 col-md-offset-4">
-			<p class="question text-left">
-				您小孩的年级是？
-			</p>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade7" id="grade7">一年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade8" id="grade8">二年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade9" id="grade9">三年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep12" id="laststep12">上一步</button>
-		</div>
-	</div>
-	
-	<div class="row" style="display:none" id="q13">
-		<div class="col-md-4 col-md-offset-4">
-			<p class="question text-left">
-				您小孩的年级是？
-			</p>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade10" id="grade10">一年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade11" id="grade11">二年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade12" id="grade12">三年级</button>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep13" id="laststep13">上一步</button>
-		</div>
-	</div>
-	
 	<div class="row" style="display:none" id="q2">
 		<div class="col-md-4 col-md-offset-4">
 			<p class="question text-left">
@@ -178,6 +89,9 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="su1" id="su1">数学</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="su4" id="su4">全科</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep3" id="laststep3">上一步</button>
 		</div>
 	</div>
@@ -189,7 +103,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteA" id="A">舞蹈与音乐</button>
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteA" id="A">器乐与声乐</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteB" id="B">体育运动</button>
@@ -198,7 +112,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteC" id="C">书法与美术</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteD" id="D">编程软件应用与棋类</button>
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteD" id="D">棋类与编程软件应用</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteE" id="E">演讲与播音主持</button>
@@ -226,16 +140,45 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="gender3" id="gender3">不限</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="gender1" id="gender1">男生</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="gender2" id="gender2">女生</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="gender3" id="gender3">不限</button>
+			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep5" id="laststep5">上一步</button>
+		</div>
+	</div>
+	
+	<div class="row" style="display:none" id="address">
+		<div class="col-md-4 col-md-offset-4">		
+			<p class="question text-left">
+				您期望的教学地点是:
+			</p>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep5" id="laststep5">上一步</button>
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="address1" id="address1">南山区</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="address2" id="address2">福田区</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="address3" id="address3">罗湖区</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="address4" id="address4">宝安区</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="address5" id="address5">龙岗区</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="address6" id="address6">其它</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep_add" id="laststep_add">上一步</button>
 		</div>
 	</div>
 	
@@ -259,27 +202,99 @@ if (isset($_GET['code'])){
 		</div>
 	</div>
 	
-	<div class="row" style="display:none" id="resultNotification">
+	<div class="row" style="display:none" id="q1">
 		<div class="col-md-4 col-md-offset-4">
-			<p class="text-left question">
-				谢谢您的选择，我们会在24小时找到匹配您的老师并把结果发送给您，您希望以什么方式接收我们的消息?
+			<p class="question text-left">
+				您的小孩目前在读？
 			</p>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-primary btn-lg btn-block" name="notifywechat" id="notifywechat">微信</button>
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="section1" id="section1">小学</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-primary btn-lg btn-block" name="notifymessage" id="notifymessage">短信</button>
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="section2" id="section2">初中</button>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep_notify" id="laststep_notify">上一步</button>
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="section3" id="section3">高中</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep1" id="laststep1">上一步</button>
 		</div>
 	</div>
 	
-	<div class="row" style="display:none" id="q6">
+	<div class="row" style="display:none" id="q11">
+		<div class="col-md-4 col-md-offset-4">
+			<p class="question text-left">
+				您小孩的年级是？
+			</p>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade1" id="grade1">小学一年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade2" id="grade2">小学二年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade3" id="grade3">小学三年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade4" id="grade4">小学四年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade5" id="grade5">小学五年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade6" id="grade6">小学六年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep11" id="laststep11">上一步</button>
+		</div>
+	</div>
+	
+	<div class="row" style="display:none" id="q12">
+		<div class="col-md-4 col-md-offset-4">
+			<p class="question text-left">
+				您小孩的年级是？
+			</p>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade7" id="grade7">初中一年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade8" id="grade8">初中二年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade9" id="grade9">初中三年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep12" id="laststep12">上一步</button>
+		</div>
+	</div>
+	
+	<div class="row" style="display:none" id="q13">
+		<div class="col-md-4 col-md-offset-4">
+			<p class="question text-left">
+				您小孩的年级是？
+			</p>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade10" id="grade10">高中一年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade11" id="grade11">高中二年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade12" id="grade12">高中三年级</button>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep13" id="laststep13">上一步</button>
+		</div>
+	</div>
+	
+	<div class="row" style="display:none" id="resultNotification">
 		<div class="col-md-4 col-md-offset-4">
 			<p class="text-left question">
-				请您留下您的联系方式:
+				谢谢您的选择，我们会在24小时找到匹配您的老师并把结果发送给您，请输入您的手机号:
 			</p>
 			<div class="form-group">
 				<input type="text" value="" class="form-control" name="contact" id="contact" placeholder="請輸入联系方式">
@@ -381,6 +396,7 @@ var teacherGender;
 var teacherOpenId;
 var notifyMethod;
 var mobile = "";
+var address;
 
 function showDiv($div){
 	$div.show();
@@ -389,7 +405,8 @@ function showDiv($div){
 
 function insertParentAndChild(){
 	var url = "http://"+rootUrl+"/service.php?requestMethod=insertParentAndChild&parentOpenId="+
-	$("#openid").val()+"&choice="+choice+"&gender="+gender+"&grade="+grade+"&section="+section+"&teacherGender="+teacherGender+"&price="+price;
+	$("#openid").val()+"&choice="+choice+"&gender="+gender+"&grade="+grade+"&section="+
+	section+"&teacherGender="+teacherGender+"&price="+price+"&address="+address;
 	if(choice == "contentsub"){
 		url += "&subject="+subject.toUpperCase();
 	}else if(choice == "contentinte"){
@@ -403,39 +420,6 @@ function insertParentAndChild(){
 	});
 }
 
-
-/*$("#start").click(function(){
-$.confirm({
-	msg: 'See?',
-	stopAfter: 'ok',
-	eventType: 'mouseover',
-	timeout: 3000,
-	buttons: {
-		ok: 'Sure',
-		cancel: 'No thanks',
-		separator: ' '
-	}
-});
-});*/
-/*$("#start").click(function(){
-    $.confirm({
-        'title': 'Delete Confirmation',
-        'message': 'You are about to delete this item. It cannot be restored at a later time! Continue?',
-        'buttons': {
-            'Yes': {
-                'class': 'blue',
-                'action': function(){
-                    alert(1);
-                }
-            },
-            'No': {
-                'class': 'gray',
-                'action': function(){}// Nothing to do in this case. You can as well omit the action property.
-            }
-        }
-    });
-});*/
-
 $(".btn.btn-lg.btn-block").click(function(){
 	$("button:visible").removeClass("active");
 	$(this).addClass("active");
@@ -443,30 +427,6 @@ $(".btn.btn-lg.btn-block").click(function(){
 	if(itemname == "start"){
 		$("#q0").hide("normal",function(){
 			divArray.push($("#q0"));
-			showDiv($("#q1"));
-		});
-	}else if(itemname.indexOf("section") >= 0){
-		section = itemname;
-		$("#q1").hide("normal",function(){
-			if(itemname == "section1"){
-				showDiv($("#q11"));
-			}else if(itemname == "section2"){
-				showDiv($("#q12"));
-			}else if(itemname == "section3"){
-				showDiv($("#q13"));
-			}
-		});
-	}else if(itemname.indexOf("grade") >= 0){
-		grade = itemname;
-		var $hidDiv;
-		if(section == "section1"){
-			$hidDiv = $("#q11"); 
-		}else if(section == "section2"){
-			$hidDiv = $("#q12"); 
-		}else if(section == "section3"){
-			$hidDiv = $("#q13"); 
-		}
-		$hidDiv.hide("normal",function(){
 			showDiv($("#q2"));
 		});
 	}else if(itemname.indexOf("content") >= 0){
@@ -526,11 +486,40 @@ $(".btn.btn-lg.btn-block").click(function(){
 	}else if(itemname.indexOf("gender") >= 0){
 		teacherGender = itemname;
 		$("#teacherGender").hide("normal",function(){
+			showDiv($("#address"));
+		});
+	}else if(itemname.indexOf("address") >= 0){
+		address = itemname;
+		$("#address").hide("normal",function(){
 			showDiv($("#price"));
 		});
 	}else if(itemname.indexOf("price") >= 0){
 		price = itemname;
 		$("#price").hide("normal",function(){
+			showDiv($("#q1"));
+		});
+	}else if(itemname.indexOf("section") >= 0){
+		section = itemname;
+		$("#q1").hide("normal",function(){
+			if(itemname == "section1"){
+				showDiv($("#q11"));
+			}else if(itemname == "section2"){
+				showDiv($("#q12"));
+			}else if(itemname == "section3"){
+				showDiv($("#q13"));
+			}
+		});
+	}else if(itemname.indexOf("grade") >= 0){
+		grade = itemname;
+		var $hidDiv;
+		if(section == "section1"){
+			$hidDiv = $("#q11"); 
+		}else if(section == "section2"){
+			$hidDiv = $("#q12"); 
+		}else if(section == "section3"){
+			$hidDiv = $("#q13"); 
+		}
+		$hidDiv.hide("normal",function(){
 			insertParentAndChild();
 			showDiv($("#resultNotification"));
 		});
@@ -575,7 +564,7 @@ $("#compeleteRecord").click(function(){
 });
 
 $("#myrecord").click(function(){
-	window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://'+rootUrl+'/myRecord.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
+	window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+$appid+'&redirect_uri=http://'+rootUrl+'/myRecord.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
 });
 
 $("#save").click(function(){
@@ -584,7 +573,8 @@ $("#save").click(function(){
 		alert("请输入手机号");
 		return;
 	}
-	saveRecord($("#q6"));
+	//saveRecord($("#q6"));
+	saveRecord($("#resultNotification"));
 });
 
 function saveRecord($hideDiv){

@@ -45,7 +45,7 @@
 		$query = "UPDATE `T_transaction` SET `status`='2', updatedDt = sysdate() where parentOpenid = '$openid' and `status`='1'";
 		$result = $conn->query($query);
 		
-		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx9855e946fbde03ac&secret=a185dd60de19330b8eaaadf4d8ae00ef";
+		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='$appid'&secret='$secret'";
 		$access_token_json = file_get_contents($access_token_get_url); 
 		$json_obj = json_decode($access_token_json,true);
 		$access_token = $json_obj["access_token"];
@@ -133,7 +133,7 @@
 	
 	function getUserDetails($openid){
 		//1,获取access_token
-		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx9855e946fbde03ac&secret=a185dd60de19330b8eaaadf4d8ae00ef";
+		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='$appid'&secret='$secret'";
 		$access_token_json = file_get_contents($access_token_get_url); 
 		$json_obj = json_decode($access_token_json,true);
 		$access_token = $json_obj["access_token"];

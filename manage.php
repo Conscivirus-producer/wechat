@@ -2,7 +2,7 @@
 require_once("config.php");
 if (isset($_GET['code'])){
     $code = $_GET['code'];
-    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx9855e946fbde03ac&secret=a185dd60de19330b8eaaadf4d8ae00ef&code=".$code."&grant_type=authorization_code";
+    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
     $access_token_json = file_get_contents($access_token_get_url); 
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];

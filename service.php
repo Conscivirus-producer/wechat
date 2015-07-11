@@ -6,7 +6,7 @@
 		$typeCode = trim($_GET["typeCode"]);
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "SELECT DISTINCT `code`,`name` FROM `T_offers` WHERE `typeCode`='$typeCode' and teacherOpenId in (select openId from T_teacher where teacherStatus = 'R')";
+		$query = "SELECT DISTINCT `code`,`name` FROM `T_offers` WHERE `typeCode`='$typeCode' and `status`='R' and teacherOpenId in (select openId from T_teacher where teacherStatus = 'R')";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			'name' => array(),
@@ -140,6 +140,7 @@
 		$childGender = trim($_GET["gender"]);
 		$grade = trim($_GET["grade"]);
 		$price = trim($_GET["price"]);
+		$address = trim($_GET["address"]);
 		$teacherGender = trim($_GET["teacherGender"]);
 		
 		$query = "set names utf8";
@@ -156,8 +157,8 @@
 			$conn->query($query);
 		}
 		
-		$query = "INSERT INTO `T_child`(`parentOpenid`, `gender`, `grade`, `subject`, `interest`,`expected_price`, `expectedTeacherGender`, `createdDt`)".
-		" VALUES ('$parentOpenId','$childGender','$grade','$subject','$interest','$price','$teacherGender', sysdate())";
+		$query = "INSERT INTO `T_child`(`parentOpenid`, `gender`, `grade`, `subject`, `interest`,`expected_price`, `expectedTeacherGender`,`expectedLocation`, `createdDt`)".
+		" VALUES ('$parentOpenId','$childGender','$grade','$subject','$interest','$price','$teacherGender','$address', sysdate())";
 		$result = $conn->query($query);
 		$resultArray = array("parentOpendId"=>$parentOpenId, "childId"=>mysqli_insert_id($conn));
 		return json_encode($resultArray); 
@@ -166,7 +167,7 @@
 
 	function getUserDetails($openid){
 		//1,获取access_token
-		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx9855e946fbde03ac&secret=a185dd60de19330b8eaaadf4d8ae00ef";
+		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='$appid'&secret='$secret'";
 		$access_token_json = file_get_contents($access_token_get_url); 
 		$json_obj = json_decode($access_token_json,true);
 		$access_token = $json_obj["access_token"];

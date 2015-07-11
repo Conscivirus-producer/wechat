@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['code'])){
     $code = $_GET['code'];
-    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx9855e946fbde03ac&secret=a185dd60de19330b8eaaadf4d8ae00ef&code=".$code."&grant_type=authorization_code";
+    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
     $access_token_json = file_get_contents($access_token_get_url); 
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
@@ -70,7 +70,7 @@ $(document).ready(function(){
 						cancelUrl = "http://"+rootUrl+"/service.php?requestMethod=cancelTransaction&transactionId="+value;
 						$.getJSON(cancelUrl,function(data){
 						});
-						window.location = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri="+
+						window.location = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+$appid+"&redirect_uri="+
 						"http://"+rootUrl+"/myRecord.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
 							//window.location.reload();
 					}
