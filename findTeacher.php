@@ -569,8 +569,8 @@ $("#myrecord").click(function(){
 
 $("#save").click(function(){
 	mobile = $("#contact").val();
-	if(mobile == null || mobile.trim() == ""){
-		alert("请输入手机号");
+	if(!validatePhone(mobile)){
+		alert("请输入正确的手机号");
 		return;
 	}
 	//saveRecord($("#q6"));
@@ -584,6 +584,15 @@ function saveRecord($hideDiv){
 			showDiv($("#q10"));
 		});
 	});	
+}
+
+function validatePhone(phone){
+	var reg = /^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/;
+	if (reg.test(phone)) {
+		return true;
+	}else{
+		return false;
+	}
 }
 </script>
 </body>

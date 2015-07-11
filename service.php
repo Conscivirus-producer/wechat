@@ -1,6 +1,5 @@
 ﻿<?php
 	require_once("config.php");
-
 	$conn = new mysqli($host, $user, $password, $database);
 	if($_GET&&$_GET["typeCode"]){
 		$typeCode = trim($_GET["typeCode"]);
@@ -68,7 +67,7 @@
 			}
 			echo json_encode($jsonArray);
 		}else if($requestMethod == "insertParentAndChild"){
-			echo insertParentAndChild($conn);
+			echo insertParentAndChild($conn, $appid, $secret);
 		}else if($requestMethod == "teacherDetails"){
 			getTeacherDetails($conn);
 		}else if($requestMethod == "saveTransaction"){
@@ -77,27 +76,6 @@
 			getMyRecord($conn);	
 		}else if($requestMethod == "cancelTransaction"){
 			cancelTransaction($conn);
-		}else if($requestMethod == "updateNickName"){
-			updateNickNames($conn);
-		}
-	}
-
-	function updateNickNames($conn){
-		$query = "set names utf8";
-		$result = $conn->query($query);
-		$query = "SELECT openId FROM `T_parent` where nickname = '' and status != 'INACTIVE' limit 100"; 
-		$result = $conn->query($query);
-		
-		while($row = $result->fetch_assoc()){
-			$openid = $row["openId"];
-			$json_obj = getUserDetails($openid);
-			if($json_obj["subscribe"] == "0"){
-				$query = "UPDATE `T_parent` SET `status`='INACTIVE' where openId = '$openid'";
-			}else{
-				$nickname = $json_obj["nickname"];
-				$query = "UPDATE `T_parent` SET `nickname`='$nickname' where openId = '$openid'";
-			}
-			$conn->query($query);
 		}
 	}
 
@@ -132,7 +110,7 @@
 		echo json_encode($rootArray); 
 	}
 
-	function insertParentAndChild($conn){
+	function insertParentAndChild($conn, $appid, $secret){
 		$interest = trim($_GET["interest"]);
 		$subject = trim($_GET["subject"]);
 		$parentOpenId = trim($_GET["parentOpenId"]);
@@ -148,12 +126,11 @@
 		
 		$query = "SELECT * FROM `T_parent` WHERE openId = '$parentOpenId'";
 		$result = $conn->query($query);
-		$json_obj = getUserDetails($parentOpenId);
+		$json_obj = getUserDetails($parentOpenId, $appid, $secret);
 		if($result->num_rows == 0){
 			$query = "INSERT INTO `T_parent`(`openId`,`nickname`, `mobile`, `status`, `createdDt`)".
 			 " VALUES ('%s','%s','%s','%s',sysdate())";
 			$query = sprintf($query, $parentOpenId,$json_obj["nickname"], "", "");
-			echo $query;
 			$conn->query($query);
 		}
 		
@@ -165,9 +142,9 @@
 		
 	}
 
-	function getUserDetails($openid){
+	function getUserDetails($openid, $appid, $secret){
 		//1,获取access_token
-		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='$appid'&secret='$secret'";
+		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$secret;
 		$access_token_json = file_get_contents($access_token_get_url); 
 		$json_obj = json_decode($access_token_json,true);
 		$access_token = $json_obj["access_token"];

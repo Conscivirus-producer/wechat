@@ -1,11 +1,6 @@
 ﻿<?php
 	require_once("config.php");
 	header('Access-Control-Allow-Origin:*');
-	$host = "localhost";
-	$user = "root";
-	$password = "2324150778t";
-	$password = "123456";
-	$database = "wechat_schema";
 	$conn = new mysqli($host, $user, $password, $database);
 	
 	if($_GET&&$_GET["requestMethod"]){
@@ -15,7 +10,9 @@
 		}else if($requestMethod == "myRecord"){
 			getMyRecord($conn);	
 		}else if($requestMethod == "replyToUser"){
-			replyToUser($conn);
+			replyToUser($conn, $appid, $secret);
+		}else if($requestMethod == "updateNickName"){
+			updateNickNames($conn, $appid, $secret);
 		}
 	}
 	
@@ -38,14 +35,47 @@
 	    return $str;  
 	} 
 	
-	function replyToUser($conn){
+	function updateNickNames($conn, $appid, $secret){
+		$query = "set names utf8";
+		$result = $conn->query($query);
+		$query = "SELECT openId FROM `T_parent` where nickname = '' and status != 'INACTIVE' limit 100"; 
+		$result = $conn->query($query);
+		
+		while($row = $result->fetch_assoc()){
+			$openid = $row["openId"];
+			$json_obj = getUserDetails($openid, $appid, $secret);
+			if($json_obj["subscribe"] == "0"){
+				$query = "UPDATE `T_parent` SET `status`='INACTIVE' where openId = '$openid'";
+			}else{
+				$nickname = $json_obj["nickname"];
+				$query = "UPDATE `T_parent` SET `nickname`='$nickname' where openId = '$openid'";
+			}
+			$conn->query($query);
+		}
+	}
+	
+	function getUserDetails($openid, $appid, $secret){
+		//1,获取access_token
+		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$secret;
+		$access_token_json = file_get_contents($access_token_get_url); 
+		$json_obj = json_decode($access_token_json,true);
+		$access_token = $json_obj["access_token"];
+		//2,再获取基本信息
+		$basic_information_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid=".$openid."&lang=zh_CN";
+		$basic_information_json = file_get_contents($basic_information_url);
+		$json_obj = json_decode($basic_information_json,true); 
+		
+		return $json_obj;
+	}
+	
+	function replyToUser($conn, $appid, $secret){
 		$openid = trim($_GET["openid"]);
 		$content = trim($_GET["content"]);
 		
 		$query = "UPDATE `T_transaction` SET `status`='2', updatedDt = sysdate() where parentOpenid = '$openid' and `status`='1'";
 		$result = $conn->query($query);
 		
-		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='$appid'&secret='$secret'";
+		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$secret;
 		$access_token_json = file_get_contents($access_token_get_url); 
 		$json_obj = json_decode($access_token_json,true);
 		$access_token = $json_obj["access_token"];
@@ -131,20 +161,6 @@
 		}
 	}
 	
-	function getUserDetails($openid){
-		//1,获取access_token
-		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='$appid'&secret='$secret'";
-		$access_token_json = file_get_contents($access_token_get_url); 
-		$json_obj = json_decode($access_token_json,true);
-		$access_token = $json_obj["access_token"];
-		//2,再获取基本信息
-		$basic_information_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid=".$openid."&lang=zh_CN";
-		$basic_information_json = file_get_contents($basic_information_url);
-		$json_obj = json_decode($basic_information_json,true); 
-		
-		return $json_obj;
-	}
-
 	function getExpectedGender($gender){
 		if($gender == "gender1"){
 			return "男";

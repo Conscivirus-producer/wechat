@@ -6,9 +6,10 @@ if (isset($_GET['code'])){
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
 }else{
-	$openid = "11111111";
+	//$openid = "11111111";
 	//need to be modified to show hint and qrcode image
     //echo "NO CODE";
+    $openid = 'obS35vk9Hqwl4WZXsosjxm_hckKQ';
 }
 ?>
 <!DOCTYPE html>
