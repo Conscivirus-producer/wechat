@@ -67,11 +67,12 @@
 			}
 			echo json_encode($jsonArray);
 		}else if($requestMethod == "insertParentAndChild"){
-			echo insertParentAndChild($conn, $appid, $secret);
+			$childId = insertParentAndChild($conn, $appid, $secret);
+			insertTransaction($conn, $childId);
 		}else if($requestMethod == "teacherDetails"){
 			getTeacherDetails($conn);
-		}else if($requestMethod == "saveTransaction"){
-			echo insertTransaction($conn);
+		}else if($requestMethod == "updateParentMobile"){
+			updateParentMobile($conn);
 		}else if($requestMethod == "myRecord"){
 			getMyRecord($conn);	
 		}else if($requestMethod == "cancelTransaction"){
@@ -137,8 +138,7 @@
 		$query = "INSERT INTO `T_child`(`parentOpenid`, `gender`, `grade`, `subject`, `interest`,`expected_price`, `expectedTeacherGender`,`expectedLocation`, `createdDt`)".
 		" VALUES ('$parentOpenId','$childGender','$grade','$subject','$interest','$price','$teacherGender','$address', sysdate())";
 		$result = $conn->query($query);
-		$resultArray = array("parentOpendId"=>$parentOpenId, "childId"=>mysqli_insert_id($conn));
-		return json_encode($resultArray); 
+		return mysqli_insert_id($conn); 
 		
 	}
 
@@ -156,13 +156,15 @@
 		return $json_obj;
 	}
 	
-	function insertTransaction($conn){
+	function updateParentMobile($conn){
 		$parentOpenId = trim($_GET["parentOpenId"]);
-		$childId = trim($_GET["childId"]);
 		$mobile = trim($_GET["mobile"]);
 		$query = "UPDATE `T_parent` SET `mobile`='$mobile' WHERE openId = '$parentOpenId'";
 		$result = $conn->query($query);
-		
+	}
+	
+	function insertTransaction($conn, $childId){
+		$parentOpenId = trim($_GET["parentOpenId"]);
 		$query = "INSERT INTO `T_transaction`(`parentOpenid`, `childId`, `createdDt`, `updatedDt`, `status`) VALUES".
 		 "('$parentOpenId','$childId',sysdate(),sysdate(),'1')";
 		 

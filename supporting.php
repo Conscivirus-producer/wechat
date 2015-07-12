@@ -122,6 +122,7 @@
 			'interest' => array(),
 			'expected_price' => array(),
 			'expectedTeacherGender' => array(),
+			'expectedLocation' => array(),
 			'createdDt' => array(),
 			'status' => array(),
 			'comment' => array()
@@ -135,12 +136,29 @@
 			array_push($jsonArray["interest"],getInterestName($row["interest"], $conn));
 			array_push($jsonArray["expected_price"],getExpectedPrice($row["expected_price"]));
 			array_push($jsonArray["expectedTeacherGender"],getExpectedGender($row["expectedTeacherGender"]));
+			array_push($jsonArray["expectedLocation"],getExpectedLocation($row["expectedLocation"]));
 			array_push($jsonArray["createdDt"],$row["createdDt"]);
 			array_push($jsonArray["status"],getStatusDescription($row["status"]));
 			array_push($jsonArray["comment"],$row["comment"]);
 		}
 		
 		echo json_encode($jsonArray);
+	}
+
+	function getExpectedLocation($location){
+		if($location == 'address1'){
+			return "南山区";
+		} else if($location == 'address2'){
+			return "福田区";	
+		} else if($location == 'address3'){
+			return "罗湖区";	
+		} else if($location == 'address4'){
+			return "宝安区";	
+		} else if($location == 'address5'){
+			return "龙岗区";	
+		} else if($location == 'address6'){
+			return "其它";	
+		}
 	}
 
 	function getStatusDescription($status){
@@ -254,4 +272,98 @@
 	      }  
 	      return (substr($haystack, -$length) === $needle);
 	 }
+	 
+	 
+	//处理POST数据
+	if($_POST){
+		$dataType = trim($_POST["dataType"]);
+		//老师注册
+		if($dataType == "teacherRegistration"){
+			$openid = trim($_POST["openid"]);
+			$name = trim($_POST["name"]);
+			$sex = trim($_POST["sex"]);
+			$school = trim($_POST["school"]);
+			$major = trim($_POST["major"]);
+			$studentNumber = trim($_POST["studentNumber"]);
+			$phone = trim($_POST["phone"]);
+			$desc = trim($_POST["desc"]);
+			$options = $_POST["options"];				//array
+			$otheroptions = trim($_POST["otheroptions"]);	//" " separated array
+			$price = trim($_POST["price"]);
+			$location = $_POST["location"];			//array
+			$location = implode(",",$location);
+			$highestGrade = trim($_POST["highestGrade"]);
+			
+			//1，存入老师的基本信息，T_teacher，默认wechatAccount为空，extraDescription为空，rating为1，teacherStatus为R
+			$query = "set names utf8";
+			$result = $conn->query($query);
+			$query = "insert into T_teacher values('$openid','','$school','$major','$studentNumber','$name','$sex','$phone','$desc','',sysdate(),'1','url','$price','$highestGrade','$location','R')";                       
+			$result = $conn->query($query);
+			
+			//2，存入老师所有能教的科目，兴趣
+			$length = count($options);
+			$query = "set names utf8";
+			$result = $conn->query($query);
+			$query = "insert into T_offers(teacherOpenId,name,code,description,typeCode,typeName,status) values ";
+			for($i = 0;$i < $length;$i++){
+				$code = $options[$i];
+				$codeToName = array(
+					"A" => "舞蹈与音乐",
+					"B" => "体育运动",
+					"C" => "书法与美术",
+					"D" => "编程软件应用与棋类",
+					"E" => "演讲与播音主持",
+					"F" => "舞蹈与音乐"
+				);
+				
+				$typeCode = "";
+				$typeName = "";
+				$status = "R";
+				$localName = "";
+				if(stripos($code,"SU") !== false){
+					$typeCode = "SU";
+					$typeName = "科目";
+					if($code == "SU1"){
+						$localName = "语文";
+					}else if($code == "SU2"){
+						$localName = "数学";
+					}else{
+						$localName = "英语";
+					}
+				}else{
+					$queryString = "set names utf8";
+					$result = $conn->query($queryString);
+					$queryString = "select name from T_offers where code = '$code' limit 1";
+					$result = $conn->query($queryString);
+					$row = $result->fetch_assoc();
+					$localName = $row["name"];
+					$typeCode = substr($code,0,1);
+					$typeName = $codeToName[$typeCode];
+				}
+				if($i != 0){
+					$query = $query.",";
+				}
+				$query = $query."('$openid','$localName','$code','','$typeCode','$typeName','R')";
+			}
+			
+			
+			//3，存入其它的能教得科目，项目
+			if($otheroptions != ""){
+				$otheroptions = explode(" ",$otheroptions);
+				$length = count($otheroptions);
+				for($j = 0;$j < $length;$j++){
+					$localName = $otheroptions[$j];
+					$query = $query.",('$openid','$localName','','','','','R')";
+				}
+			}
+			
+			$result = $conn->query($query);
+			
+			$jsonArray = array(
+				'status' => "ok",
+				'dataType' => "teacherRegistration"
+			);
+			echo json_encode($jsonArray);
+		}
+	}
 ?>

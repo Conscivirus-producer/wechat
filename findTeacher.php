@@ -390,7 +390,6 @@ var choice;
 var subject;
 var interest;
 var divArray = new Array();
-var childId;
 var price;
 var teacherGender;
 var teacherOpenId;
@@ -415,8 +414,6 @@ function insertParentAndChild(){
 		url += "&subject="+subject.toUpperCase()+"&interest="+interest;
 	}
 	$.getJSON(url,function(data){
-		childId = data.childId;
-		$("#openid").val(data.parentOpendId);
 	});
 }
 
@@ -523,15 +520,6 @@ $(".btn.btn-lg.btn-block").click(function(){
 			insertParentAndChild();
 			showDiv($("#resultNotification"));
 		});
-	}else if(itemname.indexOf("notify") >= 0){
-		notifyMethod = itemname;
-		if(itemname == "notifywechat"){
-			saveRecord($("#resultNotification"));		
-		}else if(itemname == "notifymessage"){
-			$("#resultNotification").hide("normal",function(){
-				showDiv($("#q6"));
-			});	
-		}
 	}
 });
 
@@ -553,7 +541,7 @@ $("[id^=laststep]").click(function(){
 	divArray.pop();
 });
 
-$("#compeleteRecord").click(function(){
+/*$("#compeleteRecord").click(function(){
 	var url = "http://"+rootUrl+"/service.php?requestMethod=saveTransaction&parentOpenId="+$("#openid").val()+"&teacherOpenId="+teacherOpenId+"&childId="+childId;
 	$.getJSON(url,function(data){
 		
@@ -561,7 +549,7 @@ $("#compeleteRecord").click(function(){
 	$("#q8").hide("normal",function(){
 		showDiv($("#q9"));
 	});	
-});
+});*/
 
 $("#myrecord").click(function(){
 	window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+$appid+'&redirect_uri=http://'+rootUrl+'/myRecord.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
@@ -573,17 +561,16 @@ $("#save").click(function(){
 		alert("请输入正确的手机号");
 		return;
 	}
-	//saveRecord($("#q6"));
 	saveRecord($("#resultNotification"));
 });
 
 function saveRecord($hideDiv){
-	var url = "http://"+rootUrl+"/service.php?requestMethod=saveTransaction&parentOpenId="+$("#openid").val()+"&childId="+childId+"&mobile="+mobile;
+	var url = "http://"+rootUrl+"/service.php?requestMethod=updateParentMobile&parentOpenId="+$("#openid").val()+"&mobile="+mobile;
 	$.getJSON(url, function(data){
-		$hideDiv.hide("normal",function(){
-			showDiv($("#q10"));
-		});
 	});	
+	$hideDiv.hide("normal",function(){
+		showDiv($("#q10"));
+	});
 }
 
 function validatePhone(phone){

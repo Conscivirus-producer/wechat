@@ -8,10 +8,19 @@ require_once("config.php");
 define("TOKEN", "ajskdjnclVXOIskdu293ueLJwij");
 $wechatObj = new wechatCallbackapiTest();
 //$wechatObj->valid();
+$wechatObj->setAppid($appid, $secret);
 $wechatObj->responseMsg();
 
 class wechatCallbackapiTest
 {
+	private $appid;
+	private $secret;
+	
+	public function setAppid($appid, $secret){
+		$this->appid = $appid;
+		$this->secret = $secret;
+	}
+	
 	public function valid()
     {
         $echoStr = $_GET["echostr"];
@@ -27,7 +36,6 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-
       	//extract post data
 		if (!empty($postStr)){
                 /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
@@ -55,7 +63,7 @@ class wechatCallbackapiTest
 							$eventKey = "noscan";
 						}
 						//1,获取access_token
-						$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='$appid'&secret='$secret'";
+						$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appid."&secret=".$this->secret;
     					$access_token_json = file_get_contents($access_token_get_url); 
     					$json_obj = json_decode($access_token_json,true);
     					$access_token = $json_obj["access_token"];
@@ -106,7 +114,7 @@ class wechatCallbackapiTest
 										</xml> ";
 							$title = "填写表格成为老师";//标题
 							$PicUrl = "http://www.hehe.life/image/logo.jpg";//图片链接
-							$Url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid='$appid'&redirect_uri=http://www.hehe.life/manage.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";//打开后的图片链接
+							$Url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->appid."&redirect_uri=http://www.hehe.life/manage.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";//打开后的图片链接
 							$time = time();
 							$resultStr = sprintf($imageTpl, $fromUsername, $toUsername, $time, $title, $PicUrl,$Url);
 							echo $resultStr;

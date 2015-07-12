@@ -59,7 +59,7 @@ require_once("config.php");
 <div id="tableExcel" style="display:none">  
 <table id="test" width="100%" border="1" cellspacing="0" cellpadding="0">  
       <tr>  
-          <td colspan="11" align="center">交易记录</td>  
+          <td colspan="12" align="center">交易记录</td>  
       </tr>  
       <tr>  
           <td>家长openid</td>  
@@ -70,6 +70,7 @@ require_once("config.php");
           <td>兴趣</td>
           <td>期望价格</td>
           <td>期望老师性别</td>
+          <td>期望地点</td>
           <td>交易时间</td>
           <td>状态</td>
           <td>备注</td>    
@@ -97,8 +98,8 @@ $("#submit").click(function(){
 		for(var i=0; i<length;i++){
 			$tr = $("<tr>", {style: "", class: ""}).attr("id","resultTr" + i);
 			$tr.html("<td>"+data.parentOpenId[i]+"</td><td>"+data.nickname[i]+"</td><td>"+data.mobile[i]+"</td><td>"+data.grade[i]+"</td><td>"+data.subject[i]+
-			"</td><td>"+data.interest[i]+"</td><td>"+data.expected_price[i]+"</td><td>"+data.expectedTeacherGender[i]+"</td><td>"+data.createdDt[i]+
-			"</td><td>"+data.status[i]+"</td><td>"+data.comment[i]+"</td>");
+			"</td><td>"+data.interest[i]+"</td><td>"+data.expected_price[i]+"</td><td>"+data.expectedTeacherGender[i]+"</td><td>"+data.expectedLocation[i]+
+			"</td><td>"+data.createdDt[i]+"</td><td>"+data.status[i]+"</td><td>"+data.comment[i]+"</td>");
 			$("#test").append($tr);
 		}
 			//$("$test").html($tr);

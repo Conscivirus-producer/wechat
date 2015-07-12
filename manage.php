@@ -8,8 +8,7 @@ if (isset($_GET['code'])){
     $openid = $json_obj["openid"];
 }else{
 	//need to be modified to show hint and qrcode image
-    //exit("NO CODE");
-    $openid = 'obS35vk9Hqwl4WZXsosjxm_hckKQ';
+    exit("NO CODE");
 }
 ?>
 <!DOCTYPE html>
@@ -305,11 +304,11 @@ $("#submit").click(function(){
 	var phone = $("#phone").val();
 	var desc = $("#desc").val();
 	var allOptions = new Array();
-	var price = $("#price").val();
-	var location = $("#location").val();
-	var highestGrade = $("#grade").val();
-	var otheroptions = $("#otheroptions").val();
-	alert(otheroptions);
+	var price = $("#price").val();					//期望的最低时薪					
+	var location = $("#location").val();				//可接受的教学地点		
+	var highestGrade = $("#grade").val();			//最高能教的年级
+	var otheroptions = $("#otheroptions").val();	//其它能教的学科
+	//alert(otheroptions);
 	//var imageName = $("#file").val();
 	for(var i = 0;i < typeCodes.length;i++){
 	 	var options = $("#"+typeCodes[i]).val();
@@ -331,6 +330,10 @@ $("#submit").click(function(){
 		alert("请输入简短的描述");
 	}else if(allOptions.length == 0){
 		alert("请至少选择一个可教的课程");
+	}else if(price == ""){
+		alert("请输入期望的最低时薪");
+	}else if(location == null){
+		alert("请选择可接受的教学地点");
 	}else{
 		var postData = {
 			openid:"",
@@ -343,10 +346,11 @@ $("#submit").click(function(){
 			desc: "",
 			imgUrl: ".jpg",
 			options: [],
-			otheroptions,
+			otheroptions: [],
 			price: "",
-			location: "",
-			highestGrade:""
+			location: [],
+			highestGrade:"",
+			dataType:"teacherRegistration"
 		};
 		/*if(imageName.indexOf("jpeg") >= 0){
 			postData.imgUrl = ".jpeg";
@@ -366,10 +370,12 @@ $("#submit").click(function(){
 		postData.phone = phone;
 		postData.desc = desc;
 		postData.options = allOptions;
+		
+		postData.otheroptions = otheroptions;
 		postData.price = price;
 		postData.location = location;
 		postData.highestGrade = highestGrade;
-		if(imageUploaded == true){
+		/*if(imageUploaded == true){
 			if(certificateUploaded == true){
 				$.post("service.php", postData,
    					function(data){
@@ -394,7 +400,15 @@ $("#submit").click(function(){
    			}
    		}else{
    			alert("请先上传自己的头像");
-   		}
+   		}*/
+   		
+   		$.post("supporting.php", postData,
+   					function(data){
+     					//$("#imagename").val(openid);
+     					//$("#imageform").submit();
+     					alert("老师数据录入成功！");
+     				}
+   				);
 	}
 });
 function validatePhone(phone){
@@ -420,7 +434,7 @@ $(document).ready(function() {
 
 			function applyAjaxFileUpload(element) {
 				$(element).AjaxFileUpload({
-					action: "upload.php",
+					action: "http://upload.qiniu.com/",
 					onChange: function(filename) {
 						// Create a span element to notify the user of an upload in progress
 						//$("<br>").appendTo($(this));
@@ -529,9 +543,10 @@ $(document).ready(function() {
 						return false;*/
 
 						// Return key-value pair to be sent along with the file
+						//var sent_along_data = {"openid":"","type":"certificate","count":"1"};
+						//sent_along_data["openid"] = openid;
+						//sent_along_data["count"] = ""+certificateCount;
 						var sent_along_data = {"openid":"","type":"certificate","count":"1"};
-						sent_along_data["openid"] = openid;
-						sent_along_data["count"] = ""+certificateCount;
 						return sent_along_data;
 					},
 					onComplete: function(filename, response) {
