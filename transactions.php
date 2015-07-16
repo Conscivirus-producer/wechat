@@ -14,7 +14,6 @@ require_once("config.php");
 <!-- Loading Flat UI -->
 <link href="css/flat-ui.min.css" rel="stylesheet">
 <script src="js/vendor/jquery.min.js"></script>
-<script src="js/jquery.ajaxfileupload.min.js"></script>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 <!--[if lt IE 9]>
 <script src="js/vendor/html5shiv.js"></script>
@@ -22,82 +21,108 @@ require_once("config.php");
 <![endif]-->
 </head>
 <body>
-<input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <div class="container">
 	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<p class="text-center">
+				后台管理
+			</p>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-4 col-md-offset-2">
-			起始日期(比如: 2015-07-03 18:20):
-			<input type="text" name="startDate" value="2015-07-03" id="startDate">
+			<div class="form-group">
+				<label ="startDate">起始日期(比如: 2015-07-03 18:20):</label>
+				<input type="text" class="form-control" name="startDate" value="2015-07-03" id="startDate">
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label ="endDate">结束日期(比如: 2015-07-04 09:20):</label>
+				<input type="text" class="form-control" name="endDate" value="2015-07-04" id="endDate">
+			</div>
 		</div>
 	</div>
 	
 	<div class="row">
-		<div class="col-md-4 col-md-offset-2">
-			结束日期(比如: 2015-07-04 09:20):<input type="text" name="endDate" value="2015-07-04" id="endDate">
-		</div>
-	</div>
-	
-	<div class="row" style="margin-top:30px">
 		<div class="col-md-4 col-md-offset-4">
 			<button type="button" class="btn btn-info btn-lg btn-block" name="submit" id="submit">提交</button>
 		</div>
 	</div>
-	<div class="row" style="margin-top:30px">
-		<div class="col-md-4 col-md-offset-4">
-			<button type="button" class="" name="newtrans" id="newtrans">新订单</button>
-			<button type="button" class="" name="unapproval" id="unapproval">家长未同意</button>
-			<button type="button" class="" name="inprogress" id="inprogress">家长已同意</button>
+	<div class="row" style="margin-top:10px">
+		<div class="col-md-2 col-md-offset-3">
+			<button type="button" class="btn btn-primary btn-lg btn-block" name="newtrans" id="newtrans">新订单</button>
+		</div>
+		<div class="col-md-2">
+			<button type="button" class="btn btn-primary btn-lg btn-block" name="unapproval" id="unapproval">家长未同意</button>
+		</div>
+		<div class="col-md-2">
+			<button type="button" class="btn btn-primary btn-lg btn-block" name="inprogress" id="inprogress">家长已同意</button>
 		</div>
 	</div>
 	
-<div id="tableExcel" style="display:none">  
-<table id="test" width="100%" border="1" cellspacing="0" cellpadding="0">  
-      <tr>  
-          <td colspan="12" align="center">交易记录</td>  
-      </tr>  
-      <tr>  
-          <td>家长openid</td>  
-          <td>昵称</td>
-          <td>手机号</td>    
-          <td>年级</td>  
-          <td>科目</td>  
-          <td>兴趣</td>
-          <td>期望价格</td>
-          <td>期望老师性别</td>
-          <td>期望地点</td>
-          <td>交易时间</td>
-          <td>状态</td>
-          <td>备注</td>    
-      </tr>  
-</table>  
-</div>
+	<div class="row" style="margin-top:10px">
+		<div class="col-md-12">
+			<div id="tableExcel" style="display:none" class="table-responsive">  
+				<table id="test" class="table table-hover table-bordered" width="100%">
+					<caption>所有交易记录</caption>  
+      				<thead>
+        				<tr>
+          					<th>家长openid</th>  
+          					<th>昵称</th>
+          					<th>手机号</th>    
+          					<th>年级</th>  
+          					<th>科目</th>  
+          					<th>兴趣</th>
+          					<th>期望价格</th>
+          					<th>期望老师性别</th>
+          					<th>期望地点</th>
+          					<th>交易时间</th>
+          					<th>状态</th>
+          					<th>备注</th> 
+        				</tr>
+      				</thead>
+    				<tbody>
+      				</tbody> 
+				</table>  
+			</div>
+		</div>
+	</div>
+	
+	<div class="row" style="margin-top:10px">
+		<div class="col-md-12">
+			<div id="confirmedExcel" class="table-responsive">  
+				<table id="confirmedtrans" class="table table-hover table-bordered" width="100%">
+					<caption>家长已同意交易记录</caption>  
+      				<thead>
+        				<tr>
+          					<th>交易时间</th>
+          					<th>跟踪员</th>
+          					<th>家长openid</th>  
+          					<th>昵称</th>
+          					<th>手机号</th>    
+          					<th>年级</th>  
+          					<th>科目</th>  
+          					<th>兴趣</th>
+          					<th>老师姓名</th>
+          					<th>老师手机号</th>
+          					<th>试教时间</th>
+          					<th>正式教课时间</th>
+          					<th>费用</th>
+          					<th>地点</th>
+          					<th>状态</th>
+          					<th>备注</th>  
+        				</tr>
+      				</thead>
+    				<tbody>
+      				</tbody> 
+				</table>  
+			</div>
+		</div>
+	</div>
 
-<div id="confirmedExcel" style="display:none">
-<table id="confirmedtrans" width="100%" border="1" cellspacing="0" cellpadding="0">  
-      <tr>  
-          <td colspan="16" align="center">交易记录</td>  
-      </tr>  
-      <tr>  
-          <td>交易时间</td>
-          <td>跟踪员</td>
-          <td>家长openid</td>  
-          <td>昵称</td>
-          <td>手机号</td>    
-          <td>年级</td>  
-          <td>科目</td>  
-          <td>兴趣</td>
-          <td>老师姓名</td>
-          <td>老师手机号</td>
-          <td>试教时间</td>
-          <td>正式教课时间</td>
-          <td>费用</td>
-          <td>地点</td>
-          <td>状态</td>
-          <td>备注</td>    
-      </tr>  
-</table> 
-</div>  
+ 
 </div>
 <!-- /.container -->
 <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
@@ -131,7 +156,7 @@ $("#submit").click(function(){
 			"</td><td>"+data.status[i]+
 			"</td><td>"+data.comment[i]+
 			"</td>");
-			$("#test").append($tr);
+			$("#test > tbody").append($tr);
 		}
 			//$("$test").html($tr);
 		$("#tableExcel").show();
@@ -167,7 +192,7 @@ $("#inprogress").click(function(){
 			"</td><td>"+data.status[i]+
 			"</td><td>"+data.comment[i]+
 			"</td>");
-			$("#confirmedtrans").append($tr);
+			$("#confirmedtrans > tbody").append($tr);
 		}
 			//$("$test").html($tr);
 		$("#confirmedExcel").show();
