@@ -7,5 +7,5 @@ $database = "wechat_schema";
 $rootUrl = "www.ilearnnn.com";
 //$rootUrl = "localhost";
 $appid="wx9855e946fbde03ac";
-$secret="a185dd60de19330b8eaaadf4d8ae00ef";
+$secret="28e4b6e745a58b2999afee567478b105";
 ?> 
