@@ -5,9 +5,9 @@ require_once("config.php");
   */
 
 //define your token
-define("TOKEN", "sdfjowfj323oiwrj32443oirjfsdf");
+define("TOKEN", "woijodsj23232jdofijweo323ioj");
 $wechatObj = new wechatCallbackapiTest();
-$wechatObj->valid();
+//$wechatObj->valid();
 $wechatObj->setAppid($appid, $secret);
 $wechatObj->responseMsg();
 
