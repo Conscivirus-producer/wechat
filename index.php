@@ -93,10 +93,6 @@ class wechatCallbackapiTest
 					if(!empty( $keyword ))
                 	{
                 		if($keyword == "1"){
-	              			/*$msgType = "text";
-	                		$contentStr = '<a href="www.hehe.life/manage.php">申请表格</a>';
-	                		$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-	                		echo $resultStr;*/
 	                		$imageTpl = "<xml>
 										<ToUserName><![CDATA[%s]]></ToUserName>
 										<FromUserName><![CDATA[%s]]></FromUserName>
@@ -113,8 +109,8 @@ class wechatCallbackapiTest
 										</Articles>
 										</xml> ";
 							$title = "填写表格成为老师";//标题
-							$PicUrl = "http://www.hehe.life/image/logo.jpg";//图片链接
-							$Url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->appid."&redirect_uri=http://www.hehe.life/manage.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";//打开后的图片链接
+							$PicUrl = "http://www.ilearnnn.com/image/logo.jpg";//图片链接
+							$Url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->appid."&redirect_uri=http://www.ilearnnn.com/manage.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";//打开后的图片链接
 							$time = time();
 							$resultStr = sprintf($imageTpl, $fromUsername, $toUsername, $time, $title, $PicUrl,$Url);
 							echo $resultStr;
