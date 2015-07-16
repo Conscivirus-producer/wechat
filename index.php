@@ -3,7 +3,6 @@ require_once("config.php");
 /**
   * wechat php test
   */
-
 //define your token
 define("TOKEN", "woijodsj23232jdofijweo323ioj");
 $wechatObj = new wechatCallbackapiTest();
