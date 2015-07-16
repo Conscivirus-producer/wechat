@@ -1,11 +1,30 @@
 <?php
 require_once("config.php");
+
+require_once 'vendor/autoload.php';
+use Qiniu\Auth;
+
+$accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
+$secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
+$auth = new Auth($accessKey, $secretKey);
+
+$bucket = 'wojiaonixue';
+$token = $auth->uploadToken($bucket);
+
+$openid = "";
 if (isset($_GET['code'])){
     $code = $_GET['code'];
     $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
     $access_token_json = file_get_contents($access_token_get_url); 
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
+    $conn = new mysqli($host, $user, $password, $database);
+    $query = "select faculty from T_teacher where openId = '$openid'";
+    $result = $conn->query($query);
+    if($result->num_rows != 0){
+    	header("location:https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.hehe.life/showTeacherInformation.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+    	exit;
+    }
 }else{
 	//need to be modified to show hint and qrcode image
     exit("NO CODE");
@@ -16,7 +35,7 @@ if (isset($_GET['code'])){
 <head>
 <meta charset="utf-8">
 <title>老师数据录入</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
 <!-- Loading Bootstrap -->
 <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
 <!-- Loading Flat UI -->
@@ -28,10 +47,24 @@ if (isset($_GET['code'])){
 <script src="js/vendor/html5shiv.js"></script>
 <script src="js/vendor/respond.min.js"></script>
 <![endif]-->
+<style>
+.sl-custom-file{display:inline-block;
+	text-align:center;
+	overflow:hidden;
+	position:relative;
+}
+.ui-input-file{opacity:0;
+	filter:alpha(opacity=0);
+	position:absolute;
+	top:0;
+	right:0;
+}
+</style>
 </head>
 <body>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
+<input type="text" name="token" id="token" value="<?php echo $token; ?>" style="display:none">
 
 <div class="container">
 	<div class="row">
@@ -96,8 +129,10 @@ if (isset($_GET['code'])){
 		</div>
 		<div class="col-md-4">
 			<div class="form-group">
-				<label for="desc">自我介绍</label>
-				<input type="text" class="form-control" name="desc" id="desc" placeholder="简短的自我介绍，以及获奖证书，过往成绩之类 的">
+				<label for="desc">自我介绍【不少于30个字】</label>
+				<!--<input type="text" class="form-control" name="desc" id="desc" placeholder="可介绍自己的性格，经验，优点，获奖经历等">-->
+				
+				<textarea class="form-control" rows="3" name="desc" id="desc" placeholder="可介绍自己的性格，经验，优点，获奖经历等"></textarea>
 			</div>
 		</div>
 	</div>
@@ -111,8 +146,8 @@ if (isset($_GET['code'])){
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
-				<label for="SU">学科辅导</label>
-				<select class="form-control" name="SU" id="SU" multiple="multiple">
+				<label for="SU">学科辅导【可多选】</label>
+				<select name="SU" id="SU" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
 				</select>
 			</div>
 		</div>
@@ -120,8 +155,8 @@ if (isset($_GET['code'])){
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
-				<label for="A">乐器与舞蹈</label>
-				<select class="form-control" name="A" id="A" multiple="multiple">
+				<label for="A">乐器与舞蹈【可多选】</label>
+				<select name="A" id="A" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
 				</select>
 			</div>
 		</div>
@@ -129,8 +164,8 @@ if (isset($_GET['code'])){
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
-				<label for="B">体育运动</label>
-				<select class="form-control" name="B" id="B" multiple="multiple">
+				<label for="B">体育运动【可多选】</label>
+				<select name="B" id="B" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
 				</select>
 			</div>
 		</div>
@@ -138,8 +173,8 @@ if (isset($_GET['code'])){
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
-				<label for="C">书法与美术</label>
-				<select class="form-control" name="C" id="C" multiple="multiple">
+				<label for="C">书法与美术【可多选】</label>
+				<select name="C" id="C" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
 				</select>
 			</div>
 		</div>
@@ -147,8 +182,8 @@ if (isset($_GET['code'])){
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
-				<label for="D">益智类</label>
-				<select class="form-control" name="D" id="D" multiple="multiple">
+				<label for="D">益智类【可多选】</label>
+				<select name="D" id="D" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
 				</select>
 			</div>
 		</div>
@@ -156,8 +191,8 @@ if (isset($_GET['code'])){
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
-				<label for="E">演讲与口才</label>
-				<select class="form-control" name="E" id="E" multiple="multiple">
+				<label for="E">演讲与口才【可多选】</label>
+				<select name="E" id="E" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
 				</select>
 			</div>
 		</div>
@@ -165,8 +200,8 @@ if (isset($_GET['code'])){
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
-				<label for="F">趣味课程</label>
-				<select class="form-control" name="F" id="F" multiple="multiple">
+				<label for="F">趣味课程【可多选】</label>
+				<select name="F" id="F" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
 				</select>
 			</div>
 		</div>
@@ -220,8 +255,8 @@ if (isset($_GET['code'])){
 		<div class="col-md-4 col-md-offset-2">
 			<div class="form-group">
 				<label for="location">可接受的地点</label>
-				<select class="form-control" name="location" id="location" multiple="multiple">
-					<option value="location1">不限</option>
+				<select name="location" id="location" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
+					<option value="location0">不限</option>
   					<option value="location1">南山区</option>
   					<option value="location2">福田区</option>
   					<option value="location3">罗湖区</option>
@@ -232,28 +267,39 @@ if (isset($_GET['code'])){
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-2">
-			<form method="post" action="" enctype="multipart/form-data">
-				<label>上传头像(要求本人头像，五官清晰): <input type="file" name="file" id="image_upload" /></label>
-				<div id="uploads">
-
-				</div>
-			</form>
+		<div class="col-md-4 col-md-offset-2" id="image_upload_div">
+			<label>上传头像(要求本人头像，五官清晰):</label><br>
+			<span class="sl-custom-file">
+    			<button type="button" class="btn btn-default btn-lg" id="trigger_head_upload">
+  					<span class="fui-user"></span>
+  					<span class="fui-plus"></span>
+				</button>
+   			 	<input type="file" name="head_upload" id="head_upload" class="ui-input-file"/>
+			</span>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-2">
-			<form method="post" action="" enctype="multipart/form-data">
-				<label for="demo1">上传证书: <input type="file" name="file" id="certificate_upload" /></label>
-				<div id="uploads">
-
-				</div>
-			</form>
+		<div class="col-md-4 col-md-offset-2" id="certificate_upload_div">
+			<label for="certificate_desc">上传证书(要求输入证书的名称/描述，可传多张):</label>
+			<input type="text" class="form-control" name="certificate_desc" id="certificate_desc" placeholder="请输入证书的名称/描述" style="margin-bottom:5px">
+			<span class="sl-custom-file">
+    			<button type="button" class="btn btn-default btn-lg" id="trigger_certificate_upload">
+  					<span class="fui-document"></span>
+  					<span class="fui-plus"></span>
+				</button>
+   			 	<input type="file" name="certificate_upload" id="certificate_upload" class="ui-input-file"/>
+			</span>
 		</div>
 	</div>
+	
+	
 	<div class="row" id="interests" style="margin-top:5px">
 		<div class="col-md-4 col-md-offset-4">
-			<button type="button" class="btn btn-info btn-lg btn-block" name="submit" id="submit">提交</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block" name="submit" id="submit">提交</button>
+		</div>
+	</div>
+	<div class="row" id="interests" style="margin-top:10px">
+		<div class="col-md-4 col-md-offset-4">
 		</div>
 	</div>
 </div>
@@ -262,6 +308,7 @@ if (isset($_GET['code'])){
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/vendor/video.js"></script>
 <script src="js/flat-ui.min.js"></script>
+<script src="assets/js/application.js"></script>
 <script type="text/javascript">
 var rootUrl = $("#rootUrl").val();
 var typeCodes = ["A","B","C","D","E","F","SU"];
@@ -274,6 +321,49 @@ var openid = $("#openid").val();
 var certificateCount = 1;
 var imageUploaded = false;
 var certificateUploaded = false;
+var certificateDesc = "";
+
+var postData = {
+	"dataType":"getCertificates",
+	"openid":""
+};
+postData["openid"] = openid;
+$.post("teacherRegistrationService.php", postData,
+   	function(data){
+   		jsonObj = $.parseJSON(data);
+   		var desc = jsonObj.description;
+   		var imgUrl = jsonObj.imageUrl;
+   		var length = imgUrl.length;
+   		if(length != 0){
+   			certificateCount = length + 1;
+   			certificateUploaded = true;
+   			for(var k = 0;k < length;k++){
+   				$("#certificate_upload_div").append(
+					$("<img />").attr("src", imgUrl[k]).attr("class", "img-responsive").attr("style", "margin: 0 auto")
+				);
+   			}
+   		}
+   	}
+);	
+
+postData = {
+	"dataType":"getHead",
+	"openid":""
+};
+postData["openid"] = openid;
+$.post("teacherRegistrationService.php", postData,
+   	function(data){
+   		jsonObj = $.parseJSON(data);
+   		var imgUrl = jsonObj.imageUrl;
+   		if(imgUrl != ""){
+   			imageUploaded = true;
+   			$("#image_upload_div").append(
+				$("<img />").attr("src", imgUrl).attr("class", "img-responsive").attr("style", "margin: 0 auto")
+			);
+			$("#head_upload").prop('disabled', true);
+   		}
+   	}
+);	
 
 
 function createOptions(typeCode, optionId){
@@ -305,11 +395,9 @@ $("#submit").click(function(){
 	var desc = $("#desc").val();
 	var allOptions = new Array();
 	var price = $("#price").val();					//期望的最低时薪					
-	var location = $("#location").val();				//可接受的教学地点		
+	var location = $("#location").val();			//可接受的教学地点		
 	var highestGrade = $("#grade").val();			//最高能教的年级
 	var otheroptions = $("#otheroptions").val();	//其它能教的学科
-	//alert(otheroptions);
-	//var imageName = $("#file").val();
 	for(var i = 0;i < typeCodes.length;i++){
 	 	var options = $("#"+typeCodes[i]).val();
 	 	if(options != null){
@@ -318,22 +406,34 @@ $("#submit").click(function(){
 	}
 	if(name == ""){
 		alert("请输入姓名");
+		$("#name").focus();
 	}else if(school == ""){
 		alert("请输入学院名称");
+		$("#school").focus();
 	}else if(major == ""){
 		alert("请输入专业名称");
+		$("#major").focus();
 	}else if(studentNumber == ""){
 		alert("请输入真实的学号");
+		$("#studentNumber").focus();
 	}else if(!validatePhone(phone)){
 		alert("请输入正确的手机号");
+		$("#phone").focus();
 	}else if(desc == ""){
-		alert("请输入简短的描述");
+		alert("请输入自我介绍");
+		$("#desc").focus();
+	}else if(calculateLength(desc) < 30){
+		alert("自我介绍不少于30个字，已经"+calculateLength(desc)+"个字了");
+		$("#desc").focus();
 	}else if(allOptions.length == 0){
 		alert("请至少选择一个可教的课程");
+		$("#A").focus();
 	}else if(price == ""){
 		alert("请输入期望的最低时薪");
+		$("#price").focus();
 	}else if(location == null){
 		alert("请选择可接受的教学地点");
+		$("#location").focus();
 	}else{
 		var postData = {
 			openid:"",
@@ -344,7 +444,7 @@ $("#submit").click(function(){
 			studentNumber: "",
 			phone: "",
 			desc: "",
-			imgUrl: ".jpg",
+			imgUrl: "http://7xk9ts.com2.z0.glb.qiniucdn.com/obS35vs6BGFOYo9w9Aq3q1OYNQjU_certificate_1",
 			options: [],
 			otheroptions: [],
 			price: "",
@@ -352,15 +452,6 @@ $("#submit").click(function(){
 			highestGrade:"",
 			dataType:"teacherRegistration"
 		};
-		/*if(imageName.indexOf("jpeg") >= 0){
-			postData.imgUrl = ".jpeg";
-		}else if(imageName.indexOf("png") >= 0){
-			postData.imgUrl = ".png";
-		}else if(imageName.indexOf("JPG") >= 0){
-			postData.imgUrl = ".JPG";
-		}else if(imageName.indexOf("PNG") >= 0){
-			postData.imgUrl = ".PNG";
-		}*/
 		postData.openid = openid;
 		postData.name = name;
 		postData.sex = sex;
@@ -369,29 +460,28 @@ $("#submit").click(function(){
 		postData.studentNumber = studentNumber;
 		postData.phone = phone;
 		postData.desc = desc;
+		postData.imgUrl = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head";
 		postData.options = allOptions;
 		
 		postData.otheroptions = otheroptions;
 		postData.price = price;
 		postData.location = location;
 		postData.highestGrade = highestGrade;
-		/*if(imageUploaded == true){
+		if(imageUploaded == true){
 			if(certificateUploaded == true){
-				$.post("service.php", postData,
+				$.post("supporting.php", postData,
    					function(data){
-     					//$("#imagename").val(openid);
-     					//$("#imageform").submit();
      					alert("老师数据录入成功！");
+     					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.hehe.life/showTeacherInformation.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
      				}
    				);
    			}else{
-   				var choiceOfCertificate = confirm("不上传任何证书吗？");
+   				var choiceOfCertificate = confirm("不上传任何证书吗？上传证书能更好地展示你自己");
    				if(choiceOfCertificate == true){
-   					$.post("service.php", postData,
+   					$.post("supporting.php", postData,
    						function(data){
-     						//$("#imagename").val(openid);
-     						//$("#imageform").submit();
      						alert("老师数据录入成功！");
+     						window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.hehe.life/showTeacherInformation.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
      					}
    					);
    				}else{
@@ -400,15 +490,7 @@ $("#submit").click(function(){
    			}
    		}else{
    			alert("请先上传自己的头像");
-   		}*/
-   		
-   		$.post("supporting.php", postData,
-   					function(data){
-     					//$("#imagename").val(openid);
-     					//$("#imageform").submit();
-     					alert("老师数据录入成功！");
-     				}
-   				);
+   		}
 	}
 });
 function validatePhone(phone){
@@ -429,163 +511,187 @@ function validateImage(imageName){
 	}
 }
 
+function calculateLength(str){
+	str=str.replace(/[\ |\~|\`|\！|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\，|\<|\。|\>|\/|\？]/g,""); 
+	return str.length;
+}
+/*$("#trigger_head_upload").click(function(){
+	$("#head_upload").trigger("click");
+});
+$("#trigger_certificate_upload").click(function(){
+	certificateDesc = $("#certificate_desc").val();
+	if(certificateDesc != ""){
+		$("#certificate_upload").trigger("click");
+	}else{
+		alert("请先输入输入证书的名称/描述");
+		$("#certificate_desc").focus();
+	}	
+});*/
+$("#certificate_upload").click(function(){
+	certificateDesc = $("#certificate_desc").val();
+	if(certificateDesc == ""){
+		alert("请先输入输入证书的名称/描述");
+		$("#certificate_desc").focus();
+		return false;
+	}	
+});
 $(document).ready(function() {
-			var interval;
+    var Qiniu_UploadUrl = "http://up.qiniu.com";
+    //var progressbar = $("#progressbar"),
+    //    progressLabel = $(".progress-label");
+   /* progressbar.progressbar({
+        value: false,
+        change: function() {
+            progressLabel.text(progressbar.progressbar("value") + "%");
+        },
+        complete: function() {
+            progressLabel.text("Complete!");
+        }
+    });*/
+    $("#head_upload").change(function() {
+        //普通上传
+        var Qiniu_upload = function(f, token, key) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', Qiniu_UploadUrl, true);
+            var formData, startDate;
+            formData = new FormData();
+            if (key !== null && key !== undefined) formData.append('key', key);
+            formData.append('token', token);
+            formData.append('file', f);
+            var taking;
+            /*xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var nowDate = new Date().getTime();
+                    taking = nowDate - startDate;
+                    var x = (evt.loaded) / 1024;
+                    var y = taking / 1000;
+                    var uploadSpeed = (x / y);
+                    var formatSpeed;
+                    if (uploadSpeed > 1024) {
+                        formatSpeed = (uploadSpeed / 1024).toFixed(2) + "Mb\/s";
+                    } else {
+                        formatSpeed = uploadSpeed.toFixed(2) + "Kb\/s";
+                    }
+                    var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                    //progressbar.progressbar("value", percentComplete);
+                    $(".progress-bar").css("width",percentComplete);
+                    // console && console.log(percentComplete, ",", formatSpeed);
+                }
+            }, false);*/
 
-			function applyAjaxFileUpload(element) {
-				$(element).AjaxFileUpload({
-					action: "http://upload.qiniu.com/",
-					onChange: function(filename) {
-						// Create a span element to notify the user of an upload in progress
-						//$("<br>").appendTo($(this));
-						var $span = $("<span />")
-							.attr("class", $(this).attr("id"))
-							.text("上传中")
-							.insertAfter($(this));
+            xhr.onreadystatechange = function(response) {
+                if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
+                    var blkRet = JSON.parse(xhr.responseText);
+                    console && console.log(blkRet);
+                    //$("#dialog").html(xhr.responseText).dialog();
+                    imageUploaded = true;
+                    $('img[src*="loading_normal.gif"]').remove();
+                    $("#image_upload_div").append(
+						$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head").attr("class", "img-responsive").attr("style", "margin: 0 auto")
+					);
+					$("#head_upload").prop('disabled', true);
+                    //alert("头像上传成功");
+                } else if (xhr.status != 200 && xhr.responseText) {
+					alert("头像上传失败，请重新上传");
+					$('img[src*="loading_normal.gif"]').remove();
+                }
+            };
+            startDate = new Date().getTime();
+            //$("#progressbar").show();
+            xhr.send(formData);
+        };
+        var token = $("#token").val();
+        if ($("#head_upload")[0].files.length > 0 && token != "") {
+        	$("#image_upload_div").append($("<br />"));
+        	$("#image_upload_div").append(
+				$("<img />").attr("src", "image/loading_normal.gif").attr("class", "img-responsive").attr("style", "margin: 0 auto")
+			);
+            Qiniu_upload($("#head_upload")[0].files[0], token, openid+"_head");
+        } else {
+            console && console.log("form input error");
+        }
+    })
+    
+    
+    $("#certificate_upload").change(function() {
+        //普通上传
+        var Qiniu_upload = function(f, token, key) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', Qiniu_UploadUrl, true);
+            var formData, startDate;
+            formData = new FormData();
+            if (key !== null && key !== undefined) formData.append('key', key);
+            formData.append('token', token);
+            formData.append('file', f);
+            var taking;
+            /*xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var nowDate = new Date().getTime();
+                    taking = nowDate - startDate;
+                    var x = (evt.loaded) / 1024;
+                    var y = taking / 1000;
+                    var uploadSpeed = (x / y);
+                    var formatSpeed;
+                    if (uploadSpeed > 1024) {
+                        formatSpeed = (uploadSpeed / 1024).toFixed(2) + "Mb\/s";
+                    } else {
+                        formatSpeed = uploadSpeed.toFixed(2) + "Kb\/s";
+                    }
+                    var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                    //progressbar.progressbar("value", percentComplete);
+                    $(".progress-bar").css("width",percentComplete);
+                    // console && console.log(percentComplete, ",", formatSpeed);
+                }
+            }, false);*/
 
-						$(this).remove();
-
-						interval = window.setInterval(function() {
-							var text = $span.text();
-							if (text.length < 13) {
-								$span.text(text + ".");
-							} else {
-								$span.text("上传中");
-							}
-						}, 200);
-					},
-					onSubmit: function(filename) {
-						// Return false here to cancel the upload
-						/*var $fileInput = $("<input />")
-							.attr({
-								type: "file",
-								name: $(this).attr("name"),
-								id: $(this).attr("id")
-							});
-
-						$("span." + $(this).attr("id")).replaceWith($fileInput);
-
-						applyAjaxFileUpload($fileInput);
-
-						return false;*/
-
-						// Return key-value pair to be sent along with the file
-						var sent_along_data = {"openid":"","type":"image","count":"1"};
-						sent_along_data["openid"] = openid;
-						return sent_along_data;
-					},
-					onComplete: function(filename, response) {
-						window.clearInterval(interval);
-						var $span = $("span." + $(this).attr("id")).text(filename + " "),
-							$fileInput = $("<input />")
-								.attr({
-									type: "file",
-									name: $(this).attr("name"),
-									id: $(this).attr("id")
-								});
-						if (typeof(response.error) === "string") {
-							$span.replaceWith($fileInput);
-
-							applyAjaxFileUpload($fileInput);
-
-							alert(response.error);
-							
-							return;
-						}
-						
-						imageUploaded = true;
-					}
-				});
-			}
-
-			applyAjaxFileUpload("#image_upload");
-		});
-		
-		$(document).ready(function() {
-			var interval;
-
-			function applyAjaxFileUpload(element) {
-				$(element).AjaxFileUpload({
-					action: "upload.php",
-					onChange: function(filename) {
-						$("#iopenid_for_certificate").val(openid);
-						// Create a span element to notify the user of an upload in progress
-						//$("<br>").appendTo($(this));
-						var $span = $("<span />")
-							.attr("class", $(this).attr("id"))
-							.text("上传中")
-							.insertAfter($(this));
-
-						$(this).remove();
-
-						interval = window.setInterval(function() {
-							var text = $span.text();
-							if (text.length < 13) {
-								$span.text(text + ".");
-							} else {
-								$span.text("上传中");
-							}
-						}, 200);
-					},
-					onSubmit: function(filename) {
-						// Return false here to cancel the upload
-						/*var $fileInput = $("<input />")
-							.attr({
-								type: "file",
-								name: $(this).attr("name"),
-								id: $(this).attr("id")
-							});
-
-						$("span." + $(this).attr("id")).replaceWith($fileInput);
-
-						applyAjaxFileUpload($fileInput);
-
-						return false;*/
-
-						// Return key-value pair to be sent along with the file
-						//var sent_along_data = {"openid":"","type":"certificate","count":"1"};
-						//sent_along_data["openid"] = openid;
-						//sent_along_data["count"] = ""+certificateCount;
-						var sent_along_data = {"openid":"","type":"certificate","count":"1"};
-						return sent_along_data;
-					},
-					onComplete: function(filename, response) {
-						window.clearInterval(interval);
-						var $span = $("span." + $(this).attr("id")).text(filename + " "),
-							$fileInput = $("<input />")
-								.attr({
-									type: "file",
-									name: $(this).attr("name"),
-									id: $(this).attr("id")
-								});
-
-						if (typeof(response.error) === "string") {
-							$span.replaceWith($fileInput);
-
-							applyAjaxFileUpload($fileInput);
-
-							alert(response.error);
-
-							return;
-						}
-
-						$("<br><a />")
-							.attr("href", "#")
-							.text("继续上传")
-							.bind("click", function(e) {
-								$span.replaceWith($fileInput);
-								certificateCount++;
-								applyAjaxFileUpload($fileInput);
-							})
-							.appendTo($span);
-						
-						certificateUploaded = true;
-					}
-				});
-			}
-
-			applyAjaxFileUpload("#certificate_upload");
-		});
+            xhr.onreadystatechange = function(response) {
+                if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
+                    var blkRet = JSON.parse(xhr.responseText);
+                    console && console.log(blkRet);
+                    
+                    var postData = {
+                    	dataType: "certificateRecord",
+                    	teacherOpenId: "",
+                    	description: "",
+                    	imageUrl: ""
+                    };
+                    postData.teacherOpenId = openid;
+                    postData.description = certificateDesc;
+                    postData.imageUrl = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_certificate"+"_"+certificateCount;
+                    
+                    $.post("teacherRegistrationService.php", postData,
+   						function(data){
+   							$('img[name*="loading'+certificateCount+'"]').remove();
+   							$("#certificate_upload_div").append(
+								$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_certificate"+"_"+certificateCount).attr("class", "img-responsive").attr("style", "margin: 0 auto")
+							);
+     						certificateUploaded = true;
+                    		certificateCount++;
+                    		$("#certificate_desc").val("");
+                    		//alert("证书上传成功");
+     					}
+   					);
+                } else if (xhr.status != 200 && xhr.responseText) {
+					alert("证书上传失败，请重新上传");
+					$('img[name*="loading'+certificateCount+'"]').remove();
+                }
+            };
+            startDate = new Date().getTime();
+            //$("#progressbar").show();
+            xhr.send(formData);
+        };
+        var token = $("#token").val();
+        if ($("#certificate_upload")[0].files.length > 0 && token != "") {
+        	$("#certificate_upload_div").append($("<br />"));
+        	$("#certificate_upload_div").append(
+				$("<img />").attr("src", "image/loading_normal.gif").attr("class", "img-responsive").attr("style", "margin: 0 auto").attr("name", "loading"+certificateCount)
+			);
+            Qiniu_upload($("#certificate_upload")[0].files[0], token, openid+"_certificate"+"_"+certificateCount);
+        } else {
+            console && console.log("form input error");
+        }
+    })
+})
 </script>
 </body>
 </html>

@@ -316,16 +316,15 @@
 	}
 
 	function endWith($haystack, $needle)
-	 {   
+	{   
 	      $length = strlen($needle);  
 	      if($length == 0)
 	      {    
 	          return true;  
 	      }  
 	      return (substr($haystack, -$length) === $needle);
-	 }
-	 
-	 
+	}
+	
 	//处理POST数据
 	if($_POST){
 		$dataType = trim($_POST["dataType"]);
@@ -349,7 +348,7 @@
 			//1，存入老师的基本信息，T_teacher，默认wechatAccount为空，extraDescription为空，rating为1，teacherStatus为R
 			$query = "set names utf8";
 			$result = $conn->query($query);
-			$query = "insert into T_teacher values('$openid','','$school','$major','$studentNumber','$name','$sex','$phone','$desc','',sysdate(),'1','url','$price','$highestGrade','$location','R')";                       
+			$query = "insert into T_teacher values('$openid','','$school','$major','$studentNumber','$name','$sex','$phone','$desc','',sysdate(),'1','url','$price','$highestGrade','$location','I')";                       
 			$result = $conn->query($query);
 			
 			//2，存入老师所有能教的科目，兴趣
