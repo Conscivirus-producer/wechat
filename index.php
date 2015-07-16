@@ -36,6 +36,7 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+
       	//extract post data
 		if (!empty($postStr)){
                 /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
@@ -83,9 +84,8 @@ class wechatCallbackapiTest
 						$conn->query($queryString);
 						//4,回复信息
 						$msgType = "text";
-                		//$contentStr = "欢迎关注我教你学，在这里我们可以帮您找到任何你想学的优质辅导和兴趣课程。您可以通过点击下方“免费试听”按钮来找到最合适您的老师。如果您有一技之长想要教你所学，可以回复1并填写申请表格进行注册。如有任何疑问，可以给我们留言，我们会尽快与您联系。";
-	                	$contentStr = '欢迎关注我教你学。我们为您安排了一次免费上门试教，您可以点击公众号下方"免费试听"，选择适合您小孩的教学内容;或者直接回复学科或兴趣，如“数学”，并留下您的手机号。我们将会在24小时内帮你安排老师试教。
-客服电话: 400-686-4616';
+                		$contentStr = "欢迎关注我教你学，在这里我们可以帮您找到任何你想学的优质辅导和兴趣课程。您可以通过点击下方“免费试听”按钮来找到最合适您的老师。如果您有一技之长想要教你所学，可以回复1并填写申请表格进行注册。如有任何疑问，可以给我们留言，我们会尽快与您联系。";
+	                	//$contentStr = '欢迎关注我教你学。我们为您安排了一次免费上门试教，您可以点击公众号下方"免费试听"，选择适合您小孩的教学内容;或者直接回复学科或兴趣，如“数学”，并留下您的手机号。我们将会在24小时内帮你安排老师试教。客服电话: 400-686-4616';
                 		$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 		echo $resultStr;
 					}

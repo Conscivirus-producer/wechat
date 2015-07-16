@@ -37,22 +37,17 @@ require_once("config.php");
 			结束日期(比如: 2015-07-04 09:20):<input type="text" name="endDate" value="2015-07-04" id="endDate">
 		</div>
 	</div>
-<!--</br>
-	<div class="row">
-		<div class="col-md-4 col-md-offset-2">
-			状态:
-			<select id="status">
-			  <option value ="volvo">Volvo</option>
-			  <option value ="saab">Saab</option>
-			  <option value="opel">Opel</option>
-			  <option value="audi">Audi</option>
-			</select>
-		</div>
-	</div>-->
 	
 	<div class="row" style="margin-top:30px">
 		<div class="col-md-4 col-md-offset-4">
 			<button type="button" class="btn btn-info btn-lg btn-block" name="submit" id="submit">提交</button>
+		</div>
+	</div>
+	<div class="row" style="margin-top:30px">
+		<div class="col-md-4 col-md-offset-4">
+			<button type="button" class="" name="newtrans" id="newtrans">新订单</button>
+			<button type="button" class="" name="unapproval" id="unapproval">家长未同意</button>
+			<button type="button" class="" name="inprogress" id="inprogress">家长已同意</button>
 		</div>
 	</div>
 	
@@ -76,6 +71,32 @@ require_once("config.php");
           <td>备注</td>    
       </tr>  
 </table>  
+</div>
+
+<div id="confirmedExcel" style="display:none">
+<table id="confirmedtrans" width="100%" border="1" cellspacing="0" cellpadding="0">  
+      <tr>  
+          <td colspan="16" align="center">交易记录</td>  
+      </tr>  
+      <tr>  
+          <td>交易时间</td>
+          <td>跟踪员</td>
+          <td>家长openid</td>  
+          <td>昵称</td>
+          <td>手机号</td>    
+          <td>年级</td>  
+          <td>科目</td>  
+          <td>兴趣</td>
+          <td>老师姓名</td>
+          <td>老师手机号</td>
+          <td>试教时间</td>
+          <td>正式教课时间</td>
+          <td>费用</td>
+          <td>地点</td>
+          <td>状态</td>
+          <td>备注</td>    
+      </tr>  
+</table> 
 </div>  
 </div>
 <!-- /.container -->
@@ -97,13 +118,59 @@ $("#submit").click(function(){
 		var length = data.parentOpenId.length;
 		for(var i=0; i<length;i++){
 			$tr = $("<tr>", {style: "", class: ""}).attr("id","resultTr" + i);
-			$tr.html("<td>"+data.parentOpenId[i]+"</td><td>"+data.nickname[i]+"</td><td>"+data.mobile[i]+"</td><td>"+data.grade[i]+"</td><td>"+data.subject[i]+
-			"</td><td>"+data.interest[i]+"</td><td>"+data.expected_price[i]+"</td><td>"+data.expectedTeacherGender[i]+"</td><td>"+data.expectedLocation[i]+
-			"</td><td>"+data.createdDt[i]+"</td><td>"+data.status[i]+"</td><td>"+data.comment[i]+"</td>");
+			$tr.html("<td>"+data.parentOpenId[i]+
+			"</td><td>"+data.nickname[i]+
+			"</td><td>"+data.mobile[i]+
+			"</td><td>"+data.grade[i]+
+			"</td><td>"+data.subject[i]+
+			"</td><td>"+data.interest[i]+
+			"</td><td>"+data.expected_price[i]+
+			"</td><td>"+data.expectedTeacherGender[i]+
+			"</td><td>"+data.expectedLocation[i]+
+			"</td><td>"+data.createdDt[i]+
+			"</td><td>"+data.status[i]+
+			"</td><td>"+data.comment[i]+
+			"</td>");
 			$("#test").append($tr);
 		}
 			//$("$test").html($tr);
 		$("#tableExcel").show();
+	});
+});
+
+$("#inprogress").click(function(){
+	$("[id^=resultTr]").each(function(){
+		$(this).remove();		
+	});
+	var startDate = $("#startDate").val();
+	var endDate = $("#endDate").val();
+	var url = "http://"+rootUrl+"/supporting.php?requestMethod=getConfirmedTransactions";
+	$.getJSON(url,function(data){
+		var length = data.parentOpenId.length;
+		for(var i=0; i<length;i++){
+			$tr = $("<tr>", {style: "", class: ""}).attr("id","resultTr" + i);
+			$tr.html(
+			"<td>"+data.createdDt[i]+
+			"</td><td>"+data.follower[i]+
+			"</td><td>"+data.parentOpenId[i]+
+			"</td><td>"+data.nickname[i]+
+			"</td><td>"+data.mobile[i]+
+			"</td><td>"+data.grade[i]+
+			"</td><td>"+data.subject[i]+
+			"</td><td>"+data.interest[i]+
+			"</td><td>"+data.teacherName[i]+
+			"</td><td>"+data.teacherMobile[i]+
+			"</td><td>"+data.trialTime[i]+
+			"</td><td>"+data.fixedTime[i]+
+			"</td><td>"+data.fee[i]+
+			"</td><td>"+data.location[i]+
+			"</td><td>"+data.status[i]+
+			"</td><td>"+data.comment[i]+
+			"</td>");
+			$("#confirmedtrans").append($tr);
+		}
+			//$("$test").html($tr);
+		$("#confirmedExcel").show();
 	});
 });
 

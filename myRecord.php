@@ -31,6 +31,11 @@ if (isset($_GET['code'])){
 <body>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <div class="container">
+	<div class="row" style="" id="q0">
+		<div id="information" class="col-md-4 col-md-offset-4" style="text-align:left">		
+			My Record
+		</div>
+	</div>
 	<div class="row" style="" id="q1">
 		<div id="information" class="col-md-4 col-md-offset-4" style="text-align:right">		
 			

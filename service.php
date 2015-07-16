@@ -185,8 +185,10 @@
 		
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "select T_transaction.transactionId, T_transaction.createdDt, T_transaction.status, T_teacher.* from T_transaction, T_teacher ".
-			"where T_transaction.parentOpenid = '$parentOpenId' and T_transaction.teacherOpenid = T_teacher.openId";
+		 
+		
+		$query = "select T_transaction.transactionId, T_transaction.createdDt, T_transaction.status, T_teacher.* from T_transaction LEFT JOIN ".
+			"T_teacher on T_transaction.teacherOpenid = T_teacher.openId where T_transaction.parentOpenid = '$parentOpenId'";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			'transactionId' => array(),

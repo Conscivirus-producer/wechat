@@ -7,6 +7,8 @@
 		$requestMethod = trim($_GET["requestMethod"]);
 		if($requestMethod == "getTransactions"){
 			echo getTransactions($conn);
+		}else if($requestMethod == "getConfirmedTransactions"){
+			getConfirmedTransactions($conn);	
 		}else if($requestMethod == "myRecord"){
 			getMyRecord($conn);	
 		}else if($requestMethod == "replyToUser"){
@@ -101,6 +103,53 @@
 		$result = file_get_contents($url, false, $context, -1, 40000);
 		echo $result;
 	}
+
+	function getConfirmedTransactions($conn){
+		$query = "set names utf8";
+		$result = $conn->query($query);
+		
+		$query = "SELECT T_transaction.createdDt,T_transaction.follower,T_transaction.parentOpenid, T_parent.nickname, T_parent.mobile,T_child.subject, T_child.grade, T_child.interest, T_transaction.teacherOpenid, T_teacher.name as teacherName, T_teacher.mobile as teacherMobile, T_transaction.trialTime, T_transaction.fixedTime, T_transaction.fee, T_transaction.location, T_transaction.status,T_transaction.comment FROM T_parent,  T_child, `T_transaction` LEFT JOIN T_teacher ON T_transaction.teacherOpenid = T_teacher.openId WHERE T_transaction.parentOpenid = T_parent.openId  and T_transaction.childId = T_child.childId and T_transaction.status > 2";
+		
+		$result = $conn->query($query);
+		$jsonArray = array(
+			'createdDt' => array(),
+			'follower' => array(),
+			'parentOpenId' => array(),
+			'nickname' => array(),
+			'mobile' => array(),
+			'grade' => array(),
+			'subject' => array(),
+			'interest' => array(),
+			'teacherName' => array(),
+			'teacherMobile' => array(),
+			'trialTime' => array(),
+			'fixedTime' => array(),
+			'fee' => array(),
+			'location' => array(),
+			'status' => array(),
+			'comment' => array()
+		);
+		while($row = $result->fetch_assoc()){
+			array_push($jsonArray["createdDt"],$row["createdDt"]);
+			array_push($jsonArray["follower"],$row["follower"]);
+			array_push($jsonArray["parentOpenId"],$row["parentOpenid"]);
+			array_push($jsonArray["nickname"],$row["nickname"]);
+			array_push($jsonArray["mobile"],$row["mobile"]);
+			array_push($jsonArray["grade"],$row["grade"]);
+			array_push($jsonArray["subject"],getSubject($row["subject"]));
+			array_push($jsonArray["interest"],getInterestName($row["interest"], $conn));
+			array_push($jsonArray["teacherName"],getInterestName($row["teacherName"], $conn));
+			array_push($jsonArray["teacherMobile"],getInterestName($row["teacherMobile"], $conn));
+			array_push($jsonArray["trialTime"],getInterestName($row["trialTime"], $conn));
+			array_push($jsonArray["fixedTime"],getInterestName($row["fixedTime"], $conn));
+			array_push($jsonArray["fee"],getInterestName($row["fee"], $conn));
+			array_push($jsonArray["location"],getInterestName($row["location"], $conn));
+			array_push($jsonArray["status"],getStatusDescription($row["status"]));
+			array_push($jsonArray["comment"],$row["comment"]);
+		}
+		
+		echo json_encode($jsonArray);
+	}
 	
 	function getTransactions($conn){
 		$startDate = trim($_GET["startDate"]);
@@ -158,6 +207,8 @@
 			return "龙岗区";	
 		} else if($location == 'address6'){
 			return "其它";	
+		} else{
+			return $location;
 		}
 	}
 
@@ -193,7 +244,7 @@
 		$query = "SELECT * FROM `T_offers` WHERE code = '$interest' LIMIT 1";
 		$result = $conn->query($query);
 		if($result->num_rows == 0){
-			return "";
+			return $interest;
 		}
 		$row = $result->fetch_assoc();
 		return $row["name"];
@@ -212,6 +263,7 @@
 	}
 
 	function getSubject($subject){
+		//split(',', $subject);
 		if($subject == "SU1"){
 			return "数学";
 		}else if($subject == "SU2"){
@@ -219,7 +271,7 @@
 		}else if($subject == "SU3"){
 			return "语文";
 		}else{
-			return "";
+			return $subject;
 		}
 	}
 	
