@@ -50,7 +50,7 @@ if (isset($_GET['code'])){
 <script src="js/vendor/video.js"></script>
 <script src="js/flat-ui.min.js"></script>
 <script type="text/javascript">
-var rootUrl = "www.ilearnnn.com";
+var rootUrl = "www.hehe.life";
 rootUrl = "localhost";
 
 $(document).ready(function(){
