@@ -57,7 +57,7 @@ if (isset($_GET['code'])){
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="start" id="start">开始</button>
 		</div> -->
-		<div class="row">
+		<div style="margin-left: 0px; margin-right: 0px" class="row">
 			<div class="col-xs-12 text-center company-name"><strong>我教你学</strong></div>
 			
 			<div class="col-xs-10 col-xs-offset-1 text-left company-details">
