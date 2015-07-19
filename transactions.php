@@ -34,13 +34,13 @@ require_once("config.php");
 		<div class="col-md-4 col-md-offset-2">
 			<div class="form-group">
 				<label ="startDate">起始日期(比如: 2015-07-03 18:20):</label>
-				<input type="text" class="form-control" name="startDate" value="2015-07-03" id="startDate">
+				<input type="text" class="form-control" name="startDate" value="2015-07-04" id="startDate">
 			</div>
 		</div>
 		<div class="col-md-4">
 			<div class="form-group">
 				<label ="endDate">结束日期(比如: 2015-07-04 09:20):</label>
-				<input type="text" class="form-control" name="endDate" value="2015-07-04" id="endDate">
+				<input type="text" class="form-control" name="endDate" value="2015-07-05" id="endDate">
 			</div>
 		</div>
 	</div>
@@ -143,7 +143,9 @@ $("#submit").click(function(){
 		var length = data.parentOpenId.length;
 		for(var i=0; i<length;i++){
 			$tr = $("<tr>", {style: "", class: ""}).attr("id","resultTr" + i);
-			$tr.html("<td>"+data.parentOpenId[i]+
+			
+			$tr.html("<td class='transactionId' style='display:none'>"+data.transactionId[i]+
+			"</td><td>"+data.parentOpenId[i]+
 			"</td><td>"+data.nickname[i]+
 			"</td><td>"+data.mobile[i]+
 			"</td><td>"+data.grade[i]+
@@ -153,12 +155,87 @@ $("#submit").click(function(){
 			"</td><td>"+data.expectedTeacherGender[i]+
 			"</td><td>"+data.expectedLocation[i]+
 			"</td><td>"+data.createdDt[i]+
-			"</td><td>"+data.status[i]+
-			"</td><td>"+data.comment[i]+
 			"</td>");
+			
+			$("<td>").appendTo($tr).html("<span>"+data.status[i]+"</span>").bind({
+				mouseenter : function(e) {
+					// Hover event handler
+					var $clickedtd = $(this);
+					$(this).children("span").hide();
+					if($(this).children("select").length == 0){
+				$("<select>"+
+				"<option value='1'>1.下单</option>"+
+				"<option value='2'>2.已发信息</option>"+
+				"<option value='3'>3.已同意</option>"+
+				"<option value='4'>4.学生联系家长</option>"+
+				"<option value='5'>5.确认上门时间及地点</option>"+
+				"<option value='6'>6.已上门试教</option>"+
+				"<option value='7'>7.确认交易细节</option>"+
+				"<option value='C'>C.取消</option>"+
+				"<option value='S'>S.交易成功</option>"+
+				"<option value='E'>E.交易结束</option></select>").appendTo($(this)).bind({
+					change: function(e){
+						var selectedOptionValue = $(this).children('option:selected').val();
+						var selectedValue = $(this).children('option:selected').text(); 
+						var transactionId = $clickedtd.prevAll(".transactionId").text();
+						var url = "transactionService.php?dataType=updateTransactionStatus&transactionId="+transactionId+"&status="+selectedOptionValue;
+						$.getJSON(url, function(json){
+  							if(json.status == "ok"){
+  								$clickedtd.children("select").hide();
+  								$clickedtd.children("span").html(selectedValue);
+  								$clickedtd.children("span").show();
+  							}
+						});
+					}
+				});
+				}else{
+					$(this).children("select").show();
+				}
+				
+				},
+				mouseleave: function(e) {
+					// Hover event handler
+					$(this).children("select").hide();
+					$(this).children("span").show();
+				}
+				
+			});
+			$("<td>").appendTo($tr).html("<span>"+data.comment[i]+"</span>").bind({
+				mouseenter : function(e){
+					var $clickedtd = $(this);
+					$(this).children("span").hide();
+					if($(this).children("textarea").length == 0){
+						$("<textarea></textarea>").appendTo($(this)).html($(this).children("span").html());
+						$("<button>").appendTo($(this)).html("提交").bind({
+							click:function(e){
+								var comment = $clickedtd.children("textarea").val();
+								alert(comment)
+								var transactionId = $clickedtd.prevAll(".transactionId").text();
+								var url = "transactionService.php?dataType=updateComment&transactionId="+transactionId+"&comment="+comment;
+								$.getJSON(url, function(json){
+  									if(json.status == "ok"){
+  										$clickedtd.children("textarea").hide();
+  										$clickedtd.children("button").hide();
+  										$clickedtd.children("span").html(comment);
+  										$clickedtd.children("span").show();
+  									}
+								});
+							}
+						});
+					}else{
+						$(this).children("textarea").show();
+						$(this).children("button").show();
+					}
+				},
+				mouseleave: function(e) {
+					$(this).children("textarea").hide();
+					$(this).children("button").hide();
+					$(this).children("span").show();
+				}
+			});
+			
 			$("#test > tbody").append($tr);
 		}
-			//$("$test").html($tr);
 		$("#tableExcel").show();
 	});
 });
@@ -194,7 +271,6 @@ $("#inprogress").click(function(){
 			"</td>");
 			$("#confirmedtrans > tbody").append($tr);
 		}
-			//$("$test").html($tr);
 		$("#confirmedExcel").show();
 	});
 });
