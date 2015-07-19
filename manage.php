@@ -147,7 +147,7 @@ if (isset($_GET['code'])){
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
 				<label for="SU">学科辅导【可多选】</label>
-				<select name="SU" id="SU" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
+				<select name="SU" id="SU" multiple class="form-control">
 				</select>
 			</div>
 		</div>
@@ -156,7 +156,7 @@ if (isset($_GET['code'])){
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
 				<label for="A">乐器与舞蹈【可多选】</label>
-				<select name="A" id="A" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
+				<select name="A" id="A" multiple class="form-control">
 				</select>
 			</div>
 		</div>
@@ -165,7 +165,7 @@ if (isset($_GET['code'])){
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
 				<label for="B">体育运动【可多选】</label>
-				<select name="B" id="B" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
+				<select name="B" id="B" multiple class="form-control">
 				</select>
 			</div>
 		</div>
@@ -174,7 +174,7 @@ if (isset($_GET['code'])){
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
 				<label for="C">书法与美术【可多选】</label>
-				<select name="C" id="C" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
+				<select name="C" id="C" multiple class="form-control">
 				</select>
 			</div>
 		</div>
@@ -183,7 +183,7 @@ if (isset($_GET['code'])){
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
 				<label for="D">益智类【可多选】</label>
-				<select name="D" id="D" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
+				<select name="D" id="D" multiple class="form-control">
 				</select>
 			</div>
 		</div>
@@ -192,7 +192,7 @@ if (isset($_GET['code'])){
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
 				<label for="E">演讲与口才【可多选】</label>
-				<select name="E" id="E" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
+				<select name="E" id="E" multiple class="form-control">
 				</select>
 			</div>
 		</div>
@@ -201,7 +201,7 @@ if (isset($_GET['code'])){
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
 				<label for="F">趣味课程【可多选】</label>
-				<select name="F" id="F" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
+				<select name="F" id="F"multiple class="form-control">
 				</select>
 			</div>
 		</div>
