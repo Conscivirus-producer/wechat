@@ -154,6 +154,7 @@
 	}
 	
 	function getTransactions($conn){
+		global $codeParser;
 		$startDate = trim($_GET["startDate"]);
 		$endDate = trim($_GET["endDate"]);
 		$query = "set names utf8";
@@ -185,19 +186,18 @@
 			array_push($jsonArray["nickname"],$row["nickname"]);
 			array_push($jsonArray["mobile"],$row["mobile"]);
 			array_push($jsonArray["grade"],$row["grade"]);
-			array_push($jsonArray["subject"],getSubject($row["subject"]));
-			array_push($jsonArray["interest"],getInterestName($row["interest"], $conn));
-			array_push($jsonArray["expected_price"],getExpectedPrice($row["expected_price"]));
-			array_push($jsonArray["expectedTeacherGender"],getExpectedGender($row["expectedTeacherGender"]));
-			array_push($jsonArray["expectedLocation"],getExpectedLocation($row["expectedLocation"]));
+			array_push($jsonArray["subject"], $codeParser->getSubject($row["subject"]));
+			array_push($jsonArray["interest"],$codeParser->getInterestName($row["interest"], $conn));
+			array_push($jsonArray["expected_price"],$codeParser->getExpectedPrice($row["expected_price"]));
+			array_push($jsonArray["expectedTeacherGender"],$codeParser->getExpectedGender($row["expectedTeacherGender"]));
+			array_push($jsonArray["expectedLocation"],$codeParser->getExpectedLocation($row["expectedLocation"]));
 			array_push($jsonArray["createdDt"],$row["createdDt"]);
-			array_push($jsonArray["status"],getStatusDescription($row["status"]));
+			array_push($jsonArray["status"],$codeParser->getStatusDescription($row["status"]));
 			array_push($jsonArray["comment"],$row["comment"]);
 		}
 		
 		echo json_encode($jsonArray);
 	}
-
 
 	function getMyRecord($conn){
 		$parentOpenId = trim($_GET["parentOpenId"]);
