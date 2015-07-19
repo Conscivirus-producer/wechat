@@ -107,6 +107,7 @@
 	}
 
 	function getConfirmedTransactions($conn){
+		global $codeParser;
 		$query = "set names utf8";
 		$result = $conn->query($query);
 		
