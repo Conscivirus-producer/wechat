@@ -291,6 +291,60 @@ if (isset($_GET['code'])){
 		</div>
 	</div>
 	
+	<div class="row" style="display:none" id="preview">
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<table>
+			<tr><td>您选择的信息预览如下</td></tr>
+			<tr>
+				<td>
+					课程
+				</td>
+				<td id="preview_subject">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					兴趣
+				</td>
+				<td id="preview_interest">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					期望老师性别
+				</td>
+				<td id="preview_teacher_gender">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					期望教学地点
+				</td>
+				<td id="preview_location">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					接受的时薪范围
+				</td>
+				<td id="preview_price">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					年级
+				</td>
+				<td id="preview_grade">
+				</td>
+			</tr>
+			</table>
+		</div>
+		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block btn-primary" name="preview_done" id="preview_done">完成</button>
+			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep_pre" id="laststep13">返回</button>
+		</div>
+	</div>
+	
 	<div class="row" style="display:none" id="resultNotification">
 		<div class="col-md-4 col-md-offset-4">
 			<p class="text-left question">
@@ -517,11 +571,29 @@ $(".btn.btn-lg.btn-block").click(function(){
 			$hidDiv = $("#q13"); 
 		}
 		$hidDiv.hide("normal",function(){
+			parseCodeForDisplay();
+		});
+	}else if(itemname.indexOf("preview_done") >= 0){
+		$("#preview").hide("normal",function(){
 			insertParentAndChild();
 			showDiv($("#resultNotification"));
-		});
+		});	
 	}
 });
+
+function parseCodeForDisplay(){
+	var url = "http://"+rootUrl+"/service.php?requestMethod=parseCodeForDisplay&interest="+interest+"&grade="+grade+"&subject="+
+	subject+"&teacherGender="+teacherGender+"&price="+price+"&address="+address;
+	$.getJSON(url, function(data){
+		$("#preview_subject").html(data.subject);
+		$("#preview_interest").html(data.interest);
+		$("#preview_teacher_gender").html(data.teacherGender);
+		$("#preview_location").html(data.address);
+		$("#preview_price").html(data.price);
+		$("#preview_grade").html(data.grade);
+	});	
+	showDiv($("#preview"));
+}
 
 $("[id^=laststep]").click(function(){
 	var length = divArray.length;
@@ -537,7 +609,11 @@ $("[id^=laststep]").click(function(){
 	}
 	divArray[length - 1].hide("normal",function(){
 		divArray[length - 2].show();
-	});		
+	});
+	if(divArray[length - 2].attr('id') == "q2"){
+		subject = "";
+		interest = "";
+	}
 	divArray.pop();
 });
 
@@ -584,18 +660,3 @@ function validatePhone(phone){
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

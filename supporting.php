@@ -1,6 +1,8 @@
 ﻿<?php
 	require_once("config.php");
+	require_once("processUtil.php");
 	header('Access-Control-Allow-Origin:*');
+	$codeParser = new CodeParser();
 	$conn = new mysqli($host, $user, $password, $database);
 	
 	if($_GET&&$_GET["requestMethod"]){
@@ -136,15 +138,15 @@
 			array_push($jsonArray["nickname"],$row["nickname"]);
 			array_push($jsonArray["mobile"],$row["mobile"]);
 			array_push($jsonArray["grade"],$row["grade"]);
-			array_push($jsonArray["subject"],getSubject($row["subject"]));
-			array_push($jsonArray["interest"],getInterestName($row["interest"], $conn));
-			array_push($jsonArray["teacherName"],getInterestName($row["teacherName"], $conn));
-			array_push($jsonArray["teacherMobile"],getInterestName($row["teacherMobile"], $conn));
-			array_push($jsonArray["trialTime"],getInterestName($row["trialTime"], $conn));
-			array_push($jsonArray["fixedTime"],getInterestName($row["fixedTime"], $conn));
-			array_push($jsonArray["fee"],getInterestName($row["fee"], $conn));
-			array_push($jsonArray["location"],getInterestName($row["location"], $conn));
-			array_push($jsonArray["status"],getStatusDescription($row["status"]));
+			array_push($jsonArray["subject"],$codeParser->getSubject($row["subject"]));
+			array_push($jsonArray["interest"],$codeParser->getInterestName($row["interest"], $conn));
+			array_push($jsonArray["teacherName"],$codeParser->getInterestName($row["teacherName"], $conn));
+			array_push($jsonArray["teacherMobile"],$codeParser->getInterestName($row["teacherMobile"], $conn));
+			array_push($jsonArray["trialTime"],$codeParser->getInterestName($row["trialTime"], $conn));
+			array_push($jsonArray["fixedTime"],$codeParser->getInterestName($row["fixedTime"], $conn));
+			array_push($jsonArray["fee"],$codeParser->getInterestName($row["fee"], $conn));
+			array_push($jsonArray["location"],$codeParser->getInterestName($row["location"], $conn));
+			array_push($jsonArray["status"],$codeParser->getStatusDescription($row["status"]));
 			array_push($jsonArray["comment"],$row["comment"]);
 		}
 		
@@ -152,6 +154,7 @@
 	}
 	
 	function getTransactions($conn){
+		global $codeParser;
 		$startDate = trim($_GET["startDate"]);
 		$endDate = trim($_GET["endDate"]);
 		$query = "set names utf8";
@@ -181,100 +184,19 @@
 			array_push($jsonArray["nickname"],$row["nickname"]);
 			array_push($jsonArray["mobile"],$row["mobile"]);
 			array_push($jsonArray["grade"],$row["grade"]);
-			array_push($jsonArray["subject"],getSubject($row["subject"]));
-			array_push($jsonArray["interest"],getInterestName($row["interest"], $conn));
-			array_push($jsonArray["expected_price"],getExpectedPrice($row["expected_price"]));
-			array_push($jsonArray["expectedTeacherGender"],getExpectedGender($row["expectedTeacherGender"]));
-			array_push($jsonArray["expectedLocation"],getExpectedLocation($row["expectedLocation"]));
+			array_push($jsonArray["subject"], $codeParser->getSubject($row["subject"]));
+			array_push($jsonArray["interest"],$codeParser->getInterestName($row["interest"], $conn));
+			array_push($jsonArray["expected_price"],$codeParser->getExpectedPrice($row["expected_price"]));
+			array_push($jsonArray["expectedTeacherGender"],$codeParser->getExpectedGender($row["expectedTeacherGender"]));
+			array_push($jsonArray["expectedLocation"],$codeParser->getExpectedLocation($row["expectedLocation"]));
 			array_push($jsonArray["createdDt"],$row["createdDt"]);
-			array_push($jsonArray["status"],getStatusDescription($row["status"]));
+			array_push($jsonArray["status"],$codeParser->getStatusDescription($row["status"]));
 			array_push($jsonArray["comment"],$row["comment"]);
 		}
 		
 		echo json_encode($jsonArray);
 	}
 
-	function getExpectedLocation($location){
-		if($location == 'address1'){
-			return "南山区";
-		} else if($location == 'address2'){
-			return "福田区";	
-		} else if($location == 'address3'){
-			return "罗湖区";	
-		} else if($location == 'address4'){
-			return "宝安区";	
-		} else if($location == 'address5'){
-			return "龙岗区";	
-		} else if($location == 'address6'){
-			return "其它";	
-		} else{
-			return $location;
-		}
-	}
-
-	function getStatusDescription($status){
-		if($status == "1"){
-			return "1.订单已提交";
-		}else if($status == "2"){
-			return 	"2.已回复家长";
-		}else if($status == "3"){
-			return 	"3.家长已同意";
-		}else if($status == "4"){
-			return 	"4.学生已联系家长";
-		}else if($status == "5"){
-			return 	"5.已确定首次试教时间和地点";
-		}else if($status == "6"){
-			return 	"6.已上门试教";
-		}else if($status == "7"){
-			return 	"7.确定具体的交易细节";
-		}
-	}
-	
-	function getExpectedGender($gender){
-		if($gender == "gender1"){
-			return "男";
-		} else if($gender == "gender1"){
-			return "女";	
-		} else{
-			return "男女不限";
-		}
-	}
-	
-	function getInterestName($interest, $conn){
-		$query = "SELECT * FROM `T_offers` WHERE code = '$interest' LIMIT 1";
-		$result = $conn->query($query);
-		if($result->num_rows == 0){
-			return $interest;
-		}
-		$row = $result->fetch_assoc();
-		return $row["name"];
-	}
-	
-	function getExpectedPrice($price){
-		if($price == "price1"){
-			return "50 ~ 100";
-		}else if($price == "price2"){
-			return "100 ~ 150";
-		}else if($price == "price3"){
-			return "150以上";
-		}else{
-			return "";
-		}
-	}
-
-	function getSubject($subject){
-		//split(',', $subject);
-		if($subject == "SU1"){
-			return "数学";
-		}else if($subject == "SU2"){
-			return "英语";
-		}else if($subject == "SU3"){
-			return "语文";
-		}else{
-			return $subject;
-		}
-	}
-	
 	function getMyRecord($conn){
 		$parentOpenId = trim($_GET["parentOpenId"]);
 		

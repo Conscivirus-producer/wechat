@@ -1,5 +1,7 @@
 ﻿<?php
 	require_once("config.php");
+	require_once("processUtil.php");
+	$codeParser = new CodeParser();
 	$conn = new mysqli($host, $user, $password, $database);
 	if($_GET&&$_GET["typeCode"]){
 		$typeCode = trim($_GET["typeCode"]);
@@ -77,7 +79,27 @@
 			getMyRecord($conn);	
 		}else if($requestMethod == "cancelTransaction"){
 			cancelTransaction($conn);
+		}else if($requestMethod == "parseCodeForDisplay"){
+			parseCodeForDisplay($conn);
 		}
+	}
+
+	function parseCodeForDisplay($conn){
+		global $codeParser;
+		$interest = trim($_GET["interest"]);
+		$grade = trim($_GET["grade"]);
+		$subject = trim($_GET["subject"]);
+		$teacherGender = trim($_GET["teacherGender"]);
+		$price = trim($_GET["price"]);
+		$address = trim($_GET["address"]);
+		$resultArray = array(
+			'interest' => $codeParser->getInterestName($interest, $conn), 
+			'grade' => $codeParser->getGradeName($grade), 
+			'subject' => $codeParser->getSubject($subject), 
+			'teacherGender' => $codeParser->getExpectedGender($teacherGender), 
+			'price' => $codeParser->getExpectedPrice($price), 
+			'address' => $codeParser->getExpectedLocation($address));
+		echo json_encode($resultArray);
 	}
 
 	function getTeacherDetails($conn){
