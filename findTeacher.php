@@ -32,7 +32,7 @@ if (isset($_GET['code'])){
 <![endif]-->
 </head>
 <body>
-	<div class="find-header row">
+<div class="find-header row">
 	<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65" />
 	<div class="col-xs-6 col-xs-offset-3 text-center">
 		ShenZhen UltraBravo Teh Ltd.
