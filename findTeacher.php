@@ -24,6 +24,7 @@ if (isset($_GET['code'])){
 <!-- Loading Flat UI -->
 <link href="css/flat-ui.min.css" rel="stylesheet">
 <link href="css/default.css" rel="stylesheet">
+<link href="css/start.css" rel="stylesheet">
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 <!--[if lt IE 9]>
 <script src="js/vendor/html5shiv.js"></script>
@@ -31,12 +32,17 @@ if (isset($_GET['code'])){
 <![endif]-->
 </head>
 <body>
-<div style="width:100%; background-color: #48C9B0; color: white"><span style="padding-left: 16px">我教你学</span></div>
+	<div class="find-header row">
+	<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65" />
+	<div class="col-xs-6 col-xs-offset-3 text-center">
+		ShenZhen UltraBravo Teh Ltd.
+	</div>
+</div>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <div class="container">
 	<div class="row" id="q0">
-		<div class="col-md-4 col-md-offset-4">
+		<!-- <div class="col-md-4 col-md-offset-4">
 			<p class="text-left introduction">
 				欢迎来到我教你学，四个步骤找到老师:
 			</p>
@@ -50,7 +56,61 @@ if (isset($_GET['code'])){
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="start" id="start">开始</button>
+		</div> -->
+		<div class="row">
+			<div class="col-xs-12 text-center company-name"><strong>我教你学</strong></div>
+			
+			<div class="col-xs-10 col-xs-offset-1 text-left company-details">
+				我教你学由深港高校联合创办，旨在打造一个人人乐用的家教平台，做到更精准，更智能，更高效地择优匹配师生资源。
+			</div>
+			
+			<div class="col-xs-10 col-xs-offset-1 star-teachers">
+				<div class="col-xs-4">
+					<img class="star-photo img-circle" id="star-one" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/obS35voyc3uPs4bNzTR9hdWBBeuk_head?imageView2/1/w/65/h/65" alt="empty">
+					<div class="star-name text-center"><em>夏丽婷</em></div>
+					<div class="star-skill text-center">英语师范专业</div>
+				</div>
+				<div class="col-xs-4">
+					<img class="star-photo img-circle" id="star-two" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/1183252454.jpg?imageView2/1/w/65/h/65" alt="empty">
+					<div class="star-name text-center"><em>刘楠</em></div>
+					<div class="star-skill text-center">声乐专业</div>
+				</div>
+				<div class="col-xs-4">
+					<img class="star-photo img-circle" id="star-three" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/obS35voyc3uPs4bNzTR9hdWBBeuk_head?imageView2/1/w/65/h/65" alt="empty">
+					<div class="star-name"><em></em></div>
+					<div class="star-skill">特长三</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-xs-offset-3"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30" /></div>
+			<div class="col-xs-6 col-xs-offset-3 steps text-center">简单四步找到您的家教</div>
+			<div class="col-xs-6 col-xs-offset-3 step-one text-center">
+				<div class="col-xs-12 text-center step-title">第一步</div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/step1.png?imageView2/1/w/38/h/56" /></div>
+				<div class="col-xs-12 text-center step-desc">"回答一些简单问题"</div>
+			</div>
+			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20" /></div>
+			
+			<div class="col-xs-6 col-xs-offset-3 step-two text-center">
+				<div class="col-xs-12 text-center step-title">第二步</div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/phonenumber.png?imageView2/1/w/56/h/56" /></div>
+				<div class="col-xs-12 text-center step-desc">"填写您的手机号码"</div>
+			</div>
+			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20" /></div>
+			
+			<div class="col-xs-6 col-xs-offset-3 step-three text-center">
+				<div class="col-xs-12 text-center step-title">第三步</div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/clock.png?imageView2/1/w/56/h/56" /></div>
+				<div class="col-xs-12 text-center step-desc">"我们在24小时内帮您找到最适合的家教"</div>
+			</div>
+			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20" /></div>
+			
+			<div class="col-xs-6 col-xs-offset-3 step-four text-center">
+				<div class="col-xs-12 text-center step-title">第四步</div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/contact.png?imageView2/1/w/56/h/56" /></div>
+				<div class="col-xs-12 text-center step-desc">"我们的客服会电话联络您，确认细节"</div>
+			</div>
 		</div>
+	<div class="bottom start text-center" name="start" id="start">开始</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q2">
@@ -294,17 +354,17 @@ if (isset($_GET['code'])){
 	<div class="row" style="display:none" id="preview">
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<table>
-			<tr><td>您选择的信息预览如下</td></tr>
+			<tr><td>您选择的信息如下:</td></tr>
 			<tr>
 				<td>
-					课程
+					想学的课程
 				</td>
 				<td id="preview_subject">
 				</td>
 			</tr>
 			<tr>
 				<td>
-					兴趣
+					想学的兴趣
 				</td>
 				<td id="preview_interest">
 				</td>
@@ -332,7 +392,7 @@ if (isset($_GET['code'])){
 			</tr>
 			<tr>
 				<td>
-					年级
+					小孩年级
 				</td>
 				<td id="preview_grade">
 				</td>
@@ -341,7 +401,7 @@ if (isset($_GET['code'])){
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="preview_done" id="preview_done">完成</button>
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep_pre" id="laststep13">返回</button>
+			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep_pre" id="laststep13">上一步</button>
 		</div>
 	</div>
 	
@@ -471,16 +531,18 @@ function insertParentAndChild(){
 	});
 }
 
+$("#start").click(function(){
+	$("#q0").hide("normal",function(){
+		divArray.push($("#q0"));
+		showDiv($("#q2"));
+	});
+});
+
 $(".btn.btn-lg.btn-block").click(function(){
 	$("button:visible").removeClass("active");
 	$(this).addClass("active");
 	var itemname = $(this).attr("name");
-	if(itemname == "start"){
-		$("#q0").hide("normal",function(){
-			divArray.push($("#q0"));
-			showDiv($("#q2"));
-		});
-	}else if(itemname.indexOf("content") >= 0){
+	if(itemname.indexOf("content") >= 0){
 		choice = itemname;
 		$("#q2").hide("normal",function(){
 			if (choice == "contentinte"){
