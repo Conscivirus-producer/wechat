@@ -98,7 +98,6 @@ require_once("config.php");
       				<thead>
         				<tr>
           					<th>交易时间</th>
-          					<th>跟踪员</th>
           					<th>家长openid</th>  
           					<th>昵称</th>
           					<th>手机号</th>    
@@ -111,6 +110,7 @@ require_once("config.php");
           					<th>正式教课时间</th>
           					<th>费用</th>
           					<th>地点</th>
+          					<th>跟踪员</th>
           					<th>状态</th>
           					<th>备注</th>  
         				</tr>
@@ -209,7 +209,6 @@ $("#submit").click(function(){
 						$("<button>").appendTo($(this)).html("提交").bind({
 							click:function(e){
 								var comment = $clickedtd.children("textarea").val();
-								alert(comment)
 								var transactionId = $clickedtd.prevAll(".transactionId").text();
 								var url = "transactionService.php?dataType=updateComment&transactionId="+transactionId+"&comment="+comment;
 								$.getJSON(url, function(json){
@@ -251,24 +250,311 @@ $("#inprogress").click(function(){
 		var length = data.parentOpenId.length;
 		for(var i=0; i<length;i++){
 			$tr = $("<tr>", {style: "", class: ""}).attr("id","resultTr" + i);
-			$tr.html(
-			"<td>"+data.createdDt[i]+
-			"</td><td>"+data.follower[i]+
+			$tr.html("<td class='transactionId' style='display:none'>"+data.transactionId[i]+
+			"</td><td>"+data.createdDt[i]+
 			"</td><td>"+data.parentOpenId[i]+
 			"</td><td>"+data.nickname[i]+
 			"</td><td>"+data.mobile[i]+
 			"</td><td>"+data.grade[i]+
 			"</td><td>"+data.subject[i]+
 			"</td><td>"+data.interest[i]+
-			"</td><td>"+data.teacherName[i]+
-			"</td><td>"+data.teacherMobile[i]+
-			"</td><td>"+data.trialTime[i]+
-			"</td><td>"+data.fixedTime[i]+
-			"</td><td>"+data.fee[i]+
-			"</td><td>"+data.location[i]+
-			"</td><td>"+data.status[i]+
-			"</td><td>"+data.comment[i]+
+			"</td><td class='teacherName'>"+data.teacherName[i]+
 			"</td>");
+			$("<td>").appendTo($tr).html("<span>"+data.teacherMobile[i]+"</span>").bind({
+				click: function(e){
+					$td = $(this);
+					$(this).children("span").hide();
+					if($(this).children("textarea").length == 0){
+						$("<textarea>").appendTo($(this)).html($(this).children("span").html());
+						$("<button>").appendTo($(this)).html("提交").bind({
+							click: function(e){
+								var transactionId = $td.prevAll(".transactionId").text();
+								var mobile = $td.children("textarea").val();
+								var url = "transactionService.php?dataType=findTeacherByMobile&mobile="+mobile;
+								$.getJSON(url, function(json){
+  									if(json.status == "ok"){
+										var newTeacherOpenId = json.openId;
+										var newTeacherName = json.name;
+										var newTeacherMobile = json.mobile;
+										var newUrl = "transactionService.php?dataType=updateTeacher&transactionId="+transactionId+"&openId="+newTeacherOpenId;
+										$.getJSON(newUrl, function(json){
+  											if(json.status == "ok"){
+  												 $td.prevAll(".teacherName").text(newTeacherName);
+  												 $td.children("textarea").hide();
+												 $td.children("button").hide();
+												 $td.children("span").html(newTeacherMobile);
+												 $td.children("span").show();
+  											}
+										});
+  									}else{
+  										alert("此手机号不存在！");
+  									}
+								});
+								e.stopPropagation();
+							}
+						});
+					}else{
+						$(this).children("span").hide();
+						$(this).children("textarea").show();
+						$(this).children("button").show();
+					}
+				},
+				mouseleave: function(e) {
+					$(this).children("textarea").hide();
+					$(this).children("button").hide();
+					$(this).children("span").show();
+				}
+			});
+			
+			$("<td>").appendTo($tr).html("<span>"+data.trialTime[i]+"</span>").bind({
+				click: function(e){
+					$td = $(this);
+					$(this).children("span").hide();
+					if($(this).children("textarea").length == 0){
+						$("<textarea>").appendTo($(this)).html($(this).children("span").html());
+						$("<button>").appendTo($(this)).html("提交").bind({
+							click: function(e){
+								var transactionId = $td.prevAll(".transactionId").text();
+								var trialTime = $td.children("textarea").val();
+								var url = "transactionService.php?dataType=updateTrialTime&transactionId="+transactionId+"&trialTime="+trialTime;
+								$.getJSON(url, function(json){
+  									if(json.status == "ok"){
+  										$td.children("textarea").hide();
+  										$td.children("button").hide();
+  										$td.children("span").html(trialTime);
+  										$td.children("span").show();
+  									}
+								});
+								e.stopPropagation();
+							}
+						});
+					}else{
+						$(this).children("span").hide();
+						$(this).children("textarea").show();
+						$(this).children("button").show();
+					}
+				},
+				mouseleave: function(e) {
+					$(this).children("textarea").hide();
+					$(this).children("button").hide();
+					$(this).children("span").show();
+				}
+			});
+			
+			$("<td>").appendTo($tr).html("<span>"+data.fixedTime[i]+"</span>").bind({
+				click: function(e){
+					$td = $(this);
+					$(this).children("span").hide();
+					if($(this).children("textarea").length == 0){
+						$("<textarea>").appendTo($(this)).html($(this).children("span").html());
+						$("<button>").appendTo($(this)).html("提交").bind({
+							click: function(e){
+								var transactionId = $td.prevAll(".transactionId").text();
+								var fixedTime = $td.children("textarea").val();
+								var url = "transactionService.php?dataType=updateFixedTime&transactionId="+transactionId+"&fixedTime="+fixedTime;
+								$.getJSON(url, function(json){
+  									if(json.status == "ok"){
+  										$td.children("textarea").hide();
+  										$td.children("button").hide();
+  										$td.children("span").html(fixedTime);
+  										$td.children("span").show();
+  									}
+								});
+								e.stopPropagation();
+							}
+						});
+					}else{
+						$(this).children("span").hide();
+						$(this).children("textarea").show();
+						$(this).children("button").show();
+					}
+				},
+				mouseleave: function(e) {
+					$(this).children("textarea").hide();
+					$(this).children("button").hide();
+					$(this).children("span").show();
+				}
+			});
+			$("<td>").appendTo($tr).html("<span>"+data.fee[i]+"</span>").bind({
+				click: function(e){
+					$td = $(this);
+					$(this).children("span").hide();
+					if($(this).children("textarea").length == 0){
+						$("<textarea>").appendTo($(this)).html($(this).children("span").html());
+						$("<button>").appendTo($(this)).html("提交").bind({
+							click: function(e){
+								var transactionId = $td.prevAll(".transactionId").text();
+								var fee = $td.children("textarea").val();
+								var url = "transactionService.php?dataType=updateFee&transactionId="+transactionId+"&fee="+fee;
+								$.getJSON(url, function(json){
+  									if(json.status == "ok"){
+  										$td.children("textarea").hide();
+  										$td.children("button").hide();
+  										$td.children("span").html(fee);
+  										$td.children("span").show();
+  									}
+								});
+								e.stopPropagation();
+							}
+						});
+					}else{
+						$(this).children("span").hide();
+						$(this).children("textarea").show();
+						$(this).children("button").show();
+					}
+				},
+				mouseleave: function(e) {
+					$(this).children("textarea").hide();
+					$(this).children("button").hide();
+					$(this).children("span").show();
+				}
+			});
+			$("<td>").appendTo($tr).html("<span>"+data.location[i]+"</span>").bind({
+				click: function(e){
+					$td = $(this);
+					$(this).children("span").hide();
+					if($(this).children("textarea").length == 0){
+						$("<textarea>").appendTo($(this)).html($(this).children("span").html());
+						$("<button>").appendTo($(this)).html("提交").bind({
+							click: function(e){
+								var transactionId = $td.prevAll(".transactionId").text();
+								var location = $td.children("textarea").val();
+								var url = "transactionService.php?dataType=updateLocation&transactionId="+transactionId+"&location="+location;
+								$.getJSON(url, function(json){
+  									if(json.status == "ok"){
+  										$td.children("textarea").hide();
+  										$td.children("button").hide();
+  										$td.children("span").html(location);
+  										$td.children("span").show();
+  									}
+								});
+								e.stopPropagation();
+							}
+						});
+					}else{
+						$(this).children("span").hide();
+						$(this).children("textarea").show();
+						$(this).children("button").show();
+					}
+				},
+				mouseleave: function(e) {
+					$(this).children("textarea").hide();
+					$(this).children("button").hide();
+					$(this).children("span").show();
+				}
+			});
+			$("<td>").appendTo($tr).html("<span>"+data.follower[i]+"</span>").bind({
+				click: function(e){
+					$td = $(this);
+					$(this).children("span").hide();
+					if($(this).children("textarea").length == 0){
+						$("<textarea>").appendTo($(this)).html($(this).children("span").html());
+						$("<button>").appendTo($(this)).html("提交").bind({
+							click: function(e){
+								var transactionId = $td.prevAll(".transactionId").text();
+								var follower = $td.children("textarea").val();
+								var url = "transactionService.php?dataType=updateFollower&transactionId="+transactionId+"&follower="+follower;
+								$.getJSON(url, function(json){
+  									if(json.status == "ok"){
+  										$td.children("textarea").hide();
+  										$td.children("button").hide();
+  										$td.children("span").html(follower);
+  										$td.children("span").show();
+  									}
+								});
+								e.stopPropagation();
+							}
+						});
+					}else{
+						$(this).children("span").hide();
+						$(this).children("textarea").show();
+						$(this).children("button").show();
+					}
+				},
+				mouseleave: function(e) {
+					$(this).children("textarea").hide();
+					$(this).children("button").hide();
+					$(this).children("span").show();
+				}
+			});
+			$("<td>").appendTo($tr).html("<span>"+data.status[i]+"</span>").bind({
+				click : function(e) {
+					// Hover event handler
+					var $clickedtd = $(this);
+					$(this).children("span").hide();
+					if($(this).children("select").length == 0){
+				$("<select>"+
+				"<option value='1'>1.下单</option>"+
+				"<option value='2'>2.已发信息</option>"+
+				"<option value='3'>3.已同意</option>"+
+				"<option value='4'>4.学生联系家长</option>"+
+				"<option value='5'>5.确认上门时间及地点</option>"+
+				"<option value='6'>6.已上门试教</option>"+
+				"<option value='7'>7.确认交易细节</option>"+
+				"<option value='C'>C.取消</option>"+
+				"<option value='S'>S.交易成功</option>"+
+				"<option value='E'>E.交易结束</option></select>").appendTo($(this)).bind({
+					change: function(e){
+						var selectedOptionValue = $(this).children('option:selected').val();
+						var selectedValue = $(this).children('option:selected').text(); 
+						var transactionId = $clickedtd.prevAll(".transactionId").text();
+						var url = "transactionService.php?dataType=updateTransactionStatus&transactionId="+transactionId+"&status="+selectedOptionValue;
+						$.getJSON(url, function(json){
+  							if(json.status == "ok"){
+  								$clickedtd.children("select").hide();
+  								$clickedtd.children("span").html(selectedValue);
+  								$clickedtd.children("span").show();
+  							}
+						});
+						
+						e.stopPropagation();
+					}
+				});
+				}else{
+					$(this).children("select").show();
+				}
+				
+				},
+				mouseleave: function(e) {
+					// Hover event handler
+					$(this).children("select").hide();
+					$(this).children("span").show();
+				}
+				
+			});
+			$("<td>").appendTo($tr).html("<span>"+data.comment[i]+"</span>").bind({
+				click : function(e){
+					var $clickedtd = $(this);
+					$(this).children("span").hide();
+					if($(this).children("textarea").length == 0){
+						$("<textarea></textarea>").appendTo($(this)).html($(this).children("span").html());
+						$("<button>").appendTo($(this)).html("提交").bind({
+							click:function(e){
+								var comment = $clickedtd.children("textarea").val();
+								var transactionId = $clickedtd.prevAll(".transactionId").text();
+								var url = "transactionService.php?dataType=updateComment&transactionId="+transactionId+"&comment="+comment;
+								$.getJSON(url, function(json){
+  									if(json.status == "ok"){
+  										$clickedtd.children("textarea").hide();
+  										$clickedtd.children("button").hide();
+  										$clickedtd.children("span").html(comment);
+  										$clickedtd.children("span").show();
+  									}
+								});
+							}
+						});
+					}else{
+						$(this).children("textarea").show();
+						$(this).children("button").show();
+					}
+				},
+				mouseleave: function(e) {
+					$(this).children("textarea").hide();
+					$(this).children("button").hide();
+					$(this).children("span").show();
+				}
+			});
+			
 			$("#confirmedtrans > tbody").append($tr);
 		}
 		$("#confirmedExcel").show();
