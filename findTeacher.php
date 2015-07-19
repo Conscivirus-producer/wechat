@@ -18,7 +18,7 @@ if (isset($_GET['code'])){
 <head>
 <meta charset="utf-8">
 <title>寻找老师</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
 <!-- Loading Bootstrap -->
 <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
 <!-- Loading Flat UI -->
@@ -76,9 +76,9 @@ if (isset($_GET['code'])){
 					<div class="star-skill text-center">声乐专业</div>
 				</div>
 				<div class="col-xs-4">
-					<img class="star-photo img-circle" id="star-three" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/obS35voyc3uPs4bNzTR9hdWBBeuk_head?imageView2/1/w/65/h/65" alt="empty">
-					<div class="star-name"><em></em></div>
-					<div class="star-skill">特长三</div>
+					<img class="star-photo img-circle" id="star-three" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/历程.jpg?imageView2/1/w/65/h/65" alt="empty">
+					<div class="star-name text-center"><em>历程</em></div>
+					<div class="star-skill text-center">产品设计专业</div>
 				</div>
 			</div>
 			<div class="col-xs-6 col-xs-offset-3"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30" /></div>
