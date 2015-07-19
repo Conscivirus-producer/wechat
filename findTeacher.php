@@ -33,7 +33,7 @@ if (isset($_GET['code'])){
 </head>
 <body>
 <div class="find-header row">
-	<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65" />
+	<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65/q/100" />
 	<div class="col-xs-6 col-xs-offset-3 text-center">
 		ShenZhen UltraBravo Tech Ltd.
 	</div>
@@ -65,47 +65,47 @@ if (isset($_GET['code'])){
 			
 			<div class="col-xs-10 col-xs-offset-1 star-teachers">
 				<div class="col-xs-4">
-					<img class="star-photo img-circle" id="star-one" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/obS35voyc3uPs4bNzTR9hdWBBeuk_head?imageView2/1/w/65/h/65" alt="empty">
+					<img class="star-photo img-circle" id="star-one" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/obS35voyc3uPs4bNzTR9hdWBBeuk_head?imageView2/1/w/65/h/65/q/100" alt="empty">
 					<div class="star-name text-center">夏丽婷</div>
 					<div class="star-skill text-center">英语师范专业</div>
 				</div>
 				<div class="col-xs-4">
-					<img class="star-photo img-circle" id="star-two" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/1183252454.jpg?imageView2/1/w/65/h/65" alt="empty">
+					<img class="star-photo img-circle" id="star-two" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/1183252454.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
 					<div class="star-name text-center">刘楠</div>
 					<div class="star-skill text-center">声乐专业</div>
 				</div>
 				<div class="col-xs-4">
-					<img class="star-photo img-circle" id="star-three" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/历程.jpg?imageView2/1/w/65/h/65" alt="empty">
+					<img class="star-photo img-circle" id="star-three" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/历程.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
 					<div class="star-name text-center">厉程</div>
 					<div class="star-skill text-center">产品设计专业</div>
 				</div>
 			</div>
-			<div class="col-xs-6 col-xs-offset-3"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30" /></div>
+			<div class="col-xs-6 col-xs-offset-3"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" /></div>
 			<div class="col-xs-6 col-xs-offset-3 steps text-center">简单四步找到您的家教</div>
 			<div class="col-xs-6 col-xs-offset-3 step-one text-center">
 				<div class="col-xs-12 text-center step-title">第一步</div>
-				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/step1.png?imageView2/1/w/38/h/56" /></div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/step1.png?imageView2/1/w/38/h/56/q/100" /></div>
 				<div class="col-xs-12 text-center step-desc">"回答一些相关问题"</div>
 			</div>
-			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20" /></div>
+			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100" /></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-two text-center">
 				<div class="col-xs-12 text-center step-title">第二步</div>
-				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/phonenumber.png?imageView2/1/w/56/h/56" /></div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/phonenumber.png?imageView2/1/w/56/h/56/q/100" /></div>
 				<div class="col-xs-12 text-center step-desc">"填写您的手机号码"</div>
 			</div>
-			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20" /></div>
+			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100" /></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-three text-center">
 				<div class="col-xs-12 text-center step-title">第三步</div>
-				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/clock.png?imageView2/1/w/56/h/56" /></div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/clock.png?imageView2/1/w/56/h/56/q/100" /></div>
 				<div class="col-xs-12 text-center step-desc">"我们在24小时内帮您找到最适合的家教"</div>
 			</div>
-			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20" /></div>
+			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100" /></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-four text-center">
 				<div class="col-xs-12 text-center step-title">第四步</div>
-				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/contact.png?imageView2/1/w/56/h/56" /></div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/contact.png?imageView2/1/w/56/h/56/q/100" /></div>
 				<div class="col-xs-12 text-center step-desc">"我们的客服会电话联络您，确认细节"</div>
 			</div>
 	<div class="bottom start text-center" name="start" id="start">开始</div>
