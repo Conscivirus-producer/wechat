@@ -35,7 +35,7 @@ if (isset($_GET['code'])){
 <div class="find-header row">
 	<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65" />
 	<div class="col-xs-6 col-xs-offset-3 text-center">
-		ShenZhen UltraBravo Teh Ltd.
+		ShenZhen UltraBravo Tech Ltd.
 	</div>
 </div>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
@@ -57,7 +57,6 @@ if (isset($_GET['code'])){
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="start" id="start">开始</button>
 		</div> -->
-		<div style="margin-left: 0px; margin-right: 0px" class="row">
 			<div class="col-xs-12 text-center company-name"><strong>我教你学</strong></div>
 			
 			<div class="col-xs-10 col-xs-offset-1 text-left company-details">
@@ -77,7 +76,7 @@ if (isset($_GET['code'])){
 				</div>
 				<div class="col-xs-4">
 					<img class="star-photo img-circle" id="star-three" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/历程.jpg?imageView2/1/w/65/h/65" alt="empty">
-					<div class="star-name text-center"><em>历程</em></div>
+					<div class="star-name text-center"><em>厉程</em></div>
 					<div class="star-skill text-center">产品设计专业</div>
 				</div>
 			</div>
@@ -86,7 +85,7 @@ if (isset($_GET['code'])){
 			<div class="col-xs-6 col-xs-offset-3 step-one text-center">
 				<div class="col-xs-12 text-center step-title">第一步</div>
 				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/step1.png?imageView2/1/w/38/h/56" /></div>
-				<div class="col-xs-12 text-center step-desc">"回答一些简单问题"</div>
+				<div class="col-xs-12 text-center step-desc">"回答一些相关问题"</div>
 			</div>
 			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20" /></div>
 			
@@ -109,7 +108,6 @@ if (isset($_GET['code'])){
 				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/contact.png?imageView2/1/w/56/h/56" /></div>
 				<div class="col-xs-12 text-center step-desc">"我们的客服会电话联络您，确认细节"</div>
 			</div>
-		</div>
 	<div class="bottom start text-center" name="start" id="start">开始</div>
 	</div>
 	

@@ -105,6 +105,8 @@ class CodeParser{
 			return "英语";
 		}else if($subject == "SU3"){
 			return "语文";
+		}else if($subject == "SU4"){
+			return "全科";
 		}else if($subject == "UNDEFINED"){
 			return "";
 		}else{
