@@ -32,16 +32,18 @@ if (isset($_GET['code'])){
 <![endif]-->
 </head>
 <body>
-<div class="find-header row">
-	<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
-	<div class="col-xs-6 col-xs-offset-3 text-center">
-		ShenZhen UltraBravo Tech Ltd.
-	</div>
-</div>
+
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <div class="container">
+	
 	<div class="row" id="q0">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
 		<!-- <div class="col-md-4 col-md-offset-4">
 			<p class="text-left introduction">
 				欢迎来到我教你学，四个步骤找到老师:
@@ -59,49 +61,49 @@ if (isset($_GET['code'])){
 		</div> -->
 			<div class="col-xs-12 text-center company-name"><strong>我教你学</strong></div>
 			
-			<div class="col-xs-10 col-xs-offset-1 text-left company-details">
+			<div class="col-xs-10 col-xs-offset-1 text-center company-details">
 				我教你学由深港高校联合创办，旨在打造一个人人乐用的家教平台，做到更精准，更智能，更高效地择优匹配师生资源。
 			</div>
 			
-			<div class="col-xs-10 col-xs-offset-1 star-teachers">
+			
 				<div class="col-xs-4">
-					<img class="star-photo img-circle" id="star-one" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/obS35voyc3uPs4bNzTR9hdWBBeuk_head?imageView2/1/w/65/h/65/q/100" alt="empty">
+					<img class="star-photo img-circle center-block" id="star-one" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/obS35voyc3uPs4bNzTR9hdWBBeuk_head?imageView2/1/w/65/h/65/q/100" alt="empty">
 					<div class="star-name text-center">夏丽婷</div>
 					<div class="star-skill text-center">英语师范专业</div>
 				</div>
 				<div class="col-xs-4">
-					<img class="star-photo img-circle" id="star-two" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/1183252454.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
+					<img class="star-photo img-circle center-block" id="star-two" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/1183252454.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
 					<div class="star-name text-center">刘楠</div>
 					<div class="star-skill text-center">声乐专业</div>
 				</div>
 				<div class="col-xs-4">
-					<img class="star-photo img-circle" id="star-three" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/历程.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
+					<img class="star-photo img-circle center-block" id="star-three" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/历程.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
 					<div class="star-name text-center">厉程</div>
 					<div class="star-skill text-center">产品设计专业</div>
 				</div>
-			</div>
-			<div class="col-xs-6 col-xs-offset-3"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" /></div>
+			
+			<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
 			<div class="col-xs-6 col-xs-offset-3 steps text-center">简单四步找到您的家教</div>
 			<div class="col-xs-6 col-xs-offset-3 step-one text-center">
 				<div class="col-xs-12 text-center step-title">第一步</div>
 				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/step1.png?imageView2/1/w/38/h/56/q/100" /></div>
 				<div class="col-xs-12 text-center step-desc">"回答一些相关问题"</div>
 			</div>
-			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100" /></div>
+			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100"/></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-two text-center">
 				<div class="col-xs-12 text-center step-title">第二步</div>
 				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/phonenumber.png?imageView2/1/w/56/h/56/q/100" /></div>
 				<div class="col-xs-12 text-center step-desc">"填写您的手机号码"</div>
 			</div>
-			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100" /></div>
+			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100"/></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-three text-center">
 				<div class="col-xs-12 text-center step-title">第三步</div>
 				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/clock.png?imageView2/1/w/56/h/56/q/100" /></div>
 				<div class="col-xs-12 text-center step-desc">"我们在24小时内帮您找到最适合的家教"</div>
 			</div>
-			<div class="col-xs-1 col-xs-offset-5"><img class="arrow-down" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100" /></div>
+			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100" /></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-four text-center">
 				<div class="col-xs-12 text-center step-title">第四步</div>
@@ -112,6 +114,12 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q2">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
 		<div class="col-md-4 col-md-offset-4">
 			<p class="question text-left">
 				您希望小孩的学习内容是什么?
@@ -132,6 +140,12 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q3">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
 		<div class="col-md-4 col-md-offset-4">		
 			<p class="question text-left">
 				您的小孩哪个科目最需要提高？
@@ -155,6 +169,12 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q4">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
 		<div class="col-md-4 col-md-offset-4">		
 			<p class="question text-left">
 				您希望您的孩子培养哪些兴趣？
@@ -184,6 +204,12 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q5">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
 		<div class="col-md-4 col-md-offset-4">		
 			<p class="question text-left">
 				请您选择具体的兴趣
