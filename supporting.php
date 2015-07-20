@@ -265,6 +265,7 @@
 			$studentNumber = trim($_POST["studentNumber"]);
 			$phone = trim($_POST["phone"]);
 			$desc = trim($_POST["desc"]);
+			$imgUrl = trim($_POST["imgUrl"]);
 			$options = $_POST["options"];				//array
 			$otheroptions = trim($_POST["otheroptions"]);	//" " separated array
 			$price = trim($_POST["price"]);
@@ -275,7 +276,7 @@
 			//1，存入老师的基本信息，T_teacher，默认wechatAccount为空，extraDescription为空，rating为1，teacherStatus为R
 			$query = "set names utf8";
 			$result = $conn->query($query);
-			$query = "insert into T_teacher values('$openid','','$school','$major','$studentNumber','$name','$sex','$phone','$desc','',sysdate(),'1','url','$price','$highestGrade','$location','I')";                       
+			$query = "insert into T_teacher values('$openid','','$school','$major','$studentNumber','$name','$sex','$phone','$desc','',sysdate(),'1','$imgUrl','$price','$highestGrade','$location','I')";                       
 			$result = $conn->query($query);
 			
 			//2，存入老师所有能教的科目，兴趣

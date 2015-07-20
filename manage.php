@@ -444,7 +444,7 @@ $("#submit").click(function(){
 			studentNumber: "",
 			phone: "",
 			desc: "",
-			imgUrl: "http://7xk9ts.com2.z0.glb.qiniucdn.com/obS35vs6BGFOYo9w9Aq3q1OYNQjU_certificate_1",
+			imgUrl: "",
 			options: [],
 			otheroptions: [],
 			price: "",
