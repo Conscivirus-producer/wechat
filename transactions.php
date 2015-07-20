@@ -98,12 +98,6 @@ require_once("config.php");
       				<thead>
         				<tr>
           					<th>交易时间</th>
-          					<th>家长openid</th>  
-          					<th>昵称</th>
-          					<th>手机号</th>    
-          					<th>年级</th>  
-          					<th>科目</th>  
-          					<th>兴趣</th>
           					<th>老师姓名</th>
           					<th>老师手机号</th>
           					<th>试教时间</th>
@@ -113,6 +107,12 @@ require_once("config.php");
           					<th>跟踪员</th>
           					<th>状态</th>
           					<th>备注</th>  
+          					<th>家长昵称</th>
+          					<th>家长手机号</th>    
+          					<th>年级</th>  
+          					<th>科目</th>  
+          					<th>兴趣</th>
+          					<th>家长openid</th>  
         				</tr>
       				</thead>
     				<tbody>
@@ -252,12 +252,6 @@ $("#inprogress").click(function(){
 			$tr = $("<tr>", {style: "", class: ""}).attr("id","resultTr" + i);
 			$tr.html("<td class='transactionId' style='display:none'>"+data.transactionId[i]+
 			"</td><td>"+data.createdDt[i]+
-			"</td><td>"+data.parentOpenId[i]+
-			"</td><td>"+data.nickname[i]+
-			"</td><td>"+data.mobile[i]+
-			"</td><td>"+data.grade[i]+
-			"</td><td>"+data.subject[i]+
-			"</td><td>"+data.interest[i]+
 			"</td><td class='teacherName'>"+data.teacherName[i]+
 			"</td>");
 			$("<td>").appendTo($tr).html("<span>"+data.teacherMobile[i]+"</span>").bind({
@@ -554,7 +548,12 @@ $("#inprogress").click(function(){
 					$(this).children("span").show();
 				}
 			});
-			
+			$("<td>").appendTo($tr).html(data.nickname[i]);
+			$("<td>").appendTo($tr).html(data.mobile[i]);
+			$("<td>").appendTo($tr).html(data.grade[i]);
+			$("<td>").appendTo($tr).html(data.subject[i]);
+			$("<td>").appendTo($tr).html(data.interest[i]);
+			$("<td>").appendTo($tr).html(data.parentOpenId[i]);
 			$("#confirmedtrans > tbody").append($tr);
 		}
 		$("#confirmedExcel").show();
