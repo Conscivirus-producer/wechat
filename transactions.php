@@ -69,7 +69,9 @@ require_once("config.php");
 					<caption>所有交易记录</caption>  
       				<thead>
         				<tr>
-          					<th>家长openid</th>  
+          					<th>交易时间</th>
+          					<th>状态</th>
+          					<th>备注</th> 
           					<th>昵称</th>
           					<th>手机号</th>    
           					<th>年级</th>  
@@ -78,9 +80,7 @@ require_once("config.php");
           					<th>期望价格</th>
           					<th>期望老师性别</th>
           					<th>期望地点</th>
-          					<th>交易时间</th>
-          					<th>状态</th>
-          					<th>备注</th> 
+          					<th>家长openid</th>  
         				</tr>
       				</thead>
     				<tbody>
@@ -145,15 +145,6 @@ $("#submit").click(function(){
 			$tr = $("<tr>", {style: "", class: ""}).attr("id","resultTr" + i);
 			
 			$tr.html("<td class='transactionId' style='display:none'>"+data.transactionId[i]+
-			"</td><td>"+data.parentOpenId[i]+
-			"</td><td>"+data.nickname[i]+
-			"</td><td>"+data.mobile[i]+
-			"</td><td>"+data.grade[i]+
-			"</td><td>"+data.subject[i]+
-			"</td><td>"+data.interest[i]+
-			"</td><td>"+data.expected_price[i]+
-			"</td><td>"+data.expectedTeacherGender[i]+
-			"</td><td>"+data.expectedLocation[i]+
 			"</td><td>"+data.createdDt[i]+
 			"</td>");
 			
@@ -232,7 +223,15 @@ $("#submit").click(function(){
 					$(this).children("span").show();
 				}
 			});
-			
+			$("<td>").appendTo($tr).html(data.nickname[i]);
+			$("<td>").appendTo($tr).html(data.mobile[i]);
+			$("<td>").appendTo($tr).html(data.grade[i]);
+			$("<td>").appendTo($tr).html(data.subject[i]);
+			$("<td>").appendTo($tr).html(data.interest[i]);
+			$("<td>").appendTo($tr).html(data.expected_price[i]);
+			$("<td>").appendTo($tr).html(data.expectedTeacherGender[i]);
+			$("<td>").appendTo($tr).html(data.expectedLocation[i]);
+			$("<td>").appendTo($tr).html(data.parentOpenId[i]);
 			$("#test > tbody").append($tr);
 		}
 		$("#tableExcel").show();
