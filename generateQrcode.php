@@ -64,7 +64,10 @@ $conn = new mysqli($host, $user, $password, $database);
 $query = "select * from T_teacher where imageUrl='0'";
 $result = $conn->query($query);
 while($row = $result->fetch_assoc()){
-	echo $row["openId"];
+	$openId = $row["openId"];
+	$url = "http://7xk9ts.com2.z0.glb.qiniucdn.com/".$openId."_head";
+	$query = "update T_teacher set imageUrl = '$url' where openId = '$openId'";
+	$conn->query($query);
 }
 ?>
 
