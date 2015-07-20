@@ -6,7 +6,7 @@
 	function updateTransactionStatus($conn,$transactionId,$status){
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "update T_transaction set status = '$status' where transactionId = '$transactionId'";
+		$query = "update T_transaction set status = '$status', updatedDt = sysdate() where transactionId = '$transactionId'";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			"status" => "ok"
@@ -17,7 +17,7 @@
 	function updateComment($conn,$transactionId,$comment){
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "update T_transaction set comment = '$comment' where transactionId = '$transactionId'";
+		$query = "update T_transaction set comment = '$comment', updatedDt = sysdate() where transactionId = '$transactionId'";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			"status" => "ok"
@@ -50,7 +50,7 @@
 	function updateTeacher($conn,$transactionId,$openId){
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "update T_transaction set teacherOpenId = '$openId' where transactionId = '$transactionId'";
+		$query = "update T_transaction set teacherOpenId = '$openId', updatedDt = sysdate() where transactionId = '$transactionId'";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			"status" => "ok"
@@ -61,7 +61,7 @@
 	function updateTrialTime($conn,$transactionId,$trialTime){
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "update T_transaction set trialTime = '$trialTime' where transactionId = '$transactionId'";
+		$query = "update T_transaction set trialTime = '$trialTime', updatedDt = sysdate() where transactionId = '$transactionId'";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			"status" => "ok"
@@ -72,7 +72,7 @@
 	function updateFixedTime($conn,$transactionId,$fixedTime){
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "update T_transaction set fixedTime = '$fixedTime' where transactionId = '$transactionId'";
+		$query = "update T_transaction set fixedTime = '$fixedTime', updatedDt = sysdate() where transactionId = '$transactionId'";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			"status" => "ok"
@@ -83,7 +83,7 @@
 	function updateFee($conn,$transactionId,$fee){
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "update T_transaction set fee = '$fee' where transactionId = '$transactionId'";
+		$query = "update T_transaction set fee = '$fee', updatedDt = sysdate() where transactionId = '$transactionId'";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			"status" => "ok"
@@ -94,7 +94,7 @@
 	function updateLocation($conn,$transactionId,$location){
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "update T_transaction set location = '$location' where transactionId = '$transactionId'";
+		$query = "update T_transaction set location = '$location', updatedDt = sysdate() where transactionId = '$transactionId'";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			"status" => "ok"
@@ -105,7 +105,7 @@
 	function updateFollower($conn,$transactionId,$follower){
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "update T_transaction set follower = '$follower' where transactionId = '$transactionId'";
+		$query = "update T_transaction set follower = '$follower', updatedDt = sysdate() where transactionId = '$transactionId'";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			"status" => "ok"
