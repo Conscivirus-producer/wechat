@@ -417,8 +417,9 @@ function renderData(status){
 					$(this).children("span").show();
 				}
 			});
-			$("<td>").appendTo($tr).html("手机: " + data.mobile[i] + "</br>" + "年级: " + data.grade[i] + "</br>" + data.parentOpenId[i] 
-				+ "</br>" + "呢称: " + data.nickname[i] + "</br>" + "科目: " + data.subject[i] + "</br>" + "兴趣: " + data.interest[i]);
+			$("<td>").appendTo($tr).html(data.parentOpenId[i] + "</br>" + "手机: " + data.mobile[i] + "</br>" + "年级: " + data.grade[i] 
+				+ "</br>" + "呢称: " + data.nickname[i] + "</br>" + "科目: " + data.subject[i] + "</br>" + "兴趣: " + data.interest[i]
+				+ "</br>" + "期望价格: " + data.expected_price[i] + "</br>" + "期望性别: " + data.expectedTeacherGender[i] + "</br>" + "期望地点: " + data.expectedLocation[i]);
 			$("#confirmedtrans > tbody").append($tr);
 		}
 		$("#confirmedExcel").show();
