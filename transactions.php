@@ -69,37 +69,9 @@ require_once("config.php");
 	
 	<div class="row" style="margin-top:10px">
 		<div class="col-md-12">
-			<div id="tableExcel" style="display:none" class="table-responsive">  
-				<table id="test" class="table table-hover table-bordered" width="100%">
-					<caption>所有交易记录</caption>  
-      				<thead>
-        				<tr>
-          					<th>交易时间</th>
-          					<th>状态</th>
-          					<th>备注</th> 
-          					<th>昵称</th>
-          					<th>手机号</th>    
-          					<th>年级</th>  
-          					<th>科目</th>  
-          					<th>兴趣</th>
-          					<th>期望价格</th>
-          					<th>期望老师性别</th>
-          					<th>期望地点</th>
-          					<th>家长openid</th>  
-        				</tr>
-      				</thead>
-    				<tbody>
-      				</tbody> 
-				</table>  
-			</div>
-		</div>
-	</div>
-	
-	<div class="row" style="margin-top:10px">
-		<div class="col-md-12">
 			<div id="confirmedExcel" class="table-responsive">  
 				<table id="confirmedtrans" class="table table-hover table-bordered" width="100%">
-					<caption>家长已同意交易记录</caption>  
+					<caption>交易记录</caption>  
       				<thead>
         				<tr>
           					<th>交易时间</th>
@@ -112,12 +84,7 @@ require_once("config.php");
           					<th>跟踪员</th>
           					<th>状态</th>
           					<th>备注</th>  
-          					<th>家长昵称</th>
-          					<th>家长手机号</th>    
-          					<th>年级</th>  
-          					<th>科目</th>  
-          					<th>兴趣</th>
-          					<th>家长openid</th>  
+          					<th>家长信息</th>
         				</tr>
       				</thead>
     				<tbody>
@@ -450,12 +417,8 @@ function renderData(status){
 					$(this).children("span").show();
 				}
 			});
-			$("<td>").appendTo($tr).html(data.nickname[i]);
-			$("<td>").appendTo($tr).html(data.mobile[i]);
-			$("<td>").appendTo($tr).html(data.grade[i]);
-			$("<td>").appendTo($tr).html(data.subject[i]);
-			$("<td>").appendTo($tr).html(data.interest[i]);
-			$("<td>").appendTo($tr).html(data.parentOpenId[i]);
+			$("<td>").appendTo($tr).html(data.mobile[i] + "</br>" + data.grade[i] + "</br>" + data.parentOpenId[i] 
+				+ "</br>" + data.nickname[i] + "</br>" + data.subject[i] + "</br>" + data.interest[i]);
 			$("#confirmedtrans > tbody").append($tr);
 		}
 		$("#confirmedExcel").show();
