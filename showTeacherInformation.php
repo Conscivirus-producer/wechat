@@ -40,7 +40,7 @@ if (isset($_GET['code'])){
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4" id="head">
+		<div class="col-md-4 col-md-offset-4" id="head" class="text-center">
 			<img src="image/loading_normal.gif" class="img-responsive" style="margin: 0 auto" name="initLoading"/>
 		</div>
 	</div>
@@ -205,7 +205,7 @@ if (isset($_GET['code'])){
 			$('img[name*="initLoading"]').remove();
 			
 			$("#head").append(
-				$("<img />").attr("src", imageUrl).attr("class", "img-responsive img-circle").attr("style", "margin: 0 auto")
+				$("<img />").attr("src", imageUrl).attr("class", "img-responsive img-circle").attr("width", "50%").attr("style", "margin: 0 auto")
 			);
 			
 			$("#block1").show();
