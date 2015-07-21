@@ -95,6 +95,13 @@ class CodeParser{
 			return "";
 		}
 	}
+	
+	public function handleNullValue($value){
+		if($value == null || $value == ""){
+			return "";
+		}
+		return $value;
+	}
 
 	public function getSubject($subject){
 		//split(',', $subject);

@@ -115,7 +115,8 @@
 		$result = $conn->query($query);
 		
 		$query = "SELECT T_transaction.transactionId,T_transaction.createdDt,T_transaction.follower,T_transaction.parentOpenid, ".
-			"T_parent.nickname, T_parent.mobile,T_child.subject, T_child.grade, T_child.interest, T_transaction.teacherOpenid, ".
+			"T_parent.nickname, T_parent.mobile,T_child.subject, T_child.grade, T_child.interest, T_child.expected_price, ".
+			"T_child.expectedTeacherGender, T_child.expectedLocation, T_transaction.teacherOpenid, ".
 			"T_teacher.name as teacherName, T_teacher.mobile as teacherMobile, T_transaction.trialTime, T_transaction.fixedTime, ".
 			"T_transaction.fee, T_transaction.location, T_transaction.status,T_transaction.comment FROM T_parent,  T_child, `T_transaction` ".
 			"LEFT JOIN T_teacher ON T_transaction.teacherOpenid = T_teacher.openId WHERE T_transaction.parentOpenid = T_parent.openId  and ".
@@ -150,6 +151,9 @@
 			'grade' => array(),
 			'subject' => array(),
 			'interest' => array(),
+			'expected_price' => array(),
+			'expectedTeacherGender' => array(),
+			'expectedLocation' => array(),
 			'teacherName' => array(),
 			'teacherMobile' => array(),
 			'trialTime' => array(),
@@ -169,12 +173,15 @@
 			array_push($jsonArray["grade"],$row["grade"]);
 			array_push($jsonArray["subject"],$codeParser->getSubject($row["subject"]));
 			array_push($jsonArray["interest"],$codeParser->getInterestName($row["interest"], $conn));
-			array_push($jsonArray["teacherName"],$codeParser->getInterestName($row["teacherName"], $conn));
-			array_push($jsonArray["teacherMobile"],$codeParser->getInterestName($row["teacherMobile"], $conn));
-			array_push($jsonArray["trialTime"],$codeParser->getInterestName($row["trialTime"], $conn));
-			array_push($jsonArray["fixedTime"],$codeParser->getInterestName($row["fixedTime"], $conn));
-			array_push($jsonArray["fee"],$codeParser->getInterestName($row["fee"], $conn));
-			array_push($jsonArray["location"],$codeParser->getInterestName($row["location"], $conn));
+			array_push($jsonArray["expected_price"],$codeParser->getExpectedPrice($row["expected_price"]));
+			array_push($jsonArray["expectedTeacherGender"],$codeParser->getExpectedGender($row["expectedTeacherGender"]));
+			array_push($jsonArray["expectedLocation"],$codeParser->getExpectedLocation($row["expectedLocation"]));
+			array_push($jsonArray["teacherName"],$codeParser->handleNullValue($row["teacherName"]));
+			array_push($jsonArray["teacherMobile"],$codeParser->handleNullValue($row["teacherMobile"]));
+			array_push($jsonArray["trialTime"],$row["trialTime"]);
+			array_push($jsonArray["fixedTime"],$row["fixedTime"]);
+			array_push($jsonArray["fee"],$row["fee"]);
+			array_push($jsonArray["location"],$row["location"]);
 			array_push($jsonArray["status"],$codeParser->getStatusDescription($row["status"]));
 			array_push($jsonArray["comment"],$row["comment"]);
 		}
