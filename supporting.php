@@ -126,7 +126,11 @@
 		} else if($status == '2'){
 			$query = $query." and T_transaction.status = 2 and T_parent.mobile != ''";
 		} else if($status == '3'){
-			$query = $query." and T_transaction.status > 2";
+			$query = $query." and T_transaction.status = 3";
+		} else if($status == '4'){
+			$query = $query." and T_transaction.status > 3";
+		} else if($status == 'C'){
+			$query = $query." and T_transaction.status = 'C'";
 		}
 		if($startDate != ''){
 			$query = $query." and T_transaction.createdDt > '$startDate'";
