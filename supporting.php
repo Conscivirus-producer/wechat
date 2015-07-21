@@ -128,6 +128,13 @@
 		} else if($status == '3'){
 			$query = $query." and T_transaction.status > 2";
 		}
+		if($startDate != ''){
+			$query = $query." and T_transaction.createdDt > '$startDate'";
+		} 
+		if($endDate != ''){
+			$query = $query." and T_transaction.createdDt < '$endDate'";
+		}
+		$query = $query." order by status, createdDt desc";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			'transactionId' => array(),
