@@ -9,8 +9,8 @@
 		$requestMethod = trim($_GET["requestMethod"]);
 		if($requestMethod == "getTransactions"){
 			echo getTransactions($conn);
-		}else if($requestMethod == "getConfirmedTransactions"){
-			getConfirmedTransactions($conn);	
+		}else if($requestMethod == "getTransactionsByStatus"){
+			getTransactionsByStatus($conn);	
 		}else if($requestMethod == "myRecord"){
 			getMyRecord($conn);	
 		}else if($requestMethod == "replyToUser"){
@@ -106,13 +106,28 @@
 		echo $result;
 	}
 
-	function getConfirmedTransactions($conn){
+	function getTransactionsByStatus($conn){
 		global $codeParser;
+		$status = trim($_GET["status"]);
+		$startDate = trim($_GET["startDate"]);
+		$endDate = trim($_GET["endDate"]);
 		$query = "set names utf8";
 		$result = $conn->query($query);
 		
-		$query = "SELECT T_transaction.transactionId,T_transaction.createdDt,T_transaction.follower,T_transaction.parentOpenid, T_parent.nickname, T_parent.mobile,T_child.subject, T_child.grade, T_child.interest, T_transaction.teacherOpenid, T_teacher.name as teacherName, T_teacher.mobile as teacherMobile, T_transaction.trialTime, T_transaction.fixedTime, T_transaction.fee, T_transaction.location, T_transaction.status,T_transaction.comment FROM T_parent,  T_child, `T_transaction` LEFT JOIN T_teacher ON T_transaction.teacherOpenid = T_teacher.openId WHERE T_transaction.parentOpenid = T_parent.openId  and T_transaction.childId = T_child.childId and T_transaction.status > 2";
+		$query = "SELECT T_transaction.transactionId,T_transaction.createdDt,T_transaction.follower,T_transaction.parentOpenid, ".
+			"T_parent.nickname, T_parent.mobile,T_child.subject, T_child.grade, T_child.interest, T_transaction.teacherOpenid, ".
+			"T_teacher.name as teacherName, T_teacher.mobile as teacherMobile, T_transaction.trialTime, T_transaction.fixedTime, ".
+			"T_transaction.fee, T_transaction.location, T_transaction.status,T_transaction.comment FROM T_parent,  T_child, `T_transaction` ".
+			"LEFT JOIN T_teacher ON T_transaction.teacherOpenid = T_teacher.openId WHERE T_transaction.parentOpenid = T_parent.openId  and ".
+			"T_transaction.childId = T_child.childId";
 		
+		if ($status == '1'){
+			$query = $query." and T_transaction.status = 1";
+		} else if($status == '2'){
+			$query = $query." and T_transaction.status = 2 and T_parent.mobile != ''";
+		} else if($status == '3'){
+			$query = $query." and T_transaction.status > 2";
+		}
 		$result = $conn->query($query);
 		$jsonArray = array(
 			'transactionId' => array(),

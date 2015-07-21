@@ -238,13 +238,25 @@ $("#submit").click(function(){
 	});
 });
 
+$("#newtrans").click(function(){
+	renderData("1");
+});
+
+$("#unapproval").click(function(){
+	renderData("2");
+});
+
 $("#inprogress").click(function(){
+	renderData("3");
+});
+
+function renderData(status){
 	$("[id^=resultTr]").each(function(){
 		$(this).remove();		
 	});
 	var startDate = $("#startDate").val();
 	var endDate = $("#endDate").val();
-	var url = "http://"+rootUrl+"/supporting.php?requestMethod=getConfirmedTransactions";
+	var url = "http://"+rootUrl+"/supporting.php?requestMethod=getTransactionsByStatus&startDate="+startDate+"&endDate="+endDate+"&status="+status;
 	$.getJSON(url,function(data){
 		var length = data.parentOpenId.length;
 		for(var i=0; i<length;i++){
@@ -557,7 +569,7 @@ $("#inprogress").click(function(){
 		}
 		$("#confirmedExcel").show();
 	});
-});
+}
 
 </script>
 </body>

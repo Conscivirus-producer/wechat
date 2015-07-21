@@ -129,7 +129,7 @@ class wechatCallbackapiTest
 	                		echo $resultStr;
 						} else if($keyword == "报名"){
 	              			$msgType = "text";
-	                		$contentStr = '谢谢回复，请留下您的手机号，我们的客服人员会及时通知您活动最新的情况。';
+	                		$contentStr = '感谢您的报名，请留下您的手机号，我们的客服人员会及时通知您活动最新的情况。';
 	                		$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 	                		echo $resultStr;
 						} 
