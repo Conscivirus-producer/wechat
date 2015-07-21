@@ -255,7 +255,7 @@ if (isset($_GET['code'])){
 		<div class="col-md-4 col-md-offset-2">
 			<div class="form-group">
 				<label for="location">可接受的地点</label>
-				<select name="location" id="location" data-toggle="select" multiple class="form-control multiselect multiselect-primary mrs mbm">
+				<select name="location" id="location" multiple class="form-control">
 					<option value="location0">不限</option>
   					<option value="location1">南山区</option>
   					<option value="location2">福田区</option>
