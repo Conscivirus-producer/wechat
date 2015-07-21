@@ -111,6 +111,7 @@
 		$status = trim($_GET["status"]);
 		$startDate = trim($_GET["startDate"]);
 		$endDate = trim($_GET["endDate"]);
+		$follower = trim($_GET["follower"]);
 		$query = "set names utf8";
 		$result = $conn->query($query);
 		
@@ -138,6 +139,10 @@
 		} 
 		if($endDate != ''){
 			$query = $query." and T_transaction.createdDt < '$endDate'";
+		}
+		
+		if($follower != 'All'){
+			$query = $query." and T_transaction.follower = '$follower'";
 		}
 		$query = $query." order by status, createdDt desc";
 		$result = $conn->query($query);

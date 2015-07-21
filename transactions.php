@@ -45,17 +45,29 @@ require_once("config.php");
 		</div>
 		<div class="col-md-4 col-md-offset-2">
 			<div class="form-group">
-				<label for="sex">状态</label>
+				<label for="status">状态</label>
 				<select class="form-control" name="status" id="status">
 					<option value='1'>1.新下单</option>
-					<option value='2'>2.已发信息,家长未同意</option>
+					<option value='2'>2.已回复家长,家长未同意</option>
 					<option value='3'>3.家长已同意</option>
 					<option value='4'>4.学生已联系家长</option>
+					<option value='2'>P.已发信息,家长未同意</option>
 					<!--<option value='5'>5.确认上门时间及地点</option>
 					<option value='6'>6.已上门试教</option>
 					<option value='S'>S.交易成功</option>
 					<option value='E'>E.交易结束</option>
 					<option value='7'>7.确认交易细节</option>-->
+				</select>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label for="follower">跟踪人员</label>
+				<select class="form-control" name="follower" id="follower">
+					<option value='All'>All</option>
+					<option value='超超'>超超</option>
+					<option value='姚燕'>姚燕</option>
+					<option value='刘楠'>刘楠</option>
 				</select>
 			</div>
 		</div>
@@ -105,16 +117,17 @@ require_once("config.php");
 var rootUrl = $("#rootUrl").val();
 
 $("#submit").click(function(){
-	renderData($("#status").val());
+	renderData($("#status").val(), $("#follower").val());
 });
 
-function renderData(status){
+function renderData(status, follower){
 	$("[id^=resultTr]").each(function(){
 		$(this).remove();		
 	});
 	var startDate = $("#startDate").val();
 	var endDate = $("#endDate").val();
-	var url = "http://"+rootUrl+"/supporting.php?requestMethod=getTransactionsByStatus&startDate="+startDate+"&endDate="+endDate+"&status="+status;
+	var url = "http://"+rootUrl+"/supporting.php?requestMethod=getTransactionsByStatus&startDate="
+		+startDate+"&endDate="+endDate+"&status="+status+"&follower="+follower;
 	$.getJSON(url,function(data){
 		var length = data.parentOpenId.length;
 		for(var i=0; i<length;i++){
