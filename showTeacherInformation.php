@@ -198,7 +198,7 @@ if (isset($_GET['code'])){
 					$("<p />").attr("class", "text-left").text(desc[i])
 				);
 				$("#certificate").append(
-					$("<img />").attr("src", imgUrl[i]).attr("class", "img-responsive").attr("style", "margin: 0 auto")
+					$("<img />").attr("src", imgUrl[i]).attr("class", "img-responsive img-circle").attr("style", "margin: 0 auto")
 				);
 			}
 			
