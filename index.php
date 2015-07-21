@@ -127,10 +127,9 @@ class wechatCallbackapiTest
 							$conn->query($queryString);
 	                		$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 	                		echo $resultStr;
-						} else if($keyword == "sdjwoiewe"){
+						} else if($keyword == "报名"){
 	              			$msgType = "text";
-	                		$contentStr = '欢迎关注我教你学。我们为您安排了一次免费上门试教，您可以点击公众号下方"免费试听"，选择适合您小孩的教学内容;或者直接回复学科或兴趣，如“数学”，并留下您的手机号。我们将会在24小时内帮你安排老师试教。
-客服电话: 400-686-4616';
+	                		$contentStr = '谢谢回复，请留下您的手机号，我们的客服人员会及时通知您活动最新的情况。';
 	                		$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 	                		echo $resultStr;
 						} 
