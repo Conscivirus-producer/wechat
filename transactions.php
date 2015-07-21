@@ -417,8 +417,8 @@ function renderData(status){
 					$(this).children("span").show();
 				}
 			});
-			$("<td>").appendTo($tr).html(data.mobile[i] + "</br>" + data.grade[i] + "</br>" + data.parentOpenId[i] 
-				+ "</br>" + data.nickname[i] + "</br>" + data.subject[i] + "</br>" + data.interest[i]);
+			$("<td>").appendTo($tr).html("手机: " + data.mobile[i] + "</br>" + "年级: " + data.grade[i] + "</br>" + data.parentOpenId[i] 
+				+ "</br>" + "呢称: " + data.nickname[i] + "</br>" + "科目: " + data.subject[i] + "</br>" + "兴趣: " + data.interest[i]);
 			$("#confirmedtrans > tbody").append($tr);
 		}
 		$("#confirmedExcel").show();
