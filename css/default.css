@@ -13,13 +13,28 @@ p.introduction{
 	font-size: 12px;
 }
 p.question{
-	margin-top: 60px;
+	margin-top: 35px;
+	font-size: 16px;
+	margin-bottom: 0px;
 }
 button.laststep{
-	margin-top:30px;
-	background-color:#e2dfe5
+	/*margin-top:30px;
+	background-color:#e2dfe5*/
+	position:fixed;
+    left:0px;
+    bottom:0px;
+    height:50px;
+    width:100%;
+    background:#2cb298;
+    color: white;
+    padding-top: 13px;
+    border-radius: 0px;
 	/*margin-top: 10px;	
 	margin-left:19px;*/
+}
+
+button.laststep:hover{
+	background-color:#1B9C83;
 }
 div.laststep{
 	background-color:#e2dfe5
@@ -153,19 +168,39 @@ div.find-header{
 }
 
 div.find-header div{
-	font-size: 9px;
+	font-size: 8px;
 	background-color: white;
 	color: black;
 	border-radius: 3px;
 	margin-bottom: 10px;
 	color: #2cb298;
 	box-shadow:0 0 0.5px #333;
-	padding: 0px;
 }
 
+div.find-header img{
+	width: 65px;
+	height: 65px;
+}
 
+img.seperator{
+	margin-left: -15px;
+}
 
+button.options{
+	background-color: white;
+	border: 2px solid #2cb298;
+	border-radius: 6px;
+}
 
+button.options:hover{
+	background-color:#2cb298;
+	color: black;
+}
+
+button.clicked{
+	background-color:#2CB298;
+	color:black;
+}
 
 
 
