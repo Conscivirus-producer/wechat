@@ -32,7 +32,7 @@ if (isset($_GET['code'])){
 </head>
 <body>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
-<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $globalData->getMysqlHost(); ?>" style="display:none">
+<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $globalData->getRootUrl(); ?>" style="display:none">
 <div class="container">
 	<div class="row" style="" id="q0">
 		<div id="information" class="col-md-4 col-md-offset-4" style="text-align:left">		
