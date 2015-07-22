@@ -3,7 +3,8 @@ require_once("globalData.php");
 $globalData = new GlobalData();
 if (isset($_GET['code'])){
     $code = $_GET['code'];
-    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
+    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$globalData->getWechatAppId().
+    	"&secret=".$globalData->getWechatAppSecret()."&code=".$code."&grant_type=authorization_code";
     $access_token_json = file_get_contents($access_token_get_url); 
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
