@@ -1,10 +1,8 @@
 <?php
-require_once("globalData.php");
-$globalData = new GlobalData();
+require_once("config.php");
 if (isset($_GET['code'])){
     $code = $_GET['code'];
-    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$globalData->getWechatAppId().
-    	"&secret=".$globalData->getWechatAppSecret()."&code=".$code."&grant_type=authorization_code";
+	$access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
     $access_token_json = file_get_contents($access_token_get_url); 
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
@@ -33,7 +31,7 @@ if (isset($_GET['code'])){
 </head>
 <body>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
-<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $globalData->getRootUrl(); ?>" style="display:none">
+<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <div class="container">
 	<div class="row" style="" id="q0">
 		<div id="information" class="col-md-4 col-md-offset-4" style="text-align:left">		

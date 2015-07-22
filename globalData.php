@@ -4,7 +4,7 @@
 		private $myqlUsername = "root";
 		private $mysqlPassword = "2324150778t";
 		private $mysqlDatabase = "wechat_schema";
-		private $rootUrl = "localhost";
+		private $rootUrl = "www.hehe.life";
 		private $wechatAppId = "wx9855e946fbde03ac";
 		private $wechatAppSecret = "28e4b6e745a58b2999afee567478b105";
 		public function getMysqlHost(){
