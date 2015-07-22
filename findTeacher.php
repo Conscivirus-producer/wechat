@@ -82,7 +82,7 @@ if (isset($_GET['code'])){
 					<div class="star-skill text-center">产品设计专业</div>
 				</div>
 			
-			<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+			<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 			<div class="col-xs-6 col-xs-offset-3 steps text-center">简单四步找到您的家教</div>
 			<div class="col-xs-6 col-xs-offset-3 step-one text-center">
 				<div class="col-xs-12 text-center step-title">第一步</div>
