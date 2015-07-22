@@ -39,7 +39,7 @@ if (isset($_GET['code'])){
 	
 	<div class="row" id="q0">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -86,28 +86,28 @@ if (isset($_GET['code'])){
 			<div class="col-xs-6 col-xs-offset-3 steps text-center">简单四步找到您的家教</div>
 			<div class="col-xs-6 col-xs-offset-3 step-one text-center">
 				<div class="col-xs-12 text-center step-title">第一步</div>
-				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/step1.png?imageView2/1/w/38/h/56/q/100" /></div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/step1.svg" style="width: 38px; height: 56px" /></div>
 				<div class="col-xs-12 text-center step-desc">"回答一些相关问题"</div>
 			</div>
 			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100"/></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-two text-center">
 				<div class="col-xs-12 text-center step-title">第二步</div>
-				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/phonenumber.png?imageView2/1/w/56/h/56/q/100" /></div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/phonenumber.svg" style="width: 56px; height: 56px"/></div>
 				<div class="col-xs-12 text-center step-desc">"填写您的手机号码"</div>
 			</div>
 			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100"/></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-three text-center">
 				<div class="col-xs-12 text-center step-title">第三步</div>
-				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/clock.png?imageView2/1/w/56/h/56/q/100" /></div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/clock.svg" style="width: 56px; height: 56px"/></div>
 				<div class="col-xs-12 text-center step-desc">"我们在24小时内帮您找到最适合的家教"</div>
 			</div>
 			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100" /></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-four text-center">
 				<div class="col-xs-12 text-center step-title">第四步</div>
-				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/contact.png?imageView2/1/w/56/h/56/q/100" /></div>
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/contact.svg" style="width: 56px; height: 56px" /></div>
 				<div class="col-xs-12 text-center step-desc">"我们的客服会电话联络您，确认细节"</div>
 			</div>
 	<div class="bottom start text-center" name="start" id="start">开始</div>
@@ -115,264 +115,308 @@ if (isset($_GET['code'])){
 	
 	<div class="row" style="display:none" id="q2">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
 		</div>
-		<div class="col-md-4 col-md-offset-4">
-			<p class="question text-left">
+		<div class="col-xs-8 col-xs-offset-2 text-center">
+			<p class="question text-center lead">
 				您希望小孩的学习内容是什么?
 			</p>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="contentsub" id="contentsub">课程辅导</button>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="contentsub" id="contentsub">课程辅导</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="contentinte" id="contentinte">学习兴趣培养</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="contentinte" id="contentinte">学习兴趣培养</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="contentboth" id="contentboth">二者都选</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="contentboth" id="contentboth">二者都选</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep2" id="laststep2">上一步</button>
-		</div>
+		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep2" id="laststep2">上一步</button>
 	</div>
 	
 	<div class="row" style="display:none" id="q3">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
 		</div>
-		<div class="col-md-4 col-md-offset-4">		
-			<p class="question text-left">
+		<div class="col-xs-8 col-xs-offset-2 text-center">		
+			<p class="question text-center lead">
 				您的小孩哪个科目最需要提高？
 			</p>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="su3" id="su3">语文</button>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="su3" id="su3">语文</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="su2" id="su2">英语</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="su2" id="su2">英语</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="su1" id="su1">数学</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="su1" id="su1">数学</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="su4" id="su4">全科</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="su4" id="su4">全科</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep3" id="laststep3">上一步</button>
-		</div>
+		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep3" id="laststep3">上一步</button>
 	</div>
 	
 	<div class="row" style="display:none" id="q4">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
 		</div>
-		<div class="col-md-4 col-md-offset-4">		
-			<p class="question text-left">
+		<div class="col-xs-8 col-xs-offset-2 text-center">		
+			<p class="question text-center lead">
 				您希望您的孩子培养哪些兴趣？
 			</p>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteA" id="A">器乐与声乐</button>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="inteA" id="A">器乐与声乐</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteB" id="B">体育运动</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="inteB" id="B">体育运动</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteC" id="C">书法与美术</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="inteC" id="C">书法与美术</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteD" id="D">棋类与编程软件应用</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="inteD" id="D">棋类与编程软件应用</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteE" id="E">演讲与播音主持</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="inteE" id="E">演讲与播音主持</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="inteF" id="F">人文科学与小语种</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="inteF" id="F">人文科学与小语种</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep4" id="laststep4">上一步</button>
-		</div>
+		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep4" id="laststep4">上一步</button>
 	</div>
 	
 	<div class="row" style="display:none" id="q5">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
 		</div>
-		<div class="col-md-4 col-md-offset-4">		
-			<p class="question text-left">
+		<div class="col-xs-10 col-xs-offset-1 text-center">		
+			<p class="question text-center">
 				请您选择具体的兴趣
 			</p>
 		</div>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-10 col-xs-offset-1"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
 	</div>
 	
 	<div class="row" style="display:none" id="teacherGender">
-		<div class="col-md-4 col-md-offset-4">		
-			<p class="question text-left">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2 text-center">		
+			<p class="question text-center">
 				您期望的老师性别:
 			</p>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="gender3" id="gender3">不限</button>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="gender3" id="gender3">不限</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="gender1" id="gender1">男生</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="gender1" id="gender1">男生</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="gender2" id="gender2">女生</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="gender2" id="gender2">女生</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep5" id="laststep5">上一步</button>
-		</div>
+		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep5" id="laststep5">上一步</button>
 	</div>
 	
 	<div class="row" style="display:none" id="address">
-		<div class="col-md-4 col-md-offset-4">		
-			<p class="question text-left">
-				您期望的教学地点是:
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2 text-center">		
+			<p class="question text-center">
+				您期望的教学地点是哪？
 			</p>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="address1" id="address1">南山区</button>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="address1" id="address1">南山区</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="address2" id="address2">福田区</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="address2" id="address2">福田区</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="address3" id="address3">罗湖区</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="address3" id="address3">罗湖区</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="address4" id="address4">宝安区</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="address4" id="address4">宝安区</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="address5" id="address5">龙岗区</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="address5" id="address5">龙岗区</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="address6" id="address6">其它</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="address6" id="address6">其它</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep_add" id="laststep_add">上一步</button>
-		</div>
+		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep_add" id="laststep_add">上一步</button>
 	</div>
 	
 	<div class="row" style="display:none" id="price">
-		<div class="col-md-4 col-md-offset-4">		
-			<p class="question text-left">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2 text-center">		
+			<p class="question text-center">
 				您接受的价格区间(每小时):
 			</p>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="price1" id="price1">初级: 50 ~ 100</button>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="price1" id="price1">初级: 50 ~ 100</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="price2" id="price2">中级: 100 ~ 150</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="price2" id="price2">中级: 100 ~ 150</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="price3" id="price3">高级: 150以上</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="price3" id="price3">高级: 150以上</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep6" id="laststep6">上一步</button>
-		</div>
+		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep6" id="laststep6">上一步</button>
 	</div>
 	
 	<div class="row" style="display:none" id="q1">
-		<div class="col-md-4 col-md-offset-4">
-			<p class="question text-left">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2 text-center">
+			<p class="question text-center">
 				您的小孩目前在读？
 			</p>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="section1" id="section1">小学</button>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="section1" id="section1">小学</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="section2" id="section2">初中</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="section2" id="section2">初中</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="section3" id="section3">高中</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="section3" id="section3">高中</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep1" id="laststep1">上一步</button>
-		</div>
+		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep1" id="laststep1">上一步</button>
 	</div>
 	
 	<div class="row" style="display:none" id="q11">
-		<div class="col-md-4 col-md-offset-4">
-			<p class="question text-left">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2 text-center">
+			<p class="question text-center">
 				您小孩的年级是？
 			</p>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade1" id="grade1">小学一年级</button>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade1" id="grade1">小学一年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade2" id="grade2">小学二年级</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade2" id="grade2">小学二年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade3" id="grade3">小学三年级</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade3" id="grade3">小学三年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade4" id="grade4">小学四年级</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade4" id="grade4">小学四年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade5" id="grade5">小学五年级</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade5" id="grade5">小学五年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade6" id="grade6">小学六年级</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade6" id="grade6">小学六年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep11" id="laststep11">上一步</button>
-		</div>
+		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep11" id="laststep11">上一步</button>
 	</div>
 	
 	<div class="row" style="display:none" id="q12">
-		<div class="col-md-4 col-md-offset-4">
-			<p class="question text-left">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2 text-center">
+			<p class="question text-center">
 				您小孩的年级是？
 			</p>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade7" id="grade7">初中一年级</button>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade7" id="grade7">初中一年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade8" id="grade8">初中二年级</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade8" id="grade8">初中二年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade9" id="grade9">初中三年级</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade9" id="grade9">初中三年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep12" id="laststep12">上一步</button>
-		</div>
+		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep12" id="laststep12">上一步</button>
 	</div>
 	
 	<div class="row" style="display:none" id="q13">
-		<div class="col-md-4 col-md-offset-4">
-			<p class="question text-left">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2 text-center">
+			<p class="question text-center">
 				您小孩的年级是？
 			</p>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade10" id="grade10">高中一年级</button>
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade10" id="grade10">高中一年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade11" id="grade11">高中二年级</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade11" id="grade11">高中二年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="grade12" id="grade12">高中三年级</button>
+		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
+			<button type="button" class="btn btn-lg btn-block options" name="grade12" id="grade12">高中三年级</button>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep13" id="laststep13">上一步</button>
-		</div>
+		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep13" id="laststep13">上一步</button>
 	</div>
 	
 	<div class="row" style="display:none" id="preview">
@@ -563,8 +607,8 @@ $("#start").click(function(){
 });
 
 $(".btn.btn-lg.btn-block").click(function(){
-	$("button:visible").removeClass("active");
-	$(this).addClass("active");
+	$("button:visible").removeClass("clicked");
+	$(this).addClass("clicked");
 	var itemname = $(this).attr("name");
 	if(itemname.indexOf("content") >= 0){
 		choice = itemname;
@@ -591,8 +635,8 @@ $(".btn.btn-lg.btn-block").click(function(){
 			var name = data.name;
 			var length = code.length;
 			for(var i = 0;i < length;i++){
-				var $div = $("<div>", {style: "margin-top:2px", class: "col-md-2 col-md-offset-6"});
-				var $button = $("<button>", {type: "button", name: "specifici", class: "btn btn-lg btn-block btn-primary"}).attr("id",code[i]).text(name[i]);
+				var $div = $("<div>", {style: "margin-top:2px", class: "col-xs-8 col-xs-offset-2"});
+				var $button = $("<button>", {type: "button", name: "specifici", class: "btn btn-lg btn-block options"}).attr("id",code[i]).text(name[i]);
 				$button.click(function(){
 					interest = $(this).attr("id");
 					$("#q5").hide("normal",function(){
@@ -602,7 +646,7 @@ $(".btn.btn-lg.btn-block").click(function(){
 				$div.append($button);
 				$("#q5").append($div);
 			}
-			$nextdiv = $("<div>", {style: "margin-top:2px", class: "col-md-2 col-md-offset-6"});
+			$nextdiv = $("<div>", {style: "margin-top:2px", class: "col-xs-8 col-xs-offset-2"});
 			$nextbutton = $("<button>", {type: "button", name: "laststep5", class: "btn btn-lg btn-block btn-infor laststep"}).attr("id","laststep5").text("上一步");
 			$nextdiv.append($nextbutton);
 			$("#q5").append($nextdiv);
@@ -611,7 +655,7 @@ $(".btn.btn-lg.btn-block").click(function(){
 				$("#laststep5").click(function(){
 					var length = divArray.length;
 					if(divArray[length - 1].attr('id') == "q5"){
-						divArray[length - 1].find('div.col-md-offset-6').remove();
+						divArray[length - 1].find('div.col-xs-8.col-xs-offset-2').remove();
 					}
 					divArray[length - 1].hide("normal",function(){
 						divArray[length - 2].show();
@@ -685,7 +729,7 @@ $("[id^=laststep]").click(function(){
 	var length = divArray.length;
 	//$("p").remove(".italic");
 	if(divArray[length - 1].attr('id') == "q5"){
-		divArray[length - 1].find('div.col-md-offset-6').remove();
+		divArray[length - 1].find('div.col-xs-8.col-xs-offset-2').remove();
 	}
 	if(divArray[length - 1].attr('id') == "q7"){
 		divArray[length - 1].find('div.col-md-offset-6').remove();
