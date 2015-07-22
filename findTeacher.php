@@ -89,21 +89,21 @@ if (isset($_GET['code'])){
 				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/step1.svg" style="width: 38px; height: 56px" /></div>
 				<div class="col-xs-12 text-center step-desc">"回答一些相关问题"</div>
 			</div>
-			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100"/></div>
+			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.svg" style="width: 20px; height: 20px"/></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-two text-center">
 				<div class="col-xs-12 text-center step-title">第二步</div>
 				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/phonenumber.svg" style="width: 56px; height: 56px"/></div>
 				<div class="col-xs-12 text-center step-desc">"填写您的手机号码"</div>
 			</div>
-			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100"/></div>
+			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.svg" style="width: 20px; height: 20px"/></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-three text-center">
 				<div class="col-xs-12 text-center step-title">第三步</div>
 				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/clock.svg" style="width: 56px; height: 56px"/></div>
 				<div class="col-xs-12 text-center step-desc">"我们在24小时内帮您找到最适合的家教"</div>
 			</div>
-			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.png?imageView2/1/w/20/h/20/q/100" /></div>
+			<div class="col-xs-2 col-xs-offset-5"><img class="arrow-down center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/DOWNARROW.svg" style="width: 20px; height: 20px"/></div>
 			
 			<div class="col-xs-6 col-xs-offset-3 step-four text-center">
 				<div class="col-xs-12 text-center step-title">第四步</div>
@@ -126,7 +126,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width: 150px; height: 30px" /></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="contentsub" id="contentsub">课程辅导</button>
 		</div>
