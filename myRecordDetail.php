@@ -33,7 +33,7 @@ if (isset($_GET['code'])){
 <div class="container">
 	<div class="row" style="" id="q0">
 		<div id="information" class="col-md-4 col-md-offset-4" style="text-align:left">		
-			我的记录
+			我的记录详情
 		</div>
 	</div>
 	<div class="row" style="" id="q1">
@@ -57,53 +57,16 @@ $(document).ready(function(){
 	var openId = $("#openid").val();
 	var url = "http://"+rootUrl+"/service.php?requestMethod=myRecord&parentOpenId="+openId;
 	$.getJSON(url,function(data){
-		var transactionId = data.transactionId;
-		var subject = data.subject;
-		var interest = data.interest;
-		var createdDt = data.createdDt;
-		var length = transactionId.length;
-		if(length == 0){
-			$("#information").html("您当前还没有选择老师");
-		}
-		var $ulGroup = $("<ul>", {class : "list-group"});
-		for(var i = 0;i < length;i++){
-			var $li = $("<a>", {class: "list-group-item"}).text(subject[i] + " " + data.interest[i] + " " + data.fee[i] + " " + createdDt[i] + " " + data.status[i]);
-			$li.attr("id",data.transactionId[i]);
-			$li.click(function(){
-				window.location.href="myRecordDetail.php?transactionId=1";
-			});
-			/*if(data.status[i] == 'I' || data.status[i] == 'S'){
-				var $button = $("<button>", {type: "button", style:"text-align:right"}).attr("id",data.transactionId[i]).text("取消记录");
-				$li.append($button);
-				$button.click(function(){
-					var value = $(this).attr("id");
-					if(window.confirm("您确定要取消交易吗？")){
-						cancelUrl = "http://"+rootUrl+"/service.php?requestMethod=cancelTransaction&transactionId="+value;
-						$.getJSON(cancelUrl,function(data){
-						});
-						window.location = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+$appid+"&redirect_uri="+
-						"http://"+rootUrl+"/myRecord.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
-							//window.location.reload();
-					}
-				});
-			}*/
-			$ulGroup.append($li);
-		}
-		$("#q1").append($ulGroup);
+		
 	});
 });
 
-function getStatus(code){
-	if(code == "I"){
-		return "订单建立";
-	} else if(code == "C"){
-		return "订单取消";
-	} else if(code == "S"){
-		return "订单成功开始";
-	} else if(code == "E"){
-		return "订单结束";
-	}
-	
+
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
 }
 </script>
 </body>

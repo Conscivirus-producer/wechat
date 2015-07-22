@@ -58,19 +58,13 @@ class CodeParser{
 	
 	public function getStatusDescription($status){
 		if($status == "1"){
-			return "1.订单已提交";
+			return "1.新订单";
 		}else if($status == "2"){
-			return 	"2.已回复家长";
+			return 	"2.客服已联系家长,家长未确定";
 		}else if($status == "3"){
-			return 	"3.家长已同意";
+			return 	"3.家长已同意,安排试教中";
 		}else if($status == "4"){
-			return 	"4.学生已联系家长";
-		}else if($status == "5"){
-			return 	"5.已确定首次试教时间和地点";
-		}else if($status == "6"){
-			return 	"6.已上门试教";
-		}else if($status == "7"){
-			return 	"7.确定具体的交易细节";
+			return 	"S.订单已正式确定";
 		}
 	}
 	

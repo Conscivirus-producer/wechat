@@ -47,16 +47,10 @@ require_once("config.php");
 			<div class="form-group">
 				<label for="status">状态</label>
 				<select class="form-control" name="status" id="status">
-					<option value='1'>1.新下单</option>
-					<option value='2'>2.已回复家长,家长未同意</option>
-					<option value='3'>3.家长已同意</option>
-					<option value='4'>4.学生已联系家长</option>
-					<option value='2'>P.已发信息,家长未同意</option>
-					<!--<option value='5'>5.确认上门时间及地点</option>
-					<option value='6'>6.已上门试教</option>
-					<option value='S'>S.交易成功</option>
-					<option value='E'>E.交易结束</option>
-					<option value='7'>7.确认交易细节</option>-->
+					<option value='1'>1.新订单</option>
+					<option value='2'>2.客服已联系家长,家长未确定</option>
+					<option value='3'>3.家长已同意,安排试教中</option>
+					<option value='4'>S.订单已正式确定</option>
 				</select>
 			</div>
 		</div>
@@ -360,16 +354,11 @@ function renderData(status, follower){
 					$(this).children("span").hide();
 					if($(this).children("select").length == 0){
 				$("<select>"+
-				"<option value='1'>1.下单</option>"+
-				"<option value='2'>2.已发信息</option>"+
-				"<option value='3'>3.已同意</option>"+
-				"<option value='4'>4.学生联系家长</option>"+
-				"<option value='5'>5.确认上门时间及地点</option>"+
-				"<option value='6'>6.已上门试教</option>"+
-				"<option value='7'>7.确认交易细节</option>"+
-				"<option value='C'>C.取消</option>"+
-				"<option value='S'>S.交易成功</option>"+
-				"<option value='E'>E.交易结束</option></select>").appendTo($(this)).bind({
+				"<option value='1'>1.新订单</option>"+
+				"<option value='2'>2.客服已联系家长,家长未确定</option>"+
+				"<option value='3'>3.家长已同意,安排试教中</option>"+
+				"<option value='S'>S.订单已正式确定</option>"+
+				"<option value='C'>C.取消</option></select>").appendTo($(this)).bind({
 					change: function(e){
 						var selectedOptionValue = $(this).children('option:selected').val();
 						var selectedValue = $(this).children('option:selected').text(); 

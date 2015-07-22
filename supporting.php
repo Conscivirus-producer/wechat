@@ -123,16 +123,10 @@
 			"LEFT JOIN T_teacher ON T_transaction.teacherOpenid = T_teacher.openId WHERE T_transaction.parentOpenid = T_parent.openId  and ".
 			"T_transaction.childId = T_child.childId";
 		
-		if ($status == '1'){
-			$query = $query." and T_transaction.status = 1";
-		} else if($status == '2'){
+		if($status == '2'){
 			$query = $query." and T_transaction.status = 2 and T_parent.mobile != ''";
-		} else if($status == '3'){
-			$query = $query." and T_transaction.status = 3";
-		} else if($status == '4'){
-			$query = $query." and T_transaction.status > 3";
-		} else if($status == 'C'){
-			$query = $query." and T_transaction.status = 'C'";
+		} else {
+			$query = $query." and T_transaction.status = '$status'";
 		}
 		if($startDate != ''){
 			$query = $query." and T_transaction.createdDt > '$startDate'";

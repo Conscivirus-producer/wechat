@@ -204,41 +204,43 @@
 	
 	function getMyRecord($conn){
 		$parentOpenId = trim($_GET["parentOpenId"]);
-		
+		global $codeParser;
 		$query = "set names utf8";
 		$result = $conn->query($query);
 		 
 		
-		$query = "select T_transaction.transactionId, T_transaction.createdDt, T_transaction.status, T_teacher.* from T_transaction LEFT JOIN ".
-			"T_teacher on T_transaction.teacherOpenid = T_teacher.openId where T_transaction.parentOpenid = '$parentOpenId'";
+		$query = "select T_transaction.transactionId, T_transaction.createdDt, T_transaction.status, T_transaction.fee, T_child.subject, T_child.interest ".
+		"from T_transaction, T_child where T_transaction.parentOpenid = '$parentOpenId' and T_transaction.childId = T_child.childId";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			'transactionId' => array(),
+			'subject' => array(),
+			'interest' => array(),
+			'fee' => array(),
 			'createdDt' => array(),
 			'status' => array(),
-			'teacherOpenId' => array(),
-			'major' => array(),
-			'name' => array(),
+			/*'name' => array(),
 			'gender' => array(),
 			'mobile' => array(),
 			'description' => array(),
 			'rating' => array(),
 			'imageUrl' => array(),
-			'childId' => array(),
+			'childId' => array(),*/
 		);
 		while($row = $result->fetch_assoc()){
 			array_push($jsonArray["transactionId"],$row["transactionId"]);
+			array_push($jsonArray["subject"],$row["subject"]);
+			array_push($jsonArray["interest"],$row["interest"]);
+			array_push($jsonArray["fee"],$row["fee"]);
 			array_push($jsonArray["createdDt"],$row["createdDt"]);
-			array_push($jsonArray["status"],$row["status"]);
-			array_push($jsonArray["teacherOpenId"],$row["openId"]);
-			array_push($jsonArray["major"],$row["major"]);
-			array_push($jsonArray["name"],$row["name"]);
+			array_push($jsonArray["status"],$codeParser->getStatusDescription($row["status"]));
+			/*array_push($jsonArray["name"],$row["name"]);
 			array_push($jsonArray["gender"],$row["gender"]);
 			array_push($jsonArray["mobile"],$row["mobile"]);
 			array_push($jsonArray["description"],$row["description"]);
 			array_push($jsonArray["rating"],$row["rating"]);
 			array_push($jsonArray["imageUrl"],$row["imageUrl"]);
-			array_push($jsonArray["childId"],$childId);
+			array_push($jsonArray["childId"],$childId);*/
 		}
 		
 		echo json_encode($jsonArray);
