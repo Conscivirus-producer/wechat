@@ -1,4 +1,6 @@
 <?php
+require_once("globalData.php");
+$globalData = new GlobalData();
 if (isset($_GET['code'])){
     $code = $_GET['code'];
     $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
@@ -30,6 +32,7 @@ if (isset($_GET['code'])){
 </head>
 <body>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
+<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $globalData->getMysqlHost(); ?>" style="display:none">
 <div class="container">
 	<div class="row" style="" id="q0">
 		<div id="information" class="col-md-4 col-md-offset-4" style="text-align:left">		
@@ -50,10 +53,9 @@ if (isset($_GET['code'])){
 <script src="js/vendor/video.js"></script>
 <script src="js/flat-ui.min.js"></script>
 <script type="text/javascript">
-var rootUrl = "www.hehe.life";
-rootUrl = "localhost";
 
 $(document).ready(function(){
+	var rootUrl = $("#rootUrl").val();
 	var openId = $("#openid").val();
 	var url = "http://"+rootUrl+"/service.php?requestMethod=myRecord&parentOpenId="+openId;
 	$.getJSON(url,function(data){
