@@ -364,7 +364,7 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 	var major = "";
 	var studentNumber = "";
 	var phone = "";
-	var desc = "";
+	var selfDesc = "";
 	var options = "";
 	var highestGrade = "";
 	var price = "";
@@ -415,7 +415,7 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
    			major = jsonObj.major;
    			studentNumber = jsonObj.studentNumber;
    			phone = jsonObj.mobile;
-   			desc = jsonObj.description;
+   			selfDesc = jsonObj.description;
    			highestGrade = jsonObj.highestGrade;
    			price = jsonObj.price;
    			place = jsonObj.address;
@@ -430,7 +430,7 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 			$("#major").text("专业名称："+major);
 			$("#studentNumber").text("学号："+studentNumber);
 			$("#phone").text("手机号："+phone);
-			$("#desc").text("自我描述："+desc);
+			$("#desc").text("自我描述："+selfDesc);
 			
 			$("#options").text("可教科目："+options.name);
 			$("#highestGrade").text("能教的最高年级："+gradeArray[highestGrade]);
@@ -467,9 +467,9 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 			
 			$("#block1").show();$("#block2").show();$("#block3").show();
 			
-			$("#update_name").val(name);$("#update_sex").val(sex);$("#update_faculty").val(faculty);
+			$("#update_name").val(name);$("#update_sex").val(sex);$("#update_school").val(faculty);
 			$("#update_major").val(major);$("#update_studentNumber").val(studentNumber);$("#update_phone").val(phone);
-			$("#update_desc").val(desc);$("#update_grade").val(highestGrade);$("#update_price").val(price);
+			$("#update_desc").val(selfDesc);$("#update_grade").val(highestGrade);$("#update_price").val(price);
 			$("#update_location").val(place);
 			function createOptions(typeCode, optionId, selectedOptions){
 				var url = "http://"+rootUrl+"/service.php?typeCode="+typeCode;
@@ -482,7 +482,7 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 					for(var i = 0;i < length;i++){
 						var optionCode = code[i];
 						var optionName = name[i];
-						if($.inArray(optionCode,selectedOptions) != -1){
+						if($.inArray(optionCode,selectedOptions) == -1){
 							$("#"+optionId).append("<option value='"+optionCode+"'>"+optionName+"</option>");
 						}else{
 							$("#"+optionId).append("<option value='"+optionCode+"' selected>"+optionName+"</option>");
