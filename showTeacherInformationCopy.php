@@ -471,7 +471,7 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 			$("#update_major").val(major);$("#update_studentNumber").val(studentNumber);$("#update_phone").val(phone);
 			$("#update_desc").val(desc);$("#update_grade").val(highestGrade);$("#update_price").val(price);
 			$("#update_location").val(place);
-			function createOptions(typeCode, optionId){
+			function createOptions(typeCode, optionId, selectedOptions){
 				var url = "http://"+rootUrl+"/service.php?typeCode="+typeCode;
 				$.getJSON(url,function(data){
 					//存储所有option data
@@ -482,14 +482,18 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 					for(var i = 0;i < length;i++){
 						var optionCode = code[i];
 						var optionName = name[i];
-						$("#"+optionId).append("<option value='"+optionCode+"'>"+optionName+"</option>");
-						//<input type="text" class="form-control" name="studentNumber" id="studentNumber" placeholder="你能教，但是在上面的选项找不到的">
+						if($.inArray(optionCode,selectedOptions) != -1){
+							$("#"+optionId).append("<option value='"+optionCode+"'>"+optionName+"</option>");
+						}else{
+							$("#"+optionId).append("<option value='"+optionCode+"' selected>"+optionName+"</option>");
+						}
 					}
 				});
 			}
 			for(var i = 0;i < typeCodes.length;i++){
-				createOptions(typeCodes[i],typeCodes[i]);
+				createOptions(typeCodes[i],typeCodes[i], jsonObj.options.code);
 			}
+			
      	}
    	);
    	$("#toModify").click(function(){

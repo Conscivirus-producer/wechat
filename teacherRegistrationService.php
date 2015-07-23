@@ -13,7 +13,9 @@
 		$jsonArray = $row;
 		
 		$jsonArray["options"] = array(
-			"name" => array()
+			"name" => array(),
+			"code" => array(),
+			"typeCode" => array()
 		);
 		$jsonArray["certificate"] = array(
 			"desc" => array(),
@@ -22,10 +24,12 @@
 		//2，获取可教科目
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "select name from T_offers where teacherOpenId = '$openId'";
+		$query = "select name,code,typeCode from T_offers where teacherOpenId = '$openId'";
 		$result = $conn->query($query);
 		while($row = $result->fetch_assoc()){
 			array_push($jsonArray["options"]["name"], $row["name"]);
+			array_push($jsonArray["options"]["code"], $row["code"]);
+			array_push($jsonArray["options"]["typeCode"], $row["typeCode"]);
 		}
 		//3，获取证书
 		$query = "set names utf8";
