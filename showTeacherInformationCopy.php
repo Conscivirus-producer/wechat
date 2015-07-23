@@ -358,6 +358,11 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			<button type="button" class="btn btn-primary btn-lg btn-block" name="update_submit" id="update_submit">提交</button>
 		</div>
 	</div>
+	<div class="row" style="margin-top:5px">
+		<div class="col-md-4 col-md-offset-4">
+			<button type="button" class="btn btn-primary btn-lg btn-block" name="backToInformation" id="backToInformation">返回</button>
+		</div>
+	</div>
 	</div>
 	<!-- modifyInformationPanel -->
 	<!-- footer -->
@@ -528,6 +533,10 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
    	});
    	$("#update_submit").click(function(){
    		
+   		$("#modifyInformationPanel").hide();
+   		$("#showInformationPanel").show();
+   	});
+   	$("#backToInformation").click(function(){
    		$("#modifyInformationPanel").hide();
    		$("#showInformationPanel").show();
    	});
