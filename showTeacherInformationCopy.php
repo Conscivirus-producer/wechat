@@ -29,6 +29,19 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 <script src="js/vendor/html5shiv.js"></script>
 <script src="js/vendor/respond.min.js"></script>
 <![endif]-->
+<style>
+.sl-custom-file{display:inline-block;
+	text-align:center;
+	overflow:hidden;
+	position:relative;
+}
+.ui-input-file{opacity:0;
+	filter:alpha(opacity=0);
+	position:absolute;
+	top:0;
+	right:0;
+}
+</style>
 </head>
 <body>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
