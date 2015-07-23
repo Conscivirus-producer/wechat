@@ -482,7 +482,8 @@ $certificate_token = $auth->uploadToken($bucket);
 			$('img[name*="initLoading"]').remove();
 			
 			$("#head").append(
-				$("<img />").attr("src", imageUrl+"?timestamp="+new Date().getTime()).attr("class", "img-responsive img-circle").attr("width", "50%").attr("style", "margin: 0 auto")
+				var newHeadUrl = imageUrl+"?timestamp="+new Date().getTime();
+				$("<img />").attr("src", newHeadUrl).attr("class", "img-responsive img-circle").attr("width", "50%").attr("style", "margin: 0 auto")
 			);
 			
 			$("#block1").show();$("#block2").show();$("#block3").show();
@@ -680,7 +681,7 @@ $certificate_token = $auth->uploadToken($bucket);
             //$("#progressbar").show();
             xhr.send(formData);
         };
-        var token = $("#token").val();
+        var token = $("#certificate_token").val();
         if ($("#certificate_upload")[0].files.length > 0 && token != "") {
         	$("#certificate_upload_div").append($("<br />"));
         	$("#certificate_upload_div").append(
