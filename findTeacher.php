@@ -115,7 +115,7 @@ if (isset($_GET['code'])){
 	
 	<div class="row" style="display:none" id="q2">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -136,12 +136,14 @@ if (isset($_GET['code'])){
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="contentboth" id="contentboth">二者都选</button>
 		</div>
-		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep2" id="laststep2">上一步</button>
+		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep2" id="laststep2">上一步</button>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q3">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -152,7 +154,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="su3" id="su3">语文</button>
 		</div>
@@ -165,12 +167,14 @@ if (isset($_GET['code'])){
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="su4" id="su4">全科</button>
 		</div>
-		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep3" id="laststep3">上一步</button>
+		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep3" id="laststep3">上一步</button>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q4">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -181,7 +185,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="inteA" id="A">器乐与声乐</button>
 		</div>
@@ -200,12 +204,14 @@ if (isset($_GET['code'])){
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="inteF" id="F">人文科学与小语种</button>
 		</div>
-		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep4" id="laststep4">上一步</button>
+		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep4" id="laststep4">上一步</button>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q5">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -221,7 +227,7 @@ if (isset($_GET['code'])){
 	
 	<div class="row" style="display:none" id="teacherGender">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -232,7 +238,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="gender3" id="gender3">不限</button>
 		</div>
@@ -242,12 +248,14 @@ if (isset($_GET['code'])){
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="gender2" id="gender2">女生</button>
 		</div>
-		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep5" id="laststep5">上一步</button>
+		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep5" id="laststep5">上一步</button>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="address">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -258,7 +266,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="address1" id="address1">南山区</button>
 		</div>
@@ -277,12 +285,14 @@ if (isset($_GET['code'])){
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="address6" id="address6">其它</button>
 		</div>
-		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep_add" id="laststep_add">上一步</button>
+		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep_add" id="laststep_add">上一步</button>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="price">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -293,7 +303,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="price1" id="price1">初级: 50 ~ 100</button>
 		</div>
@@ -303,12 +313,14 @@ if (isset($_GET['code'])){
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="price3" id="price3">高级: 150以上</button>
 		</div>
-		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep6" id="laststep6">上一步</button>
+		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep6" id="laststep6">上一步</button>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q1">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -319,7 +331,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="section1" id="section1">小学</button>
 		</div>
@@ -329,12 +341,14 @@ if (isset($_GET['code'])){
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="section3" id="section3">高中</button>
 		</div>
-		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep1" id="laststep1">上一步</button>
+		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep1" id="laststep1">上一步</button>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q11">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -345,7 +359,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="grade1" id="grade1">小学一年级</button>
 		</div>
@@ -364,12 +378,14 @@ if (isset($_GET['code'])){
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="grade6" id="grade6">小学六年级</button>
 		</div>
-		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep11" id="laststep11">上一步</button>
+		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep11" id="laststep11">上一步</button>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q12">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -380,7 +396,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="grade7" id="grade7">初中一年级</button>
 		</div>
@@ -390,12 +406,14 @@ if (isset($_GET['code'])){
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="grade9" id="grade9">初中三年级</button>
 		</div>
-		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep12" id="laststep12">上一步</button>
+		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep12" id="laststep12">上一步</button>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q13">
 		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.png?imageView2/1/w/65/h/65/q/100" />
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
 			<div class="col-xs-6 col-xs-offset-3 text-center">
 				ShenZhen UltraBravo Tech Ltd.
 			</div>
@@ -406,7 +424,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="grade10" id="grade10">高中一年级</button>
 		</div>
@@ -416,10 +434,12 @@ if (isset($_GET['code'])){
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="grade12" id="grade12">高中三年级</button>
 		</div>
-		<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep13" id="laststep13">上一步</button>
+		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep13" id="laststep13">上一步</button>
+		</div>
 	</div>
 	
-	<div class="row" style="display:none" id="preview">
+	<!-- <div class="row" style="display:none" id="preview">
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<table>
 			<tr><td>您选择的信息如下:</td></tr>
@@ -471,19 +491,78 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block btn-primary" name="preview_done" id="preview_done">完成</button>
 			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep_pre" id="laststep13">上一步</button>
 		</div>
+	</div> -->
+	
+	<div class="row" style="display:none" id="preview">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 record-preview">
+			<div class="col-xs-12 text-center record-preview-title">我的选择</div>
+			<table class="table table-striped">
+				<tbody>
+				    <tr>
+				        <th scope="row">想学的课程</th>
+				        <td id="preview_subject"></td>
+				    </tr>
+				    <tr>
+				    	<th>想学的兴趣</th>
+				    	<td id="preview_interest"></td>
+				    </tr>
+				    <tr>
+				    	<th>期望老师性别</th>
+				    	<td id="preview_teacher_gender"></td>
+				    </tr>
+				    <tr>
+				    	<th>期望教学地点</th>
+				    	<td id="preview_location"></td>
+				    </tr>
+				    <tr>
+				    	<th>接受的时薪范围</th>
+				    	<td id="preview_price"></td>
+				    </tr>
+				    <tr>
+				    	<th>小孩年级</th>
+				    	<td id="preview_grade"></td>
+				    </tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- <button type="button" class="btn btn-lg btn-block btn-info  name="laststep13" id="laststep13">上一步</button> -->
+		<!-- <button type="button" class="btn btn-lg btn-block btn-primary" name="preview_done" id="preview_done">完成</button>
+		<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep_pre" id="laststep13">上一步</button> -->
+		<div class="button-group">
+			<div class="col-xs-6 line">
+				<button type="button" class="btn btn-lg btn-block"  name="laststep13" id="laststep13">上一步</button>
+			</div>
+			<div class="col-xs-6">
+				<button type="button" class="btn btn-lg btn-block" name="preview_done" id="preview_done">完成</button>
+			</div>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="resultNotification">
-		<div class="col-md-4 col-md-offset-4">
-			<p class="text-left question">
-				谢谢您的选择，我们会在24小时找到匹配您的老师并把结果发送给您，请输入您的手机号:
-			</p>
-			<div class="form-group">
-				<input type="text" value="" class="form-control" name="contact" id="contact" placeholder="請輸入联系方式">
+		<div class="find-header col-xs-12">
+			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
+			<div class="col-xs-6 col-xs-offset-3 text-center">
+				ShenZhen UltraBravo Tech Ltd.
 			</div>
 		</div>
-		<div class="col-md-2 col-md-offset-6">
-			<button type="button" class="btn btn-primary btn-lg btn-block" name="save" id="save">提交</button>
+		<div class="col-xs-12" style="margin-top: 30px">
+			<div class="col-xs-12 text-center" style="color: #2CB298">感谢您的使用</div>
+			<div class="col-xs-12 text-left question" style="color: black; font-size: 14px">
+				谢谢您的选择，我们会在24小时找到匹配您的老师并把结果发送给您，请输入您的手机号:
+			</div>
+			<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px;margin-top: 30px"/></div>
+			<div class="col-xs-12 form-group" style="margin-top: 30px">
+				<input type="text" value="" class="form-control" name="contact" id="contact" placeholder="請輸入联系方式">
+			</div>
+			<div class="col-xs-12">
+				<button type="button" class="btn btn-primary btn-lg btn-block" name="save" id="save">提交</button>
+			</div>
 		</div>
 	</div>
 	
@@ -538,9 +617,9 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q9">
-		<div class="col-md-4 col-md-offset-4">		
-			<p class="text-left">
-				恭喜您，老师选择成功，您可以去我的记录里查看状态.
+		<div class="col-xs-10 col-xs-offset-1" style="vertical-align: middle">		
+			<p class="text-left" style="font-size: 16px">
+				"恭喜您，老师选择成功，您可以去我的记录里查看状态."
 			</p>
 		</div>
 
@@ -550,10 +629,10 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q10">
-		<div class="col-md-4 col-md-offset-4 question">		
-			<p class="text-left">
-				订单已提交，敬请留意我们的消息，谢谢您的使用。
-			</p>
+		<div style="margin-top: 50%" align="center">		
+			<div class="text-left" style="font-size: 16px; width: 80%; color:#2CB298;">
+				"订单已提交，敬请留意我们的消息，谢谢您的使用"
+			</div>
 		</div>
 	</div>
 </div>
@@ -646,7 +725,7 @@ $(".btn.btn-lg.btn-block").click(function(){
 				$div.append($button);
 				$("#q5").append($div);
 			}
-			$nextdiv = $("<div>", {style: "margin-top:2px", class: "col-xs-8 col-xs-offset-2"});
+			$nextdiv = $("<div>", {style: "margin-top:75px", class: "col-xs-8 col-xs-offset-2"});
 			$nextbutton = $("<button>", {type: "button", name: "laststep5", class: "btn btn-lg btn-block btn-infor laststep"}).attr("id","laststep5").text("上一步");
 			$nextdiv.append($nextbutton);
 			$("#q5").append($nextdiv);

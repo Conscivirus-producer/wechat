@@ -18,19 +18,15 @@ p.question{
 	margin-bottom: 0px;
 }
 button.laststep{
-	/*margin-top:30px;
-	background-color:#e2dfe5*/
 	position:fixed;
     left:0px;
     bottom:0px;
-    height:50px;
+    height:45px;
     width:100%;
     background:#2cb298;
     color: white;
     padding-top: 13px;
     border-radius: 0px;
-	/*margin-top: 10px;	
-	margin-left:19px;*/
 }
 
 button.laststep:hover{
@@ -202,8 +198,47 @@ button.clicked{
 	color:black;
 }
 
+div.record-preview{
+	margin-top: 40px;
+	box-shadow:0 0 1px #333;
+	font-size: 12px;
+}
 
+div.record-preview-title{
+	font-size: 16px;
+	color: #2CB298;
+}
 
+div.button-group{
+	/*margin-top:30px;
+	background-color:#e2dfe5*/
+	position:fixed;
+    left:0px;
+    bottom:0px;
+    height:45px;
+    width:100%;
+    background:#2cb298;
+    color: white;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 0px;
+	/*margin-top: 10px;	
+	margin-left:19px;*/
+}
+
+div.button-group div{
+	padding: 0px;
+}
+
+div.button-group button{
+	border-radius: 0px;
+	background:#2cb298;
+	color: white;	
+}
+
+div.line{
+	border-right: 2px solid #1B9C83;
+}
 
 
 
