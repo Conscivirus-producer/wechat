@@ -137,7 +137,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block options" name="contentboth" id="contentboth">二者都选</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep2" id="laststep2">上一步</button>
+			<button type="button" class="btn  btn-block btn-info laststep" name="laststep2" id="laststep2">上一步</button>
 		</div>
 	</div>
 	
@@ -168,7 +168,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block options" name="su4" id="su4">全科</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep3" id="laststep3">上一步</button>
+			<button type="button" class="btn btn-block btn-info laststep" name="laststep3" id="laststep3">上一步</button>
 		</div>
 	</div>
 	
@@ -205,7 +205,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block options" name="inteF" id="F">人文科学与小语种</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep4" id="laststep4">上一步</button>
+			<button type="button" class="btn btn-block btn-info laststep" name="laststep4" id="laststep4">上一步</button>
 		</div>
 	</div>
 	
@@ -222,7 +222,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-10 col-xs-offset-1"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 	</div>
 	
 	<div class="row" style="display:none" id="teacherGender">
@@ -249,7 +249,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block options" name="gender2" id="gender2">女生</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep5" id="laststep5">上一步</button>
+			<button type="button" class="btn btn-block btn-info laststep" name="laststep5" id="laststep5">上一步</button>
 		</div>
 	</div>
 	
@@ -286,7 +286,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block options" name="address6" id="address6">其它</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep_add" id="laststep_add">上一步</button>
+			<button type="button" class="btn btn-block btn-info laststep" name="laststep_add" id="laststep_add">上一步</button>
 		</div>
 	</div>
 	
@@ -314,7 +314,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block options" name="price3" id="price3">高级: 150以上</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep6" id="laststep6">上一步</button>
+			<button type="button" class="btn btn-block btn-info laststep" name="laststep6" id="laststep6">上一步</button>
 		</div>
 	</div>
 	
@@ -342,7 +342,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block options" name="section3" id="section3">高中</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep1" id="laststep1">上一步</button>
+			<button type="button" class="btn btn-block btn-info laststep" name="laststep1" id="laststep1">上一步</button>
 		</div>
 	</div>
 	
@@ -379,7 +379,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block options" name="grade6" id="grade6">小学六年级</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep11" id="laststep11">上一步</button>
+			<button type="button" class="btn btn-block btn-info laststep" name="laststep11" id="laststep11">上一步</button>
 		</div>
 	</div>
 	
@@ -407,7 +407,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block options" name="grade9" id="grade9">初中三年级</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep12" id="laststep12">上一步</button>
+			<button type="button" class="btn btn-block btn-info laststep" name="laststep12" id="laststep12">上一步</button>
 		</div>
 	</div>
 	
@@ -435,7 +435,7 @@ if (isset($_GET['code'])){
 			<button type="button" class="btn btn-lg btn-block options" name="grade12" id="grade12">高中三年级</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep13" id="laststep13">上一步</button>
+			<button type="button" class="btn btn-block btn-info laststep" name="laststep13" id="laststep13">上一步</button>
 		</div>
 	</div>
 	
@@ -612,7 +612,7 @@ if (isset($_GET['code'])){
 			<div class="btn btn-lg btn-primary col-xs-8 col-xs-offset-2" name="compeleteRecord" id="compeleteRecord">免费预约</div>
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep7" id="laststep7">上一步</button>
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep7" id="laststep7">上一步</button>
 		</div>
 	</div>
 	
