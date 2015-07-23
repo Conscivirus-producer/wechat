@@ -67,17 +67,17 @@ if (isset($_GET['code'])){
 			
 			
 				<div class="col-xs-4">
-					<img class="star-photo img-circle center-block" id="star-one" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/obS35voyc3uPs4bNzTR9hdWBBeuk_head?imageView2/1/w/65/h/65/q/100" alt="empty">
+					<img class="star-photo img-circle center-block" id="star-one" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/夏丽婷.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
 					<div class="star-name text-center">夏丽婷</div>
 					<div class="star-skill text-center">英语师范专业</div>
 				</div>
 				<div class="col-xs-4">
-					<img class="star-photo img-circle center-block" id="star-two" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/1183252454.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
+					<img class="star-photo img-circle center-block" id="star-two" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/刘楠.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
 					<div class="star-name text-center">刘楠</div>
 					<div class="star-skill text-center">声乐专业</div>
 				</div>
 				<div class="col-xs-4">
-					<img class="star-photo img-circle center-block" id="star-three" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/历程.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
+					<img class="star-photo img-circle center-block" id="star-three" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/厉程.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
 					<div class="star-name text-center">厉程</div>
 					<div class="star-skill text-center">产品设计专业</div>
 				</div>
