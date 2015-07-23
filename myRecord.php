@@ -71,7 +71,7 @@ $(document).ready(function(){
 			var $li = $("<a>", {class: "list-group-item"}).text(subject[i] + " " + data.interest[i] + " " + data.fee[i] + " " + createdDt[i] + " " + data.status[i]);
 			$li.attr("id",data.transactionId[i]);
 			$li.click(function(){
-				window.location.href="myRecordDetail.php?transactionId=1";
+				window.location.href="myRecordDetail.php?transactionId="+$(this).attr("id");
 			});
 			/*if(data.status[i] == 'I' || data.status[i] == 'S'){
 				var $button = $("<button>", {type: "button", style:"text-align:right"}).attr("id",data.transactionId[i]).text("取消记录");

@@ -1,6 +1,8 @@
 <?php
-	require_once("config.php");
 	header('Access-Control-Allow-Origin:*');
+	require_once("config.php");
+	require_once("processUtil.php");
+	$codeParser = new CodeParser();
 	$conn = new mysqli($host, $user, $password, $database);
 	
 	function updateTransactionStatus($conn,$transactionId,$status){
@@ -26,6 +28,7 @@
 	}
 	
 	function findTeacherByMobile($conn,$mobile){
+		global $codeParser;
 		$query = "set names utf8";
 		$result = $conn->query($query);
 		$query = "select openId, name, mobile from T_teacher where mobile = '$mobile'";
@@ -33,6 +36,9 @@
 		$jsonArray = array();
 		if($result->num_rows != 0){
 			$row = $result->fetch_assoc();
+			if(!$codeParser->startsWith($row["openId"], "obS") && $result->num_rows == 2){
+				$row = $result->fetch_assoc();
+			}
 			$jsonArray["openId"] = $row["openId"];
 			$jsonArray["name"] = $row["name"];
 			$jsonArray["mobile"] = $row["mobile"];

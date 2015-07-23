@@ -1,7 +1,7 @@
 ﻿<?php
+	header('Access-Control-Allow-Origin:*');
 	require_once("config.php");
 	require_once("processUtil.php");
-	header('Access-Control-Allow-Origin:*');
 	$codeParser = new CodeParser();
 	$conn = new mysqli($host, $user, $password, $database);
 	
