@@ -532,10 +532,108 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
    		$("#modifyInformationPanel").show();
    	});
    	$("#update_submit").click(function(){
-   		
-   		$("#modifyInformationPanel").hide();
-   		$("#showInformationPanel").show();
+   		var name = $("#update_name").val();
+		var sex = $("#update_sex").val();
+		var school = $("#update_school").val();
+		var major = $("#update_major").val();
+		var studentNumber = $("#update_studentNumber").val();
+		var phone = $("#update_phone").val();
+		var desc = $("#update_desc").val();
+		var allOptions = new Array();
+		var price = $("#update_price").val();					//期望的最低时薪					
+		var location = $("#update_location").val();			//可接受的教学地点		
+		var highestGrade = $("#update_grade").val();			//最高能教的年级
+		var otheroptions = $("#otheroptions").val();	//其它能教的学科
+		
+		for(var i = 0;i < typeCodes.length;i++){
+	 		var options = $("#"+typeCodes[i]).val();
+	 		if(options != null){
+				allOptions = allOptions.concat(options);
+			}
+		}
+		if(name == ""){
+			alert("请输入姓名");
+			$("#update_name").focus();
+		}else if(school == ""){
+			alert("请输入学院名称");
+			$("#update_school").focus();
+		}else if(major == ""){
+			alert("请输入专业名称");
+			$("#update_major").focus();
+		}else if(studentNumber == ""){
+			alert("请输入真实的学号");
+			$("#update_studentNumber").focus();
+		}else if(!validatePhone(phone)){
+			alert("请输入正确的手机号");
+			$("#update_phone").focus();
+		}else if(desc == ""){
+			alert("请输入自我介绍");
+			$("#update_desc").focus();
+		}else if(calculateLength(desc) < 30){
+			alert("自我介绍不少于30个字，已经"+calculateLength(desc)+"个字了");
+			$("#update_desc").focus();
+		}else if(allOptions.length == 0){
+			alert("请至少选择一个可教的课程");
+			$("#A").focus();
+		}else if(price == ""){
+			alert("请输入期望的最低时薪");
+			$("#update_price").focus();
+		}else if(location == null){
+			alert("请选择可接受的教学地点");
+			$("#update_location").focus();
+		}else{
+			var postData = {
+				openid:"",
+				name: "",
+				sex: "",
+				school: "",
+				major: "",
+				studentNumber: "",
+				phone: "",
+				desc: "",
+				options: [],
+				otheroptions: [],
+				price: "",
+				location: [],
+				highestGrade:"",
+				dataType:"updateTeacherInformation"
+			};
+			postData.openid = openid;
+			postData.name = name;
+			postData.sex = sex;
+			postData.school = school;
+			postData.major = major;
+			postData.studentNumber = studentNumber;
+			postData.phone = phone;
+			postData.desc = desc;
+			postData.options = allOptions;
+		
+			postData.otheroptions = otheroptions;
+			postData.price = price;
+			postData.location = location;
+			postData.highestGrade = highestGrade;
+			$.post("teacherRegistrationService.php", postData,
+   				function(data){
+     				alert("数据修改成功！");
+     				$("#modifyInformationPanel").hide();
+   					$("#showInformationPanel").show();
+     				//window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.hehe.life/showTeacherInformation.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+     			}
+   			);
+		}
    	});
+   	function validatePhone(phone){
+		var reg = /^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/;
+		if (reg.test(phone)) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+	function calculateLength(str){
+		str=str.replace(/[\ |\~|\`|\！|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\，|\<|\。|\>|\/|\？]/g,""); 
+		return str.length;
+	}
    	$("#backToInformation").click(function(){
    		$("#modifyInformationPanel").hide();
    		$("#showInformationPanel").show();
