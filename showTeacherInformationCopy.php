@@ -33,6 +33,8 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 <body>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <div class="container">
+	<!-- showInformationPanel -->
+	<div id="showInformationPanel">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<p class="text-center">
@@ -88,11 +90,249 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 			</p>
 		</div>
 	</div>
+	<div class="row" id="interests" style="margin-top:5px">
+		<div class="col-md-4 col-md-offset-4">
+			<button type="button" class="btn btn-primary btn-lg btn-block" name="toModify" id="toModify">修改个人信息</button>
+		</div>
+	</div>
+	</div>
+	<!-- showInformationPanel -->
+	
+	<!-- modifyInformationPanel -->
+	<div id="modifyInformationPanel" style="display:none">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<p class="text-left">
+				<font color="#48C9B0">【个人基本信息】</font>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label for="update_name">姓名</label>
+				<input type="text" class="form-control" name="update_name" id="update_name" placeholder="请输入姓名">
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label for="update_sex">性别</label>
+				<select class="form-control" name="update_sex" id="update_sex">
+  					<option value="m">男</option>
+  					<option value="f">女</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label for="update_school">学院名称</label>
+				<input type="text" class="form-control" name="update_school" id="update_school" placeholder="请输入学院名称">
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label for="update_major">专业名称</label>
+				<input type="text" class="form-control" name="update_major" id="update_major" placeholder="请输入专业名称">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label for="update_studentNumber">学号</label>
+				<input type="text" class="form-control" name="update_studentNumber" id="update_studentNumber" placeholder="请输入真实的学号">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label for="update_phone">手机号</label>
+				<input type="text" class="form-control" name="update_phone" id="update_phone" placeholder="请输入手机号码">
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label for="update_desc">自我介绍【不少于30个字】</label>
+				<!--<input type="text" class="form-control" name="desc" id="desc" placeholder="可介绍自己的性格，经验，优点，获奖经历等">-->
+				
+				<textarea class="form-control" rows="3" name="update_desc" id="update_desc" placeholder="可介绍自己的性格，经验，优点，获奖经历等"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<p class="text-left">
+				<font color="#48C9B0">【选择可教的课程（多选）】</font>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<label for="SU">学科辅导【可多选】</label>
+				<select name="SU" id="SU" multiple class="form-control">
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<label for="A">乐器与舞蹈【可多选】</label>
+				<select name="A" id="A" multiple class="form-control">
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<label for="B">体育运动【可多选】</label>
+				<select name="B" id="B" multiple class="form-control">
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<label for="C">书法与美术【可多选】</label>
+				<select name="C" id="C" multiple class="form-control">
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<label for="D">益智类【可多选】</label>
+				<select name="D" id="D" multiple class="form-control">
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<label for="E">演讲与口才【可多选】</label>
+				<select name="E" id="E" multiple class="form-control">
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<label for="F">趣味课程【可多选】</label>
+				<select name="F" id="F"multiple class="form-control">
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<label for="otheroptions">其它</label>
+				<input type="text" class="form-control" name="otheroptions" id="otheroptions" placeholder="其它你能教的,以空格分格">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<p class="text-left">
+				<font color="#48C9B0">【选择其它期望值】</font>
+			</p>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+				<label for="update_grade">最高能教的年级</label>
+				<select class="form-control" name="update_grade" id="update_grade">
+  					<option value="grade12">高三</option>
+  					<option value="grade11">高二</option>
+  					<option value="grade10">高一</option>
+  					<option value="grade9">初三</option>
+  					<option value="grade8">初二</option>
+  					<option value="grade7">初一</option>
+  					<option value="grade6">小学六年级</option>
+  					<option value="grade5">小学五年级</option>
+  					<option value="grade4">小学四年级</option>
+  					<option value="grade3">小学三年级</option>
+  					<option value="grade2">小学二年级</option>
+  					<option value="grade1">小学一年级</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label for="update_price">期望的最低时薪</label>
+				<input type="text" class="form-control" name="update_price" id="update_price" placeholder="请输入时薪">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label for="update_location">可接受的地点</label>
+				<select name="update_location" id="update_location" multiple class="form-control">
+					<option value="location0">不限</option>
+  					<option value="location1">南山区</option>
+  					<option value="location2">福田区</option>
+  					<option value="location3">罗湖区</option>
+  					<option value="location4">宝安区</option>
+  					<option value="location5">龙岗区</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2" id="image_upload_div">
+			<label>上传头像(要求本人头像，五官清晰):</label><br>
+			<span class="sl-custom-file">
+    			<button type="button" class="btn btn-default btn-lg" id="trigger_head_upload">
+  					<span class="fui-user"></span>
+  					<span class="fui-plus"></span>
+				</button>
+   			 	<input type="file" name="head_upload" id="head_upload" class="ui-input-file"/>
+			</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2" id="certificate_upload_div">
+			<label for="certificate_desc">上传证书(要求输入证书的名称/描述，可传多张):</label>
+			<input type="text" class="form-control" name="certificate_desc" id="certificate_desc" placeholder="请输入证书的名称/描述" style="margin-bottom:5px">
+			<span class="sl-custom-file">
+    			<button type="button" class="btn btn-default btn-lg" id="trigger_certificate_upload">
+  					<span class="fui-document"></span>
+  					<span class="fui-plus"></span>
+				</button>
+   			 	<input type="file" name="certificate_upload" id="certificate_upload" class="ui-input-file"/>
+			</span>
+		</div>
+	</div>
+	
+	
+	<div class="row" id="interests" style="margin-top:5px">
+		<div class="col-md-4 col-md-offset-4">
+			<button type="button" class="btn btn-primary btn-lg btn-block" name="update_submit" id="update_submit">提交</button>
+		</div>
+	</div>
+	</div>
+	<!-- modifyInformationPanel -->
+	<!-- footer -->
 	<div class="row" style="margin-top:10px">
 		<div class="col-md-4 col-md-offset-4">
 		
 		</div>
 	</div>
+	<!-- footer -->
 	<script src="js/flat-ui.min.js"></script>
 	<script src="assets/js/application.js"></script>
 	<script type="text/javascript">
@@ -214,6 +454,15 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 			$("#block3").show();
      	}
    	);
+   	
+   	$("#toModify").click(function(){
+   		$("#showInformationPanel").hide();
+   		$("#modifyInformationPanel").show();
+   	});
+   	$("#update_submit").click(function(){
+   		$("#modifyInformationPanel").hide();
+   		$("#showInformationPanel").show();
+   	});
 	</script>
 </div>
 </body>
