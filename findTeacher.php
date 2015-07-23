@@ -222,7 +222,7 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		<div class="col-xs-2"></div>
-		<div class="col-xs-10 col-xs-offset-1"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.png?imageView2/1/w/150/h/30/q/100" class="center-block" /></div>
+		<div class="col-xs-12"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 	</div>
 	
 	<div class="row" style="display:none" id="teacherGender">
