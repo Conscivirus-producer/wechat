@@ -373,7 +373,20 @@ $certificate_token = $auth->uploadToken($bucket);
 	var rootUrl = $("#rootUrl").val();
 	var typeCodes = ["A","B","C","D","E","F","SU"];
 	var openid = $("#openid").val();
+	var certificateCount = 1;
 	var postData = {
+		"dataType":"getCertificates",
+		"openid":""
+	};
+	postData["openid"] = openid;
+	$.post("teacherRegistrationService.php", postData,
+   		function(data){
+   			jsonObj = $.parseJSON(data);
+   			var length = imgUrl.length;
+   			certificateCount = length + 1;
+   		}
+	);	
+	postData = {
 		"dataType":"getTeacherInformation",
 		"openid":""
 	};	
