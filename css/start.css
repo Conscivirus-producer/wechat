@@ -9,7 +9,6 @@ div.company-name{
 }
 div.company-details{
 	font-size: 10px;
-	margin-bottom: 15px;
 }
 
 div.star-teachers{
@@ -83,5 +82,5 @@ div.start{
     width:100%;
     background:#2cb298;
     color: white;
-    padding-top: 10px;
+    padding-top: 13px;
 }
