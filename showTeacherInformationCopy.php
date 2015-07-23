@@ -482,7 +482,7 @@ $certificate_token = $auth->uploadToken($bucket);
 			$('img[name*="initLoading"]').remove();
 			
 			$("#head").append(
-				$("<img />").attr("src", imageUrl).attr("class", "img-responsive img-circle").attr("width", "50%").attr("style", "margin: 0 auto")
+				$("<img />").attr("src", imageUrl+"?timestamp="+new Date().getTime()).attr("class", "img-responsive img-circle").attr("width", "50%").attr("style", "margin: 0 auto")
 			);
 			
 			$("#block1").show();$("#block2").show();$("#block3").show();
