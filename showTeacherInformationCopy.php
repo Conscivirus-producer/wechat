@@ -44,6 +44,7 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 </style>
 </head>
 <body>
+<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <div class="container">
 	<!-- showInformationPanel -->
@@ -349,6 +350,8 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 	<script src="js/flat-ui.min.js"></script>
 	<script src="assets/js/application.js"></script>
 	<script type="text/javascript">
+	var rootUrl = $("#rootUrl").val();
+	var typeCodes = ["A","B","C","D","E","F","SU"];
 	var openid = $("#openid").val();
 	var postData = {
 		"dataType":"getTeacherInformation",
@@ -462,12 +465,33 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 				$("<img />").attr("src", imageUrl).attr("class", "img-responsive img-circle").attr("width", "50%").attr("style", "margin: 0 auto")
 			);
 			
-			$("#block1").show();
-			$("#block2").show();
-			$("#block3").show();
+			$("#block1").show();$("#block2").show();$("#block3").show();
+			
+			$("#update_name").val(name);$("#update_sex").val(sex);$("#update_faculty").val(faculty);
+			$("#update_major").val(major);$("#update_studentNumber").val(studentNumber);$("#update_phone").val(phone);
+			$("#update_desc").val(desc);$("#update_grade").val(highestGrade);$("#update_price").val(price);
+			$("#update_location").val(place);
+			function createOptions(typeCode, optionId){
+				var url = "http://"+rootUrl+"/service.php?typeCode="+typeCode;
+				$.getJSON(url,function(data){
+					//存储所有option data
+					optionData = data;
+					var code = data.code;
+					var name = data.name;
+					var length = code.length;
+					for(var i = 0;i < length;i++){
+						var optionCode = code[i];
+						var optionName = name[i];
+						$("#"+optionId).append("<option value='"+optionCode+"'>"+optionName+"</option>");
+						//<input type="text" class="form-control" name="studentNumber" id="studentNumber" placeholder="你能教，但是在上面的选项找不到的">
+					}
+				});
+			}
+			for(var i = 0;i < typeCodes.length;i++){
+				createOptions(typeCodes[i],typeCodes[i]);
+			}
      	}
    	);
-   	
    	$("#toModify").click(function(){
    		$("#showInformationPanel").hide();
    		$("#modifyInformationPanel").show();
