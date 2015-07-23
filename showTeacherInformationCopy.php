@@ -22,6 +22,13 @@ $auth = new Auth($accessKey, $secretKey);
 $bucket = 'wojiaonixue';
 $key = $openid."_head";
 $token = $auth->uploadToken($bucket,$key,3600,null,true);
+
+$accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
+$secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
+$auth = new Auth($accessKey, $secretKey);
+
+$bucket = 'wojiaonixue';
+$certificate_token = $auth->uploadToken($bucket);
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -58,6 +65,7 @@ $token = $auth->uploadToken($bucket,$key,3600,null,true);
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="token" id="token" value="<?php echo $token; ?>" style="display:none">
+<input type="text" name="certificate_token" id="certificate_token" value="<?php echo $certificate_token; ?>" style="display:none">
 <div class="container">
 	<!-- showInformationPanel -->
 	<div id="showInformationPanel">
@@ -519,6 +527,15 @@ $token = $auth->uploadToken($bucket,$key,3600,null,true);
    		$("#showInformationPanel").show();
    	});
    	
+   	$("#certificate_upload").click(function(){
+		certificateDesc = $("#certificate_desc").val();
+		if(certificateDesc == ""){
+			alert("请先输入输入证书的名称/描述");
+			$("#certificate_desc").focus();
+			return false;
+		}	
+	});
+	
    	$(document).ready(function() {
     var Qiniu_UploadUrl = "http://up.qiniu.com";
     //var progressbar = $("#progressbar"),
@@ -595,6 +612,85 @@ $token = $auth->uploadToken($bucket,$key,3600,null,true);
             console && console.log("form input error");
         }
     });
+    
+     $("#certificate_upload").change(function() {
+        //普通上传
+        var Qiniu_upload = function(f, token, key) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', Qiniu_UploadUrl, true);
+            var formData, startDate;
+            formData = new FormData();
+            if (key !== null && key !== undefined) formData.append('key', key);
+            formData.append('token', token);
+            formData.append('file', f);
+            var taking;
+            /*xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var nowDate = new Date().getTime();
+                    taking = nowDate - startDate;
+                    var x = (evt.loaded) / 1024;
+                    var y = taking / 1000;
+                    var uploadSpeed = (x / y);
+                    var formatSpeed;
+                    if (uploadSpeed > 1024) {
+                        formatSpeed = (uploadSpeed / 1024).toFixed(2) + "Mb\/s";
+                    } else {
+                        formatSpeed = uploadSpeed.toFixed(2) + "Kb\/s";
+                    }
+                    var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                    //progressbar.progressbar("value", percentComplete);
+                    $(".progress-bar").css("width",percentComplete);
+                    // console && console.log(percentComplete, ",", formatSpeed);
+                }
+            }, false);*/
+
+            xhr.onreadystatechange = function(response) {
+                if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
+                    var blkRet = JSON.parse(xhr.responseText);
+                    console && console.log(blkRet);
+                    
+                    var postData = {
+                    	dataType: "certificateRecord",
+                    	teacherOpenId: "",
+                    	description: "",
+                    	imageUrl: ""
+                    };
+                    postData.teacherOpenId = openid;
+                    postData.description = certificateDesc;
+                    postData.imageUrl = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_certificate"+"_"+certificateCount;
+                    
+                    $.post("teacherRegistrationService.php", postData,
+   						function(data){
+   							$('img[name*="loading'+certificateCount+'"]').remove();
+   							$("#certificate_upload_div").append(
+								$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_certificate"+"_"+certificateCount).attr("class", "img-responsive").attr("style", "margin: 0 auto")
+							);
+     						certificateUploaded = true;
+                    		certificateCount++;
+                    		$("#certificate_desc").val("");
+                    		//alert("证书上传成功");
+     					}
+   					);
+                } else if (xhr.status != 200 && xhr.responseText) {
+					alert("证书上传失败，请重新上传");
+					$('img[name*="loading'+certificateCount+'"]').remove();
+                }
+            };
+            startDate = new Date().getTime();
+            //$("#progressbar").show();
+            xhr.send(formData);
+        };
+        var token = $("#token").val();
+        if ($("#certificate_upload")[0].files.length > 0 && token != "") {
+        	$("#certificate_upload_div").append($("<br />"));
+        	$("#certificate_upload_div").append(
+				$("<img />").attr("src", "image/loading_normal.gif").attr("class", "img-responsive").attr("style", "margin: 0 auto").attr("name", "loading"+certificateCount)
+			);
+            Qiniu_upload($("#certificate_upload")[0].files[0], token, openid+"_certificate"+"_"+certificateCount);
+        } else {
+            console && console.log("form input error");
+        }
+    })
     });
 	</script>
 </div>
