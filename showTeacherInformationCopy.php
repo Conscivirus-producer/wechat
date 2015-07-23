@@ -20,8 +20,8 @@ $secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
 $auth = new Auth($accessKey, $secretKey);
 
 $bucket = 'wojiaonixue';
-$putPolicy = '{"scope":wojiaonixue:'.$openid."_head}";
-$token = $auth->uploadToken($bucket,null,3600,$putPolicy,true);
+$key = $openid."_head";
+$token = $auth->uploadToken($bucket,$key,3600,null,true);
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
