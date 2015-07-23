@@ -619,7 +619,6 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
     });
     
      $("#certificate_upload").change(function() {
-     	alert(certificateCount);
         //普通上传
         var Qiniu_upload = function(f, token, key) {
             var xhr = new XMLHttpRequest();
