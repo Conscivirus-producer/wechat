@@ -383,7 +383,9 @@ $certificate_token = $auth->uploadToken($bucket);
    		function(data){
    			jsonObj = $.parseJSON(data);
    			var length = imgUrl.length;
-   			certificateCount = length + 1;
+   			if(length != 0){
+   				certificateCount = length + 1;
+   			}
    		}
 	);	
 	postData = {
