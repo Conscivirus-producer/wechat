@@ -25,10 +25,10 @@ $token = $auth->uploadToken($bucket,$key,3600,null,true);
 
 $accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
 $secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
-$auth = new Auth($accessKey, $secretKey);
+$auth2 = new Auth($accessKey, $secretKey);
 
-$bucket = 'wojiaonixue';
-$certificate_token = $auth->uploadToken($bucket);
+$bucket2 = 'wojiaonixue';
+$certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -374,21 +374,8 @@ $certificate_token = $auth->uploadToken($bucket);
 	var typeCodes = ["A","B","C","D","E","F","SU"];
 	var openid = $("#openid").val();
 	var certificateCount = 1;
+	
 	var postData = {
-		"dataType":"getCertificates",
-		"openid":""
-	};
-	postData["openid"] = openid;
-	$.post("teacherRegistrationService.php", postData,
-   		function(data){
-   			jsonObj = $.parseJSON(data);
-   			var length = imgUrl.length;
-   			if(length != 0){
-   				certificateCount = length + 1;
-   			}
-   		}
-	);	
-	postData = {
 		"dataType":"getTeacherInformation",
 		"openid":""
 	};	
@@ -484,6 +471,7 @@ $certificate_token = $auth->uploadToken($bucket);
 			var desc = certificate.desc;
 			var imgUrl = certificate.imgUrl;
 			var length = desc.length;
+			certificateCount = length+1;
 
 			for(var i = 0;i < length;i++){
 				$("#certificate").append(
@@ -631,6 +619,7 @@ $certificate_token = $auth->uploadToken($bucket);
     });
     
      $("#certificate_upload").change(function() {
+     	alert(certificateCount);
         //普通上传
         var Qiniu_upload = function(f, token, key) {
             var xhr = new XMLHttpRequest();
