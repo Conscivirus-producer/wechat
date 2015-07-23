@@ -10,7 +10,18 @@ require_once("config.php");
 	//need to be modified to show hint and qrcode image
     exit("NO CODE");
 }*/
+require_once 'vendor/autoload.php';
+use Qiniu\Auth;
+
 $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
+
+$accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
+$secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
+$auth = new Auth($accessKey, $secretKey);
+
+$bucket = 'wojiaonixue';
+$putPolicy = '{"scope":wojiaonixue:'.$openid."_head}";
+$token = $auth->uploadToken($bucket,null,3600,$putPolicy,true);
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -46,6 +57,7 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 <body>
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
+<input type="text" name="token" id="token" value="<?php echo $token; ?>" style="display:none">
 <div class="container">
 	<!-- showInformationPanel -->
 	<div id="showInformationPanel">
@@ -308,7 +320,7 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-2" id="image_upload_div">
-			<label>上传头像(要求本人头像，五官清晰):</label><br>
+			<label>上传新头像(要求本人头像，五官清晰):</label><br>
 			<span class="sl-custom-file">
     			<button type="button" class="btn btn-default btn-lg" id="trigger_head_upload">
   					<span class="fui-user"></span>
@@ -320,7 +332,7 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-2" id="certificate_upload_div">
-			<label for="certificate_desc">上传证书(要求输入证书的名称/描述，可传多张):</label>
+			<label for="certificate_desc">添加证书(要求输入证书的名称/描述，可传多张):</label>
 			<input type="text" class="form-control" name="certificate_desc" id="certificate_desc" placeholder="请输入证书的名称/描述" style="margin-bottom:5px">
 			<span class="sl-custom-file">
     			<button type="button" class="btn btn-default btn-lg" id="trigger_certificate_upload">
@@ -467,6 +479,7 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 			
 			$("#block1").show();$("#block2").show();$("#block3").show();
 			
+			//initialize the modifyInformationPanel
 			$("#update_name").val(name);$("#update_sex").val(sex);$("#update_school").val(faculty);
 			$("#update_major").val(major);$("#update_studentNumber").val(studentNumber);$("#update_phone").val(phone);
 			$("#update_desc").val(selfDesc);$("#update_grade").val(highestGrade);$("#update_price").val(price);
@@ -501,9 +514,88 @@ $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
    		$("#modifyInformationPanel").show();
    	});
    	$("#update_submit").click(function(){
+   		
    		$("#modifyInformationPanel").hide();
    		$("#showInformationPanel").show();
    	});
+   	
+   	$(document).ready(function() {
+    var Qiniu_UploadUrl = "http://up.qiniu.com";
+    //var progressbar = $("#progressbar"),
+    //    progressLabel = $(".progress-label");
+   /* progressbar.progressbar({
+        value: false,
+        change: function() {
+            progressLabel.text(progressbar.progressbar("value") + "%");
+        },
+        complete: function() {
+            progressLabel.text("Complete!");
+        }
+    });*/
+    $("#head_upload").change(function() {
+        //普通上传
+        var Qiniu_upload = function(f, token, key) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', Qiniu_UploadUrl, true);
+            var formData, startDate;
+            formData = new FormData();
+            if (key !== null && key !== undefined) formData.append('key', key);
+            formData.append('token', token);
+            formData.append('file', f);
+            var taking;
+            /*xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var nowDate = new Date().getTime();
+                    taking = nowDate - startDate;
+                    var x = (evt.loaded) / 1024;
+                    var y = taking / 1000;
+                    var uploadSpeed = (x / y);
+                    var formatSpeed;
+                    if (uploadSpeed > 1024) {
+                        formatSpeed = (uploadSpeed / 1024).toFixed(2) + "Mb\/s";
+                    } else {
+                        formatSpeed = uploadSpeed.toFixed(2) + "Kb\/s";
+                    }
+                    var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                    //progressbar.progressbar("value", percentComplete);
+                    $(".progress-bar").css("width",percentComplete);
+                    // console && console.log(percentComplete, ",", formatSpeed);
+                }
+            }, false);*/
+
+            xhr.onreadystatechange = function(response) {
+                if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
+                    var blkRet = JSON.parse(xhr.responseText);
+                    console && console.log(blkRet);
+                    //$("#dialog").html(xhr.responseText).dialog();
+                    imageUploaded = true;
+                    $('img[src*="loading_normal.gif"]').remove();
+                    $("#image_upload_div").append(
+						$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head").attr("class", "img-responsive").attr("style", "margin: 0 auto")
+					);
+					$("#head_upload").prop('disabled', true);
+                    //alert("头像上传成功");
+                } else if (xhr.status != 200 && xhr.responseText) {
+					alert("头像上传失败，请重新上传");
+					$('img[src*="loading_normal.gif"]').remove();
+                }
+            };
+            startDate = new Date().getTime();
+            //$("#progressbar").show();
+            xhr.send(formData);
+        };
+        var token = $("#token").val();
+        if ($("#head_upload")[0].files.length > 0 && token != "") {
+        	$("#image_upload_div").append($("<br />"));
+        	$("#image_upload_div").append(
+				$("<img />").attr("src", "image/loading_normal.gif").attr("class", "img-responsive").attr("style", "margin: 0 auto")
+			);
+            Qiniu_upload($("#head_upload")[0].files[0], token, openid+"_head");
+        } else {
+            console && console.log("form input error");
+        }
+    });
+    });
 	</script>
 </div>
 </body>
