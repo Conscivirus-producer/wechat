@@ -22,7 +22,7 @@ if (isset($_GET['code'])){
     $query = "select faculty from T_teacher where openId = '$openid'";
     $result = $conn->query($query);
     if($result->num_rows != 0){
-    	header("location:https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.hehe.life/showTeacherInformation.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+    	header("location:https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/showTeacherInformation.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
     	exit;
     }
 }else{
