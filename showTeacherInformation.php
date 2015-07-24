@@ -806,6 +806,12 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
         }
     })
     });
+    
+    $("#update_location").change(function(){
+    	if($.inArray("location0",$(this).val()) != -1){
+    		$(this).val(["location0"]);
+    	}
+    });
 	</script>
 </div>
 </body>
