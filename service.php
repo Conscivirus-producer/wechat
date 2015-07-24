@@ -93,7 +93,7 @@
 		$query = "set names utf8";
 		$result = $conn->query($query);
 		$query = "SELECT T_transaction.createdDt, T_child.subject,T_child.interest,T_child.expected_price,T_child.expectedLocation, ".
-		"T_teacher.openId, T_teacher.name,T_teacher.major,T_teacher.description,T_teacher.mobile FROM T_child, T_transaction left join T_teacher on ".
+		"T_teacher.openId, T_teacher.name,T_teacher.major,T_teacher.description,T_teacher.imageUrl,T_teacher.mobile FROM T_child, T_transaction left join T_teacher on ".
 		"T_transaction.teacherOpenid = T_teacher.openId where T_transaction.transactionId = '$transactionId' and T_transaction.childId = T_child.childId";
 		$result = $conn->query($query);
 		$row = $result->fetch_assoc();
@@ -105,6 +105,7 @@
 							"name"=>$row["name"],
 							"major"=>$row["major"], 
 							"description"=>$row["description"],
+							"imageUrl"=>$row["imageUrl"],
 							"mobile"=>$row["mobile"]);
 		$teacherOpenId = $row["openId"];
 		$query = "SELECT * FROM `T_teacher_certifications` WHERE teacherOpenId = '$teacherOpenId'";
@@ -262,8 +263,8 @@
 		);
 		while($row = $result->fetch_assoc()){
 			array_push($jsonArray["transactionId"],$row["transactionId"]);
-			array_push($jsonArray["subject"],$row["subject"]);
-			array_push($jsonArray["interest"],$row["interest"]);
+			array_push($jsonArray["subject"],$codeParser->getSubject($row["subject"]));
+			array_push($jsonArray["interest"],$codeParser->getInterestName($row["interest"],$conn));
 			array_push($jsonArray["fee"],$row["fee"]);
 			array_push($jsonArray["createdDt"],$row["createdDt"]);
 			array_push($jsonArray["status"],$codeParser->getStatusDescription($row["status"]));

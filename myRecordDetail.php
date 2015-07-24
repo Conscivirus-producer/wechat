@@ -37,12 +37,12 @@ if (isset($_GET['code'])){
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <div class="container">
-	<div class="row" style="" id="preview">
+	<div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<table>
-			<tr><td>您选择的信息如下:</td></tr>
+			<table width="100%">
+			<tr><td colspan="2">您选择的信息如下:</td></tr>
 			<tr>
-				<td>
+				<td width="30%">
 					日期
 				</td>
 				<td id="createdDt">
@@ -74,30 +74,30 @@ if (isset($_GET['code'])){
 		<br>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<table>
-			<tr><td>老师信息如下:</td></tr>
+			<tr><td colspan="2">老师信息如下:</td></tr>
 			<tr>
-				<td>
+				<td width="30%">
 					姓名:
 				</td>
 				<td id="teacherName">
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td valign="top">
 					专业:
 				</td>
 				<td id="teacherMajor">
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td valign="top">
 					所获荣誉:
 				</td>
 				<td id="certifications">
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td valign="top">
 					特质:
 				</td>
 				<td id="teacherDescription">
@@ -144,6 +144,7 @@ $(document).ready(function(){
 		$("#teacherDescription").html(data.description);
 		$("#certifications").html(data[0]);
 		$("#mobile").html(data.mobile);
+		//老师头像地址为: data.imageUrl
 	});
 });
 
