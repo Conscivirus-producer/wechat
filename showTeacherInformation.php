@@ -3,6 +3,19 @@ require_once("config.php");
 require_once 'vendor/autoload.php';
 use Qiniu\Auth;
 
+
+$openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
+if (isset($_GET['code'])){
+    $code = $_GET['code'];
+    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
+    $access_token_json = file_get_contents($access_token_get_url); 
+    $json_obj = json_decode($access_token_json,true);
+    $openid = $json_obj["openid"];
+}else{
+	//need to be modified to show hint and qrcode image
+    exit("NO CODE");
+}
+
 $accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
 $secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
 $auth = new Auth($accessKey, $secretKey);
@@ -17,18 +30,6 @@ $auth2 = new Auth($accessKey, $secretKey);
 
 $bucket2 = 'wojiaonixue';
 $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
-
-$openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
-if (isset($_GET['code'])){
-    $code = $_GET['code'];
-    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
-    $access_token_json = file_get_contents($access_token_get_url); 
-    $json_obj = json_decode($access_token_json,true);
-    $openid = $json_obj["openid"];
-}else{
-	//need to be modified to show hint and qrcode image
-    exit("NO CODE");
-}
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -617,7 +618,7 @@ if (isset($_GET['code'])){
      				alert("数据修改成功！");
      				//$("#modifyInformationPanel").hide();
    					//$("#showInformationPanel").show();
-   					window.location.href = "http://www.hehe.life/showTeacherInformationCopy.php"+"?timestamp="+new Date().getTime();
+   					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/showTeacherInformation.php"+"?timestamp="+new Date().getTime()+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
      				//window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/showTeacherInformation.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
      			}
    			);
