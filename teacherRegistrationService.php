@@ -24,7 +24,7 @@
 		//2，获取可教科目
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "select name,code,typeCode from T_offers where teacherOpenId = '$openId'";
+		$query = "select name,code,typeCode from T_offers where teacherOpenId = '$openId' and status != 'D'";
 		$result = $conn->query($query);
 		while($row = $result->fetch_assoc()){
 			array_push($jsonArray["options"]["name"], $row["name"]);
@@ -131,7 +131,7 @@
 			$result = $conn->query($query);
 			
 			//2，删除原有offer
-			$query = "delete * from T_offers where teacherOpenId='$openid' and code!=''";
+			$query = "update T_offers set status = 'D' where teacherOpenId='$openid' and code!=''";
 			$result = $conn->query($query);
 			
 			//3，存入老师能教的科目
