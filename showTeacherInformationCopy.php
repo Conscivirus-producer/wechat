@@ -1,19 +1,7 @@
 <?php
 require_once("config.php");
-/*if (isset($_GET['code'])){
-    $code = $_GET['code'];
-    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
-    $access_token_json = file_get_contents($access_token_get_url); 
-    $json_obj = json_decode($access_token_json,true);
-    $openid = $json_obj["openid"];
-}else{
-	//need to be modified to show hint and qrcode image
-    exit("NO CODE");
-}*/
 require_once 'vendor/autoload.php';
 use Qiniu\Auth;
-
-$openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
 
 $accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
 $secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
@@ -29,6 +17,18 @@ $auth2 = new Auth($accessKey, $secretKey);
 
 $bucket2 = 'wojiaonixue';
 $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
+
+$openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
+if (isset($_GET['code'])){
+    $code = $_GET['code'];
+    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
+    $access_token_json = file_get_contents($access_token_get_url); 
+    $json_obj = json_decode($access_token_json,true);
+    $openid = $json_obj["openid"];
+}else{
+	//need to be modified to show hint and qrcode image
+    exit("NO CODE");
+}
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -137,7 +137,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<p class="text-left">
-				<font color="#48C9B0">【个人基本信息】</font>
+				<font color="#48C9B0">【修改个人基本信息】</font>
 			</p>
 		</div>
 	</div>
@@ -199,7 +199,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<p class="text-left">
-				<font color="#48C9B0">【选择可教的课程（多选）】</font>
+				<font color="#48C9B0">【修改可教的课程（多选）】</font>
 			</p>
 		</div>
 	</div>
@@ -277,7 +277,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<p class="text-left">
-				<font color="#48C9B0">【选择其它期望值】</font>
+				<font color="#48C9B0">【修改其它期望值】</font>
 			</p>
 		</div>
 	</div>
@@ -615,8 +615,9 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			$.post("teacherRegistrationService.php", postData,
    				function(data){
      				alert("数据修改成功！");
-     				$("#modifyInformationPanel").hide();
-   					$("#showInformationPanel").show();
+     				//$("#modifyInformationPanel").hide();
+   					//$("#showInformationPanel").show();
+   					window.location.href = "http://www.hehe.life/showTeacherInformationCopy.php"+"?timestamp="+new Date().getTime();
      				//window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/showTeacherInformation.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
      			}
    			);
@@ -703,7 +704,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 						$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?timestamp="+new Date().getTime()).attr("class", "img-responsive").attr("style", "margin: 0 auto")
 					);
 					$("#head_upload").prop('disabled', true);
-                    //alert("头像上传成功");
+                    alert("头像修改成功");
                 } else if (xhr.status != 200 && xhr.responseText) {
 					alert("头像上传失败，请重新上传");
 					$('img[src*="loading_normal.gif"]').remove();
@@ -780,7 +781,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
      						certificateUploaded = true;
                     		certificateCount++;
                     		$("#certificate_desc").val("");
-                    		//alert("证书上传成功");
+                    		alert("证书添加成功");
      					}
    					);
                 } else if (xhr.status != 200 && xhr.responseText) {

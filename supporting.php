@@ -324,7 +324,7 @@
 					"C" => "书法与美术",
 					"D" => "编程软件应用与棋类",
 					"E" => "演讲与播音主持",
-					"F" => "舞蹈与音乐"
+					"F" => "人文科学与小语种"
 				);
 				
 				$typeCode = "";
@@ -338,8 +338,10 @@
 						$localName = "语文";
 					}else if($code == "SU2"){
 						$localName = "数学";
-					}else{
+					}else if($code == "SU3"){
 						$localName = "英语";
+					}else{
+						$localName = "化学";
 					}
 				}else{
 					$queryString = "set names utf8";
