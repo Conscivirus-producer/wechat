@@ -148,6 +148,9 @@ $(document).ready(function(){
 	});
 });
 
+$("#back").click(function(){
+	history.back();
+});
 
 function GetQueryString(name)
 {
