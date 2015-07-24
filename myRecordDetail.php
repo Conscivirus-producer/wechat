@@ -129,11 +129,13 @@ if (isset($_GET['code'])){
 <script src="js/vendor/video.js"></script>
 <script src="js/flat-ui.min.js"></script>
 <script type="text/javascript">
+var transactionId;
+var rootUrl = $("#rootUrl").val();
+var openId = $("#openid").val();
 
 $(document).ready(function(){
-	var rootUrl = $("#rootUrl").val();
-	var openId = $("#openid").val();
-	var url = "http://"+rootUrl+"/service.php?requestMethod=trandactionDetail&transactionId="+GetQueryString("transactionId");
+	transactionId = GetQueryString("transactionId");
+	var url = "http://"+rootUrl+"/service.php?requestMethod=trandactionDetail&transactionId="+transactionId;
 	$.getJSON(url,function(data){
 		$("#createdDt").html(data.createdDt);
 		$("#studyContent").html(data.subject + " " +data.interest);
@@ -149,7 +151,16 @@ $(document).ready(function(){
 });
 
 $("#back").click(function(){
-	history.back();
+	self.location=document.referrer;
+});
+
+$("#cancel").click(function(){
+	if(window.confirm('你确定要取消交易吗？')){
+		var url = "http://"+rootUrl+"/service.php?requestMethod=cancelTransaction&transactionId="+transactionId;
+		$.getJSON(url,function(data){
+			self.location=document.referrer;	
+		});
+	}
 });
 
 function GetQueryString(name)
