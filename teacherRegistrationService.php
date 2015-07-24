@@ -44,6 +44,7 @@
 		return $jsonArray;
 	}
 	
+	
 	function getCertificates($openId,$conn){
 		$jsonArray = array(
 			"description" => array(),
@@ -106,6 +107,97 @@
 			$desc = trim($_POST["description"]);
 			$imgUrl = trim($_POST["imageUrl"]);
 			echo json_encode(certificateRecord($openid,$desc,$imgUrl,$conn));
+		}
+		else if($dataType == "updateTeacherInformation"){
+			$openid = trim($_POST["openid"]);
+			$name = trim($_POST["name"]);
+			$sex = trim($_POST["sex"]);
+			$school = trim($_POST["school"]);
+			$major = trim($_POST["major"]);
+			$studentNumber = trim($_POST["studentNumber"]);
+			$phone = trim($_POST["phone"]);
+			$desc = trim($_POST["desc"]);
+			$options = $_POST["options"];
+			$otheroptions = trim($_POST["otheroptions"]);
+			$price = trim($_POST["price"]);
+			$location = $_POST["location"];
+			$location = implode(",",$location);
+			$highestGrade = trim($_POST["highestGrade"]);
+			
+			//1，更新个人基本信息
+			$query = "set names utf8";
+			$result = $conn->query($query);
+			$query = "update T_teacher set name='$name', gender='$sex', faculty='$school', major='$major', studentNumber='$studentNumber', mobile='$phone', description='$desc', price='$price', address='$location', highestGrade='$highestGrade' where openId='$openid'";
+			$result = $conn->query($query);
+			
+			//2，删除原有offer
+			$query = "delete * from T_offers where teacherOpenId='$openid' and code!=''";
+			$result = $conn->query($query);
+			
+			//3，存入老师能教的科目
+			$length = count($options);
+			$query = "set names utf8";
+			$result = $conn->query($query);
+			$query = "insert into T_offers(teacherOpenId,name,code,description,typeCode,typeName,status) values ";
+			for($i = 0;$i < $length;$i++){
+				$code = $options[$i];
+				$codeToName = array(
+					"A" => "舞蹈与音乐",
+					"B" => "体育运动",
+					"C" => "书法与美术",
+					"D" => "编程软件应用与棋类",
+					"E" => "演讲与播音主持",
+					"F" => "人文科学与小语种"
+				);
+				
+				$typeCode = "";
+				$typeName = "";
+				$status = "R";
+				$localName = "";
+				if(stripos($code,"SU") !== false){
+					$typeCode = "SU";
+					$typeName = "科目";
+					if($code == "SU1"){
+						$localName = "语文";
+					}else if($code == "SU2"){
+						$localName = "数学";
+					}else{
+						$localName = "英语";
+					}
+				}else{
+					$queryString = "set names utf8";
+					$result = $conn->query($queryString);
+					$queryString = "select name from T_offers where code = '$code' limit 1";
+					$result = $conn->query($queryString);
+					$row = $result->fetch_assoc();
+					$localName = $row["name"];
+					$typeCode = substr($code,0,1);
+					$typeName = $codeToName[$typeCode];
+				}
+				if($i != 0){
+					$query = $query.",";
+				}
+				$query = $query."('$openid','$localName','$code','','$typeCode','$typeName','R')";
+			}
+			
+			
+			//4，存入其它的能教得科目，项目
+			if($otheroptions != ""){
+				$otheroptions = explode(" ",$otheroptions);
+				$length = count($otheroptions);
+				for($j = 0;$j < $length;$j++){
+					$localName = $otheroptions[$j];
+					$query = $query.",('$openid','$localName','','','','','R')";
+				}
+			}
+			
+			$result = $conn->query($query);
+			
+			$jsonArray = array(
+				'status' => "ok",
+				'dataType' => "updateTeacherInformation"
+			);
+			echo json_encode($jsonArray);                            
 		}
 	}
 ?>
