@@ -618,7 +618,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
      				alert("数据修改成功！");
      				//$("#modifyInformationPanel").hide();
    					//$("#showInformationPanel").show();
-   					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/showTeacherInformation.php"+"?timestamp="+new Date().getTime()+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+   					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://"+rootUrl+"/showTeacherInformation.php"+"?timestamp="+new Date().getTime()+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
      				//window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/showTeacherInformation.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
      			}
    			);
