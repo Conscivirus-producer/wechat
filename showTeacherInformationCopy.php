@@ -1,16 +1,5 @@
 <?php
 require_once("config.php");
-$openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
-/*if (isset($_GET['code'])){
-    $code = $_GET['code'];
-    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
-    $access_token_json = file_get_contents($access_token_get_url); 
-    $json_obj = json_decode($access_token_json,true);
-    $openid = $json_obj["openid"];
-}else{
-	//need to be modified to show hint and qrcode image
-    exit("NO CODE");
-}*/
 require_once 'vendor/autoload.php';
 use Qiniu\Auth;
 
@@ -28,6 +17,18 @@ $auth2 = new Auth($accessKey, $secretKey);
 
 $bucket2 = 'wojiaonixue';
 $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
+
+$openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
+if (isset($_GET['code'])){
+    $code = $_GET['code'];
+    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
+    $access_token_json = file_get_contents($access_token_get_url); 
+    $json_obj = json_decode($access_token_json,true);
+    $openid = $json_obj["openid"];
+}else{
+	//need to be modified to show hint and qrcode image
+    exit("NO CODE");
+}
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
