@@ -1,5 +1,5 @@
 <?php
-/*$access_token = "JXamYh-5F9gmMmnciDAY22cDJgpavqEtuiTZK0j_ZfzEVWpibmeY_huTIAOXfweZuZe4EfAbF2Doa2kPWHiLxXkTY7DWDWrXfkjydQBPbko";
+$access_token = "JXamYh-5F9gmMmnciDAY22cDJgpavqEtuiTZK0j_ZfzEVWpibmeY_huTIAOXfweZuZe4EfAbF2Doa2kPWHiLxXkTY7DWDWrXfkjydQBPbko";
 $qrcode = '{"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": 1 }}}';
 $url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=".$access_token;
 $result = https_post($url,$qrcode);
@@ -58,16 +58,6 @@ function https_post($url, $data = null){
 	$output = curl_exec($curl);
 	curl_close($curl);
 	return $output;
-}*/
-require_once("config.php");
-$conn = new mysqli($host, $user, $password, $database);
-$query = "select * from T_teacher where imageUrl='0'";
-$result = $conn->query($query);
-while($row = $result->fetch_assoc()){
-	$openId = $row["openId"];
-	$url = "http://7xk9ts.com2.z0.glb.qiniucdn.com/".$openId."_head";
-	$query = "update T_teacher set imageUrl = '$url' where openId = '$openId'";
-	$conn->query($query);
 }
 ?>
 
