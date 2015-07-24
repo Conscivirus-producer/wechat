@@ -4,7 +4,7 @@ require_once 'vendor/autoload.php';
 use Qiniu\Auth;
 
 
-$openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
+$openid = "";
 if (isset($_GET['code'])){
     $code = $_GET['code'];
     $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
