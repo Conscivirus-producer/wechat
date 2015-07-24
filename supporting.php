@@ -338,8 +338,10 @@
 						$localName = "语文";
 					}else if($code == "SU2"){
 						$localName = "数学";
-					}else{
+					}else if($code == "SU3"){
 						$localName = "英语";
+					}else{
+						$localName = "化学";
 					}
 				}else{
 					$queryString = "set names utf8";
