@@ -501,16 +501,21 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 					$("<img />").attr("src", imgUrl[i]).attr("class", "img-responsive").attr("style", "margin: 0 auto")
 				);
 				$("#certificate_delete").append(
-					$("<input>").attr("class","form-control").attr("type","text").attr("disabled","disabled").attr("value",desc[i])
+					$("<input>").attr("class","form-control").attr("type","text").attr("value",desc[i])
 				);
 				$("<button>").appendTo($("#certificate_delete")).attr("type","button").attr("class","btn btn-default").html("<span style='display:none' class='deleteid'>"+imgUrl[i]+"</span>"+"<span class='fui-new'></span>").bind({
 					click:function(e){
-						alert($(this).prev().val());
+						var updateVal = $(this).prev().val();
+						var updateId = $(this).children(".deleteid").text();
+						
 					}
 				});
 				$("<button>").appendTo($("#certificate_delete")).attr("type","button").attr("class","btn btn-default").attr("style","margin-left:1px").html("<span style='display:none' class='deleteid'>"+imgUrl[i]+"</span>"+"<span class='fui-trash'></span>").bind({
 					click:function(e){
-						alert($(this).children(".deleteid").text());
+						var updateId = $(this).children(".deleteid").text();
+						$(this).prev().remove();
+						$(this).prev().remove();
+						$(this).remove();
 					}
 				});
 			}
