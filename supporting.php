@@ -145,7 +145,6 @@
 		$whiteList = $globalData->getWhiteList();
 		$query = $query." and T_transaction.parentOpenid not in $whiteList";
 		$query = $query." order by status, createdDt desc";
-		echo $query;
 		$result = $conn->query($query);
 		$jsonArray = array(
 			'transactionId' => array(),
