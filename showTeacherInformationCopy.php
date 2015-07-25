@@ -505,10 +505,14 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 					$("<input>").attr("class","form-control").attr("type","text").attr("disabled","disabled").attr("value",desc[i])
 				);
 				$("<button>").appendTo($("#certificate_delete")).attr("type","button").attr("class","btn btn-default").html("<span class='fui-new'></span>").bind({
-					alert($(this).prev(".deleteid").text());
+					click:function(e){
+						alert($(this).prev(".deleteid").text());
+					}
 				});
 				$("<button>").appendTo($("#certificate_delete")).attr("type","button").attr("class","btn btn-default").attr("style","margin-left:1px").html("<span class='fui-trash'></span>").bind({
-					alert($(this).prev(".deleteid").text());
+					click:function(e){
+						alert($(this).prev(".deleteid").text());
+					}
 				});
 			}
 			
