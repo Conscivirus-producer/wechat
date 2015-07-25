@@ -507,15 +507,40 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 					click:function(e){
 						var updateVal = $(this).prev().val();
 						var updateId = $(this).children(".deleteid").text();
-						
+						var postData = {
+							"updateId" : "",
+							"updateVal" : "",
+							"dataType" : "updateCertificateDesc"
+						};
+						postData["updateId"] = updateId;
+						postData["updateVal"] = updateVal;
+						$.post("teacherRegistrationService.php", postData,
+   							function(data){
+   								alert("证书名称/描述修改成功");
+     						}
+   						);
 					}
 				});
 				$("<button>").appendTo($("#certificate_delete")).attr("type","button").attr("class","btn btn-default").attr("style","margin-left:1px").html("<span style='display:none' class='deleteid'>"+imgUrl[i]+"</span>"+"<span class='fui-trash'></span>").bind({
 					click:function(e){
-						var updateId = $(this).children(".deleteid").text();
-						$(this).prev().remove();
-						$(this).prev().remove();
-						$(this).remove();
+						var $button = $(this);
+						var r=confirm("真的要删除这个证书吗？");
+  						if (r==true){
+  							var deleteId = $(this).children(".deleteid").text();
+  							var postData = {
+								"deleteId" : "",
+								"dataType" : "deleteCertificate"
+							};
+							postData["deleteId"] = deleteId;
+							$.post("teacherRegistrationService.php", postData,
+   								function(data){
+   									alert("证书删除成功");
+   									$button.prev().remove();
+									$button.prev().remove();
+									$button.remove();
+     							}
+   							);
+  						}
 					}
 				});
 			}
