@@ -104,7 +104,7 @@
 	function deleteCertificate($deleteId,$conn){
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "delete * from T_teacher_certifications where imageUrl = '$deleteId'";
+		$query = "delete from T_teacher_certifications where imageUrl = '$deleteId'";
 		$result = $conn->query($query);
 		
 		$jsonArray = array(
