@@ -493,6 +493,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			//certificateCount = length+1;
 
 			for(var i = 0;i < length;i++){
+				var deleteid = imgUrl[i];
 				$("#certificate").append(
 					$("<p />").attr("class", "text-left").text(desc[i])
 				);
@@ -500,18 +501,15 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 					$("<img />").attr("src", imgUrl[i]).attr("class", "img-responsive").attr("style", "margin: 0 auto")
 				);
 				$("#certificate_delete").append(
-					$("<span>").attr("style","display:none").attr("class","deleteid").text(imgUrl[i])
-				);
-				$("#certificate_delete").append(
 					$("<input>").attr("class","form-control").attr("type","text").attr("disabled","disabled").attr("value",desc[i])
 				);
 				var $modifyButton = $("<button>").attr("type","button").attr("class","btn btn-default");
 				var $deleteButton = $("<button>").attr("type","button").attr("class","btn btn-default").attr("style","margin-left:1px");
 				$modifyButton.click(function(){
-					alert($(this).prev(".deleteid").text());
+					alert(deleteid);
 				});
 				$deleteButton.click(function(){
-					alert($(this).prev(".deleteid").text());
+					alert(deleteid);
 				});
 				$modifyButton.append("<span class='fui-new'></span>");
 				$deleteButton.append("<span class='fui-trash'></span>");
