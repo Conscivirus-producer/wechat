@@ -507,6 +507,12 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 				);
 				var $modifyButton = $("<button>").attr("type","button").attr("class","btn btn-default");
 				var $deleteButton = $("<button>").attr("type","button").attr("class","btn btn-default").attr("style","margin-left:1px");
+				$modifyButton.click(function(){
+					alert($(this).prev("span").text());
+				});
+				$deleteButton..click(function(){
+					alert($(this).prev("span").text());
+				});
 				$modifyButton.append("<span class='fui-new'></span>");
 				$deleteButton.append("<span class='fui-trash'></span>");
 				$("#certificate_delete").append($modifyButton);
