@@ -348,7 +348,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			<button type="button" class="btn btn-default" style="margin-left:1px">
 				<span class="fui-trash"></span>
 			</button>
-			
+			 <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
 		</div>
 	</div>
 	<div class="row">
