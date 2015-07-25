@@ -141,9 +141,11 @@
 		if($follower != 'All'){
 			$query = $query." and T_transaction.follower = '$follower'";
 		}
-		$arr_string = join(',', $globalData->getWhiteListArray());
-		$query = $query." and T_transaction.parentOpenid not in ('$arr_string')";
+		//echo $globalData->getWhiteList();
+		$whiteList = $globalData->getWhiteList();
+		$query = $query." and T_transaction.parentOpenid not in $whiteList";
 		$query = $query." order by status, createdDt desc";
+		echo $query;
 		$result = $conn->query($query);
 		$jsonArray = array(
 			'transactionId' => array(),
