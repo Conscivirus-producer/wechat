@@ -342,13 +342,14 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	<div class="row">
 		<div class="col-md-4 col-md-offset-2" id="certificate_delete">
 			<label>删除/修改证书:</label><br>
-			<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
+			<!--<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
 			<button type="button" class="btn btn-default">
   				<span class="fui-new">
 			</button>
 			<button type="button" class="btn btn-default" style="margin-left:1px">
 				<span class="fui-trash"></span>
-			</button>
+			</button>-->
+			
 		</div>
 	</div>
 	<div class="row">
@@ -498,6 +499,21 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 				$("#certificate").append(
 					$("<img />").attr("src", imgUrl[i]).attr("class", "img-responsive").attr("style", "margin: 0 auto")
 				);
+				$("#certificate_delete").append(
+					$("<span>").attr("style","display:none").text(imgUrl[i]);
+				);
+				$("#certificate_delete").append(
+					$("<span>").attr("style","display:none").text(imgUrl[i]);
+				);
+				$("#certificate_delete").append(
+					$("<input>").attr("class","form-control").attr("type","text").attr("disabled","disabled").attr("value",desc[i])
+				);
+				var $modifyButton = $("<button>").attr("type","button").attr("class","btn btn-default");
+				var $deleteButton = $("<button>").attr("type","button").attr("class","btn btn-default").attr("style","margin-left:1px");
+				$modifyButton.append("<span class='fui-new'></span>");
+				$deleteButton.append("<span class='fui-trash'></span>");
+				$("#certificate_delete").append($modifyButton);
+				$("#certificate_delete").append($deleteButton);
 			}
 			
 			$('img[name*="initLoading"]').remove();
