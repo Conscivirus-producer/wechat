@@ -340,17 +340,6 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-2" id="certificate_delete">
-			<label>删除/修改证书:</label><br>
-			<button type="button" class="btn btn-default">
-  				<span class="fui-new">
-			</button>
-			<button type="button" class="btn btn-default" style="margin-left:1px">
-				<span class="fui-trash"></span>
-			</button>
-		</div>
-	</div>
-	<div class="row">
 		<div class="col-md-4 col-md-offset-2" id="certificate_upload_div">
 			<label for="certificate_desc">添加证书(要求输入证书的名称/描述，可传多张):</label>
 			<input type="text" class="form-control" name="certificate_desc" id="certificate_desc" placeholder="请输入证书的名称/描述" style="margin-bottom:5px">

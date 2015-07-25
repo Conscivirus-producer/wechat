@@ -3,6 +3,19 @@ require_once("config.php");
 require_once 'vendor/autoload.php';
 use Qiniu\Auth;
 
+
+$openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
+/*if (isset($_GET['code'])){
+    $code = $_GET['code'];
+    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
+    $access_token_json = file_get_contents($access_token_get_url); 
+    $json_obj = json_decode($access_token_json,true);
+    $openid = $json_obj["openid"];
+}else{
+	//need to be modified to show hint and qrcode image
+    exit("NO CODE");
+}*/
+
 $accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
 $secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
 $auth = new Auth($accessKey, $secretKey);
@@ -17,18 +30,6 @@ $auth2 = new Auth($accessKey, $secretKey);
 
 $bucket2 = 'wojiaonixue';
 $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
-
-$openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
-if (isset($_GET['code'])){
-    $code = $_GET['code'];
-    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
-    $access_token_json = file_get_contents($access_token_get_url); 
-    $json_obj = json_decode($access_token_json,true);
-    $openid = $json_obj["openid"];
-}else{
-	//need to be modified to show hint and qrcode image
-    exit("NO CODE");
-}
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -339,6 +340,18 @@ if (isset($_GET['code'])){
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-4 col-md-offset-2" id="certificate_delete">
+			<label>删除/修改证书:</label><br>
+			<button type="button" class="btn btn-default">
+  				<span class="fui-new">
+			</button>
+			<button type="button" class="btn btn-default" style="margin-left:1px">
+				<span class="fui-trash"></span>
+			</button>
+			
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-4 col-md-offset-2" id="certificate_upload_div">
 			<label for="certificate_desc">添加证书(要求输入证书的名称/描述，可传多张):</label>
 			<input type="text" class="form-control" name="certificate_desc" id="certificate_desc" placeholder="请输入证书的名称/描述" style="margin-bottom:5px">
@@ -378,7 +391,7 @@ if (isset($_GET['code'])){
 	var rootUrl = $("#rootUrl").val();
 	var typeCodes = ["A","B","C","D","E","F","SU"];
 	var openid = $("#openid").val();
-	var certificateCount = 1;
+	var certificateCount = "";
 	
 	var postData = {
 		"dataType":"getTeacherInformation",
@@ -476,7 +489,7 @@ if (isset($_GET['code'])){
 			var desc = certificate.desc;
 			var imgUrl = certificate.imgUrl;
 			var length = desc.length;
-			certificateCount = length+1;
+			//certificateCount = length+1;
 
 			for(var i = 0;i < length;i++){
 				$("#certificate").append(
@@ -617,7 +630,7 @@ if (isset($_GET['code'])){
      				alert("数据修改成功！");
      				//$("#modifyInformationPanel").hide();
    					//$("#showInformationPanel").show();
-   					window.location.href = "http://www.hehe.life/showTeacherInformationCopy.php"+"?timestamp="+new Date().getTime();
+   					window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://"+rootUrl+"/showTeacherInformation.php"+"?timestamp="+new Date().getTime()+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
      				//window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/showTeacherInformation.php&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
      			}
    			);
@@ -779,7 +792,7 @@ if (isset($_GET['code'])){
 								$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_certificate"+"_"+certificateCount).attr("class", "img-responsive").attr("style", "margin: 0 auto")
 							);
      						certificateUploaded = true;
-                    		certificateCount++;
+                    		//certificateCount++;
                     		$("#certificate_desc").val("");
                     		alert("证书添加成功");
      					}
@@ -795,6 +808,8 @@ if (isset($_GET['code'])){
         };
         var token = $("#certificate_token").val();
         if ($("#certificate_upload")[0].files.length > 0 && token != "") {
+        	//certificateCount使得删除图片不方便，修改成unix时间戳
+        	certificateCount = new Date().getTime();
         	$("#certificate_upload_div").append($("<br />"));
         	$("#certificate_upload_div").append(
 				$("<img />").attr("src", "image/loading_normal.gif").attr("class", "img-responsive").attr("style", "margin: 0 auto").attr("name", "loading"+certificateCount)
@@ -804,6 +819,12 @@ if (isset($_GET['code'])){
             console && console.log("form input error");
         }
     })
+    });
+    
+    $("#update_location").change(function(){
+    	if($.inArray("location0",$(this).val()) != -1){
+    		$(this).val(["location0"]);
+    	}
     });
 	</script>
 </div>
