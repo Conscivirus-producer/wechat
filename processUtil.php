@@ -63,6 +63,8 @@ class CodeParser{
 			return 	"2.客服已联系家长,家长未确定";
 		}else if($status == "3"){
 			return 	"3.家长已同意,安排试教中";
+		}else if($status == "4"){
+			return 	"4.已试教";
 		}else if($status == "C"){
 			return 	"C.订单已取消";
 		}else if($status == "S"){

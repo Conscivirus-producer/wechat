@@ -50,6 +50,7 @@ require_once("config.php");
 					<option value='1'>1.新订单</option>
 					<option value='2'>2.客服已联系家长,家长未确定</option>
 					<option value='3'>3.家长已同意,安排试教中</option>
+					<option value='4'>4.已试教</option>
 					<option value='S'>S.订单已正式确定</option>
 				</select>
 			</div>
@@ -357,6 +358,7 @@ function renderData(status, follower){
 				"<option value='1'>1.新订单</option>"+
 				"<option value='2'>2.客服已联系家长,家长未确定</option>"+
 				"<option value='3'>3.家长已同意,安排试教中</option>"+
+				"<option value='4'>4.已试教</option>"+
 				"<option value='S'>S.订单已正式确定</option>"+
 				"<option value='C'>C.取消</option></select>").appendTo($(this)).bind({
 					change: function(e){
