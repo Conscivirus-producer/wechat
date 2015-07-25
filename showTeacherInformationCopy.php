@@ -510,7 +510,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 				$modifyButton.click(function(){
 					alert($(this).prev("span").text());
 				});
-				$deleteButton..click(function(){
+				$deleteButton.click(function(){
 					alert($(this).prev("span").text());
 				});
 				$modifyButton.append("<span class='fui-new'></span>");
