@@ -500,10 +500,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 					$("<img />").attr("src", imgUrl[i]).attr("class", "img-responsive").attr("style", "margin: 0 auto")
 				);
 				$("#certificate_delete").append(
-					$("<span>").attr("style","display:none").text(imgUrl[i]);
-				);
-				$("#certificate_delete").append(
-					$("<span>").attr("style","display:none").text(imgUrl[i]);
+					$("<span>").attr("style","display:none").text(imgUrl[i])
 				);
 				$("#certificate_delete").append(
 					$("<input>").attr("class","form-control").attr("type","text").attr("disabled","disabled").attr("value",desc[i])
