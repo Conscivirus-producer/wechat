@@ -379,7 +379,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	var rootUrl = $("#rootUrl").val();
 	var typeCodes = ["A","B","C","D","E","F","SU"];
 	var openid = $("#openid").val();
-	var certificateCount = 1;
+	var certificateCount = "";
 	
 	var postData = {
 		"dataType":"getTeacherInformation",
@@ -477,7 +477,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			var desc = certificate.desc;
 			var imgUrl = certificate.imgUrl;
 			var length = desc.length;
-			certificateCount = length+1;
+			//certificateCount = length+1;
 
 			for(var i = 0;i < length;i++){
 				$("#certificate").append(
@@ -780,7 +780,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 								$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_certificate"+"_"+certificateCount).attr("class", "img-responsive").attr("style", "margin: 0 auto")
 							);
      						certificateUploaded = true;
-                    		certificateCount++;
+                    		//certificateCount++;
                     		$("#certificate_desc").val("");
                     		alert("证书添加成功");
      					}
@@ -796,6 +796,8 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
         };
         var token = $("#certificate_token").val();
         if ($("#certificate_upload")[0].files.length > 0 && token != "") {
+        	//certificateCount使得删除图片不方便，修改成unix时间戳
+        	certificateCount = new Date().getTime();
         	$("#certificate_upload_div").append($("<br />"));
         	$("#certificate_upload_div").append(
 				$("<img />").attr("src", "image/loading_normal.gif").attr("class", "img-responsive").attr("style", "margin: 0 auto").attr("name", "loading"+certificateCount)
