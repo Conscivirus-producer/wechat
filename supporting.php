@@ -2,6 +2,8 @@
 	header('Access-Control-Allow-Origin:*');
 	require_once("config.php");
 	require_once("processUtil.php");
+	require_once("globalData.php");
+	
 	$codeParser = new CodeParser();
 	$conn = new mysqli($host, $user, $password, $database);
 	
@@ -108,6 +110,7 @@
 
 	function getTransactionsByStatus($conn){
 		global $codeParser;
+		$globalData = new GlobalData();
 		$status = trim($_GET["status"]);
 		$startDate = trim($_GET["startDate"]);
 		$endDate = trim($_GET["endDate"]);
@@ -138,6 +141,8 @@
 		if($follower != 'All'){
 			$query = $query." and T_transaction.follower = '$follower'";
 		}
+		$arr_string = join(',', $globalData->getWhiteListArray());
+		$query = $query." and T_transaction.parentOpenid not in ('$arr_string')";
 		$query = $query." order by status, createdDt desc";
 		$result = $conn->query($query);
 		$jsonArray = array(
