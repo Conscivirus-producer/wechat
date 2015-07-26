@@ -69,6 +69,13 @@ if (isset($_GET['code'])){
 				<td id="address">
 				</td>
 			</tr>
+			<tr>
+				<td>
+					状态
+				</td>
+				<td id="status">
+				</td>
+			</tr>
 			</table>
 		</div>
 		<br>
@@ -117,7 +124,7 @@ if (isset($_GET['code'])){
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="back" id="back">返回</button>
-			<button type="button" class="btn btn-lg btn-block options" name="cancel" id="cancel">取消订单</button>
+			<button type="button" class="btn btn-lg btn-block options" name="cancel" id="cancel" style="display:none">取消订单</button>
 		</div>
 	</div>
 	
@@ -138,6 +145,10 @@ $(document).ready(function(){
 	var url = "http://"+rootUrl+"/service.php?requestMethod=trandactionDetail&transactionId="+transactionId;
 	$.getJSON(url,function(data){
 		$("#createdDt").html(data.createdDt);
+		$("#status").html(data.statusDescription);
+		if(data.status != 'C'){
+			$("#cancel").attr("style", "");
+		}
 		$("#studyContent").html(data.subject + " " +data.interest);
 		$("#price").html(data.price);
 		$("#address").html(data.expectedLocation);
