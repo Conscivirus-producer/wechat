@@ -559,7 +559,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			$("#update_name").val(name);$("#update_sex").val(sex);$("#update_school").val(faculty);
 			$("#update_major").val(major);$("#update_studentNumber").val(studentNumber);$("#update_phone").val(phone);
 			$("#update_desc").val(selfDesc);$("#update_grade").val(highestGrade);$("#update_price").val(price);
-			$("#update_location").val(place);
+			$("#update_location").val(place.split(","));
 			function createOptions(typeCode, optionId, selectedOptions){
 				var url = "http://"+rootUrl+"/service.php?typeCode="+typeCode;
 				$.getJSON(url,function(data){
