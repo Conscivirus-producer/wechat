@@ -88,6 +88,32 @@
 		return $jsonArray;
 	}
 	
+	function updateCertificateDesc($updateId,$updateVal,$conn){
+		$query = "set names utf8";
+		$result = $conn->query($query);
+		$query = "update T_teacher_certifications set description = '$updateVal' where imageUrl = '$updateId'";
+		$result = $conn->query($query);
+		
+		$jsonArray = array(
+			"status" => "ok"
+		);
+		
+		return $jsonArray;
+	}
+	
+	function deleteCertificate($deleteId,$conn){
+		$query = "set names utf8";
+		$result = $conn->query($query);
+		$query = "delete from T_teacher_certifications where imageUrl = '$deleteId'";
+		$result = $conn->query($query);
+		
+		$jsonArray = array(
+			"status" => "ok"
+		);
+		
+		return $jsonArray;
+	}
+	
 	if($_POST){
 		$dataType = trim($_POST["dataType"]);
 		if($dataType == "getTeacherInformation"){
@@ -107,6 +133,15 @@
 			$desc = trim($_POST["description"]);
 			$imgUrl = trim($_POST["imageUrl"]);
 			echo json_encode(certificateRecord($openid,$desc,$imgUrl,$conn));
+		}
+		else if($dataType == "updateCertificateDesc"){
+			$updateId = trim($_POST["updateId"]);
+			$updateVal = trim($_POST["updateVal"]);
+			echo json_encode(updateCertificateDesc($updateId,$updateVal,$conn));
+		}
+		else if($dataType == "deleteCertificate"){
+			$deleteId = trim($_POST["deleteId"]);
+			echo json_encode(deleteCertificate($deleteId,$conn));
 		}
 		else if($dataType == "updateTeacherInformation"){
 			$openid = trim($_POST["openid"]);

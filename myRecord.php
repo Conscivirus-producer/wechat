@@ -23,6 +23,7 @@ if (isset($_GET['code'])){
 <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
 <!-- Loading Flat UI -->
 <link href="css/flat-ui.min.css" rel="stylesheet">
+<link href="css/myrecord.css" rel="stylesheet">
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 <!--[if lt IE 9]>
 <script src="js/vendor/html5shiv.js"></script>
@@ -34,15 +35,26 @@ if (isset($_GET['code'])){
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <div class="container">
 	<div class="row" style="" id="q0">
-		<div id="information" class="col-md-4 col-md-offset-4" style="text-align:left">		
-			我的记录
-		</div>
 	</div>
 	<div class="row" style="" id="q1">
 		<div id="information" class="col-md-4 col-md-offset-4" style="text-align:right">		
 			
 		</div>
 	</div>
+	<div class="col-xs-12 text-center" style="height: 70px;margin-top: 20px;color: #2cb298;"><h6>我的纪录</h6></div>
+	<table class="table table-striped my-record-table" style="box-shadow:0 0 10px #333;font-size:12px;">
+      <thead>
+        <tr style="background-color: #2cb298; color: white;">
+          <th>订单号</th>
+          <th>课程</th>
+          <th>价格</th>
+          <th>时间</th>
+          <th>状态</th>
+        </tr>
+      </thead>
+      <tbody id="records">
+      </tbody>
+    </table>
 	
 </div>
 <!-- /.container -->
@@ -59,38 +71,41 @@ $(document).ready(function(){
 	var url = "http://"+rootUrl+"/service.php?requestMethod=myRecord&parentOpenId="+openId;
 	$.getJSON(url,function(data){
 		var transactionId = data.transactionId;
-		var subject = data.subject;
-		var interest = data.interest;
-		var createdDt = data.createdDt;
 		var length = transactionId.length;
 		if(length == 0){
-			$("#information").html("您当前还没有选择老师");
+			$("#information").html("<div style='margin-top: 50%' align='center'><div style='font-size: 16px; width: 80%; color:#2CB298;'>您当前还没有任何家教订单<div></div>");
 		}
-		var $ulGroup = $("<ul>", {class : "list-group"});
 		for(var i = 0;i < length;i++){
-			var $li = $("<a>", {class: "list-group-item"}).text(subject[i] + " " + data.interest[i] + " " + data.fee[i] + " " + createdDt[i] + " " + data.status[i]);
-			$li.attr("id",data.transactionId[i]);
-			$li.click(function(){
-				window.location.href="myRecordDetail.php?transactionId="+$(this).attr("id");
+			var course;
+			if(data.subject[i] != "" && data.interest[i] != ""){
+				course = data.interest[i]+','+data.subject[i];
+			}else if(data.interest[i] != ""){
+				course = data.interest[i];
+			}else if(data.subject[i] != ""){
+				course =data.subject[i];
+			}
+			var prize;
+			if(data.fee[i]!=""){
+				prize = data.fee[i];
+			}else{
+				prize = "待定";
+			};
+			var createdDate = data.createdDt[i].substring(0,10);
+			var status = data.status[i].substring(2);
+			
+			var tableContent = $("<tr></tr>");
+			var th = $("<th>").attr("scope", "row").text(data.transactionId[i]);
+			var td1 = $("<td>").text(course);
+			var td2 = $("<td>").text(prize);
+			var td3 = $("<td>").text(createdDate);
+			var td4 = $("<td>").text(status);
+			td4.append("<div class='arrow'></div>");
+			tableContent.append(th, td1, td2, td3, td4);
+			tableContent.click(function(){
+				window.location.href="myRecordDetail.php?transactionId="+$(this).find('th').text();
 			});
-			/*if(data.status[i] == 'I' || data.status[i] == 'S'){
-				var $button = $("<button>", {type: "button", style:"text-align:right"}).attr("id",data.transactionId[i]).text("取消记录");
-				$li.append($button);
-				$button.click(function(){
-					var value = $(this).attr("id");
-					if(window.confirm("您确定要取消交易吗？")){
-						cancelUrl = "http://"+rootUrl+"/service.php?requestMethod=cancelTransaction&transactionId="+value;
-						$.getJSON(cancelUrl,function(data){
-						});
-						window.location = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+$appid+"&redirect_uri="+
-						"http://"+rootUrl+"/myRecord.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
-							//window.location.reload();
-					}
-				});
-			}*/
-			$ulGroup.append($li);
-		}
-		$("#q1").append($ulGroup);
+			$("#records").append(tableContent);
+		};
 	});
 });
 

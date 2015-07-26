@@ -318,7 +318,7 @@ var optionData;
 //openid, 上传图像时用来标记，上传证书时也要用来标记
 var openid = $("#openid").val();
 
-var certificateCount = 1;
+var certificateCount = "";
 var imageUploaded = false;
 var certificateUploaded = false;
 var certificateDesc = "";
@@ -335,7 +335,7 @@ $.post("teacherRegistrationService.php", postData,
    		var imgUrl = jsonObj.imageUrl;
    		var length = imgUrl.length;
    		if(length != 0){
-   			certificateCount = length + 1;
+   			//certificateCount = length + 1;
    			certificateUploaded = true;
    			for(var k = 0;k < length;k++){
    				$("#certificate_upload_div").append(
@@ -465,6 +465,9 @@ $("#submit").click(function(){
 		
 		postData.otheroptions = otheroptions;
 		postData.price = price;
+		if($.inArray("location0",location) != -1){
+			location = ["location0"];
+		}
 		postData.location = location;
 		postData.highestGrade = highestGrade;
 		if(imageUploaded == true){
@@ -614,7 +617,8 @@ $(document).ready(function() {
     
     
     $("#certificate_upload").change(function() {
-        //普通上传
+    	
+        //define a upload function
         var Qiniu_upload = function(f, token, key) {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', Qiniu_UploadUrl, true);
@@ -666,7 +670,7 @@ $(document).ready(function() {
 								$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_certificate"+"_"+certificateCount).attr("class", "img-responsive").attr("style", "margin: 0 auto")
 							);
      						certificateUploaded = true;
-                    		certificateCount++;
+                    		//certificateCount++;
                     		$("#certificate_desc").val("");
                     		//alert("证书上传成功");
      					}
@@ -680,8 +684,12 @@ $(document).ready(function() {
             //$("#progressbar").show();
             xhr.send(formData);
         };
+        
+        //action
         var token = $("#token").val();
         if ($("#certificate_upload")[0].files.length > 0 && token != "") {
+        	//certificateCount使得删除图片不方便，修改成unix时间戳
+        	certificateCount = new Date().getTime();
         	$("#certificate_upload_div").append($("<br />"));
         	$("#certificate_upload_div").append(
 				$("<img />").attr("src", "image/loading_normal.gif").attr("class", "img-responsive").attr("style", "margin: 0 auto").attr("name", "loading"+certificateCount)

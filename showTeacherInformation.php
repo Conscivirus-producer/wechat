@@ -340,6 +340,19 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-4 col-md-offset-2" id="certificate_delete">
+			<label>删除/修改证书:</label><br>
+			<!--<input class="form-control" id="disabledInput" type="text" placeholder="Disabled input here..." disabled>
+			<button type="button" class="btn btn-default">
+  				<span class="fui-new">
+			</button>
+			<button type="button" class="btn btn-default" style="margin-left:1px">
+				<span class="fui-trash"></span>
+			</button>-->
+			
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-4 col-md-offset-2" id="certificate_upload_div">
 			<label for="certificate_desc">添加证书(要求输入证书的名称/描述，可传多张):</label>
 			<input type="text" class="form-control" name="certificate_desc" id="certificate_desc" placeholder="请输入证书的名称/描述" style="margin-bottom:5px">
@@ -379,7 +392,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	var rootUrl = $("#rootUrl").val();
 	var typeCodes = ["A","B","C","D","E","F","SU"];
 	var openid = $("#openid").val();
-	var certificateCount = 1;
+	var certificateCount = "";
 	
 	var postData = {
 		"dataType":"getTeacherInformation",
@@ -477,20 +490,64 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			var desc = certificate.desc;
 			var imgUrl = certificate.imgUrl;
 			var length = desc.length;
-			certificateCount = length+1;
+			//certificateCount = length+1;
 
 			for(var i = 0;i < length;i++){
+				var deleteid = imgUrl[i];
 				$("#certificate").append(
 					$("<p />").attr("class", "text-left").text(desc[i])
 				);
 				$("#certificate").append(
 					$("<img />").attr("src", imgUrl[i]).attr("class", "img-responsive").attr("style", "margin: 0 auto")
 				);
+				$("#certificate_delete").append(
+					$("<input>").attr("class","form-control").attr("type","text").attr("value",desc[i])
+				);
+				$("<button>").appendTo($("#certificate_delete")).attr("type","button").attr("class","btn btn-default").html("<span style='display:none' class='deleteid'>"+imgUrl[i]+"</span>"+"<span class='fui-new'></span>").bind({
+					click:function(e){
+						var updateVal = $(this).prev().val();
+						var updateId = $(this).children(".deleteid").text();
+						var postData = {
+							"updateId" : "",
+							"updateVal" : "",
+							"dataType" : "updateCertificateDesc"
+						};
+						postData["updateId"] = updateId;
+						postData["updateVal"] = updateVal;
+						$.post("teacherRegistrationService.php", postData,
+   							function(data){
+   								alert("证书名称/描述修改成功");
+     						}
+   						);
+					}
+				});
+				$("<button>").appendTo($("#certificate_delete")).attr("type","button").attr("class","btn btn-default").attr("style","margin-left:1px").html("<span style='display:none' class='deleteid'>"+imgUrl[i]+"</span>"+"<span class='fui-trash'></span>").bind({
+					click:function(e){
+						var $button = $(this);
+						var r=confirm("真的要删除这个证书吗？");
+  						if (r==true){
+  							var deleteId = $(this).children(".deleteid").text();
+  							var postData = {
+								"deleteId" : "",
+								"dataType" : "deleteCertificate"
+							};
+							postData["deleteId"] = deleteId;
+							$.post("teacherRegistrationService.php", postData,
+   								function(data){
+   									alert("证书删除成功");
+   									$button.prev().remove();
+									$button.prev().remove();
+									$button.remove();
+     							}
+   							);
+  						}
+					}
+				});
 			}
 			
 			$('img[name*="initLoading"]').remove();
 			
-			var newHeadUrl = imageUrl+"?timestamp="+new Date().getTime();
+			var newHeadUrl = imageUrl+"?imageView2/1/w/500/h/500/q/100"+"/timestamp="+new Date().getTime();
 			
 			$("#head").append(
 				$("<img />").attr("src", newHeadUrl).attr("class", "img-responsive img-circle").attr("width", "50%").attr("style", "margin: 0 auto")
@@ -502,7 +559,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			$("#update_name").val(name);$("#update_sex").val(sex);$("#update_school").val(faculty);
 			$("#update_major").val(major);$("#update_studentNumber").val(studentNumber);$("#update_phone").val(phone);
 			$("#update_desc").val(selfDesc);$("#update_grade").val(highestGrade);$("#update_price").val(price);
-			$("#update_location").val(place);
+			$("#update_location").val(place.split(","));
 			function createOptions(typeCode, optionId, selectedOptions){
 				var url = "http://"+rootUrl+"/service.php?typeCode="+typeCode;
 				$.getJSON(url,function(data){
@@ -611,6 +668,9 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		
 			postData.otheroptions = otheroptions;
 			postData.price = price;
+			if($.inArray("location0",location) != -1){
+				location = ["location0"];
+			}
 			postData.location = location;
 			postData.highestGrade = highestGrade;
 			$.post("teacherRegistrationService.php", postData,
@@ -702,7 +762,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
                     imageUploaded = true;
                     $('img[src*="loading_normal.gif"]').remove();
                     $("#image_upload_div").append(
-						$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?timestamp="+new Date().getTime()).attr("class", "img-responsive").attr("style", "margin: 0 auto")
+						$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100"+"/timestamp="+new Date().getTime()).attr("class", "img-responsive").attr("width", "50%").attr("style", "margin: 0 auto")
 					);
 					$("#head_upload").prop('disabled', true);
                     alert("头像修改成功");
@@ -780,7 +840,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 								$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_certificate"+"_"+certificateCount).attr("class", "img-responsive").attr("style", "margin: 0 auto")
 							);
      						certificateUploaded = true;
-                    		certificateCount++;
+                    		//certificateCount++;
                     		$("#certificate_desc").val("");
                     		alert("证书添加成功");
      					}
@@ -796,6 +856,8 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
         };
         var token = $("#certificate_token").val();
         if ($("#certificate_upload")[0].files.length > 0 && token != "") {
+        	//certificateCount使得删除图片不方便，修改成unix时间戳
+        	certificateCount = new Date().getTime();
         	$("#certificate_upload_div").append($("<br />"));
         	$("#certificate_upload_div").append(
 				$("<img />").attr("src", "image/loading_normal.gif").attr("class", "img-responsive").attr("style", "margin: 0 auto").attr("name", "loading"+certificateCount)

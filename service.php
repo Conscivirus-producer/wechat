@@ -1,8 +1,10 @@
 ﻿<?php
 	require_once("config.php");
 	require_once("processUtil.php");
+	require_once("yunpian.php");
 	$codeParser = new CodeParser();
 	$conn = new mysqli($host, $user, $password, $database);
+	$yunpian = new Yunpian("9b7f2d98e5eff742fa1e8f4d921cd2f3");
 	if($_GET&&$_GET["typeCode"]){
 		$typeCode = trim($_GET["typeCode"]);
 		$query = "set names utf8";
@@ -219,6 +221,8 @@
 		$mobile = trim($_GET["mobile"]);
 		$query = "UPDATE `T_parent` SET `mobile`='$mobile' WHERE openId = '$parentOpenId'";
 		$result = $conn->query($query);
+		
+		$yunpian->sendMessage($mobile,"【我教你学】您好，您的免费试教已预约成功！如果您有任何疑问，请致电400-686-4616或直接微信回复。关注公众号“我教你学”，服务进度实时掌控！");
 	}
 	
 	function insertTransaction($conn, $childId){
