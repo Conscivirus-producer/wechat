@@ -250,7 +250,7 @@
 		 
 		
 		$query = "select T_transaction.transactionId, T_transaction.createdDt, T_transaction.status, T_transaction.fee, T_child.subject, T_child.interest ".
-		"from T_transaction, T_child where T_transaction.parentOpenid = '$parentOpenId' and T_transaction.childId = T_child.childId";
+		"from T_transaction, T_child where T_transaction.parentOpenid = '$parentOpenId' and T_transaction.childId = T_child.childId ORDER BY `T_transaction`.`createdDt` DESC";
 		$result = $conn->query($query);
 		$jsonArray = array(
 			'transactionId' => array(),
