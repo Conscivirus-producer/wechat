@@ -162,7 +162,8 @@ $(document).ready(function(){
 });
 
 $("#back").click(function(){
-	self.location=document.referrer;
+	//self.location=document.referrer;
+	history.back();
 });
 
 $("#cancel").click(function(){
