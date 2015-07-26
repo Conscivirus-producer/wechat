@@ -17,8 +17,8 @@
 			getMyRecord($conn);	
 		}else if($requestMethod == "replyToUser"){
 			replyToUser($conn, $appid, $secret);
-		}else if($requestMethod == "updateNickName"){
-			updateNickNames($conn, $appid, $secret);
+		}else if($requestMethod == "updateFollowStatus"){
+			updateFollowStatus($conn, $appid, $secret);
 		}
 	}
 	
@@ -41,21 +41,19 @@
 	    return $str;  
 	} 
 	
-	function updateNickNames($conn, $appid, $secret){
+	function updateFollowStatus($conn, $appid, $secret){
+		$startDate = trim($_GET["startDate"]);
+		$endDate = trim($_GET["endDate"]);
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "SELECT openId FROM `T_parent` where nickname = '' and status != 'INACTIVE' limit 100"; 
+		$query = "SELECT openId FROM `T_scan_information` where createdDt > '$startDate' and createdDt < '$endDate'"; 
 		$result = $conn->query($query);
 		
 		while($row = $result->fetch_assoc()){
 			$openid = $row["openId"];
 			$json_obj = getUserDetails($openid, $appid, $secret);
-			if($json_obj["subscribe"] == "0"){
-				$query = "UPDATE `T_parent` SET `status`='INACTIVE' where openId = '$openid'";
-			}else{
-				$nickname = $json_obj["nickname"];
-				$query = "UPDATE `T_parent` SET `nickname`='$nickname' where openId = '$openid'";
-			}
+			$followed = $json_obj["subscribe"];
+			$query = "update `T_scan_information` set followed = '$followed' where openId = '$openid'";
 			$conn->query($query);
 		}
 	}
