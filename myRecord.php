@@ -42,7 +42,7 @@ if (isset($_GET['code'])){
 		</div>
 	</div>
 	<div class="col-xs-12 text-center" style="height: 70px;margin-top: 20px;color: #2cb298;"><h6>我的纪录</h6></div>
-	<table class="table table-striped my-record-table" style="box-shadow:0 0 10px #333;font-size:12px; border-radius: 3px">
+	<table class="table table-striped my-record-table" style="box-shadow:0 0 10px #333;font-size:12px;">
       <thead>
         <tr style="background-color: #2cb298; color: white;">
           <th>订单号</th>
