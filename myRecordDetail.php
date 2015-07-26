@@ -170,7 +170,8 @@ $("#cancel").click(function(){
 	if(window.confirm('你确定要取消交易吗？')){
 		var url = "http://"+rootUrl+"/service.php?requestMethod=cancelTransaction&transactionId="+transactionId;
 		$.getJSON(url,function(data){
-			self.location=document.referrer;	
+			//self.location=document.referrer;
+			history.back();	
 		});
 	}
 });
