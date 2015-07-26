@@ -465,6 +465,9 @@ $("#submit").click(function(){
 		
 		postData.otheroptions = otheroptions;
 		postData.price = price;
+		if($.inArray("location0",location) != -1){
+			location = ["location0"];
+		}
 		postData.location = location;
 		postData.highestGrade = highestGrade;
 		if(imageUploaded == true){

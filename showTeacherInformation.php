@@ -668,6 +668,9 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		
 			postData.otheroptions = otheroptions;
 			postData.price = price;
+			if($.inArray("location0",location) != -1){
+				location = ["location0"];
+			}
 			postData.location = location;
 			postData.highestGrade = highestGrade;
 			$.post("teacherRegistrationService.php", postData,
