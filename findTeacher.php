@@ -784,6 +784,7 @@ $(".btn.btn-lg.btn-block").click(function(){
 		});
 	}else if(itemname.indexOf("preview_done") >= 0){
 		$("#preview").hide("normal",function(){
+			//#add message function here#
 			insertParentAndChild();
 			showDiv($("#resultNotification"));
 		});	
