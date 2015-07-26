@@ -759,7 +759,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
                     imageUploaded = true;
                     $('img[src*="loading_normal.gif"]').remove();
                     $("#image_upload_div").append(
-						$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?timestamp="+new Date().getTime()).attr("class", "img-responsive").attr("style", "margin: 0 auto")
+						$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100"+"/timestamp="+new Date().getTime()).attr("class", "img-responsive").attr("width", "50%").attr("style", "margin: 0 auto")
 					);
 					$("#head_upload").prop('disabled', true);
                     alert("头像修改成功");
