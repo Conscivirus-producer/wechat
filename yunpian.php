@@ -1,6 +1,6 @@
 <?php
 	class Yunpian{
-		private $apikey = "9b7f2d98e5eff742fa1e8f4d921cd2f3";
+		private $apikey = "350ae520025f34632735707664d5ae49";
 		private $accountPostUrl = "http://yunpian.com/v1/user/get.json";
 		private $templatePostUrl = "http://yunpian.com/v1/tpl/get_default.json";
 		private $messagePostUrl = "http://yunpian.com/v1/sms/send.json";
