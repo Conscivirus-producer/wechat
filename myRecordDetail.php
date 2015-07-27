@@ -178,7 +178,7 @@ $(document).ready(function(){
 		$("#price").html(price);
 		$("#address").html(data.expectedLocation);
 		if(data.name == null){
-			$("#teacher-info").text("教师信息.待定");
+			$("#teacher-info").text("教师.待定");
 		}
 		$("#teacherName").html(data.name);
 		$("#teacherMajor").html(data.major);
