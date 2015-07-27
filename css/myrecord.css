@@ -13,3 +13,6 @@
 	transform: rotate(-45deg);
 }
 
+table.my-record-table tr:nth-child(even){
+	background-color: white;
+}
