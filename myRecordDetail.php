@@ -27,6 +27,7 @@ if (isset($_GET['code'])){
 <link href="css/flat-ui.min.css" rel="stylesheet">
 <link href="css/default.css" rel="stylesheet">
 <link href="css/start.css" rel="stylesheet">
+<link href="css/myRecordDetail.css" rel="stylesheet" />
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 <!--[if lt IE 9]>
 <script src="js/vendor/html5shiv.js"></script>
@@ -37,10 +38,12 @@ if (isset($_GET['code'])){
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <div class="container">
-	<div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<table width="100%">
-			<tr><td colspan="2">您选择的信息如下:</td></tr>
+		<table class="table table-striped my-record-detail" style="box-shadow:0 0 10px #333;font-size:12px;background-color: #2cb298;border-radius: 5px;margin-top:20px">
+			<thead>
+				<tr>
+		          <td style="color:white">订单详情</td>
+		        </tr>
+			</thead>
 			<tr>
 				<td width="30%">
 					日期
@@ -76,35 +79,46 @@ if (isset($_GET['code'])){
 				<td id="status">
 				</td>
 			</tr>
-			</table>
-		</div>
-		<br>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<table>
-			<tr><td colspan="2">老师信息如下:</td></tr>
+		</table>
+
+		<table class="table table-striped my-record-detail" style="box-shadow:0 0 10px #333;font-size:12px;background-color: #2cb298;border-radius: 5px;margin-top:20px;margin-bottom: 60px">
+			<thead>
+				<tr>
+		          <td style="color:white" id="teacher-info">老师信息</td>
+		        </tr>
+			</thead>
+			<!-- avatar -->
+			<!-- <tr>
+				<td>
+					<img class="img-circle" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/2015072407.jpg?imageView2/1/w/65/h/65/q/100" />
+				</td>
+				<td>
+					
+				</td>
+			</tr> -->
 			<tr>
-				<td width="30%">
+				<td>
 					姓名:
 				</td>
 				<td id="teacherName">
 				</td>
 			</tr>
 			<tr>
-				<td valign="top">
+				<td>
 					专业:
 				</td>
 				<td id="teacherMajor">
 				</td>
 			</tr>
 			<tr>
-				<td valign="top">
+				<td>
 					所获荣誉:
 				</td>
 				<td id="certifications">
 				</td>
 			</tr>
 			<tr>
-				<td valign="top">
+				<td>
 					特质:
 				</td>
 				<td id="teacherDescription">
@@ -117,14 +131,22 @@ if (isset($_GET['code'])){
 				<td id="mobile">
 				</td>
 			</tr>
-			</table>
-		</div>
+		</table>
 	</div>
 	
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block options" name="back" id="back">返回</button>
 			<button type="button" class="btn btn-lg btn-block options" name="cancel" id="cancel" style="display:none">取消订单</button>
+		</div>
+	</div> -->
+	
+	<div class="button-group">
+		<div class="col-xs-6 line">
+			<button type="button" class="btn btn-lg btn-block"  name="back" id="back">返回</button>
+		</div>
+		<div class="col-xs-6">
+			<button type="button" class="btn btn-lg btn-block" name="cancel" id="cancel" >取消订单</button>
 		</div>
 	</div>
 	
@@ -145,13 +167,19 @@ $(document).ready(function(){
 	var url = "http://"+rootUrl+"/service.php?requestMethod=trandactionDetail&transactionId="+transactionId;
 	$.getJSON(url,function(data){
 		$("#createdDt").html(data.createdDt);
-		$("#status").html(data.statusDescription);
+		$("#status").html(data.statusDescription.substring(2));
 		if(data.status != 'C'){
 			$("#cancel").attr("style", "");
 		}
 		$("#studyContent").html(data.subject + " " +data.interest);
-		$("#price").html(data.price);
+		if(data.price == null){
+			var price = "待定";
+		}
+		$("#price").html(price);
 		$("#address").html(data.expectedLocation);
+		if(data.name == null){
+			$("#teacher-info").text("教师信息 (安排中)");
+		}
 		$("#teacherName").html(data.name);
 		$("#teacherMajor").html(data.major);
 		$("#teacherDescription").html(data.description);

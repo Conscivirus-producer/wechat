@@ -94,7 +94,7 @@
 		
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "SELECT T_transaction.createdDt, T_transaction.status, T_child.subject,T_child.interest,T_child.expected_price,T_child.expectedLocation, ".
+		$query = "SELECT T_transaction.createdDt, T_transaction.status, T_child.subject,T_child.interest,T_child.expected_price,T_child.expectedLocation,T_teacher.openId,".
 		"T_teacher.openId, T_teacher.name,T_teacher.major,T_teacher.description,T_teacher.imageUrl,T_teacher.mobile FROM T_child, T_transaction left join T_teacher on ".
 		"T_transaction.teacherOpenid = T_teacher.openId where T_transaction.transactionId = '$transactionId' and T_transaction.childId = T_child.childId";
 		$result = $conn->query($query);
@@ -106,6 +106,7 @@
 							"interest"=>$codeParser->getInterestName($row["interest"],$conn),
 							"expected_price"=>$codeParser->getExpectedPrice($row["expected_price"]),
 							"expectedLocation"=>$codeParser->getExpectedLocation($row["expectedLocation"]),
+							"openid"=>$row["openId"],
 							"name"=>$row["name"],
 							"major"=>$row["major"], 
 							"description"=>$row["description"],
