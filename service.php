@@ -76,7 +76,7 @@
 		}else if($requestMethod == "teacherDetails"){
 			getTeacherDetails($conn);
 		}else if($requestMethod == "updateParentMobile"){
-			updateParentMobile($conn);
+			updateParentMobile($conn,$yunpian);
 		}else if($requestMethod == "myRecord"){
 			getMyRecord($conn);	
 		}else if($requestMethod == "cancelTransaction"){
@@ -217,7 +217,7 @@
 		return $json_obj;
 	}
 	
-	function updateParentMobile($conn){
+	function updateParentMobile($conn,$yunpian){
 		$parentOpenId = trim($_GET["parentOpenId"]);
 		$mobile = trim($_GET["mobile"]);
 		$query = "UPDATE `T_parent` SET `mobile`='$mobile' WHERE openId = '$parentOpenId'";
