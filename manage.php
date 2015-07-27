@@ -3,15 +3,6 @@ require_once("config.php");
 
 require_once 'vendor/autoload.php';
 use Qiniu\Auth;
-
-$accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
-$secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
-$auth = new Auth($accessKey, $secretKey);
-
-$bucket = 'wojiaonixue';
-$token = $auth->uploadToken($bucket);
-
-$openid = "";
 if (isset($_GET['code'])){
     $code = $_GET['code'];
     $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
@@ -29,6 +20,15 @@ if (isset($_GET['code'])){
 	//need to be modified to show hint and qrcode image
     exit("NO CODE");
 }
+
+$accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
+$secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
+$auth = new Auth($accessKey, $secretKey);
+
+$bucket = 'wojiaonixue';
+$token = $auth->uploadToken($bucket);
+
+//$openid = "";
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
