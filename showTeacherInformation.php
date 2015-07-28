@@ -902,7 +902,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
   var nonceStr = $("#nonceStr").val();
   var signature = $("#signature").val();
   var configData = {
-  	 debug: false,
+  	 debug: true,
   	 appId: '',
   	 timestamp: '',
   	 nonceStr: '',
@@ -930,11 +930,15 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		var shareData = {
 			title: '这里是分享标题',
 			desc: '这里是发送给好友的时候的简介',
-			link: 'http://baidu.com',
+			link: 'http://baidu.com/',
 			imgUrl: 'http://baidu.com/logo.jpg'
 		};
 		wx.onMenuShareAppMessage(shareData);
 		wx.onMenuShareTimeline(shareData);
+		alert("ok");
+	});
+	wx.error(function (res) {
+	  alert(res.errMsg);
 	});
 //});
 </script>
