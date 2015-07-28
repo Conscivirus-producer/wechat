@@ -913,16 +913,12 @@ $(document).ready(function(){
         'getNetworkType'
      ]
   };
-  alert(appid);
-  alert(timestamp);
-  alert(nonceStr);
-  alert(signature);
   configData["appId"] = appid;
   configData["timestamp"] = timestamp;
   configData["nonceStr"] = nonceStr;
   configData["signature"] = signature;
   wx.config(configData);
-  wx.read(function(){
+  wx.ready(function(){
   	wx.getNetworkType({
     	success: function (res) {
         	var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
