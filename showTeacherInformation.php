@@ -1,9 +1,11 @@
 <?php
 require_once("config.php");
 require_once 'vendor/autoload.php';
+require_once "jssdk.php";
 use Qiniu\Auth;
 
-
+$jssdk = new JSSDK($appid, $secret);
+$signPackage = $jssdk->GetSignPackage();
 if (isset($_GET['code'])){
     $code = $_GET['code'];
     $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
@@ -11,17 +13,6 @@ if (isset($_GET['code'])){
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
     
-    $access_token = $json_obj["access_token"];
-    $jsapi_ticket_url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=".$access_token."&type=jsapi";
-    $jsapi_ticket_json = file_get_contents($jsapi_ticket_url);
-    $jsapi_ticket_json_obj = json_decode($jsapi_ticket_json,true);
-    $jsapi_ticket = $jsapi_ticket_json_obj["ticket"];
-    
-    $timestamp = time();
-    $nonceStr = "Wm3WZYTPz0wzccnW";
-    $url = "http://www.ilearnnn.com/teacherInformation.php?openid=".$openid;
-    $wxOri = sprintf("jsapi_ticket=%s&noncestr=%s&timestamp=%s&url=%s",$jsapi_ticket,$nonceStr,$timestamp,$url);
-    $wxSha1 = sha1($wxOri);
     
 }else{
 	//need to be modified to show hint and qrcode image
@@ -79,11 +70,6 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="token" id="token" value="<?php echo $token; ?>" style="display:none">
 <input type="text" name="certificate_token" id="certificate_token" value="<?php echo $certificate_token; ?>" style="display:none">
-<!-- wx js-->
-<input type="text" name="appid" id="appid" value="<?php echo $appid; ?>" style="display:none">
-<input type="text" name="timestamp" id="timestamp" value="<?php echo $timestamp; ?>" style="display:none">
-<input type="text" name="nonceStr" id="nonceStr" value="<?php echo $nonceStr; ?>" style="display:none">
-<input type="text" name="signature" id="signature" value="<?php echo $wxSha1; ?>" style="display:none">
 <div class="container">
 	<!-- showInformationPanel -->
 	<div id="showInformationPanel">
@@ -896,51 +882,34 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
-//$(document).ready(function(){
-  var appid = $("#appid").val();
-  var timestamp = $("#timestamp").val();
-  var nonceStr = $("#nonceStr").val();
-  var signature = $("#signature").val();
-  var configData = {
-  	 debug: true,
-  	 appId: '',
-  	 timestamp: '',
-  	 nonceStr: '',
-  	 signature: '',
-  	 jsApiList: [
-        'onMenuShareTimeline',
-        'onMenuShareAppMessage',
-        'getNetworkType'
-     ]
-  };
-  configData["appId"] = appid;
-  configData["timestamp"] = timestamp;
-  configData["nonceStr"] = nonceStr;
-  configData["signature"] = signature;
-  wx.config(configData);
-  /*var shareData = {
-    title: '', // 分享标题
-    link: '', // 分享链接
-    imgUrl: ''
-  };
-  shareData["title"] = "深圳大学 - " + name;
-  shareData["link"] = "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid;
-  shareData["imgUrl"] = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100";*/
- wx.ready(function () {
-		var shareData = {
-			title: '这里是分享标题',
-			desc: '这里是发送给好友的时候的简介',
-			link: 'http://baidu.com/',
-			imgUrl: 'http://baidu.com/logo.jpg'
+	wx.config({
+    debug: true,
+    appId: '<?php echo $signPackage["appId"];?>',
+    timestamp: <?php echo $signPackage["timestamp"];?>,
+    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+    signature: '<?php echo $signPackage["signature"];?>',
+    jsApiList: [
+    'onMenuShareTimeline',
+    'onMenuShareAppMessage'
+    ]
+  });
+  var shareData = {
+			title: '',
+			desc: '你教我学老师信息',
+			link: '',
+			imgUrl: ''
 		};
-		wx.onMenuShareAppMessage(shareData);
-		wx.onMenuShareTimeline(shareData);
-		alert("ok");
-	});
+  shareData["title"] = "深圳大学 - " + name;
+	shareData["link"] = "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid;
+	shareData["imgUrl"] = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100";
+  wx.ready(function () {
+    wx.onMenuShareAppMessage(shareData);
+	wx.onMenuShareTimeline(shareData);
+  });
+	
 	wx.error(function (res) {
 	  alert(res.errMsg);
 	});
-//});
 </script>
 </html>
 
