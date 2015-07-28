@@ -95,7 +95,7 @@ if(isset($_GET["openid"])){
 	</div>
 	<div class="row" id="followUpImage" style="display:none">
 		<div class="col-md-4 col-md-offset-4" id="head" class="text-center">
-			<img src="image/qrcode.jpg" class="img-responsive" style="margin: 0 auto" width="50%"/>
+			<img src="image/follow.jpg" class="img-responsive" style="margin: 0 auto" width="50%"/>
 		</div>
 	</div>
 	<!-- follow up image -->
