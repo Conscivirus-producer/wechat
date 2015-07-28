@@ -95,12 +95,11 @@ if(isset($_GET["openid"])){
 	</div>
 	<div class="row" id="followUpImage" style="display:none">
 		<div class="col-md-4 col-md-offset-4" id="head" class="text-center">
-			<img src="image/showqrcode6.jpeg" class="img-responsive" style="margin: 0 auto" width="50%"/>
+			<img src="image/qrcode.jpg" class="img-responsive" style="margin: 0 auto" width="50%"/>
 		</div>
 	</div>
 	<!-- follow up image -->
 	
-	<a href="http://weixin.qq.com/r/gh_12fe7efd9d1e">微6平台</a>
 </div>
 	<script src="js/flat-ui.min.js"></script>
 	<script src="assets/js/application.js"></script>
