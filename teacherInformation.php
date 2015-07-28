@@ -95,7 +95,7 @@ if(isset($_GET["openid"])){
 	</div>
 	<div class="row" id="followUpImage" style="display:none">
 		<div class="col-md-4 col-md-offset-4" id="head" class="text-center">
-			<img src="image/showqrcode6.jpeg" class="img-responsive" style="margin: 0 auto" name="initLoading" width="50%"/>
+			<img src="image/showqrcode6.jpeg" class="img-responsive" style="margin: 0 auto" width="50%"/>
 		</div>
 	</div>
 	<!-- follow up image -->
@@ -216,7 +216,6 @@ if(isset($_GET["openid"])){
 				);
 			}
 			
-			$('img[name*="initLoading"]').remove();
 			
 			var newHeadUrl = imageUrl+"?imageView2/1/w/500/h/500/q/100"+"/timestamp="+new Date().getTime();
 			
