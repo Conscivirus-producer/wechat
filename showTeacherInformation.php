@@ -918,16 +918,20 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
   configData["nonceStr"] = nonceStr;
   configData["signature"] = signature;
   wx.config(configData);
-  var shareData = {
+  /*var shareData = {
     title: '', // 分享标题
     link: '', // 分享链接
     imgUrl: ''
   };
   shareData["title"] = "深圳大学 - " + name;
   shareData["link"] = "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid;
-  shareData["imgUrl"] = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100";
+  shareData["imgUrl"] = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100";*/
   wx.ready(function(){
-  	wx.onMenuShareTimeline(shareData);
+  	 wx.onMenuShareTimeline({
+        title: '分享标题', // 分享标题
+        link:"分享的url,以http或https开头",
+        imgUrl: "分享图标的url,以http或https开头" // 分享图标
+    });
   });
 //});
 </script>
