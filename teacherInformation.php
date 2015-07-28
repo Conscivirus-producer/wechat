@@ -216,6 +216,7 @@ if(isset($_GET["openid"])){
 				);
 			}
 			
+			$('img[name*="initLoading"]').remove();
 			
 			var newHeadUrl = imageUrl+"?imageView2/1/w/500/h/500/q/100"+"/timestamp="+new Date().getTime();
 			
