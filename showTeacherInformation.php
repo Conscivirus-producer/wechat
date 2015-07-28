@@ -918,25 +918,23 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
   configData["nonceStr"] = nonceStr;
   configData["signature"] = signature;
   wx.config(configData);
-  var onMenuShareTimelineData = {
+  var shareData = {
     title: '', // 分享标题
     link: '', // 分享链接
     imgUrl: '', // 分享图标
     success: function () { 
         // 用户确认分享后执行的回调函数
+        alert("分享老师信息成功！");
     },
     cancel: function () { 
         // 用户取消分享后执行的回调函数
     }
   };
-  onMenuShareTimelineData["title"] = "深圳大学 - " + name;
-  onMenuShareTimelineData["link"] = "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid;
-  onMenuShareTimelineData["imgUrl"] = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100";
-  onMenuShareTimelineData["success"] = function(){
-  	alert("分享老师信息成功！");
-  };
+  shareData["title"] = "深圳大学 - " + name;
+  shareData["link"] = "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid;
+  shareData["imgUrl"] = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100";
   wx.ready(function(){
-  	wx.onMenuShareTimeline(onMenuShareTimelineData);
+  	wx.onMenuShareTimeline(shareData);
   });
 //});
 </script>
