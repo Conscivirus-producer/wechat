@@ -93,9 +93,9 @@ if(isset($_GET["openid"])){
 			<button type="button" class="btn btn-primary btn-lg btn-block" name="signup" id="signup">报名成为老师</button>
 		</div>
 	</div>
-	<div class="row" id="followUpImage" style="display:none">
+	<div class="row" id="followUpImage" style="display:none;margin-top:5px">
 		<div class="col-md-4 col-md-offset-4" id="head" class="text-center">
-			<img src="image/follow.jpg" class="img-responsive" style="margin: 0 auto" width="50%"/>
+			<img src="image/follow.jpg" class="img-responsive" style="margin: 0 auto"/>
 		</div>
 	</div>
 	<!-- follow up image -->
