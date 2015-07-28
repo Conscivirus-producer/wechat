@@ -415,7 +415,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	var place = "";
 	var certificate = "";
 	var imageUrl = "";
-	
+	var teacherName = "";
 	var sexArray = {
 		"m":"男",
 		"f":"女"
@@ -454,6 +454,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
    			jsonObj = $.parseJSON(data);
    			
    			name = jsonObj.name;
+   			teacherName = jsonObj.name;
    			sex = jsonObj.gender;
    			faculty = jsonObj.faculty;
    			major = jsonObj.major;
@@ -883,7 +884,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
 	wx.config({
-    debug: true,
+    debug: false,
     appId: '<?php echo $signPackage["appId"];?>',
     timestamp: <?php echo $signPackage["timestamp"];?>,
     nonceStr: '<?php echo $signPackage["nonceStr"];?>',
@@ -899,7 +900,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			link: '',
 			imgUrl: ''
 		};
-  shareData["title"] = "深圳大学 - " + name;
+  shareData["title"] = "深圳大学 - " + teacherName;
 	shareData["link"] = "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid;
 	shareData["imgUrl"] = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100";
   wx.ready(function () {
@@ -907,9 +908,6 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	wx.onMenuShareTimeline(shareData);
   });
 	
-	wx.error(function (res) {
-	  alert(res.errMsg);
-	});
 </script>
 </html>
 
