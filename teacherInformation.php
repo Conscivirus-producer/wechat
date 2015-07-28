@@ -29,8 +29,6 @@ if(isset($_GET["openid"])){
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <div class="container">
-	<!-- showInformationPanel -->
-	<div id="showInformationPanel">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<p class="text-center">
@@ -86,13 +84,6 @@ if(isset($_GET["openid"])){
 			</p>
 		</div>
 	</div>
-	<div class="row" id="interests" style="margin-top:5px">
-		<div class="col-md-4 col-md-offset-4">
-			<button type="button" class="btn btn-primary btn-lg btn-block" name="toModify" id="toModify">修改个人信息</button>
-		</div>
-	</div>
-	</div>
-	<!-- showInformationPanel -->
 	<!-- footer -->
 	<div class="row" style="margin-top:10px">
 		<div class="col-md-4 col-md-offset-4">
@@ -100,6 +91,7 @@ if(isset($_GET["openid"])){
 		</div>
 	</div>
 	<!-- footer -->
+</div>
 	<script src="js/flat-ui.min.js"></script>
 	<script src="assets/js/application.js"></script>
 	<script type="text/javascript">
