@@ -896,7 +896,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
-$(document).ready(function(){
+//$(document).ready(function(){
   var appid = $("#appid").val();
   var timestamp = $("#timestamp").val();
   var nonceStr = $("#nonceStr").val();
@@ -938,7 +938,7 @@ $(document).ready(function(){
   wx.ready(function(){
   	wx.onMenuShareTimeline(onMenuShareTimelineData);
   });
-});
+//});
 </script>
 </html>
 
