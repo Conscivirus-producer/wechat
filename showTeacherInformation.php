@@ -902,8 +902,8 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			imgUrl: "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100"
 		});
 	wx.onMenuShareTimeline({
-			title: "我教你学 - "+$("#name").val()+"老师",
-			desc: '你教我学老师信息',
+			title: "我教你学老师信息",
+			desc: '我教你学老师信息',
 			link: "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid,
 			imgUrl: "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100"
 		});
