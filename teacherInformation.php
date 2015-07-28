@@ -100,6 +100,7 @@ if(isset($_GET["openid"])){
 	</div>
 	<!-- follow up image -->
 	
+	<a href="http://weixin.qq.com/r/gh_12fe7efd9d1e">微6平台</a>
 </div>
 	<script src="js/flat-ui.min.js"></script>
 	<script src="assets/js/application.js"></script>
