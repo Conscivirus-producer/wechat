@@ -4,13 +4,25 @@ require_once 'vendor/autoload.php';
 use Qiniu\Auth;
 
 
-//$openid = "";
 if (isset($_GET['code'])){
     $code = $_GET['code'];
     $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
     $access_token_json = file_get_contents($access_token_get_url); 
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
+    
+    $access_token = $json_obj["access_token"];
+    $jsapi_ticket_url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=".$access_token."&type=jsapi";
+    $jsapi_ticket_json = file_get_contents($jsapi_ticket_url);
+    $jsapi_ticket_json_obj = json_decode($jsapi_ticket_json,true);
+    $jsapi_ticket = $jsapi_ticket_json_obj["ticket"];
+    
+    $timestamp = time();
+    $nonceStr = "Wm3WZYTPz0wzccnW";
+    $url = "http://www.ilearnnn.com/teacherInformation.php?openid=".$openid;
+    $wxOri = sprintf("jsapi_ticket=%s&noncestr=%s&timestamp=%s&url=%s",$jsapi_ticket,$nonceStr,$timestamp,$url);
+    $wxSha1 = sha1($wxOri);
+    
 }else{
 	//need to be modified to show hint and qrcode image
     exit("NO CODE");
@@ -67,6 +79,11 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="token" id="token" value="<?php echo $token; ?>" style="display:none">
 <input type="text" name="certificate_token" id="certificate_token" value="<?php echo $certificate_token; ?>" style="display:none">
+<!-- wx js-->
+<input type="text" name="appid" id="appid" value="<?php echo $appid; ?>" style="display:none">
+<input type="text" name="timestamp" id="timestamp" value="<?php echo $timestamp; ?>" style="display:none">
+<input type="text" name="nonceStr" id="nonceStr" value="<?php echo $nonceStr; ?>" style="display:none">
+<input type="text" name="signature" id="signature" value="<?php echo $wxSha1; ?>" style="display:none">
 <div class="container">
 	<!-- showInformationPanel -->
 	<div id="showInformationPanel">
@@ -877,6 +894,40 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	</script>
 </div>
 </body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+$(document).ready(function(){
+  var appid = $("#appid").val();
+  var timestamp = $("#timestamp").val();
+  var nonceStr = $("#nonceStr").val();
+  var signature = $("#signature").val();
+  var configData = {
+  	 debug: false,
+  	 appId: '',
+  	 timestamp: '',
+  	 nonceStr: '',
+  	 signature: '',
+  	 jsApiList: [
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'getNetworkType'
+     ]
+  };
+  configData["appId"] = appid;
+  configData["timestamp"] = timestamp;
+  configData["nonceStr"] = nonceStr;
+  configData["signature"] = signature;
+  wx.config(configData);
+  wx.read(function(){
+  	wx.getNetworkType({
+    	success: function (res) {
+        	var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
+        	alert(networkType);
+    	}
+	});
+  });
+});
+</script>
 </html>
 
 
