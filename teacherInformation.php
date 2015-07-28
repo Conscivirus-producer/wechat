@@ -232,6 +232,10 @@ if(isset($_GET["openid"])){
 			
      	}
    	);
+   	$("#signup").click(function(){
+   		$(this).text("点击识别下方二维码关注我教你学");
+   		$("#followUpImage").show();
+   	});
 	</script>
 </div>
 </body>
