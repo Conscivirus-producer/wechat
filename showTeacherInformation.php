@@ -918,13 +918,25 @@ $(document).ready(function(){
   configData["nonceStr"] = nonceStr;
   configData["signature"] = signature;
   wx.config(configData);
+  var onMenuShareTimelineData = {
+    title: '', // 分享标题
+    link: '', // 分享链接
+    imgUrl: '', // 分享图标
+    success: function () { 
+        // 用户确认分享后执行的回调函数
+    },
+    cancel: function () { 
+        // 用户取消分享后执行的回调函数
+    }
+  };
+  onMenuShareTimelineData["title"] = "深圳大学 - " + name;
+  onMenuShareTimelineData["link"] = "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid;
+  onMenuShareTimelineData["imgUrl"] = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100";
+  onMenuShareTimelineData["success"] = function(){
+  	alert("分享老师信息成功！");
+  };
   wx.ready(function(){
-  	wx.getNetworkType({
-    	success: function (res) {
-        	var networkType = res.networkType; // 返回网络类型2g，3g，4g，wifi
-        	alert(networkType);
-    	}
-	});
+  	wx.onMenuShareTimeline(onMenuShareTimelineData);
   });
 });
 </script>
