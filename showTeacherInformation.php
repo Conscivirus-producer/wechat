@@ -913,7 +913,10 @@ $(document).ready(function(){
         'getNetworkType'
      ]
   };
-  alert(configData);
+  alert(appid);
+  alert(timestamp);
+  alert(nonceStr);
+  alert(signature);
   configData["appId"] = appid;
   configData["timestamp"] = timestamp;
   configData["nonceStr"] = nonceStr;
