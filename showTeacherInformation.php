@@ -921,14 +921,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
   var shareData = {
     title: '', // 分享标题
     link: '', // 分享链接
-    imgUrl: '', // 分享图标
-    success: function () { 
-        // 用户确认分享后执行的回调函数
-        alert("分享老师信息成功！");
-    },
-    cancel: function () { 
-        // 用户取消分享后执行的回调函数
-    }
+    imgUrl: ''
   };
   shareData["title"] = "深圳大学 - " + name;
   shareData["link"] = "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid;
