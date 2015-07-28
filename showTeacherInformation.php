@@ -928,9 +928,9 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
   shareData["imgUrl"] = "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100";*/
   wx.ready(function(){
   	 wx.onMenuShareTimeline({
-        title: '分享标题', // 分享标题
-        link:"分享的url,以http或https开头",
-        imgUrl: "分享图标的url,以http或https开头" // 分享图标
+        title: 'okok',
+      link: 'http://movie.douban.com/subject/25785114/',
+      imgUrl: 'http://demo.open.weixin.qq.com/jssdk/images/p2166127561.jpg',
     });
   });
 //});
