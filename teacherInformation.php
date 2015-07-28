@@ -226,10 +226,6 @@ if(isset($_GET["openid"])){
 			
 			$("#block1").show();$("#block2").show();$("#block3").show();
 			
-			for(var i = 0;i < typeCodes.length;i++){
-				createOptions(typeCodes[i],typeCodes[i], jsonObj.options.code);
-			}
-			
      	}
    	);
    	$("#signup").click(function(){
