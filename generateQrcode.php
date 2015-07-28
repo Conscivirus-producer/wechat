@@ -1,11 +1,11 @@
 <?php
-$access_token = "VX_O33lYiQ6zIQx-Hd7eUMBF8rO2JCH1um47F16rRk6F_B3-pT-9gtKReDZHtDhfOuxuLJ9rkV8hhzgkeFqtX_P90T_UEkg_n7fNtI57bXw";
-$qrcode = '{"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": 1 }}}';
+$access_token = "KTiNB71hRLbj54rDCeiRIPHC7ryyTRU3JqW4SnCsoFql2sph5j5U0FBe8R60DmBWaFficmYdKdIEJhRsuGWUpEf7MxqcXMcXH2UldS9GmjM";
+$qrcode = '{"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": 6 }}}';
 $url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=".$access_token;
 $result = https_post($url,$qrcode);
 $jsoninfo = json_decode($result,true);
 $ticket = $jsoninfo["ticket"];
-echo "<p>scene_id : 1</p>";
+echo "<p>scene_id : 6</p>";
 $imgurl = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=".$ticket;
 echo "<img src='".$imgurl."'>";
 

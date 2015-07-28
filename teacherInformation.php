@@ -85,12 +85,21 @@ if(isset($_GET["openid"])){
 		</div>
 	</div>
 	<!-- footer -->
+	<!-- footer -->
+	
+	<!-- follow up image -->
 	<div class="row" style="margin-top:10px">
 		<div class="col-md-4 col-md-offset-4">
-		
+			<button type="button" class="btn btn-primary btn-lg btn-block" name="signup" id="signup">报名成为老师</button>
 		</div>
 	</div>
-	<!-- footer -->
+	<div class="row" id="followUpImage" style="display:none">
+		<div class="col-md-4 col-md-offset-4" id="head" class="text-center">
+			<img src="image/showqrcode6.jpeg" class="img-responsive" style="margin: 0 auto" name="initLoading" width="50%"/>
+		</div>
+	</div>
+	<!-- follow up image -->
+	
 </div>
 	<script src="js/flat-ui.min.js"></script>
 	<script src="assets/js/application.js"></script>
