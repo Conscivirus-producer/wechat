@@ -111,7 +111,8 @@
 							"major"=>$row["major"], 
 							"description"=>$row["description"],
 							"imageUrl"=>$row["imageUrl"],
-							"mobile"=>$row["mobile"]);
+							"mobile"=>$row["mobile"],
+							"certifications"=>"");
 		$teacherOpenId = $row["openId"];
 		$query = "SELECT * FROM `T_teacher_certifications` WHERE teacherOpenId = '$teacherOpenId'";
 		$result = $conn->query($query);
@@ -119,7 +120,7 @@
 		while($row = $result->fetch_assoc()){
 			$certifications = $certifications.$row["description"];
 		}
-		array_push($rootArray, $certifications);
+		$rootArray["certifications"] = $certifications;
 		echo json_encode($rootArray); 
 	}
 

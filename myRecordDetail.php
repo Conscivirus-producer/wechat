@@ -183,7 +183,7 @@ $(document).ready(function(){
 		$("#teacherName").html(data.name);
 		$("#teacherMajor").html(data.major);
 		$("#teacherDescription").html(data.description);
-		$("#certifications").html(data[0]);
+		$("#certifications").html(data.certifications);
 		$("#mobile").html(data.mobile);
 		//老师头像地址为: data.imageUrl
 	});
