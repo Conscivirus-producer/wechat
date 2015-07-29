@@ -1,9 +1,9 @@
 ﻿<?php
-/*session_start();
+session_start();
 if(!(isset($_SESSION['wojiaonixue_internal_login_status']) AND $_SESSION['wojiaonixue_internal_login_status'] == 'active')){
     header("Location:login.html");
     exit();
-}*/
+}
 require_once("config.php");
 
 ?>

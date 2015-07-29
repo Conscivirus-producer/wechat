@@ -77,7 +77,7 @@
 		return $json_obj;
 	}
 	
-	function replyToUser($conn, $appid, $secret){
+	function replyToUser($appid, $secret){
 		global $conn;
 		$openid = trim($_GET["openid"]);
 		$content = trim($_GET["content"]);
