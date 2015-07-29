@@ -1,6 +1,11 @@
 ﻿<?php
+session_start();
+//检测是否登录，若没登录则转向登录界面
+if(!(isset($_SESSION['wojiaonixue_internal_login_status']) AND $_SESSION['wojiaonixue_internal_login_status'] == 'active')){
+    header("Location:login.html");
+    exit();
+}
 require_once("config.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +32,9 @@ require_once("config.php");
 		<div class="col-md-4 col-md-offset-4">
 			<p class="text-center">
 				后台管理
+			</p>
+			<p class="text-center">
+				<a href="login.php?action=logout">注销登录</a>
 			</p>
 		</div>
 	</div>
@@ -71,6 +79,7 @@ require_once("config.php");
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<button type="button" class="btn btn-info btn-lg btn-block" name="submit" id="submit">提交</button>
+			<button type="button" class="btn btn-info btn-lg btn-block" name="back" id="back">返回</button>
 		</div>
 	</div>
 	
@@ -113,6 +122,10 @@ var rootUrl = $("#rootUrl").val();
 
 $("#submit").click(function(){
 	renderData($("#status").val(), $("#follower").val());
+});
+
+$("#back").click(function(){
+	window.location.href="login.php";
 });
 
 function renderData(status, follower){

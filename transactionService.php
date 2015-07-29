@@ -1,4 +1,9 @@
 <?php
+	session_start();
+	if(!(isset($_SESSION['wojiaonixue_internal_login_status']) AND $_SESSION['wojiaonixue_internal_login_status'] == 'active')){
+	    header("Location:login.html");
+	    exit();
+	}
 	header('Access-Control-Allow-Origin:*');
 	require_once("config.php");
 	require_once("processUtil.php");

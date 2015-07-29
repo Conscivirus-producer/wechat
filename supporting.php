@@ -1,4 +1,9 @@
 ﻿<?php
+	session_start();
+	if(!(isset($_SESSION['wojiaonixue_internal_login_status']) AND $_SESSION['wojiaonixue_internal_login_status'] == 'active')){
+	    header("Location:login.html");
+	    exit();
+	}
 	header('Access-Control-Allow-Origin:*');
 	require_once("config.php");
 	require_once("processUtil.php");
@@ -16,7 +21,7 @@
 		}else if($requestMethod == "myRecord"){
 			getMyRecord($conn);	
 		}else if($requestMethod == "replyToUser"){
-			replyToUser($conn, $appid, $secret);
+			replyToUser($appid, $secret);
 		}else if($requestMethod == "updateFollowStatus"){
 			updateFollowStatus($conn, $appid, $secret);
 		}
@@ -73,6 +78,7 @@
 	}
 	
 	function replyToUser($conn, $appid, $secret){
+		global $conn;
 		$openid = trim($_GET["openid"]);
 		$content = trim($_GET["content"]);
 		
