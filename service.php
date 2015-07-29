@@ -114,13 +114,15 @@
 							"mobile"=>$row["mobile"],
 							"certifications"=>"");
 		$teacherOpenId = $row["openId"];
-		$query = "SELECT * FROM `T_teacher_certifications` WHERE teacherOpenId = '$teacherOpenId'";
-		$result = $conn->query($query);
-		$certifications = "";
-		while($row = $result->fetch_assoc()){
-			$certifications = $certifications.$row["description"];
+		if($teacherOpenId != ''){
+			$query = "SELECT * FROM `T_teacher_certifications` WHERE teacherOpenId = '$teacherOpenId'";
+			$result = $conn->query($query);
+			$certifications = "";
+			while($row = $result->fetch_assoc()){
+				$certifications = $certifications.$row["description"];
+			}
+			$rootArray["certifications"] = $certifications;
 		}
-		$rootArray["certifications"] = $certifications;
 		echo json_encode($rootArray); 
 	}
 
