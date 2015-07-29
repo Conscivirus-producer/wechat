@@ -1,10 +1,9 @@
 ﻿<?php
-session_start();
-//检测是否登录，若没登录则转向登录界面
+/*session_start();
 if(!(isset($_SESSION['wojiaonixue_internal_login_status']) AND $_SESSION['wojiaonixue_internal_login_status'] == 'active')){
     header("Location:login.html");
     exit();
-}
+}*/
 require_once("config.php");
 
 ?>
