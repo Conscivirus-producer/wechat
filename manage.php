@@ -3,6 +3,8 @@ require_once("config.php");
 
 require_once 'vendor/autoload.php';
 use Qiniu\Auth;
+
+$openid = "";
 if (isset($_GET['code'])){
     $code = $_GET['code'];
     $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
@@ -27,8 +29,6 @@ $auth = new Auth($accessKey, $secretKey);
 
 $bucket = 'wojiaonixue';
 $token = $auth->uploadToken($bucket);
-
-//$openid = "";
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
