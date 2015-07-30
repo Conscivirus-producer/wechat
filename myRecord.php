@@ -36,11 +36,6 @@ if (isset($_GET['code'])){
 <div class="container">
 	<div class="row" style="" id="q0">
 	</div>
-	<div class="row" style="" id="q1">
-		<div id="information" class="col-md-4 col-md-offset-4" style="text-align:right">		
-			
-		</div>
-	</div>
 	<div class="col-xs-12 text-center" style="height: 40px;margin-top: 20px;color: #2cb298;"><div style="font-size: 16px">我的纪录</div></div>
 	<table class="table table-striped my-record-table" style="box-shadow:0 0 10px #333;font-size:12px;background-color: #2cb298;border-radius: 5px">
       <thead style="color: white;">
@@ -72,9 +67,6 @@ $(document).ready(function(){
 	$.getJSON(url,function(data){
 		var transactionId = data.transactionId;
 		var length = transactionId.length;
-		if(length == 0){
-			$("#information").html("<div style='margin-top: 50%' align='center'><div style='font-size: 16px; width: 80%; color:#2CB298;'>您当前还没有任何家教订单<div></div>");
-		}
 		for(var i = 0;i < length;i++){
 			var course;
 			if(data.subject[i] != "" && data.interest[i] != ""){
