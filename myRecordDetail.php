@@ -121,7 +121,7 @@ if (isset($_GET['code'])){
 				<td>
 					特质:
 				</td>
-				<td id="teacherDescription">
+				<td id="teacherDescription" style="width: 70%">
 				</td>
 			</tr>
 			<tr>
