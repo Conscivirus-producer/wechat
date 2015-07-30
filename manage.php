@@ -1,4 +1,6 @@
 <?php
+session_start();
+$_SESSION['wojiaonixue_internal_login_status'] = "active";
 require_once("config.php");
 
 require_once 'vendor/autoload.php';
