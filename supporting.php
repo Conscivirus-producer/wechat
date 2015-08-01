@@ -24,7 +24,58 @@
 			replyToUser($appid, $secret);
 		}else if($requestMethod == "updateFollowStatus"){
 			updateFollowStatus($conn, $appid, $secret);
+		}else if($requestMethod == "manualCreateTransaction"){
+			manualCreateTransaction();
 		}
+	}
+	
+	function manualCreateTransaction(){
+		global $conn;
+		$mobile = trim($_GET["mobile"]);
+		$nickname = trim($_GET["nickname"]);
+		$grade = trim($_GET["grade"]);
+		$subject = trim($_GET["subject"]);
+		$interest = trim($_GET["interest"]);
+		$address = trim($_GET["address"]);
+		$remark = trim($_GET["remark"]);
+		if($remark == ''){
+			$remark = "家长留下手机号";
+		}
+		
+		$resultArray = array("code"=>"0", "message"=>"");
+		
+		$query = "set names utf8";
+		$result = $conn->query($query);
+		
+		$query = "SELECT * FROM `T_parent` WHERE openId = '$mobile'";
+		$result = $conn->query($query);
+		if($result->num_rows > 0){
+			$query = "UPDATE `T_child` SET `grade`='$grade',`subject`='$subject',`interest`='$interest',`expectedLocation`='$address' WHERE parentOpenid = '$mobile'";
+			$result = $conn->query($query);
+			$query = "UPDATE `T_transaction` SET`comment`= '$remark' WHERE parentOpenid = '$mobile'";
+			$result = $conn->query($query);
+			$resultArray["code"] = "1";
+			$resultArray["message"] = "家长记录已存在,记录更新成功";
+			echo json_encode($resultArray); 
+			return;
+		}
+		
+		$query = "INSERT INTO `T_parent` (`openId`, `nickname`, `mobile`, `status`, `gender`, `imageUrl`, `createdDt`) ".
+			"VALUES ('$mobile', '$nickname', '$mobile', '', '', '', sysdate())";
+		$result = $conn->query($query);
+		
+		$query = "INSERT INTO `T_child` (`childId`, `parentOpenid`, `grade`, `subject`, `interest`, `expected_price`, `expectedLocation`, `createdDt`) ".
+			"VALUES (NULL, '$mobile', '$grade', '$subject', '$interest', '', '$address', sysdate())";
+		$result = $conn->query($query);
+		
+		$query = "INSERT INTO `T_transaction` (`transactionId`, `parentOpenid`, `childId`, `teacherOpenid`, `createdDt`, `updatedDt`, `status`, `comment`) ".
+			"VALUES (NULL, '$mobile', (SELECT childId FROM `T_child` WHERE parentOpenid = '$mobile'), '', sysdate(), sysdate(), '1', '$remark')";
+		$result = $conn->query($query);
+		
+		$resultArray["code"] = "0";
+		$resultArray["message"] = "记录保存成功!";
+		echo json_encode($resultArray); 
+		//echo mysqli_insert_id($conn);
 	}
 	
 	function encode_json($str) {  
@@ -145,7 +196,6 @@
 		if($follower != 'All'){
 			$query = $query." and T_transaction.follower = '$follower'";
 		}
-		//echo $globalData->getWhiteList();
 		$whiteList = $globalData->getWhiteList();
 		$query = $query." and T_transaction.parentOpenid not in $whiteList";
 		$query = $query." order by status, createdDt desc";
