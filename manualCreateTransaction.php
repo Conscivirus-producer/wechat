@@ -14,8 +14,8 @@ if (isset($_GET['code'])){
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
 }else{
-    //exit("NO CODE");
-    $openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
+    exit("NO CODE");
+    //$openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
 }
 
 $globalData = new GlobalData();
