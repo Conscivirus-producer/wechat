@@ -84,6 +84,8 @@ class TeacherController extends Controller{
         	$this->error('数据错误');
     	}
     	
+    	}else{
+    		$this->display();
     	}
  	}
 }
