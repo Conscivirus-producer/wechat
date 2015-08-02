@@ -37,6 +37,7 @@
 		$subject = trim($_GET["subject"]);
 		$interest = trim($_GET["interest"]);
 		$address = trim($_GET["address"]);
+		$openid = trim($_GET["openid"]);
 		$remark = trim($_GET["remark"]);
 		if($remark == ''){
 			$remark = "家长留下手机号";
@@ -68,8 +69,8 @@
 			"VALUES (NULL, '$mobile', '$grade', '$subject', '$interest', '', '$address', sysdate())";
 		$result = $conn->query($query);
 		
-		$query = "INSERT INTO `T_transaction` (`transactionId`, `parentOpenid`, `childId`, `teacherOpenid`, `createdDt`, `updatedDt`, `status`, `comment`) ".
-			"VALUES (NULL, '$mobile', (SELECT childId FROM `T_child` WHERE parentOpenid = '$mobile'), '', sysdate(), sysdate(), '1', '$remark')";
+		$query = "INSERT INTO `T_transaction` (`transactionId`, `parentOpenid`, `childId`, `createdBy`, `createdDt`, `updatedDt`, `status`, `comment`) ".
+			"VALUES (NULL, '$mobile', (SELECT childId FROM `T_child` WHERE parentOpenid = '$mobile'), '$openid', sysdate(), sysdate(), '1', '$remark')";
 		$result = $conn->query($query);
 		
 		$resultArray["code"] = "0";

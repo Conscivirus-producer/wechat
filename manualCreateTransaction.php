@@ -63,7 +63,6 @@ $token = $auth->uploadToken($bucket);
 </head>
 <body>
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
-<input type="text" name="token" id="token" value="<?php echo $token; ?>" style="display:none">
 
 <div class="container">
 	<div class="row">
@@ -136,7 +135,7 @@ $("#submit").click(function(){
 	}
 	var url = "supporting.php?requestMethod=manualCreateTransaction&mobile="+mobile+"&nickname="+$("#nickname").val()
 	+"&grade="+$("#grade").val()+"&subject="+$("#subject").val()+"&interest="+$("#interest").val()+"&address="+$("#address").val()
-	+"&remark="+$("#remark").val();
+	+"&openid="+$("#openid").val()+"&remark="+$("#remark").val();
 	$.getJSON(url, function(data){
 		alert(data.message);
 		//alert(data);
