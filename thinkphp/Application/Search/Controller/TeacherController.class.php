@@ -39,7 +39,7 @@ class TeacherController extends Controller{
     	for($i = 0;$i < $len;$i++){
     		$openId = $data[$i]["openid"];
     		$offermap["teacherOpenId"] = array('like','%'.$openId.'%');
-    		$Offers = M("Offers");
+    		$Offers = D("Offer");
     		$offer = $Offers->field("name")->select();
     		$data[$i]["offer"] = $offer;
     		
@@ -62,7 +62,7 @@ class TeacherController extends Controller{
     	for($i = 0;$i < $len;$i++){
     		$openId = $data[$i]["openid"];
     		$certificatemap["teacherOpenId"] = array('like','%'.$openId.'%');
-    		$certificates = M("Certifications");
+    		$certificates = D("Certificate");
     		$certificate = $certificates->where($certificatemap)->field("description")->select();
     		
     		$data[$i]["certificate"] = $certificate;
