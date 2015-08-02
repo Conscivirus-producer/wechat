@@ -10,7 +10,7 @@ if (isset($_GET['code'])){
 	//$openid = "11111111";
 	//need to be modified to show hint and qrcode image
     //echo "NO CODE";
-    $openid = 'obS35vk9Hqwl4WZXsosjxm_hckKQ';
+    $openid = 'obS35vtzdcSdflfnVKJDhy74apiI';
 }
 ?>
 <!DOCTYPE html>

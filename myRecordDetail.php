@@ -12,7 +12,7 @@ if (isset($_GET['code'])){
 	//$openid = "11111111";
 	//need to be modified to show hint and qrcode image
     //echo "NO CODE";
-    $openid = 'obS35vk9Hqwl4WZXsosjxm_hckKQ';
+    $openid = 'obS35vtzdcSdflfnVKJDhy74apiI';
 }
 ?>
 <!DOCTYPE html>
@@ -88,14 +88,11 @@ if (isset($_GET['code'])){
 		        </tr>
 			</thead>
 			<!-- avatar -->
-			<!-- <tr>
-				<td>
-					<img class="img-circle" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/2015072407.jpg?imageView2/1/w/65/h/65/q/100" />
+			<tr id="recordDetailAvatar" style="display: none">
+				<td colspan="2" align="center">
+					<img id="recordAvatarImg" class="img-circle" />
 				</td>
-				<td>
-					
-				</td>
-			</tr> -->
+			</tr>
 			<tr>
 				<td>
 					姓名:
@@ -179,6 +176,12 @@ $(document).ready(function(){
 		$("#address").html(data.expectedLocation);
 		if(data.name == null){
 			$("#teacher-info").text("教师.待定");
+		}
+		//if teacher has been confirmed
+		if(data.openid != null){
+			$("#recordDetailAvatar").show();
+			var avatarUrl= "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+data.openid+"_head?imageView2/1/w/65/h/65/q/100"
+			$("#recordAvatarImg").attr("src", avatarUrl);
 		}
 		$("#teacherName").html(data.name);
 		$("#teacherMajor").html(data.major);
