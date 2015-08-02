@@ -35,30 +35,14 @@ if (isset($_GET['code'])){
 
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
-<div class="container">
-	
+<div class="container" style="padding-left:0px; padding-right: 0px">
+	<div class="find-header col-xs-12">
+		<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
+		<div class="col-xs-6 col-xs-offset-3 text-center">
+			ShenZhen UltraBravo Tech Ltd.
+		</div>
+	</div>
 	<div class="row" id="q0">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
-		<!-- <div class="col-md-4 col-md-offset-4">
-			<p class="text-left introduction">
-				欢迎来到我教你学，四个步骤找到老师:
-			</p>
-			<ol style="font-size: 16px;">
-			  <li>回答几个简单的问题</li>
-			  <li>留下您的联系方式</li>
-			  <li>我们在24小时之内将老师信息通过微信或短信发送给您</li>
-			  <li>老师联系您商量试教时间及地点</li>
-			</ol>
-			<p class="text-left introduction">赶紧开启发现老师之旅吧！</p>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="start" id="start">开始</button>
-		</div> -->
 			<div class="col-xs-12 text-center company-name"><strong>我教你学</strong></div>
 			
 			<div class="col-xs-10 col-xs-offset-1 text-center company-details">
@@ -114,12 +98,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q2">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-8 col-xs-offset-2 text-center">
 			<p class="question text-center lead">
 				您希望小孩的学习内容是什么?
@@ -142,12 +120,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q3">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-8 col-xs-offset-2 text-center">		
 			<p class="question text-center lead">
 				您的小孩哪个科目最需要提高？
@@ -173,12 +145,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q4">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-8 col-xs-offset-2 text-center">		
 			<p class="question text-center lead">
 				您希望您的孩子培养哪些兴趣？
@@ -210,12 +176,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q5">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-10 col-xs-offset-1 text-center">		
 			<p class="question text-center">
 				请您选择具体的兴趣
@@ -226,12 +186,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="teacherGender">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-8 col-xs-offset-2 text-center">		
 			<p class="question text-center">
 				您期望的老师性别:
@@ -254,12 +208,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="address">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-8 col-xs-offset-2 text-center">		
 			<p class="question text-center">
 				您期望的教学地点是哪？
@@ -291,12 +239,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="price">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-8 col-xs-offset-2 text-center">		
 			<p class="question text-center">
 				您接受的价格区间(每小时):
@@ -319,12 +261,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q1">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-8 col-xs-offset-2 text-center">
 			<p class="question text-center">
 				您的小孩目前在读？
@@ -347,12 +283,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q11">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-8 col-xs-offset-2 text-center">
 			<p class="question text-center">
 				您小孩的年级是？
@@ -384,12 +314,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q12">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-8 col-xs-offset-2 text-center">
 			<p class="question text-center">
 				您小孩的年级是？
@@ -412,12 +336,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q13">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-8 col-xs-offset-2 text-center">
 			<p class="question text-center">
 				您小孩的年级是？
@@ -439,67 +357,7 @@ if (isset($_GET['code'])){
 		</div>
 	</div>
 	
-	<!-- <div class="row" style="display:none" id="preview">
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<table>
-			<tr><td>您选择的信息如下:</td></tr>
-			<tr>
-				<td>
-					想学的课程
-				</td>
-				<td id="preview_subject">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					想学的兴趣
-				</td>
-				<td id="preview_interest">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					期望老师性别
-				</td>
-				<td id="preview_teacher_gender">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					期望教学地点
-				</td>
-				<td id="preview_location">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					接受的时薪范围
-				</td>
-				<td id="preview_price">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					小孩年级
-				</td>
-				<td id="preview_grade">
-				</td>
-			</tr>
-			</table>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-primary" name="preview_done" id="preview_done">完成</button>
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep_pre" id="laststep13">上一步</button>
-		</div>
-	</div> -->
-	
 	<div class="row" style="display:none" id="preview">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-10 col-xs-offset-1 record-preview">
 			<div class="col-xs-12 text-center record-preview-title">我的选择</div>
 			<table class="table table-striped">
@@ -531,9 +389,6 @@ if (isset($_GET['code'])){
 				</tbody>
 			</table>
 		</div>
-		<!-- <button type="button" class="btn btn-lg btn-block btn-info  name="laststep13" id="laststep13">上一步</button> -->
-		<!-- <button type="button" class="btn btn-lg btn-block btn-primary" name="preview_done" id="preview_done">完成</button>
-		<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep_pre" id="laststep13">上一步</button> -->
 		<div class="button-group">
 			<div class="col-xs-6 line">
 				<button type="button" class="btn btn-lg btn-block"  name="laststep13" id="laststep13">上一步</button>
@@ -545,12 +400,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="resultNotification">
-		<div class="find-header col-xs-12">
-			<img class="center-block" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/LogoForHeader.svg" />
-			<div class="col-xs-6 col-xs-offset-3 text-center">
-				ShenZhen UltraBravo Tech Ltd.
-			</div>
-		</div>
 		<div class="col-xs-12" style="margin-top: 30px">
 			<div class="col-xs-12 text-center" style="color: #2CB298">感谢您的使用</div>
 			<div class="col-xs-12 text-left question" style="color: black; font-size: 14px">
