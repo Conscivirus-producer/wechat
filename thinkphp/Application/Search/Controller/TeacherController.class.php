@@ -51,11 +51,31 @@ class TeacherController extends Controller{
   				"location4" => "宝安区",
   				"location5" => "龙岗区"
     		);
+    		$grade = array(
+    			"grade12"=>"高三",
+  				"grade11"=>"高二",
+  				"grade10"=>"高一",
+  				"grade9"=>"初三",
+  				"grade8"=>"初二",
+  				"grade7"=>"初一",
+  				"grade6"=>"小学六年级",
+  				"grade5"=>"小学五年级",
+  				"grade4"=>"小学四年级",
+  				"grade3"=>"小学三年级",
+  				"grade2"=>"小学二年级",
+  				"grade1"=>"小学一年级"
+    		);
+    		$gender = array(
+    			"f" =>"女",
+    			"m" =>"男"
+    		);
     		$places = explode(",",$place);
     		for($j=0;$j<count($places);$j++){
     			$places[$j] = $location[$places[$j]];
     		}
     		$data[$i]["address"] = implode("，",$places);
+    		$data[$i]["highestGrade"] = $grade[$data[$i]["highestGrade"]];
+    		$data[$i]["gender"] = $gender[$data[$i]["gender"]];
     	}
     	for($i = 0;$i < $len;$i++){
     		$openId = $data[$i]["openId"];
