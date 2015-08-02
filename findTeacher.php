@@ -31,7 +31,7 @@ if (isset($_GET['code'])){
 <script src="js/vendor/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body style="overflow-x: hidden">
 
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
@@ -44,12 +44,14 @@ if (isset($_GET['code'])){
 	</div>
 	<div class="row" id="q0">
 			<div class="col-xs-12 text-center company-name"><strong>我教你学</strong></div>
-			
 			<div class="col-xs-10 col-xs-offset-1 text-center company-details">
 				我教你学由深港高校联合创办，旨在打造一个人人乐用的家教平台，做到更精准，更智能，更高效地择优匹配师生资源。
 			</div>
-			
-			
+				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
+				<div class="col-xs-12 text-center company-name"><strong>我们的师资</strong></div>
+				<div class="col-xs-10 col-xs-offset-1 text-center company-details">
+					平台认证，百分百深圳大学在读学生，涵盖各个专业，经过培训，数百名经验丰富的大学生家教为您服务
+				</div>
 				<div class="col-xs-4">
 					<img class="star-photo img-circle center-block" id="star-one" src="http://7xk9ts.com2.z0.glb.qiniucdn.com/2015072407.jpg?imageView2/1/w/65/h/65/q/100" alt="empty">
 					<div class="star-name text-center">夏丽婷</div>
@@ -94,7 +96,7 @@ if (isset($_GET['code'])){
 				<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/contact.svg" style="width: 56px; height: 56px" /></div>
 				<div class="col-xs-12 text-center step-desc">"我们的客服会电话联络您，确认细节"</div>
 			</div>
-	<div class="bottom start text-center" name="start" id="start">开始</div>
+			<div class="bottom start text-center" name="start" id="start">开始</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q2">
