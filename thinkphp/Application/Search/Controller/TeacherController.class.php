@@ -35,7 +35,6 @@ class TeacherController extends Controller{
     	
     	//print_r($data);
     	$len = count($data);
-    	$offers = array();
     	for($i = 0;$i < $len;$i++){
     		$openId = $data[$i]["openid"];
     		$offermap["teacherOpenId"] = array('like','%'.$openId.'%');
@@ -58,7 +57,6 @@ class TeacherController extends Controller{
     		}
     		$data[$i]["address"] = implode("，",$places);
     	}
-    	$certifications = array();
     	for($i = 0;$i < $len;$i++){
     		$openId = $data[$i]["openid"];
     		$certificatemap["teacherOpenId"] = array('like','%'.$openId.'%');
