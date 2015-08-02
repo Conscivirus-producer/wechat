@@ -30,8 +30,8 @@ class TeacherController extends Controller{
     	}
     	$map["created_dt"] = array(array('gt',$starttime),array('lt',$endtime)) ;
     	$map["address"] = array('like','%'.I('address').'%');
-    	$Teacher  =   M('Teacher');
-    	$data =   $Teacher->table('T_teacher')->where($map)->select();
+    	$Teacher  =   D('Teacher');
+    	$data =   $Teacher->where($map)->select();
     	
     	//print_r($data);
     	$len = count($data);
