@@ -36,7 +36,7 @@ class TeacherController extends Controller{
     	//print_r($data);
     	$len = count($data);
     	for($i = 0;$i < $len;$i++){
-    		$openId = $data[$i]["openid"];
+    		$openId = $data[$i]["openId"];
     		$offermap["teacherOpenId"] = array('like','%'.$openId.'%');
     		$Offers = D("Offer");
     		$offer = $Offers->field("name")->where($offermap)->select();
@@ -58,7 +58,7 @@ class TeacherController extends Controller{
     		$data[$i]["address"] = implode("，",$places);
     	}
     	for($i = 0;$i < $len;$i++){
-    		$openId = $data[$i]["openid"];
+    		$openId = $data[$i]["openId"];
     		$certificatemap["teacherOpenId"] = array('like','%'.$openId.'%');
     		$certificates = D("Certificate");
     		$certificate = $certificates->field("description")->where($certificatemap)->select();
