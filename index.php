@@ -78,7 +78,7 @@ class wechatCallbackapiTest
 						$password = "2324150778t";
 						$database = "wechat_schema";
 						$conn = new mysqli($host, $user, $password, $database);
-						$queryString = "insert into T_scan_information values('$fromUsername','$nickname','$eventKey', sysdate())";
+						$queryString = "insert into T_scan_information(`openId`, `nickname`, `qrcodeId`, `createdDt`) values('$fromUsername','$nickname','$eventKey', sysdate())";
 						$conn->query("SET NAMES UTF8");
 						$conn->query($queryString);
 						//4,回复信息
