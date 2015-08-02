@@ -40,7 +40,7 @@ class TeacherController extends Controller{
     		$openId = $data[$i]["openid"];
     		$offermap["teacherOpenId"] = array('like','%'.$openId.'%');
     		$Offers = D("Offer");
-    		$offer = $Offers->where->($offermap)->field("name")->select();
+    		$offer = $Offers->where($offermap)->field("name")->select();
     		$data[$i]["offer"] = $offer;
     		
     		$place = $data[$i]["address"];
