@@ -8,7 +8,7 @@ return array(
 'DB_USER'=>'root',// 用户名
 'DB_PWD'=>'2324150778t',// 密码
 'DB_PORT'=>3306,// 端口
-'DB_PREFIX'=>'T_',// 数据库表前缀
+'DB_PREFIX'=>'',// 数据库表前缀
 'DB_CHARSET'=>'utf8',// 数据库字符集
 'DB_PARAMS' => array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL)
 );
