@@ -31,7 +31,7 @@ if (isset($_GET['code'])){
 <script src="js/vendor/respond.min.js"></script>
 <![endif]-->
 </head>
-<body style="overflow-x: hidden">
+<body>
 
 <input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
