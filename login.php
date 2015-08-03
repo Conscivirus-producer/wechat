@@ -69,6 +69,11 @@ if(isset($_POST['submit'])){
 		</div>
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
+				<button type="button" class="btn btn-info btn-lg btn-block" name="fnd_teacher" id="fnd_teacher" >老师查询</button>
+			</div>
+		</div>
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
 				<button type="button" class="btn btn-info btn-lg btn-block" name="rpt_parent" id="rpt_parent" >回复家长</button>
 			</div>
 		</div>
@@ -81,6 +86,10 @@ $("#mgt_trans").click(function(){
 
 $("#rpt_parent").click(function(){
 	window.location.href="replyToParent.php";
+});
+
+$("#fnd_teacher").click(function(){
+	window.location.href="thinkphp/?m=Search&c=Teacher&a=read";
 });
 </script>
 </body>
