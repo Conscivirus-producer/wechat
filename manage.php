@@ -415,7 +415,7 @@ $("#submit").click(function(){
 	}else if(major == ""){
 		alert("请输入专业名称");
 		$("#major").focus();
-	}else if(studentNumber == ""){
+	}else if(studentNumber == "" || studentNumber.length != 10){
 		alert("请输入真实的学号");
 		$("#studentNumber").focus();
 	}else if(!validatePhone(phone)){
