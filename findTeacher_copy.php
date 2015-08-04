@@ -425,7 +425,9 @@ if (isset($_GET['code'])){
 			</p>
 		</div>
 		
-	
+		<div class="col-md-4 col-md-offset-4" style="margin-top: 75px">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="manual_arrg" id="manual_arrg">都不满意，人工</button>
+		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q8">
@@ -509,6 +511,7 @@ var price;
 var teacherGender;
 var teacherOpenId;
 var notifyMethod;
+var transactionId;
 var mobile = "";
 var address;
 
@@ -529,6 +532,7 @@ function insertParentAndChild(){
 		url += "&subject="+subject.toUpperCase()+"&interest="+interest;
 	}
 	$.getJSON(url,function(data){
+		transactionId = data;
 	});
 }
 
@@ -682,16 +686,6 @@ $("[id^=laststep]").click(function(){
 	divArray.pop();
 });
 
-/*$("#compeleteRecord").click(function(){
-	var url = "http://"+rootUrl+"/service.php?requestMethod=saveTransaction&parentOpenId="+$("#openid").val()+"&teacherOpenId="+teacherOpenId+"&childId="+childId;
-	$.getJSON(url,function(data){
-		
-	});
-	$("#q8").hide("normal",function(){
-		showDiv($("#q9"));
-	});	
-});*/
-
 $("#myrecord").click(function(){
 	window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+$appid+'&redirect_uri=http://'+rootUrl+'/myRecord.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
 });
@@ -724,13 +718,20 @@ function validatePhone(phone){
 }
 
 $("#compeleteRecord").click(function(){
-	/*var url = "http://"+rootUrl+"/service.php?requestMethod=saveTransaction&parentOpenId="+$("#openid").val()+"&teacherOpenId="+teacherOpenId+"&childId="+childId;
+	var url = "service.php?requestMethod=updateTransaction&transactionId="+transactionId+"&teacherOpenId="+teacherOpenId;
 	$.getJSON(url,function(data){
 		
-	});*/
+	});
 	$("#q8").hide("normal",function(){
 		showDiv($("#resultNotification"));
 		$("#confirmation2").show();
+	});	
+});
+
+$("#manual_arrg").click(function(){
+	$("#q7").hide("normal",function(){
+		showDiv($("#resultNotification"));
+		$("#confirmation1").show();
 	});	
 });
 

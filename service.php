@@ -72,7 +72,7 @@
 			echo json_encode($jsonArray);
 		}else if($requestMethod == "insertParentAndChild"){
 			$childId = insertParentAndChild($conn, $appid, $secret);
-			insertTransaction($conn, $childId);
+			echo insertTransaction($conn, $childId);
 		}else if($requestMethod == "teacherDetails"){
 			getTeacherDetails($conn);
 		}else if($requestMethod == "updateParentMobile"){
@@ -85,7 +85,18 @@
 			parseCodeForDisplay($conn);
 		}else if($requestMethod == "trandactionDetail"){
 			getTransactionDetail();
+		}else if($requestMethod == "updateTransaction"){
+			updateTransaction();
 		}
+	}
+
+	function updateTransaction(){
+		global $conn;
+		$transactionId = trim($_GET["transactionId"]);
+		$teacherOpenId = trim($_GET["teacherOpenId"]);
+
+		$query = "UPDATE `T_transaction` SET `teacherOpenid`='$teacherOpenId' WHERE transactionId = '$transactionId'";
+		$result = $conn->query($query);
 	}
 	
 	function getTransactionDetail(){
