@@ -14,12 +14,17 @@ class TeacherController extends Controller{
     	}*/
     	
     	if(I('search')){
+    	
     	$map["name"] = array('like','%'.I('name').'%');
     	$map["studentNumber"] = array('like','%'.I('studentNumber').'%');
     	$map["faculty"] = array('like','%'.I('faculty').'%');
     	$map["major"] = array('like','%'.I('major').'%');
     	$map["gender"] = array('like','%'.I('gender').'%');
     	$map["mobile"] = array('like','%'.I('mobile').'%');
+    	$map["T_offers.code"] = array('like','%%');
+    	if(I('code') != ''){
+    		$map["T_offers.code"] = array('eq',I('code'));
+    	}
     	$starttime = I('starttime');
     	if($starttime == ""){
     		$starttime = "1992-01-25 14:36";
@@ -31,7 +36,7 @@ class TeacherController extends Controller{
     	$map["created_dt"] = array(array('gt',$starttime),array('lt',$endtime)) ;
     	$map["address"] = array('like','%'.I('address').'%');
     	$Teacher  =   D('Teacher');
-    	$data =   $Teacher->where($map)->select();
+    	$data =   $Teacher->join(' T_offers ON T_teacher.openId = T_offers.teacherOpenId')->where($map)->select();
     	
     	//print_r($data);
     	$len = count($data);
