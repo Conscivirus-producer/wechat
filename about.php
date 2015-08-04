@@ -22,7 +22,7 @@
 <img src="image/logo.jpg" width="165" height="165" /> 
 </p>-->
 			<h6 class="text-center">
-				<div style="background-color:#48C9B0; font-size: 16px; color: white;padding: 3px; border-radius: 2px; width: 280px">
+				<div style="background-color:#48C9B0; font-size: 16px; color: white;padding: 3px; border-radius: 2px;">
 				“我教你学”是什么？</div>  
 
 			</h6>
