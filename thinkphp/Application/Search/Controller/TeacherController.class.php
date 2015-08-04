@@ -36,7 +36,7 @@ class TeacherController extends Controller{
     	$map["created_dt"] = array(array('gt',$starttime),array('lt',$endtime)) ;
     	$map["address"] = array('like','%'.I('address').'%');
     	$Teacher  =   D('Teacher');
-    	$data =   $Teacher->join(' T_offers ON T_teacher.openId = T_offers.teacherOpenId')->where($map)->select();
+    	$data =   $Teacher->join(' T_offers ON T_teacher.openId = T_offers.teacherOpenId')->where($map)->field("T_offers.name",false)->select();
     	
     	//print_r($data);
     	$len = count($data);
