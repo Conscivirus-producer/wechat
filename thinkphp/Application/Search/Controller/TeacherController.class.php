@@ -38,6 +38,7 @@ class TeacherController extends Controller{
     	for($i = 0;$i < $len;$i++){
     		$openId = $data[$i]["openId"];
     		$offermap["teacherOpenId"] = array('like','%'.$openId.'%');
+    		$offermap["status"] = array('neq','D');
     		$Offers = D("Offer");
     		$offer = $Offers->where($offermap)->field("name")->select();
     		$data[$i]["offer"] = $offer;

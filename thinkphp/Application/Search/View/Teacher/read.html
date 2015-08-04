@@ -67,6 +67,14 @@
   		<div class="form-group">
     		<label for="typeCode">科目大类：</label>
     		<select class="form-control input-sm" id="typeCode" name="typeCode">
+    			<option value="">不限</option>
+    			<option value="A">舞蹈与音乐</option>
+    			<option value="B">体育运动</option>
+    			<option value="C">书法与美术</option>
+    			<option value="D">人文科学与小语种</option>
+    			<option value="E">演讲与播音主持</option>
+    			<option value="F">编程软件应用与棋类</option>
+    			<option value="SU">科目</option>
 			</select>
   		</div>
   	</div>
@@ -176,6 +184,7 @@
 <script type="text/javascript" src="http://www.ilearnnn.com/timepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="http://www.ilearnnn.com/timepicker/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 <script type="text/javascript">
+var rootUrl = "www.ilearnnn.com";
 $('#starttime').datetimepicker({
     language:  'en',
     weekStart: 1,
@@ -195,6 +204,24 @@ $('#endtime').datetimepicker({
 	startView: 2,
 	minView: 2,
 	forceParse: 0
+});
+
+$(document).ready(function(){
+	$("#typeCode").change(function(){
+		var typeCode = $(this).children('option:selected').val();
+		var url = "http://"+rootUrl+"/service.php?typeCode="+typeCode;
+		$.getJSON(url,function(data){
+			$("#code").children().remove();
+			var code = data.code;
+			var name = data.name;
+			var length = code.length;
+			for(var i = 0;i < length;i++){
+				var optionCode = code[i];
+				var optionName = name[i];
+				$("#code").append("<option value='"+optionCode+"'>"+optionName+"</option>");
+			}
+		});
+	});
 });
 
 </script>
