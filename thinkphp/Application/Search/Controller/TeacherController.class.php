@@ -15,7 +15,7 @@ class TeacherController extends Controller{
     	
     	if(I('search')){
     	
-    	$map["name"] = array('like','%'.I('name').'%');
+    	$map["T_teacher.name"] = array('like','%'.I('name').'%');
     	$map["studentNumber"] = array('like','%'.I('studentNumber').'%');
     	$map["faculty"] = array('like','%'.I('faculty').'%');
     	$map["major"] = array('like','%'.I('major').'%');
