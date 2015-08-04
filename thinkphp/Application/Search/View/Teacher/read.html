@@ -209,6 +209,9 @@ $('#endtime').datetimepicker({
 $(document).ready(function(){
 	$("#typeCode").change(function(){
 		var typeCode = $(this).children('option:selected').val();
+		if(typeCode == ""){
+			$("#code").children().remove();
+		}else{
 		var url = "http://"+rootUrl+"/service.php?typeCode="+typeCode;
 		$.getJSON(url,function(data){
 			$("#code").children().remove();
@@ -221,6 +224,7 @@ $(document).ready(function(){
 				$("#code").append("<option value='"+optionCode+"'>"+optionName+"</option>");
 			}
 		});
+		}
 	});
 });
 
