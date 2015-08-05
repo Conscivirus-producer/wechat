@@ -21,10 +21,9 @@ class TeacherController extends Controller{
     	$map["major"] = array('like','%'.I('major').'%');
     	$map["gender"] = array('like','%'.I('gender').'%');
     	$map["mobile"] = array('like','%'.I('mobile').'%');
-    	$map["T_offers.code"] = array('like','%%');
-    	$map["T_offers.status"] = array('neq','D');
     	if(I('code') != ''){
     		$map["T_offers.code"] = array('eq',I('code'));
+    		$map["T_offers.status"] = array('neq','D');
     	}
     	$starttime = I('starttime');
     	if($starttime == ""){
@@ -37,7 +36,12 @@ class TeacherController extends Controller{
     	$map["created_dt"] = array(array('gt',$starttime),array('lt',$endtime)) ;
     	$map["address"] = array('like','%'.I('address').'%');
     	$Teacher  =   D('Teacher');
-    	$data =   $Teacher->join(' T_offers ON T_teacher.openId = T_offers.teacherOpenId')->where($map)->field("openId, T_teacher.name,studentNumber,faculty,major,gender,mobile,created_dt,T_teacher.description,price,highestGrade,address")->select();
+    	$data = "";
+    	if(I('code') != ''){
+    		$data =   $Teacher->join(' T_offers ON T_teacher.openId = T_offers.teacherOpenId')->where($map)->field("openId, T_teacher.name,studentNumber,faculty,major,gender,mobile,created_dt,T_teacher.description,price,highestGrade,address")->select();
+    	}else{
+    		$data =   $Teacher->where($map)->select();
+    	}
     	
     	//print_r($data);
     	$len = count($data);
