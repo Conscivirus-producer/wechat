@@ -142,35 +142,41 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th width="12.5">基本信息</th>
-            <th width="12.5">注册时间</th>
-            <th width="12.5">个人描述</th>
-            <th width="12.5">可教科目</th>
-            <th width="12.5">时薪</th>
-            <th width="12.5">年级</th>
-            <th width="12.5">地点</th>
-            <th width="12.5">证书</th>
+          	<th style="display:none">ID</th>
+            <th width="10">基本信息</th>
+            <th width="10">注册时间</th>
+            <th width="10">个人描述</th>
+            <th width="10">可教科目</th>
+            <th width="10">时薪</th>
+            <th width="10">年级</th>
+            <th width="10">地点</th>
+            <th width="10">证书</th>
+            <th width="10">状态</th>
+            <th width="10">评分</th>
           </tr>
         </thead>
         <tbody>
            <volist name="data" id="vo">
 		<tr>
-		<td width="12.5">姓名：{$vo.name}<br>学院：{$vo.faculty}<br>专业：{$vo.major}<br>性别：{$vo.gender}<br>手机号：{$vo.mobile}<br>学号：{$vo.studentNumber}<br></td>
-		<td width="12.5">{$vo.created_dt}</td>
-		<td width="12.5">{$vo.description}</td>
-		<td width="12.5">
+		<td style="display:none">{$vo.openId}</td>
+		<td width="10">姓名：{$vo.name}<br>学院：{$vo.faculty}<br>专业：{$vo.major}<br>性别：{$vo.gender}<br>手机号：{$vo.mobile}<br>学号：{$vo.studentNumber}<br></td>
+		<td width="10">{$vo.created_dt}</td>
+		<td width="10">{$vo.description}</td>
+		<td width="10">
 		 <volist name="vo['offer']" id="offer">  
         	{$offer.name}<br>
    		 </volist>  
 		</td>
-		<td width="12.5">{$vo.price}</td>
-		<td width="12.5">{$vo.highestGrade}</td>
-		<td width="12.5">{$vo.address}</td>
-		<td width="12.5">
+		<td width="10">{$vo.price}</td>
+		<td width="10">{$vo.highestGrade}</td>
+		<td width="10">{$vo.address}</td>
+		<td width="10">
 		 <volist name="vo['certificate']" id="certificate">  
         	{$certificate.description}<br>
    		 </volist>
 		</td>
+		<td width="10">{$vo.teacherStatus}</td>
+		<td width="10">{$vo.rating}</td>
 		</tr>
 		</volist>
         </tbody>
@@ -226,6 +232,8 @@ $(document).ready(function(){
 		});
 		}
 	});
+	
+	
 });
 
 </script>
