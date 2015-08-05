@@ -22,6 +22,7 @@ class TeacherController extends Controller{
     	$map["gender"] = array('like','%'.I('gender').'%');
     	$map["mobile"] = array('like','%'.I('mobile').'%');
     	$map["T_offers.code"] = array('like','%%');
+    	$map["T_offers.status"] = array('neq','D');
     	if(I('code') != ''){
     		$map["T_offers.code"] = array('eq',I('code'));
     	}
