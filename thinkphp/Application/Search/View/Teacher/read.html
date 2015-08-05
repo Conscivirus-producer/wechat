@@ -158,16 +158,16 @@
         <tbody>
            <volist name="data" id="vo">
 		<tr>
-		<td style="display:none">{$vo.openId}</td>
+		<td style="display:none" class="openId">{$vo.openId}</td>
 		<td width="10">姓名：{$vo.name}<br>学院：{$vo.faculty}<br>专业：{$vo.major}<br>性别：{$vo.gender}<br>手机号：{$vo.mobile}<br>学号：{$vo.studentNumber}<br></td>
 		<td width="10">{$vo.created_dt}</td>
-		<td width="10">{$vo.description}</td>
+		<td width="10" class="description">{$vo.description}</td>
 		<td width="10">
 		 <volist name="vo['offer']" id="offer">  
         	{$offer.name}<br>
    		 </volist>  
 		</td>
-		<td width="10">{$vo.price}</td>
+		<td width="10" class="price">{$vo.price}</td>
 		<td width="10">{$vo.highestGrade}</td>
 		<td width="10">{$vo.address}</td>
 		<td width="10">
@@ -175,8 +175,8 @@
         	{$certificate.description}<br>
    		 </volist>
 		</td>
-		<td width="10">{$vo.teacherStatus}</td>
-		<td width="10">{$vo.rating}</td>
+		<td width="10" class="teacherStatus">{$vo.teacherStatus}</td>
+		<td width="10" class="rating">{$vo.rating}</td>
 		</tr>
 		</volist>
         </tbody>
@@ -233,6 +233,10 @@ $(document).ready(function(){
 		}
 	});
 	
+	$(".description").click(function(){
+		var description = $(this).val();
+		alert(description);
+	});
 	
 });
 
