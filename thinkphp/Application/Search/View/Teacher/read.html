@@ -235,9 +235,22 @@ $(document).ready(function(){
 	
 	$(".description").click(function(){
 		var description = $(this).text();
-		alert(description);
+		$(this).html("");
+		$("<textarea>").appendTo($(this)).html(description);
+		
 	});
-	
+	$(".price").click(function(){
+		var price = $(this).text();
+		alert(price);
+	});
+	$(".teacherStatus").click(function(){
+		var teacherStatus = $(this).text();
+		alert(teacherStatus);
+	});
+	$(".rating").click(function(){
+		var rating = $(this).text();
+		alert(rating);
+	});
 });
 
 </script>
