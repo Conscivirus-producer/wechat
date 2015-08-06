@@ -237,7 +237,6 @@ $(document).ready(function(){
 		var item = $(this);
 		var openId = $(this).prevAll(".openId").text();
 		var field = $(this).attr("class");
-		alert(field);
 		var description = $(this).text();
 		$(this).html("");
 		$("<textarea>").appendTo($(this)).attr("class","form-control input-sm").attr("rows","5").html(description).bind({
@@ -247,11 +246,14 @@ $(document).ready(function(){
 		});
 		$("<button>").appendTo($(this)).attr("class","btn btn-info btn-block btn-xs").attr("style","margin-top:5px").html("提交修改").bind({
 			click:function(e){
-				var newDescription = $(this).prev().val();
-				$(this).prev().remove();
-				$(this).remove();
-				item.html(newDescription);
 				e.stopPropagation();
+				var newVal = $(this).prev().val();
+				var url = "http://"+rootUrl+"/thinkphp/?m=Search&c=Teacher&a=update"+"&openId="+openId+"&field="+field+"&val="+newVal;
+				$.getJSON(url, function(data){
+					if(data.status == 1){
+						item.html(newVal);
+					}
+				});
 			}
 		});
 	});

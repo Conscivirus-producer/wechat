@@ -117,6 +117,17 @@ class TeacherController extends Controller{
     		$this->display();
     	}
  	}
+ 	
+ 	public function update(){
+ 		if(IS_GET){
+ 			$Teacher = D('Teacher');
+ 			$data["openId"] = I("openId");
+ 			$data[I("field")] = I("val");
+ 			$Teacher->save($data);
+ 			$jsonData['status']  = 1;
+			echo json_encode($jsonData);
+ 		}
+ 	}
 }
 
 
