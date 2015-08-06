@@ -263,7 +263,7 @@ $(document).ready(function(){
 		var field = $(this).attr("class");
 		var val = $(this).text();
 		$(this).html("");
-		$("<input>").appendTo($(this)).attr("class","form-control input-sm").attr("type","text").val(val).bind({
+		$("<input>").appendTo($(this)).attr("class","form-control input-sm").val(val).bind({
 			click:function(e){
 				e.stopPropagation();
 			}
@@ -291,7 +291,7 @@ $(document).ready(function(){
 		var field = $(this).attr("class");
 		var val = $(this).text();
 		$(this).html("");
-		$("<input>").appendTo($(this)).attr("class","form-control input-sm").attr("type","text").val(val).bind({
+		$("<input>").appendTo($(this)).attr("class","form-control input-sm").val(val).bind({
 			click:function(e){
 				e.stopPropagation();
 			}
