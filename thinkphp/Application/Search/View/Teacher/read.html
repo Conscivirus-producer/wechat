@@ -145,14 +145,14 @@
           	<th style="display:none">ID</th>
             <th width="10">基本信息</th>
             <th width="10">注册时间</th>
-            <th width="10">个人描述</th>
+            <th width="10" class="info">个人描述</th>
             <th width="10">可教科目</th>
-            <th width="10">时薪</th>
+            <th width="10" class="info">时薪</th>
             <th width="10">年级</th>
             <th width="10">地点</th>
             <th width="10">证书</th>
-            <th width="10">状态</th>
-            <th width="10">评分</th>
+            <th width="10" class="info">状态</th>
+            <th width="10" class="info">评分</th>
           </tr>
         </thead>
         <tbody>
@@ -286,8 +286,31 @@ $(document).ready(function(){
 		}
 	});
 	$(".teacherStatus").click(function(){
-		var teacherStatus = $(this).text();
-		alert(teacherStatus);
+		var item = $(this);
+		if(item.children("button").length == 0){
+			var openId = $(this).prevAll(".openId").text();
+			var field = $(this).attr("class");
+			var val = $(this).text();
+			$(this).html("");
+			$("<select>").appendTo($(this)).attr("class","form-control input-sm").html("<option value='R'>R</option><option value='I'>I</option>").val(val).bind({
+				click:function(e){
+					e.stopPropagation();
+				}
+			});
+			$("<button>").appendTo($(this)).attr("class","btn btn-info btn-block btn-xs").attr("style","margin-top:5px").html("提交修改").bind({
+				click:function(e){
+					e.stopPropagation();
+					var newVal = $(this).prev().val();
+					var url = "http://"+rootUrl+"/thinkphp/?m=Search&c=Teacher&a=update"+"&openId="+openId+"&field="+field+"&val="+newVal;
+					$.getJSON(url, function(data){
+						if(data.status == 1){
+							item.html(newVal);
+						}
+					});
+				}
+			});
+		}
+	
 	});
 	$(".rating").click(function(){
 		var item = $(this);
