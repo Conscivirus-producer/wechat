@@ -236,7 +236,7 @@ $(document).ready(function(){
 	$(".description").click(function(){
 		var description = $(this).text();
 		$(this).html("");
-		$("<textarea>").appendTo($(this)).html(description);
+		$("<textarea>").appendTo($(this)).attr("class","form-control").attr("rows","4").html(description);
 		
 	});
 	$(".price").click(function(){
