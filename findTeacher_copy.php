@@ -196,13 +196,13 @@ if (isset($_GET['code'])){
 		<div class="col-xs-2"></div>
 		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block options" name="gender3" id="gender3">不限</button>
+			<button type="button" class="btn btn-lg btn-block options" name="gender3" id="">不限</button>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block options" name="gender1" id="gender1">男生</button>
+			<button type="button" class="btn btn-lg btn-block options" name="gender1" id="m">男生</button>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block options" name="gender2" id="gender2">女生</button>
+			<button type="button" class="btn btn-lg btn-block options" name="gender2" id="f">女生</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
 			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep5" id="laststep5">上一步</button>
@@ -602,7 +602,7 @@ $(".btn.btn-lg.btn-block").click(function(){
 			});
 		});
 	}else if(itemname.indexOf("gender") >= 0){
-		teacherGender = itemname;
+		teacherGender = $(this).attr("id");
 		$("#teacherGender").hide("normal",function(){
 			showDiv($("#address"));
 		});
@@ -736,8 +736,8 @@ $("#manual_arrg").click(function(){
 });
 
 function findTeacher(){
-	var url = "http://"+rootUrl+"/service.php?requestMethod=matchTeacher&parentOpenId="+
-	$("#openid").val()+"&choice="+choice+"&mobile="+mobile+"&gender="+gender+"&grade="+grade+"&section="+section;
+	var url = "http://"+rootUrl+"/service.php?requestMethod=findTeacher&parentOpenId="+
+	$("#openid").val()+"&choice="+choice+"&mobile="+mobile+"&teacherGender="+teacherGender+"&grade="+grade+"&section="+section;
 	if(choice == "contentsub"){
 		url += "&subject="+subject.toUpperCase();
 	}else if(choice == "contentinte"){

@@ -26,50 +26,8 @@
 	
 	if($_GET&&$_GET["requestMethod"]){
 		$requestMethod = trim($_GET["requestMethod"]);
-		if($requestMethod == "matchTeacher"){
-			$childId = trim($_GET["childId"]);
-			$interest = trim($_GET["interest"]);
-			$subject = trim($_GET["subject"]);
-			$choice = trim($_GET["choice"]);
-			
-			$query = "set names utf8";
-			$result = $conn->query($query);
-			$query = "select * from T_teacher";
-			if($choice == "contentsub"){
-				$query = $query." where openId in (select teacherOpenId from T_offers where code = '$subject')";
-			}else if($choice == "contentinte"){
-				$query = $query." where openId in (select teacherOpenId from T_offers where code = '$interest')";
-			}else{
-				$query = $query." where openId in (select teacherOpenId from T_offers where code = '$interest') and openId in (select teacherOpenId from T_offers where code = '$subject')";
-			}
-			
-			$query = $query." and teacherStatus = 'R' order by rating DESC limit 3";
-			
-			$result = $conn->query($query);
-			//{"teacherOpenId":"02","name":"", "gender":"", "major":"","description":"", "":"", "rating":0, "imageUrl":"", "mobile":""}
-			$jsonArray = array(
-				'teacherOpenId' => array(),
-				'major' => array(),
-				'name' => array(),
-				'gender' => array(),
-				'mobile' => array(),
-				'description' => array(),
-				'rating' => array(),
-				'imageUrl' => array(),
-				'childId' => array(),
-			);
-			while($row = $result->fetch_assoc()){
-				array_push($jsonArray["teacherOpenId"],$row["openId"]);
-				array_push($jsonArray["major"],$row["major"]);
-				array_push($jsonArray["name"],$row["name"]);
-				array_push($jsonArray["gender"],$row["gender"]);
-				array_push($jsonArray["mobile"],$row["mobile"]);
-				array_push($jsonArray["description"],$row["description"]);
-				array_push($jsonArray["rating"],$row["rating"]);
-				array_push($jsonArray["imageUrl"],$row["imageUrl"]);
-				array_push($jsonArray["childId"],$childId);
-			}
-			echo json_encode($jsonArray);
+		if($requestMethod == "findTeacher"){
+			findTeacher();
 		}else if($requestMethod == "insertParentAndChild"){
 			$childId = insertParentAndChild($conn, $appid, $secret);
 			echo insertTransaction($conn, $childId);
@@ -88,6 +46,58 @@
 		}else if($requestMethod == "updateTransaction"){
 			updateTransaction();
 		}
+	}
+	
+	function findTeacher(){
+		global $conn;
+		$childId = trim($_GET["childId"]);
+		$interest = trim($_GET["interest"]);
+		$subject = trim($_GET["subject"]);
+		$choice = trim($_GET["choice"]);
+		$teacherGender = trim($_GET["teacherGender"]);
+		
+		$query = "set names utf8";
+		$result = $conn->query($query);
+		$query = "select * from T_teacher";
+		if($choice == "contentsub"){
+			$query = $query." where openId in (select teacherOpenId from T_offers where code = '$subject')";
+		}else if($choice == "contentinte"){
+			$query = $query." where openId in (select teacherOpenId from T_offers where code = '$interest')";
+		}else{
+			$query = $query." where openId in (select teacherOpenId from T_offers where code = '$interest') and openId in (select teacherOpenId from T_offers where code = '$subject')";
+		}
+		
+		if($teacherGender != ""){
+			$query = $query." and gender = '$teacherGender'";
+		}
+		
+		$query = $query." and teacherStatus = 'R' order by rating DESC limit 3";
+		
+		$result = $conn->query($query);
+		//{"teacherOpenId":"02","name":"", "gender":"", "major":"","description":"", "":"", "rating":0, "imageUrl":"", "mobile":""}
+		$jsonArray = array(
+			'teacherOpenId' => array(),
+			'major' => array(),
+			'name' => array(),
+			'gender' => array(),
+			'mobile' => array(),
+			'description' => array(),
+			'rating' => array(),
+			'imageUrl' => array(),
+			'childId' => array(),
+		);
+		while($row = $result->fetch_assoc()){
+			array_push($jsonArray["teacherOpenId"],$row["openId"]);
+			array_push($jsonArray["major"],$row["major"]);
+			array_push($jsonArray["name"],$row["name"]);
+			array_push($jsonArray["gender"],$row["gender"]);
+			array_push($jsonArray["mobile"],$row["mobile"]);
+			array_push($jsonArray["description"],$row["description"]);
+			array_push($jsonArray["rating"],$row["rating"]);
+			array_push($jsonArray["imageUrl"],$row["imageUrl"]);
+			array_push($jsonArray["childId"],$childId);
+		}
+		echo json_encode($jsonArray);
 	}
 
 	function updateTransaction(){
