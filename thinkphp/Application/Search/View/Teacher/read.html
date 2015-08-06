@@ -239,7 +239,7 @@ $(document).ready(function(){
 		var description = $(this).text();
 		$(this).html("");
 		$("<textarea>").appendTo($(this)).attr("class","form-control input-sm").attr("rows","5").html(description);
-		$("<button>").appendTo($(this)).attr("class","btn btn-info btn-block btn-sm").html("提交修改").bind({
+		$("<button>").appendTo($(this)).attr("class","btn btn-info btn-block btn-xs").attr("style","margin-top:5px").html("提交修改").bind({
 			
 		});
 	});
