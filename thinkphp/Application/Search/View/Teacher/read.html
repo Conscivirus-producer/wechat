@@ -237,9 +237,9 @@ $(document).ready(function(){
 		var item = $(this);
 		var openId = $(this).prevAll(".openId").text();
 		var field = $(this).attr("class");
-		var description = $(this).text();
+		var val = $(this).text();
 		$(this).html("");
-		$("<textarea>").appendTo($(this)).attr("class","form-control input-sm").attr("rows","5").html(description).bind({
+		$("<textarea>").appendTo($(this)).attr("class","form-control input-sm").attr("rows","5").html(val).bind({
 			click:function(e){
 				e.stopPropagation();
 			}
@@ -258,16 +258,56 @@ $(document).ready(function(){
 		});
 	});
 	$(".price").click(function(){
-		var price = $(this).text();
-		alert(price);
+		var item = $(this);
+		var openId = $(this).prevAll(".openId").text();
+		var field = $(this).attr("class");
+		var val = $(this).text();
+		$(this).html("");
+		$("<input>").appendTo($(this)).attr("class","form-control input-sm").attr("type","text").html(val).bind({
+			click:function(e){
+				e.stopPropagation();
+			}
+		});
+		$("<button>").appendTo($(this)).attr("class","btn btn-info btn-block btn-xs").attr("style","margin-top:5px").html("提交修改").bind({
+			click:function(e){
+				e.stopPropagation();
+				var newVal = $(this).prev().val();
+				var url = "http://"+rootUrl+"/thinkphp/?m=Search&c=Teacher&a=update"+"&openId="+openId+"&field="+field+"&val="+newVal;
+				$.getJSON(url, function(data){
+					if(data.status == 1){
+						item.html(newVal);
+					}
+				});
+			}
+		});
 	});
 	$(".teacherStatus").click(function(){
 		var teacherStatus = $(this).text();
 		alert(teacherStatus);
 	});
 	$(".rating").click(function(){
-		var rating = $(this).text();
-		alert(rating);
+		var item = $(this);
+		var openId = $(this).prevAll(".openId").text();
+		var field = $(this).attr("class");
+		var val = $(this).text();
+		$(this).html("");
+		$("<input>").appendTo($(this)).attr("class","form-control input-sm").attr("type","text").html(val).bind({
+			click:function(e){
+				e.stopPropagation();
+			}
+		});
+		$("<button>").appendTo($(this)).attr("class","btn btn-info btn-block btn-xs").attr("style","margin-top:5px").html("提交修改").bind({
+			click:function(e){
+				e.stopPropagation();
+				var newVal = $(this).prev().val();
+				var url = "http://"+rootUrl+"/thinkphp/?m=Search&c=Teacher&a=update"+"&openId="+openId+"&field="+field+"&val="+newVal;
+				$.getJSON(url, function(data){
+					if(data.status == 1){
+						item.html(newVal);
+					}
+				});
+			}
+		});
 	});
 });
 
