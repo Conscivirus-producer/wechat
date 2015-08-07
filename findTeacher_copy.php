@@ -380,7 +380,7 @@ if (isset($_GET['code'])){
 				    	<th>期望教学地点</th>
 				    	<td id="preview_location"></td>
 				    </tr>
-				    <tr>
+				    <tr style="display: none">
 				    	<th>接受的时薪范围</th>
 				    	<td id="preview_price"></td>
 				    </tr>
@@ -507,7 +507,7 @@ var choice;
 var subject;
 var interest;
 var divArray = new Array();
-var price;
+var price = "";
 var teacherGender;
 var teacherOpenId;
 var notifyMethod;
@@ -609,7 +609,9 @@ $(".btn.btn-lg.btn-block").click(function(){
 	}else if(itemname.indexOf("address") >= 0){
 		address = itemname;
 		$("#address").hide("normal",function(){
-			showDiv($("#price"));
+			showDiv($("#q1"));
+			//隐藏期望价格
+			//showDiv($("#price"));
 		});
 	}else if(itemname.indexOf("price") >= 0){
 		price = itemname;
@@ -754,7 +756,7 @@ function findTeacher(){
 		for(var i = 0;i < length;i++){
 			var value = teacherOpenId[i]; 
 			var $a = $("<a>", {class: "list-group-item", id: value, href:"#"}).html('<img class="img-circle listHeader" src="'+data.imageUrl[i]+'"></img>'+
-			'<span style="margin-left:10px">'+name[i]+'</span><span style="margin-top:8px;float:right">' + data.major[i]+'</span>');
+			'<span style="margin-left:10px">'+name[i]+'</span><span style="margin-top:8px;float:right">' + data.price[i]+' 元/小时</span>');
 			$a.click(function(){
 				var value = $(this).attr("id");
 				teacherOpenId = value;

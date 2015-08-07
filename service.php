@@ -84,6 +84,7 @@
 			'description' => array(),
 			'rating' => array(),
 			'imageUrl' => array(),
+			'price' => array(),
 			'childId' => array(),
 		);
 		while($row = $result->fetch_assoc()){
@@ -95,6 +96,7 @@
 			array_push($jsonArray["description"],$row["description"]);
 			array_push($jsonArray["rating"],$row["rating"]);
 			array_push($jsonArray["imageUrl"],$row["imageUrl"]);
+			array_push($jsonArray["price"],$row["price"]);
 			array_push($jsonArray["childId"],$childId);
 		}
 		echo json_encode($jsonArray);
