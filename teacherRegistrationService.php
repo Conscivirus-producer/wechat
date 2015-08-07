@@ -166,7 +166,7 @@
 			$result = $conn->query($query);
 			
 			//2，删除原有offer
-			$query = "update T_offers set status = 'D' where teacherOpenId='$openid' and code!=''";
+			$query = "delete from T_offers where teacherOpenId='$openid'";
 			$result = $conn->query($query);
 			
 			//3，存入老师能教的科目
