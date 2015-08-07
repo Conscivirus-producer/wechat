@@ -169,19 +169,29 @@
 
 	function getTeacherDetails($conn){
 		$teacherOpenId = trim($_GET["teacherOpenId"]);
-		$detailArray = array(
+		$offerArray = array(
 			'name' => array(),
 			'description' => array(),
 		);
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "SELECT * FROM `T_offers` WHERE teacherOpenId = '$teacherOpenId' and status = 'R' and typeCode != 'SU'";
+		$query = "SELECT * FROM `T_offers` WHERE teacherOpenId = '$teacherOpenId' and status = 'R' and typeCode != 'SU' and typeCode != ''";
 		$result = $conn->query($query);
-		
 		while($row = $result->fetch_assoc()){
-			array_push($detailArray["name"],$row["name"]);
-			array_push($detailArray["description"],$row["description"]);
+			array_push($offerArray["name"],$row["name"]);
+			array_push($offerArray["description"],$row["description"]);
 		}
+		
+		$certificationArray = array(
+			'description' => array(),
+			'url' => array(),
+		);
+		$query = "SELECT * FROM `T_teacher_certifications` WHERE teacherOpenId = '$teacherOpenId' and status = 'R'";
+		$result = $conn->query($query);		
+		while($row = $result->fetch_assoc()){
+			array_push($certificationArray["description"],$row["description"]);
+			array_push($certificationArray["url"],$row["imageUrl"]);
+		}		
 		
 		$query = "SELECT * FROM `T_teacher` WHERE openId = '$teacherOpenId'";
 		$result = $conn->query($query);
@@ -193,7 +203,8 @@
 							"description"=>$description,
 							"extraDescription"=>$row["extraDescription"], 
 							"price"=>$row["price"],
-							"interests"=>$detailArray);
+							"interests"=>$offerArray,
+							"certifications"=>$certificationArray);
 		
 		echo json_encode($rootArray); 
 	}

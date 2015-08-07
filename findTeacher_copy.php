@@ -21,6 +21,7 @@ if (isset($_GET['code'])){
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
 <!-- Loading Bootstrap -->
 <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+<link href="js/swipebox-master/src/css/swipebox.min.css" rel="stylesheet">
 <!-- Loading Flat UI -->
 <link href="css/flat-ui.min.css" rel="stylesheet">
 <link href="css/default.css" rel="stylesheet">
@@ -431,7 +432,7 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q8">
-		<div class="teacher-info" style="margin-top: 30px">
+		<!-- <div class="teacher-info" style="margin-top: 30px">
 			<div class="teacher-photo">
 				<img id="teacherImgUrl" alt="empty" class="img-circle center-block">
 			</div>
@@ -469,6 +470,45 @@ if (isset($_GET['code'])){
 		</div>
 		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
 			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep7" id="laststep7">上一步</button>
+		</div> -->
+		<div class="teacher-info col-xs-12" style="margin-top: 30px">
+			<div class="teacher-photo">
+				<img id="teacherImgUrl" alt="empty" class="img-circle center-block">
+			</div>
+			<h6 class="username center-block text-center" id="teacherName">Anderson</h6>
+			<div class="center-block text-center teacher-price"><span id="teacherPrice">50</span>元/小时</div>
+			<div class="row school-info">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-10 text-center"><span id="teacherDescription">“您好，我是来自深圳大学 计算机学院 计算机科学与技术专业的李超超, 我擅长创业，希望我能帮到你和你的孩子”</span></div>
+				<div class="col-xs-1"></div>
+			</div>
+			<div class="row interests" id="interestsRow">
+				<div class="col-xs-10 col-xs-offset-1">
+					<div class="col-xs-6 text-center subjects_label col-xs-offset-3"><span>教授课程</span></div>
+					<!-- <div class="col-xs-12 text-center interests_label">特长</div> -->
+					<div class="col-xs-12" style="padding: 0px" id="availableInterests">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="gallery col-xs-10 col-xs-offset-1" style="margin-bottom: 80px" id="personalCertification">
+			<div class="col-xs-6 text-center subjects_label col-xs-offset-3" style="margin-top: 20px;"><span>个人荣誉</span></div>
+		</div>
+		<!-- <div class="row accept">
+			<div class="btn btn-lg btn-primary col-xs-8 col-xs-offset-2" name="compeleteRecord" id="compeleteRecord">预约试听</div>
+		</div>
+		<div class="row back-to-list">
+			<div class="btn btn-lg laststep col-xs-8 col-xs-offset-2" name="laststep1" id="laststep1">返回列表</div>
+		</div> -->
+		<div class="button-group">
+			<div class="col-xs-6 line">
+				<button type="button" class="btn btn-lg btn-block"  name="compeleteRecord" id="compeleteRecord">预约试听</button>
+			</div>
+			<div class="col-xs-6">
+				<button type="button" class="btn btn-lg btn-block" name="laststep1" id="laststep1">返回列表</button>
+			</div>
 		</div>
 	</div>
 	
@@ -495,6 +535,7 @@ if (isset($_GET['code'])){
 <!-- /.container -->
 <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
 <script src="js/vendor/jquery.min.js"></script>
+<script src="js/swipebox-master/src/js/jquery.swipebox.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/vendor/video.js"></script>
 <script src="js/flat-ui.min.js"></script>
@@ -778,7 +819,7 @@ function findTeacher(){
 						$('#interestsRow').show();
 						for(var j=0; j < length;j++){
 							$parentDiv = $("<div>", {class: "col-xs-6 subjects_value"});
-							$childDiv = $("<div>", {class: "text-center btn-info btn-doc"}).text(interests.name[j]);
+							$childDiv = $("<div>", {class: "text-center btn-info btn-doc btn-interest"}).text(interests.name[j]);
 							$parentDiv.append($childDiv);
 							$("#availableInterests").append($parentDiv);
 							inteNameStr += interests.name[j];
@@ -789,6 +830,18 @@ function findTeacher(){
 					}
 					description = description.replace("TBC", inteNameStr);
 					$("#teacherDescription").html(description);
+					//personalCertification
+					var certifications = data.certifications;
+					for(var j=0;j<certifications.description.length;j++){
+						//alert(certifications.description[j] + " " + certifications.url[j]);
+						var img = $("<img>", {src: certifications.url[j] + "?imageView2/1/w/80/h/80", alt: "no photo", style:"border-radius: 3px; box-shadow:0 0 10px #333"});
+						var a = $("<a>", {href: certifications.url[j], class: "swipebox", title: certifications.description[j]});
+						a.append(img);
+						var div = $("<div>", {style: "border-radius: 3px; padding:0px", class: "col-xs-4"});
+						div.append(a);
+						$("#personalCertification").append(div);
+					}
+						$('.swipebox' ).swipebox();
 	 				$("#q7").hide("normal",function(){
 						showDiv($("#q8"));
 					});
