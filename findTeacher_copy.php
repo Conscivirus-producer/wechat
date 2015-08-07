@@ -421,13 +421,13 @@ if (isset($_GET['code'])){
 	
 	<div class="row" style="display:none" id="q7">
 		<div class="col-md-4 col-md-offset-4">		
-			<p class="text-left">
+			<div class="text-center" style="font-size: 12px; margin-top: 110px; margin-bottom: 20px">
 				为您找到的老师信息如下:
-			</p>
+			</div>
 		</div>
 		
-		<div class="col-md-4 col-md-offset-4" style="margin-top: 75px">
-			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="manual_arrg" id="manual_arrg">都不满意，人工</button>
+		<div class="col-md-4 col-md-offset-4">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="manual_arrg" id="manual_arrg">我教你学帮我推荐</button>
 		</div>
 	</div>
 	

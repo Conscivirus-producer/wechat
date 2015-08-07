@@ -175,7 +175,7 @@
 		);
 		$query = "set names utf8";
 		$result = $conn->query($query);
-		$query = "SELECT * FROM `T_offers` WHERE teacherOpenId = '$teacherOpenId' and status = 'R' and typeCode != 'SU' and typeCode != ''";
+		$query = "SELECT * FROM `T_offers` WHERE teacherOpenId = '$teacherOpenId' and status = 'R' and typeCode != ''";
 		$result = $conn->query($query);
 		while($row = $result->fetch_assoc()){
 			array_push($offerArray["name"],$row["name"]);
