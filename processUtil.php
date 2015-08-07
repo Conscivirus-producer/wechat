@@ -65,10 +65,12 @@ class CodeParser{
 			return 	"3.家长已同意,安排试教中";
 		}else if($status == "4"){
 			return 	"4.已试教";
+		}else if($status == "5"){
+			return 	"5.订单正式确定";
 		}else if($status == "C"){
 			return 	"C.订单已取消";
 		}else if($status == "S"){
-			return 	"S.订单已正式确定";
+			return 	"S.优质订单";
 		}
 	}
 	
