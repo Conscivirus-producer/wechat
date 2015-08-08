@@ -432,7 +432,7 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q8">
-		<div class="teacher-info col-xs-12" style="margin-top: 30px">
+		<div class="teacher-info col-xs-12" style="margin-top: 30px" ID="mainInformation">
 			<div class="teacher-photo">
 				<img id="teacherImgUrl" alt="empty" class="img-circle center-block">
 			</div>
@@ -793,6 +793,9 @@ function findTeacher(){
 					$("#teacherDescription").html(description);
 					//personalCertification
 					var certifications = data.certifications;
+					if(certifications.description.length == 0){
+						$("#mainInformation").css("margin-bottom","80px");
+					}
 					for(var j=0;j<certifications.description.length;j++){
 						//alert(certifications.description[j] + " " + certifications.url[j]);
 						var img = $("<img>", {src: certifications.url[j] + "?imageView2/1/w/80/h/80", alt: "no photo", style:"border-radius: 3px; box-shadow:0 0 10px #333"});
@@ -803,7 +806,7 @@ function findTeacher(){
 						$("#personalCertification").append(div);
 						$("#personalCertification").show();
 					}
-						$('.swipebox' ).swipebox();
+					$('.swipebox' ).swipebox();
 	 				$("#q7").hide("normal",function(){
 						showDiv($("#q8"));
 					});
@@ -811,8 +814,13 @@ function findTeacher(){
 			});
 			$ulGroup.append($a);
 		}
-		$("#q7").append($ulGroup);
-		showDiv($("#q7"));
+		if(length == 0){
+			showDiv($("#resultNotification"));
+			$("#confirmation1").show();
+		}else{
+			$("#q7").append($ulGroup);
+			showDiv($("#q7"));
+		}
 		/*$("#q6").hide("normal",function(){
 			showDiv($("#q7"));
 		});*/
