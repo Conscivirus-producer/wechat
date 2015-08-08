@@ -21,6 +21,7 @@ if (isset($_GET['code'])){
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
 <!-- Loading Bootstrap -->
 <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+<link href="js/swipebox-master/src/css/swipebox.min.css" rel="stylesheet">
 <!-- Loading Flat UI -->
 <link href="css/flat-ui.min.css" rel="stylesheet">
 <link href="css/default.css" rel="stylesheet">
@@ -196,13 +197,13 @@ if (isset($_GET['code'])){
 		<div class="col-xs-2"></div>
 		<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px"/></div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block options" name="gender3" id="gender3">不限</button>
+			<button type="button" class="btn btn-lg btn-block options" name="gender3" id="">不限</button>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block options" name="gender1" id="gender1">男生</button>
+			<button type="button" class="btn btn-lg btn-block options" name="gender1" id="m">男生</button>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block options" name="gender2" id="gender2">女生</button>
+			<button type="button" class="btn btn-lg btn-block options" name="gender2" id="f">女生</button>
 		</div>
 		<div class="col-xs-8 col-offset-2" style="margin-top: 75px">
 			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="laststep5" id="laststep5">上一步</button>
@@ -380,7 +381,7 @@ if (isset($_GET['code'])){
 				    	<th>期望教学地点</th>
 				    	<td id="preview_location"></td>
 				    </tr>
-				    <tr>
+				    <tr style="display: none">
 				    	<th>接受的时薪范围</th>
 				    	<td id="preview_price"></td>
 				    </tr>
@@ -405,7 +406,8 @@ if (isset($_GET['code'])){
 		<div class="col-xs-12" style="margin-top: 30px">
 			<div class="col-xs-12 text-center" style="color: #2CB298">感谢您的使用</div>
 			<div class="col-xs-12 text-left question" style="color: black; font-size: 14px">
-				谢谢您的选择，我们会在24小时找到匹配您的老师并把结果发送给您，请输入您的手机号:
+				<span id="confirmation1" style="display: none">谢谢您的选择，我们会在24小时找到匹配您的老师并把结果发送给您，请输入您的手机号:</span>
+				<span id="confirmation2" style="display: none">谢谢您的选择，请输入您的手机号，我们的老师将会尽快和您联系:</span>
 			</div>
 			<div class="col-xs-8 col-xs-offset-2"><img src="http://7xk9ts.com2.z0.glb.qiniucdn.com/seperator.svg" class="center-block" style="width:150px; height: 30px;margin-top: 30px"/></div>
 			<div class="col-xs-12 form-group" style="margin-top: 30px">
@@ -419,51 +421,55 @@ if (isset($_GET['code'])){
 	
 	<div class="row" style="display:none" id="q7">
 		<div class="col-md-4 col-md-offset-4">		
-			<p class="text-left">
+			<div class="text-center" style="font-size: 12px; margin-top: 110px; margin-bottom: 20px">
 				为您找到的老师信息如下:
-			</p>
+			</div>
+		</div>
+		
+		<div class="col-md-4 col-md-offset-4">
+			<button type="button" class="btn btn-lg btn-block btn-info laststep" name="manual_arrg" id="manual_arrg">我教你学帮我推荐</button>
 		</div>
 	</div>
 	
 	<div class="row" style="display:none" id="q8">
-		<div class="teacher-info" style="margin-top: 30px">
+		<div class="teacher-info col-xs-12" style="margin-top: 30px" ID="mainInformation">
 			<div class="teacher-photo">
 				<img id="teacherImgUrl" alt="empty" class="img-circle center-block">
 			</div>
 			<h6 class="username center-block text-center" id="teacherName">Anderson</h6>
+			<div class="center-block text-center teacher-price"><span id="teacherPrice">50</span>元/小时</div>
 			<div class="row school-info">
 				<div class="col-xs-1"></div>
-				<div class="col-xs-10 text-center"><span>深圳大学</span><span id="teacherMajor">计算机学院</span></div>
-				<div class="col-xs-1"></div>
-			</div>
-			<div class="row subjects">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10">
-					<div class="col-xs-12 text-center subjects_label">课程</div>
-					<div class="col-xs-12" style="padding: 0px">
-						<div class="col-xs-6 subjects_value"><div class="text-center btn-info btn-doc">语文</div></div>
-						<div class="col-xs-6 subjects_value"><div class="text-center btn-info">数学</div></div>
-						<div class="col-xs-6 subjects_value"><div class="text-center btn-info">英语</div></div>
-					</div>
-				</div>
+				<div class="col-xs-10 text-center"><span id="teacherDescription">“您好，我是来自深圳大学 计算机学院 计算机科学与技术专业的李超超, 我擅长创业，希望我能帮到你和你的孩子”</span></div>
 				<div class="col-xs-1"></div>
 			</div>
 			<div class="row interests" id="interestsRow">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10">
-					<div class="col-xs-12 text-center interests_label">特长</div>
+				<div class="col-xs-10 col-xs-offset-1">
+					<div class="col-xs-6 text-center subjects_label col-xs-offset-3"><span>教授课程</span></div>
+					<!-- <div class="col-xs-12 text-center interests_label">特长</div> -->
 					<div class="col-xs-12" style="padding: 0px" id="availableInterests">
 						
 					</div>
 				</div>
-				<div class="col-xs-1"></div>
 			</div>
 		</div>
-		<div class="row accept">
-			<div class="btn btn-lg btn-primary col-xs-8 col-xs-offset-2" name="compeleteRecord" id="compeleteRecord">免费预约</div>
+		
+		<div class="gallery col-xs-10 col-xs-offset-1" style="margin-bottom: 80px; display:none" id="personalCertification">
+			<div class="col-xs-6 text-center subjects_label col-xs-offset-3" style="margin-top: 20px;"><span>个人荣誉</span></div>
 		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep7" id="laststep7">上一步</button>
+		<!-- <div class="row accept">
+			<div class="btn btn-lg btn-primary col-xs-8 col-xs-offset-2" name="compeleteRecord" id="compeleteRecord">预约试听</div>
+		</div>
+		<div class="row back-to-list">
+			<div class="btn btn-lg laststep col-xs-8 col-xs-offset-2" name="laststep1" id="laststep1">返回列表</div>
+		</div> -->
+		<div class="button-group">
+			<div class="col-xs-6 line">
+				<button type="button" class="btn btn-lg btn-block"  name="compeleteRecord" id="compeleteRecord">预约试听</button>
+			</div>
+			<div class="col-xs-6">
+				<button type="button" class="btn btn-lg btn-block" name="laststep1" id="laststep1">返回列表</button>
+			</div>
 		</div>
 	</div>
 	
@@ -490,6 +496,7 @@ if (isset($_GET['code'])){
 <!-- /.container -->
 <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
 <script src="js/vendor/jquery.min.js"></script>
+<script src="js/swipebox-master/src/js/jquery.swipebox.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/vendor/video.js"></script>
 <script src="js/flat-ui.min.js"></script>
@@ -502,10 +509,11 @@ var choice;
 var subject;
 var interest;
 var divArray = new Array();
-var price;
+var price = "";
 var teacherGender;
 var teacherOpenId;
 var notifyMethod;
+var transactionId;
 var mobile = "";
 var address;
 
@@ -526,6 +534,7 @@ function insertParentAndChild(){
 		url += "&subject="+subject.toUpperCase()+"&interest="+interest;
 	}
 	$.getJSON(url,function(data){
+		transactionId = data;
 	});
 }
 
@@ -595,14 +604,16 @@ $(".btn.btn-lg.btn-block").click(function(){
 			});
 		});
 	}else if(itemname.indexOf("gender") >= 0){
-		teacherGender = itemname;
+		teacherGender = $(this).attr("id");
 		$("#teacherGender").hide("normal",function(){
 			showDiv($("#address"));
 		});
 	}else if(itemname.indexOf("address") >= 0){
 		address = itemname;
 		$("#address").hide("normal",function(){
-			showDiv($("#price"));
+			showDiv($("#q1"));
+			//隐藏期望价格
+			//showDiv($("#price"));
 		});
 	}else if(itemname.indexOf("price") >= 0){
 		price = itemname;
@@ -637,7 +648,8 @@ $(".btn.btn-lg.btn-block").click(function(){
 		$("#preview").hide("normal",function(){
 			//#add message function here#
 			insertParentAndChild();
-			showDiv($("#resultNotification"));
+			findTeacher();
+			//showDiv($("#resultNotification"));
 		});	
 	}
 });
@@ -678,16 +690,6 @@ $("[id^=laststep]").click(function(){
 	divArray.pop();
 });
 
-/*$("#compeleteRecord").click(function(){
-	var url = "http://"+rootUrl+"/service.php?requestMethod=saveTransaction&parentOpenId="+$("#openid").val()+"&teacherOpenId="+teacherOpenId+"&childId="+childId;
-	$.getJSON(url,function(data){
-		
-	});
-	$("#q8").hide("normal",function(){
-		showDiv($("#q9"));
-	});	
-});*/
-
 $("#myrecord").click(function(){
 	window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+$appid+'&redirect_uri=http://'+rootUrl+'/myRecord.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect';
 });
@@ -717,6 +719,112 @@ function validatePhone(phone){
 	}else{
 		return false;
 	}
+}
+
+$("#compeleteRecord").click(function(){
+	var url = "service.php?requestMethod=updateTransaction&transactionId="+transactionId+"&teacherOpenId="+teacherOpenId;
+	$.getJSON(url,function(data){
+		
+	});
+	$("#q8").hide("normal",function(){
+		showDiv($("#resultNotification"));
+		$("#confirmation2").show();
+	});	
+});
+
+$("#manual_arrg").click(function(){
+	$("#q7").hide("normal",function(){
+		showDiv($("#resultNotification"));
+		$("#confirmation1").show();
+	});	
+});
+
+function findTeacher(){
+	var url = "http://"+rootUrl+"/service.php?requestMethod=findTeacher&parentOpenId="+
+	$("#openid").val()+"&choice="+choice+"&mobile="+mobile+"&teacherGender="+teacherGender+"&grade="+grade+"&section="+section;
+	if(choice == "contentsub"){
+		url += "&subject="+subject.toUpperCase();
+	}else if(choice == "contentinte"){
+		url += "&interest="+interest;
+	}else if(choice == "contentboth"){
+		url += "&subject="+subject.toUpperCase()+"&interest="+interest;
+	}
+	$.getJSON(url,function(data){
+		teacherOpenId = data.teacherOpenId;
+		childId = data.childId[0];
+		var name = data.name;
+		var length = teacherOpenId.length;
+		var $ulGroup = $("<ul>", {class : "list-group", style: "margin-left: 10px;margin-right: 10px"});
+		for(var i = 0;i < length;i++){
+			var value = teacherOpenId[i]; 
+			var $a = $("<a>", {class: "list-group-item", id: value, href:"#"}).html('<img class="img-circle listHeader" src="'+data.imageUrl[i]+'"></img>'+
+			'<span style="margin-left:10px">'+name[i]+'</span><span style="margin-top:8px;float:right">' + data.price[i]+' 元/小时</span>');
+			$a.click(function(){
+				var value = $(this).attr("id");
+				teacherOpenId = value;
+				//var text = $(this).text();
+				url = "http://"+rootUrl+"/service.php?requestMethod=teacherDetails&teacherOpenId="+teacherOpenId;
+				$.getJSON(url, function(data){
+					var studentName = data.name;
+					var interests = data.interests;
+					var interestName = interests.name;
+					var inteNameStr = "";
+					var description = data.description;
+					$("#teacherName").html(data.name);
+					$("#teacherPrice").html(data.price);
+					$("#teacherImgUrl").attr("src", data.imageUrl);
+					var length = interestName.length;
+					if(length == 0){
+						$('#interestsRow').hide();
+					}else{
+						$('#interestsRow').show();
+						for(var j=0; j < length;j++){
+							$parentDiv = $("<div>", {class: "col-xs-6 subjects_value"});
+							$childDiv = $("<div>", {class: "text-center btn-info btn-doc btn-interest"}).text(interests.name[j]);
+							$parentDiv.append($childDiv);
+							$("#availableInterests").append($parentDiv);
+							inteNameStr += interests.name[j];
+							if(j < length - 1){
+								inteNameStr += ",";
+							}
+						}
+					}
+					description = description.replace("TBC", inteNameStr);
+					$("#teacherDescription").html(description);
+					//personalCertification
+					var certifications = data.certifications;
+					if(certifications.description.length == 0){
+						$("#mainInformation").css("margin-bottom","80px");
+					}
+					for(var j=0;j<certifications.description.length;j++){
+						//alert(certifications.description[j] + " " + certifications.url[j]);
+						var img = $("<img>", {src: certifications.url[j] + "?imageView2/1/w/80/h/80", alt: "no photo", style:"border-radius: 3px; box-shadow:0 0 10px #333"});
+						var a = $("<a>", {href: certifications.url[j], class: "swipebox", title: certifications.description[j]});
+						a.append(img);
+						var div = $("<div>", {style: "border-radius: 3px; padding:0px", class: "col-xs-4"});
+						div.append(a);
+						$("#personalCertification").append(div);
+						$("#personalCertification").show();
+					}
+					$('.swipebox' ).swipebox();
+	 				$("#q7").hide("normal",function(){
+						showDiv($("#q8"));
+					});
+				});
+			});
+			$ulGroup.append($a);
+		}
+		if(length == 0){
+			showDiv($("#resultNotification"));
+			$("#confirmation1").show();
+		}else{
+			$("#q7").append($ulGroup);
+			showDiv($("#q7"));
+		}
+		/*$("#q6").hide("normal",function(){
+			showDiv($("#q7"));
+		});*/
+	});	
 }
 </script>
 </body>
