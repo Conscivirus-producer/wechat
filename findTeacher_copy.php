@@ -432,45 +432,6 @@ if (isset($_GET['code'])){
 	</div>
 	
 	<div class="row" style="display:none" id="q8">
-		<!-- <div class="teacher-info" style="margin-top: 30px">
-			<div class="teacher-photo">
-				<img id="teacherImgUrl" alt="empty" class="img-circle center-block">
-			</div>
-			<h6 class="username center-block text-center" id="teacherName">Anderson</h6>
-			<div class="row school-info">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10 text-center"><span>深圳大学</span><span id="teacherMajor">计算机学院</span></div>
-				<div class="col-xs-1"></div>
-			</div>
-			<div class="row subjects">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10">
-					<div class="col-xs-12 text-center subjects_label">课程</div>
-					<div class="col-xs-12" style="padding: 0px">
-						<div class="col-xs-6 subjects_value"><div class="text-center btn-info btn-doc">语文</div></div>
-						<div class="col-xs-6 subjects_value"><div class="text-center btn-info">数学</div></div>
-						<div class="col-xs-6 subjects_value"><div class="text-center btn-info">英语</div></div>
-					</div>
-				</div>
-				<div class="col-xs-1"></div>
-			</div>
-			<div class="row interests" id="interestsRow">
-				<div class="col-xs-1"></div>
-				<div class="col-xs-10">
-					<div class="col-xs-12 text-center interests_label">特长</div>
-					<div class="col-xs-12" style="padding: 0px" id="availableInterests">
-						
-					</div>
-				</div>
-				<div class="col-xs-1"></div>
-			</div>
-		</div>
-		<div class="row accept">
-			<div class="btn btn-lg btn-primary col-xs-8 col-xs-offset-2" name="compeleteRecord" id="compeleteRecord">免费预约</div>
-		</div>
-		<div class="col-md-2 col-md-offset-6" style="margin-top:2px">
-			<button type="button" class="btn btn-lg btn-block btn-infor laststep" name="laststep7" id="laststep7">上一步</button>
-		</div> -->
 		<div class="teacher-info col-xs-12" style="margin-top: 30px">
 			<div class="teacher-photo">
 				<img id="teacherImgUrl" alt="empty" class="img-circle center-block">
@@ -493,7 +454,7 @@ if (isset($_GET['code'])){
 			</div>
 		</div>
 		
-		<div class="gallery col-xs-10 col-xs-offset-1" style="margin-bottom: 80px" id="personalCertification">
+		<div class="gallery col-xs-10 col-xs-offset-1" style="margin-bottom: 80px; display:none" id="personalCertification">
 			<div class="col-xs-6 text-center subjects_label col-xs-offset-3" style="margin-top: 20px;"><span>个人荣誉</span></div>
 		</div>
 		<!-- <div class="row accept">
@@ -840,6 +801,7 @@ function findTeacher(){
 						var div = $("<div>", {style: "border-radius: 3px; padding:0px", class: "col-xs-4"});
 						div.append(a);
 						$("#personalCertification").append(div);
+						$("#personalCertification").show();
 					}
 						$('.swipebox' ).swipebox();
 	 				$("#q7").hide("normal",function(){
