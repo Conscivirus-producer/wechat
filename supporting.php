@@ -20,8 +20,6 @@
 			getTransactionsByStatus($conn);	
 		}else if($requestMethod == "myRecord"){
 			getMyRecord($conn);	
-		}else if($requestMethod == "replyToUser"){
-			replyToUser($appid, $secret);
 		}else if($requestMethod == "updateFollowStatus"){
 			updateFollowStatus($conn, $appid, $secret);
 		}else if($requestMethod == "manualCreateTransaction"){
@@ -79,25 +77,6 @@
 		//echo mysqli_insert_id($conn);
 	}
 	
-	function encode_json($str) {  
-	    return urldecode(json_encode(url_encode($str)));      
-	}  
-	  
-	/** 
-	 *  
-	 */  
-	function url_encode($str) {  
-	    if(is_array($str)) {  
-	        foreach($str as $key=>$value) {  
-	            $str[urlencode($key)] = url_encode($value);  
-	        }  
-	    } else {  
-	        $str = urlencode($str);  
-	    }  
-	      
-	    return $str;  
-	} 
-	
 	function updateFollowStatus($conn, $appid, $secret){
 		$startDate = trim($_GET["startDate"]);
 		$endDate = trim($_GET["endDate"]);
@@ -129,41 +108,6 @@
 		return $json_obj;
 	}
 	
-	function replyToUser($appid, $secret){
-		global $conn;
-		$openid = trim($_GET["openid"]);
-		$content = trim($_GET["content"]);
-		
-		$query = "UPDATE `T_transaction` SET `status`='2', updatedDt = sysdate() where parentOpenid = '$openid' and `status`='1'";
-		$result = $conn->query($query);
-		
-		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$secret;
-		$access_token_json = file_get_contents($access_token_get_url); 
-		$json_obj = json_decode($access_token_json,true);
-		$access_token = $json_obj["access_token"];
-		$text = array("content"=>$content);
-		$array = array("touser"=>$openid, 
-							"msgtype"=>"text",
-							"text"=>$text);
-		$body = encode_json($array);
-		$content_length = strlen($body);
-		$opts = array('http' =>
-		  array(
-		    'method'  => 'POST',
-		    'header'  => "Content-Type: text/xml\r\n".
-		      "Content-length: $content_length\r\n",
-		      "Accept-Charset: ISO-8859-1,utf-8",
-		    'content' => $body,
-		    'timeout' => 60
-		  )
-		);
-		
-		$url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=".$access_token;
-		$context  = stream_context_create($opts);
-		$result = file_get_contents($url, false, $context, -1, 40000);
-		echo $result;
-	}
-
 	function getTransactionsByStatus($conn){
 		global $codeParser;
 		$globalData = new GlobalData();

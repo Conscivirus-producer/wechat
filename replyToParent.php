@@ -31,7 +31,7 @@ require_once("config.php");
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-2">
-			老师openid:
+			家长openid:
 			<input type="text" name="openid" value="" id="openid">
 			<button type="button" class="btn" name="reset" id="reset">默认</button>
 		</div>
@@ -47,7 +47,8 @@ require_once("config.php");
 	
 	<div class="row" style="margin-top:30px">
 		<div class="col-md-4 col-md-offset-4">
-			<button type="button" class="btn btn-info btn-lg btn-block" name="submit" id="submit">提交</button>
+			<button type="button" class="btn btn-info btn-lg btn-block" name="txtReply" id="txtReply">回复文本信息</button>
+			<button type="button" class="btn btn-info btn-lg btn-block" name="imgMsgReply" id="imgMsgReply">回复图文信息</button>
 			<button type="button" class="btn btn-info btn-lg btn-block" name="back" id="back">返回</button>
 		</div>
 	</div>
@@ -67,12 +68,27 @@ $("#back").click(function(){
 	window.location.href="login.php";
 });
 	
-$("#submit").click(function(){
+$("#txtReply").click(function(){
 	var openid = $("#openid").val();
 	var responseContent = $("#responseContent").val();
-	var url = "http://"+rootUrl+"/supporting.php?requestMethod=replyToUser&openid="+openid+"&content="+responseContent;
+	var url = "http://"+rootUrl+"/messageService.php?requestMethod=replyTextToUser&openid="+openid+"&content="+responseContent;
 	$.getJSON(url,function(data){
 		if(data.errcode == "45015"){
+			alert("发送失败，错误信息为: " + data.errmsg);
+		}else if(data.errcode == "0"){
+			alert("发送成功");
+		}else {
+			alert("发送失败，请联系管理员。");
+		}
+	});
+});
+
+$("#imgMsgReply").click(function(){
+	var openid = $("#openid").val();
+	var teacherOpenId = $("#responseContent").val();
+	var url = "http://"+rootUrl+"/messageService.php?requestMethod=replyImageAndTextInformation&openid="+openid+"&teacherOpenId="+teacherOpenId;
+	$.getJSON(url,function(data){
+		if(data.errcode == "45015" || data.errcode == "NOTEXIST"){
 			alert("发送失败，错误信息为: " + data.errmsg);
 		}else if(data.errcode == "0"){
 			alert("发送成功");

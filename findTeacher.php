@@ -457,20 +457,23 @@ if (isset($_GET['code'])){
 		<div class="gallery col-xs-10 col-xs-offset-1" style="margin-bottom: 80px; display:none" id="personalCertification">
 			<div class="col-xs-6 text-center subjects_label col-xs-offset-3" style="margin-top: 20px;"><span>个人荣誉</span></div>
 		</div>
-		<!-- <div class="row accept">
-			<div class="btn btn-lg btn-primary col-xs-8 col-xs-offset-2" name="compeleteRecord" id="compeleteRecord">预约试听</div>
-		</div>
-		<div class="row back-to-list">
-			<div class="btn btn-lg laststep col-xs-8 col-xs-offset-2" name="laststep1" id="laststep1">返回列表</div>
-		</div> -->
-		<div class="button-group">
+		
+		<div class="button-group" id="teacherAction1">
 			<div class="col-xs-6 line">
 				<button type="button" class="btn btn-lg btn-block"  name="compeleteRecord" id="compeleteRecord">预约试听</button>
 			</div>
 			<div class="col-xs-6">
-				<button type="button" class="btn btn-lg btn-block" name="laststep1" id="laststep1">返回列表</button>
+				<button type="button" class="btn btn-lg btn-block" name="laststepReturnTeacherList" id="laststepReturnTeacherList">返回列表</button>
 			</div>
 		</div>
+		
+		<div class="bottom start text-center" name="compeleteRecord2" id="compeleteRecord2" style="display:none">预约试听</div>
+		
+		<!--<div class="button-group" id="teacherAction2" style="display:none">
+			<div class="col-xs-6">
+				<button type="button" class="btn btn-lg btn-block btn-info" name="compeleteRecord2" id="compeleteRecord2">预约试听</button>
+			</div>
+		</div>-->
 	</div>
 	
 	<div class="row" style="display:none" id="q9">
@@ -722,6 +725,10 @@ function validatePhone(phone){
 }
 
 $("#compeleteRecord").click(function(){
+	bindComplete(transactionId, teacherOpenId);
+});
+
+function bindComplete(transactionId, teacherOpenId){
 	var url = "service.php?requestMethod=updateTransaction&transactionId="+transactionId+"&teacherOpenId="+teacherOpenId;
 	$.getJSON(url,function(data){
 		
@@ -730,7 +737,7 @@ $("#compeleteRecord").click(function(){
 		showDiv($("#resultNotification"));
 		$("#confirmation2").show();
 	});	
-});
+}
 
 $("#manual_arrg").click(function(){
 	$("#q7").hide("normal",function(){
@@ -763,54 +770,7 @@ function findTeacher(){
 				var value = $(this).attr("id");
 				teacherOpenId = value;
 				//var text = $(this).text();
-				url = "http://"+rootUrl+"/service.php?requestMethod=teacherDetails&teacherOpenId="+teacherOpenId;
-				$.getJSON(url, function(data){
-					var studentName = data.name;
-					var interests = data.interests;
-					var interestName = interests.name;
-					var inteNameStr = "";
-					var description = data.description;
-					$("#teacherName").html(data.name);
-					$("#teacherPrice").html(data.price);
-					$("#teacherImgUrl").attr("src", data.imageUrl);
-					var length = interestName.length;
-					if(length == 0){
-						$('#interestsRow').hide();
-					}else{
-						$('#interestsRow').show();
-						for(var j=0; j < length;j++){
-							$parentDiv = $("<div>", {class: "col-xs-6 subjects_value"});
-							$childDiv = $("<div>", {class: "text-center btn-info btn-doc btn-interest"}).text(interests.name[j]);
-							$parentDiv.append($childDiv);
-							$("#availableInterests").append($parentDiv);
-							inteNameStr += interests.name[j];
-							if(j < length - 1){
-								inteNameStr += ",";
-							}
-						}
-					}
-					description = description.replace("TBC", inteNameStr);
-					$("#teacherDescription").html(description);
-					//personalCertification
-					var certifications = data.certifications;
-					if(certifications.description.length == 0){
-						$("#mainInformation").css("margin-bottom","80px");
-					}
-					for(var j=0;j<certifications.description.length;j++){
-						//alert(certifications.description[j] + " " + certifications.url[j]);
-						var img = $("<img>", {src: certifications.url[j] + "?imageView2/1/w/80/h/80", alt: "no photo", style:"border-radius: 3px; box-shadow:0 0 10px #333"});
-						var a = $("<a>", {href: certifications.url[j], class: "swipebox", title: certifications.description[j]});
-						a.append(img);
-						var div = $("<div>", {style: "border-radius: 3px; padding:0px", class: "col-xs-4"});
-						div.append(a);
-						$("#personalCertification").append(div);
-						$("#personalCertification").show();
-					}
-					$('.swipebox' ).swipebox();
-	 				$("#q7").hide("normal",function(){
-						showDiv($("#q8"));
-					});
-				});
+				showTeacherDetailInformation(teacherOpenId);
 			});
 			$ulGroup.append($a);
 		}
@@ -825,6 +785,80 @@ function findTeacher(){
 			showDiv($("#q7"));
 		});*/
 	});	
+}
+
+function showTeacherDetailInformation(teacherOpenId)
+{
+	url = "http://"+rootUrl+"/service.php?requestMethod=teacherDetails&teacherOpenId="+teacherOpenId;
+	$.getJSON(url, function(data){
+		var studentName = data.name;
+		var interests = data.interests;
+		var interestName = interests.name;
+		var inteNameStr = "";
+		var description = data.description;
+		$("#teacherName").html(data.name);
+		$("#teacherPrice").html(data.price);
+		$("#teacherImgUrl").attr("src", data.imageUrl);
+		var length = interestName.length;
+		if(length == 0){
+			$('#interestsRow').hide();
+		}else{
+			$('#interestsRow').show();
+			for(var j=0; j < length;j++){
+				$parentDiv = $("<div>", {class: "col-xs-6 subjects_value"});
+				$childDiv = $("<div>", {class: "text-center btn-info btn-doc btn-interest"}).text(interests.name[j]);
+				$parentDiv.append($childDiv);
+				$("#availableInterests").append($parentDiv);
+				inteNameStr += interests.name[j];
+				if(j < length - 1){
+					inteNameStr += ",";
+				}
+			}
+		}
+		description = description.replace("TBC", inteNameStr);
+		$("#teacherDescription").html(description);
+		//personalCertification
+		var certifications = data.certifications;
+		if(certifications.description.length == 0){
+			$("#mainInformation").css("margin-bottom","80px");
+		}
+		for(var j=0;j<certifications.description.length;j++){
+			//alert(certifications.description[j] + " " + certifications.url[j]);
+			var img = $("<img>", {src: certifications.url[j] + "?imageView2/1/w/80/h/80", alt: "no photo", style:"border-radius: 3px; box-shadow:0 0 10px #333"});
+			var a = $("<a>", {href: certifications.url[j], class: "swipebox", title: certifications.description[j]});
+			a.append(img);
+			var div = $("<div>", {style: "border-radius: 3px; padding:0px", class: "col-xs-4"});
+			div.append(a);
+			$("#personalCertification").append(div);
+			$("#personalCertification").show();
+		}
+		$('.swipebox' ).swipebox();
+		$("#q7").hide("normal",function(){
+			showDiv($("#q8"));
+		});
+	});
+}
+
+$(document).ready(function(){
+	teacherOpenId = GetQueryString("teacherOpenId");
+	transactionId = GetQueryString("transactionId");
+	if(teacherOpenId == '' || teacherOpenId == null){
+		return;
+	}
+	$("#q0").hide();
+	$("#teacherAction1").hide();
+	$("#teacherAction2").show();
+	$("#compeleteRecord2").click(function(){
+		bindComplete(transactionId, teacherOpenId);
+	});
+	showTeacherDetailInformation(teacherOpenId);
+});
+
+function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
 }
 </script>
 </body>
