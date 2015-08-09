@@ -468,12 +468,6 @@ if (isset($_GET['code'])){
 		</div>
 		
 		<div class="bottom start text-center" name="compeleteRecord2" id="compeleteRecord2" style="display:none">预约试听</div>
-		
-		<!--<div class="button-group" id="teacherAction2" style="display:none">
-			<div class="col-xs-6">
-				<button type="button" class="btn btn-lg btn-block btn-info" name="compeleteRecord2" id="compeleteRecord2">预约试听</button>
-			</div>
-		</div>-->
 	</div>
 	
 	<div class="row" style="display:none" id="q9">
@@ -847,7 +841,7 @@ $(document).ready(function(){
 	}
 	$("#q0").hide();
 	$("#teacherAction1").hide();
-	$("#teacherAction2").show();
+	$("#compeleteRecord2").show();
 	$("#compeleteRecord2").click(function(){
 		bindComplete(transactionId, teacherOpenId);
 	});
