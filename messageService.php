@@ -42,8 +42,15 @@
 		$teacherMajor = $row["major"];
 		$teacherName = $row["name"];
 		
-		$query = "SELECT * FROM `T_transaction` WHERE parentOpenid = '$openid' and status = '1' ORDER BY `t_transaction`.`createdDt` DESC limit 1";
+		$query = "SELECT * FROM `T_transaction` WHERE parentOpenid = '$openid' and status = '1' ORDER BY `createdDt` DESC limit 1";
 		$result = $conn->query($query);
+		if($result->num_rows == 0){
+			$resultMsg = array(
+				'errcode' => 'NOTEXIST',
+				'errmsg' => '该家长没有订单');
+			echo json_encode($resultMsg);
+			return;
+		}
 		$row = $result->fetch_assoc();
 		$transactionId = $row["transactionId"];
 		
