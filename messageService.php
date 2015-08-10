@@ -42,10 +42,14 @@
 		$teacherMajor = $row["major"];
 		$teacherName = $row["name"];
 		
-		$query = "SELECT * FROM `T_transaction` WHERE parentOpenid = '$openid' and status != 'C' limit 1";
+		$query = "SELECT * FROM `T_transaction` WHERE parentOpenid = '$openid' and status = '1' ORDER BY `t_transaction`.`createdDt` DESC limit 1";
 		$result = $conn->query($query);
 		$row = $result->fetch_assoc();
 		$transactionId = $row["transactionId"];
+		
+		//更新交易信息
+		$query = "UPDATE `T_transaction` SET `teacherOpenid`= '$teacherOpenId', `status`= '2', updatedDt = sysdate() WHERE transactionId = '$transactionId'";
+		$result = $conn->query($query);
 		
 		$access_token_get_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$secret;
 		$access_token_json = file_get_contents($access_token_get_url); 
