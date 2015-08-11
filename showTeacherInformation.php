@@ -265,7 +265,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
 				<label for="F">趣味课程【可多选】</label>
-				<select name="F" id="F"multiple class="form-control">
+				<select name="F" id="F" multiple class="form-control">
 				</select>
 			</div>
 		</div>
@@ -572,15 +572,16 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 					var code = data.code;
 					var name = data.name;
 					var length = code.length;
+					var choosedOptions = new Array();
 					for(var i = 0;i < length;i++){
 						var optionCode = code[i];
 						var optionName = name[i];
-						if($.inArray(optionCode,selectedOptions) == -1){
-							$("#"+optionId).append("<option value='"+optionCode+"'>"+optionName+"</option>");
-						}else{
-							$("#"+optionId).append("<option value='"+optionCode+"' selected>"+optionName+"</option>");
+						$("#"+optionId).append("<option value='"+optionCode+"'>"+optionName+"</option>");
+						if($.inArray(optionCode,selectedOptions) != -1){
+							choosedOptions.push(optionCode);
 						}
 					}
+					$("#typeCode").val(choosedOptions);
 				});
 			}
 			for(var i = 0;i < typeCodes.length;i++){
