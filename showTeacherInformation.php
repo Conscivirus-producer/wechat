@@ -581,7 +581,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 							choosedOptions.push(optionCode);
 						}
 					}
-					if(choosedOptions.length != 0)
+					if(choosedOptions.length != 0){
 						$("#"+typeCode).val(choosedOptions);
 					}
 				});
