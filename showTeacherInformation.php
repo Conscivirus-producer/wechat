@@ -209,65 +209,51 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
 				<label for="SU">学科辅导【可多选】</label>
-				<select name="SU" id="SU" multiple class="form-control">
+				<select name="SU" id="SU" multiple="multiple">
 				</select>
-			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
 				<label for="A">乐器与舞蹈【可多选】</label>
-				<select name="A" id="A" multiple class="form-control">
+				<select name="A" id="A" multiple="multiple">
 				</select>
-			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
 				<label for="B">体育运动【可多选】</label>
-				<select name="B" id="B" multiple class="form-control">
+				<select name="B" id="B" multiple="multiple">
 				</select>
-			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
 				<label for="C">书法与美术【可多选】</label>
-				<select name="C" id="C" multiple class="form-control">
+				<select name="C" id="C" multiple="multiple">
 				</select>
-			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
 				<label for="D">益智类【可多选】</label>
-				<select name="D" id="D" multiple class="form-control">
+				<select name="D" id="D" multiple="multiple">
 				</select>
-			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
 				<label for="E">演讲与口才【可多选】</label>
-				<select name="E" id="E" multiple class="form-control">
+				<select name="E" id="E" multiple="multiple">
 				</select>
-			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
 				<label for="F">趣味课程【可多选】</label>
-				<select name="F" id="F" multiple class="form-control">
+				<select name="F" id="F" multiple="multiple">
 				</select>
-			</div>
 		</div>
 	</div>
 	<div class="row">
