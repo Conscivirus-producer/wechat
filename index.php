@@ -86,7 +86,8 @@ class wechatCallbackapiTest
                 		//$contentStr = "欢迎关注我教你学，在这里我们可以帮您找到任何你想学的优质辅导和兴趣课程。您可以通过点击下方“免费试听”按钮来找到最合适您的老师。如果您有一技之长想要教你所学，可以回复1并填写申请表格进行注册。如有任何疑问，可以给我们留言，我们会尽快与您联系。";
 	                	$contentStr = "欢迎关注我教你学，您可以在这里选择任何您想要学的优质辅导以及兴趣培养课程。\n\n".
 	                		"家长点击<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/findTeacher.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'>免费试听</a>选择合适的家教。\n".
-	                		"深大学生点击<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/manage.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'>老师注册</a>成为老师。\n\n".
+	                		"深大学生点击<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/manage.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'>老师注册</a>成为老师。\n".
+	                		"投票点<a href='http://mp.weixin.qq.com/s?__biz=MzIwNDAwMTEzMw==&mid=208696219&idx=1&sn=0c0b8a2c5ca670c7a26ce3300d5e0c15&scene=4#wechat_redirect'>这里</a>。\n".
 	                		"如有任何疑问，直接发送信息至本平台，我们会立刻与您联系。";
                 		$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 		echo $resultStr;
