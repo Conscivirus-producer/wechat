@@ -88,8 +88,10 @@ $("#imgMsgReply").click(function(){
 	var teacherOpenId = $("#responseContent").val();
 	var url = "http://"+rootUrl+"/messageService.php?requestMethod=replyImageAndTextInformation&openid="+openid+"&teacherOpenId="+teacherOpenId;
 	$.getJSON(url,function(data){
-		if(data.errcode == "45015" || data.errcode == "NOTEXIST"){
-			alert("发送失败，错误信息为: " + data.errmsg);
+		if(data.errcode == "NOTEXIST"){
+			alert("发送失败，原因是: " + data.errmsg);
+		}else if(data.errcode == "45015"){
+			alert("发送失败，原因是: 家长已取消关注");
 		}else if(data.errcode == "0"){
 			alert("发送成功");
 		}else {

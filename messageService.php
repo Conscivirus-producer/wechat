@@ -47,7 +47,7 @@
 		if($result->num_rows == 0){
 			$resultMsg = array(
 				'errcode' => 'NOTEXIST',
-				'errmsg' => '该家长没有订单');
+				'errmsg' => '该家长没有新订单');
 			echo json_encode($resultMsg);
 			return;
 		}

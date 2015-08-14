@@ -265,8 +265,15 @@
 	
 	function insertTransaction($conn, $childId){
 		$parentOpenId = trim($_GET["parentOpenId"]);
-		$query = "INSERT INTO `T_transaction`(`parentOpenid`, `childId`, `createdDt`, `updatedDt`, `status`) VALUES".
-		 "('$parentOpenId','$childId',sysdate(),sysdate(),'1')";
+		
+		$remark = "";
+		$query = "SELECT * FROM `T_transaction` WHERE parentOpenid = '$parentOpenId'";
+		$result = $conn->query($query);
+		if($result->num_rows > 0){
+			$remark = "该家长之前已有订单";
+		}
+		$query = "INSERT INTO `T_transaction`(`parentOpenid`, `childId`, `createdDt`, `updatedDt`, `status`, `comment`) VALUES".
+		 "('$parentOpenId','$childId',sysdate(),sysdate(),'1', '$remark')";
 		 
 		$result = $conn->query($query);
 		return mysqli_insert_id($conn);
