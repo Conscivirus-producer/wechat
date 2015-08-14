@@ -1,5 +1,4 @@
 ﻿<?php
-header('Access-Control-Allow-Origin:*');
 session_start();
 //检测是否登录，若没登录则转向登录界面
 if(!(isset($_SESSION['wojiaonixue_internal_login_status']) AND $_SESSION['wojiaonixue_internal_login_status'] == 'active')){
@@ -71,6 +70,7 @@ require_once("config.php");
 				<select class="form-control" name="follower" id="follower">
 					<option value='All'>All</option>
 					<option value='超超'>超超</option>
+					<option value='王劼'>王劼</option>
 					<option value='姚燕'>姚燕</option>
 					<option value='刘楠'>刘楠</option>
 				</select>
