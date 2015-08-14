@@ -1,4 +1,5 @@
 ﻿<?php
+header('Access-Control-Allow-Origin:*');
 session_start();
 //检测是否登录，若没登录则转向登录界面
 if(!(isset($_SESSION['wojiaonixue_internal_login_status']) AND $_SESSION['wojiaonixue_internal_login_status'] == 'active')){
