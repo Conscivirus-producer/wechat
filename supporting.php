@@ -115,6 +115,7 @@
 		$startDate = trim($_GET["startDate"]);
 		$endDate = trim($_GET["endDate"]);
 		$follower = trim($_GET["follower"]);
+		$openid = trim($_GET["openid"]);
 		$query = "set names utf8";
 		$result = $conn->query($query);
 		
@@ -126,20 +127,24 @@
 			"LEFT JOIN T_teacher ON T_transaction.teacherOpenid = T_teacher.openId WHERE T_transaction.parentOpenid = T_parent.openId  and ".
 			"T_transaction.childId = T_child.childId";
 		
-		if($status == '2'){
-			$query = $query." and T_transaction.status = 2 and T_parent.mobile != ''";
-		} else {
-			$query = $query." and T_transaction.status = '$status'";
-		}
-		if($startDate != ''){
-			$query = $query." and T_transaction.createdDt > '$startDate'";
-		} 
-		if($endDate != ''){
-			$query = $query." and T_transaction.createdDt < '$endDate'";
-		}
-		
-		if($follower != 'All'){
-			$query = $query." and T_transaction.follower = '$follower'";
+		if($openid != ''){
+			$query = $query." and T_transaction.parentOpenid = '$openid'";
+		}else {
+			if($status == '2'){
+				$query = $query." and T_transaction.status = 2 and T_parent.mobile != ''";
+			} else {
+				$query = $query." and T_transaction.status = '$status'";
+			}
+			if($startDate != ''){
+				$query = $query." and T_transaction.createdDt > '$startDate'";
+			} 
+			if($endDate != ''){
+				$query = $query." and T_transaction.createdDt < '$endDate'";
+			}
+			
+			if($follower != 'All'){
+				$query = $query." and T_transaction.follower = '$follower'";
+			}
 		}
 		$whiteList = $globalData->getWhiteList();
 		$query = $query." and T_transaction.parentOpenid not in $whiteList";

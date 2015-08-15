@@ -42,16 +42,22 @@ require_once("config.php");
 		<div class="col-md-4 col-md-offset-2">
 			<div class="form-group">
 				<label ="startDate">起始日期(比如: 2015-07-03 18:20):</label>
-				<input type="text" class="form-control" name="startDate" value="2015-07-04" id="startDate">
+				<input type="text" class="form-control" name="startDate" value="" id="startDate">
 			</div>
 		</div>
 		<div class="col-md-4">
 			<div class="form-group">
 				<label ="endDate">结束日期(比如: 2015-07-04 09:20):</label>
-				<input type="text" class="form-control" name="endDate" value="2015-07-05" id="endDate">
+				<input type="text" class="form-control" name="endDate" value="" id="endDate">
 			</div>
 		</div>
 		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label ="openid">家长 openid:</label>
+				<input type="text" class="form-control" name="openid" value="" id="openid">
+			</div>
+		</div>
+		<div class="col-md-4">
 			<div class="form-group">
 				<label for="status">状态</label>
 				<select class="form-control" name="status" id="status">
@@ -60,11 +66,12 @@ require_once("config.php");
 					<option value='3'>3.家长已同意,安排试教中</option>
 					<option value='4'>4.已试教</option>
 					<option value='5'>5.订单正式确定</option>
+					<option value='E'>E.订单中途结束</option>
 					<option value='S'>S.优质订单</option>
 				</select>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 col-md-offset-2">
 			<div class="form-group">
 				<label for="follower">跟踪人员</label>
 				<select class="form-control" name="follower" id="follower">
@@ -89,7 +96,7 @@ require_once("config.php");
 		<div class="col-md-12">
 			<div id="confirmedExcel" class="table-responsive">  
 				<table id="confirmedtrans" class="table table-hover table-bordered" width="100%">
-					<caption>交易记录</caption>  
+					<caption>交易记录 (数量:<span id="transCount" name="transCount"></span>)</caption>  
       				<thead>
         				<tr>
           					<th>交易时间</th>
@@ -121,7 +128,6 @@ require_once("config.php");
 <script src="js/flat-ui.min.js"></script>
 <script type="text/javascript">
 var rootUrl = $("#rootUrl").val();
-
 $("#submit").click(function(){
 	renderData($("#status").val(), $("#follower").val());
 });
@@ -136,10 +142,12 @@ function renderData(status, follower){
 	});
 	var startDate = $("#startDate").val();
 	var endDate = $("#endDate").val();
+	var openid = $("#openid").val();
 	var url = "http://"+rootUrl+"/supporting.php?requestMethod=getTransactionsByStatus&startDate="
-		+startDate+"&endDate="+endDate+"&status="+status+"&follower="+follower;
+		+startDate+"&endDate="+endDate+"&status="+status+"&follower="+follower+"&openid="+openid;
 	$.getJSON(url,function(data){
 		var length = data.parentOpenId.length;
+		$("#transCount").text(length);
 		for(var i=0; i<length;i++){
 			$tr = $("<tr>", {style: "", class: ""}).attr("id","resultTr" + i);
 			$tr.html("<td class='transactionId' style='display:none'>"+data.transactionId[i]+
@@ -375,6 +383,7 @@ function renderData(status, follower){
 				"<option value='3'>3.家长已同意,安排试教中</option>"+
 				"<option value='4'>4.已试教</option>"+
 				"<option value='4'>5.订单正式确定</option>"+
+				"<option value='E'>E.订单中途结束</option>"+
 				"<option value='S'>S.优质订单</option>"+
 				"<option value='C'>C.取消</option></select>").appendTo($(this)).bind({
 					change: function(e){
