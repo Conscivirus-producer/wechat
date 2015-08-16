@@ -61,20 +61,12 @@ if(isset($_POST['submit'])){
 <div class="container">
 	<div class="row" style="margin-top: 50px">
 		<div class="col-md-4 col-md-offset-4">
-			<span style="">登录成功</span><br />
-			<a href="login.php?action=logout">退出登录</a> 
+			<span style="">登录成功</span>
+			<a href="login.php?action=logout">退出登录</a><br /> 
 			<div class="form-group">
-				<button type="button" class="btn btn-info btn-lg btn-block" name="mgt_trans" id="mgt_trans" >订单管理</button>
-			</div>
-		</div>
-		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
-				<button type="button" class="btn btn-info btn-lg btn-block" name="fnd_teacher" id="fnd_teacher" >老师查询</button>
-			</div>
-		</div>
-		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
-				<button type="button" class="btn btn-info btn-lg btn-block" name="rpt_parent" id="rpt_parent" >回复家长</button>
+				<a href="transactions.php" target="_blank">订单管理</a><br />
+				<a href="thinkphp/?m=Search&c=Teacher&a=read" target="_blank">老师查询</a><br />
+				<a href="replyToParent.php" target="_blank">回复家长</a>
 			</div>
 		</div>
 	</div>
