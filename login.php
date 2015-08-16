@@ -62,11 +62,11 @@ if(isset($_POST['submit'])){
 	<div class="row" style="margin-top: 50px">
 		<div class="col-md-4 col-md-offset-4">
 			<span style="">登录成功</span>
-			<a href="login.php?action=logout">退出登录</a><br /> 
 			<div class="form-group">
 				<a href="transactions.php" target="_blank">订单管理</a><br />
 				<a href="thinkphp/?m=Search&c=Teacher&a=read" target="_blank">老师查询</a><br />
-				<a href="replyToParent.php" target="_blank">回复家长</a>
+				<a href="replyToParent.php" target="_blank">回复家长</a><br />
+				<a href="login.php?action=logout">退出登录</a> 
 			</div>
 		</div>
 	</div>

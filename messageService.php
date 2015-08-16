@@ -64,7 +64,6 @@
 		$access_token = $json_obj["access_token"];
 		$obj = array("title"=>"为您找到的老师信息如下",
 					  "description"=>"谢谢您的选择，为您推荐的老师是深圳大学".$teacherMajor."的".$teacherName."，点击该消息查看学生详细信息。",
-					//"url"=>"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9855e946fbde03ac&redirect_uri=http://www.ilearnnn.com/findTeacher.php&response_type=code&scope=snsapi_userinfo&state=1&teacherOpenId=".$teacherOpenId."&transactionId=".$transactionId."#wechat_redirect",
 					"url"=>"http://".$rootUrl."/findTeacher.php?teacherOpenId=".$teacherOpenId."&transactionId=".$transactionId,
 					"picurl"=>"http://7xk9ts.com2.z0.glb.qiniucdn.com/common.jpg");
 		$array = array("touser"=>$openid, 
