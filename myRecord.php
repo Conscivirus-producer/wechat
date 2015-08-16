@@ -10,7 +10,7 @@ if (isset($_GET['code'])){
 	//$openid = "11111111";
 	//need to be modified to show hint and qrcode image
     //echo "NO CODE";
-    $openid = 'obS35vtzdcSdflfnVKJDhy74apiI';
+    $openid = 'obS35vk9Hqwl4WZXsosjxm_hckKQ';
 }
 ?>
 <!DOCTYPE html>
@@ -86,7 +86,7 @@ $(document).ready(function(){
 			var status = data.status[i].substring(2);
 			
 			var tableContent = $("<tr></tr>");
-			var th = $("<th>").attr("scope", "row").text(data.transactionId[i]);
+			var th = $("<th>").attr("scope", "row").attr("id", data.transactionId[i]).text("10" + data.transactionId[i]);
 			var td1 = $("<td>").text(course);
 			var td2 = $("<td>").text(prize);
 			var td3 = $("<td>").text(createdDate);
@@ -94,7 +94,7 @@ $(document).ready(function(){
 			td4.append("<div class='arrow'></div>");
 			tableContent.append(th, td1, td2, td3, td4);
 			tableContent.click(function(){
-				window.location.href="myRecordDetail.php?transactionId="+$(this).find('th').text();
+				window.location.href="myRecordDetail.php?transactionId="+$(this).find('th').attr("id");
 			});
 			$("#records").append(tableContent);
 		};

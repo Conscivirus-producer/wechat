@@ -99,6 +99,7 @@ require_once("config.php");
 					<caption>交易记录 (数量:<span id="transCount" name="transCount"></span>)</caption>  
       				<thead>
         				<tr>
+        					<th>交易号</th>
           					<th>交易时间</th>
           					<th>老师姓名</th>
           					<th>老师手机号</th>
@@ -150,7 +151,7 @@ function renderData(status, follower){
 		$("#transCount").text(length);
 		for(var i=0; i<length;i++){
 			$tr = $("<tr>", {style: "", class: ""}).attr("id","resultTr" + i);
-			$tr.html("<td class='transactionId' style='display:none'>"+data.transactionId[i]+
+			$tr.html("<td class='transactionId'>"+"10"+data.transactionId[i]+
 			"</td><td>"+data.createdDt[i]+
 			"</td><td class='teacherName'>"+data.teacherName[i]+
 			"</td>");
