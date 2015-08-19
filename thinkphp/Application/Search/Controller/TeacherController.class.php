@@ -129,6 +129,16 @@ class TeacherController extends Controller{
 			echo json_encode($jsonData);
  		}
  	}
+ 	
+ 	public function deleteOffer(){
+ 		if(IS_GET){
+ 			$Offers = D("Offer");
+ 			$offerId = I("offerId");
+ 			$Offers->delete($offerId);
+ 			$jsonData['status']  = 1;
+			echo json_encode($jsonData);
+ 		}
+ 	}
 }
 
 
