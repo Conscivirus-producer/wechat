@@ -332,8 +332,8 @@ $(document).ready(function(){
 		}
 	});
 	$(".btn.btn-info.btn-block.btn-xs.teacheroffer").click(function(){
-		var code = $(this).prev().val();
-		var offerId = $(this).prev().prev().val();
+		var code = $(this).prev().text();
+		var offerId = $(this).prev().prev().text();
 		alert(code);
 		alert(offerId);
 	});
