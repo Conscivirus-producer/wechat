@@ -51,7 +51,7 @@ class TeacherController extends Controller{
     		$offermap["teacherOpenId"] = array('like','%'.$openId.'%');
     		$offermap["status"] = array('neq','D');
     		$Offers = D("Offer");
-    		$offer = $Offers->where($offermap)->field("name")->select();
+    		$offer = $Offers->where($offermap)->field("name,code,offerId")->select();
     		$data[$i]["offer"] = $offer;
     		
     		$place = $data[$i]["address"];

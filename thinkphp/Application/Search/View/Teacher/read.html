@@ -154,8 +154,10 @@
 		<td width="10">{$vo.created_dt}</td>
 		<td width="10" class="description">{$vo.description}</td>
 		<td width="10">
-		 <volist name="vo['offer']" id="offer">  
-        	<button class='btn btn-info btn-block btn-xs'>{$offer.name}</button>
+		 <volist name="vo['offer']" id="offer">
+		 	<span class='offerid' style='display:none'>{$offer.offerId}</span> 
+		 	<span class='offercode' style='display:none'>{$offer.code}</span>  
+        	<button class='btn btn-info btn-block btn-xs teacheroffer'>{$offer.name}</button>
    		 </volist>  
 		</td>
 		<td width="10" class="price">{$vo.price}</td>
@@ -328,6 +330,12 @@ $(document).ready(function(){
 				}
 			});
 		}
+	});
+	$(".btn.btn-info.btn-block.btn-xs.teacheroffer").click(function(){
+		var code = $(this).prev().val();
+		var offerId = $(this).prev().prev().val();
+		alert(code);
+		alert(offerId);
 	});
 });
 
