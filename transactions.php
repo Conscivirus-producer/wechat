@@ -151,7 +151,7 @@ function renderData(status, follower){
 		$("#transCount").text(length);
 		for(var i=0; i<length;i++){
 			$tr = $("<tr>", {style: "", class: ""}).attr("id","resultTr" + i);
-			$tr.html("<td class='transactionId'>"+"10"+data.transactionId[i]+
+			$tr.html("<td class='transactionId' id="+data.transactionId[i]+">"+data.transactionId[i]+
 			"</td><td>"+data.createdDt[i]+
 			"</td><td class='teacherName'>"+data.teacherName[i]+
 			"</td>");
@@ -164,6 +164,7 @@ function renderData(status, follower){
 						$("<button>").appendTo($(this)).html("提交").bind({
 							click: function(e){
 								var transactionId = $td.prevAll(".transactionId").text();
+								transactionId = transactionId.substring(2)
 								var mobile = $td.children("textarea").val();
 								var url = "transactionService.php?dataType=findTeacherByMobile&mobile="+mobile;
 								$.getJSON(url, function(json){
