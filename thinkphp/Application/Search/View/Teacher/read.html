@@ -335,6 +335,7 @@ $(document).ready(function(){
 		$button = $(this);
 		var code = $(this).prev().text();
 		var offerId = $(this).prev().prev().text();
+		var offerName = $(this).text();
 		if(code != ''){
 			if(confirm("确认要删除"+$(this).text()+"吗？")){
 				var url = "http://"+rootUrl+"/thinkphp/?m=Search&c=Teacher&a=deleteOffer"+"&offerId="+offerId;
@@ -347,7 +348,24 @@ $(document).ready(function(){
 				});
 			}
 		}else{
-			
+			if(confirm("删除"+$(this).text()+"请按确认，修改请按取消")){
+				var url = "http://"+rootUrl+"/thinkphp/?m=Search&c=Teacher&a=deleteOffer"+"&offerId="+offerId;
+				$.getJSON(url, function(data){
+					if(data.status == 1){
+						$button.prev().prev().remove();
+						$button.prev().remove();
+						$button.remove();
+					}
+				});
+			}else{
+				var newOfferName = prompt("请输入新可教科目名字",offerName);
+				var url = "http://"+rootUrl+"/thinkphp/?m=Search&c=Teacher&a=updateOffer"+"&offerId="+offerId+"&newOfferName="+newOfferName;
+				$.getJSON(url, function(data){
+					if(data.status == 1){
+						$button.text(newOfferName);
+					}
+				});
+			}
 		}
 	});
 });
