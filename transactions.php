@@ -384,7 +384,7 @@ function renderData(status, follower){
 				"<option value='2'>2.客服已联系家长,家长未确定</option>"+
 				"<option value='3'>3.家长已同意,安排试教中</option>"+
 				"<option value='4'>4.已试教</option>"+
-				"<option value='4'>5.订单正式确定</option>"+
+				"<option value='5'>5.订单正式确定</option>"+
 				"<option value='E'>E.订单中途结束</option>"+
 				"<option value='S'>S.优质订单</option>"+
 				"<option value='C'>C.取消</option></select>").appendTo($(this)).bind({
