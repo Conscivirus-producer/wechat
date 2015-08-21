@@ -359,12 +359,14 @@ $(document).ready(function(){
 				});
 			}else{
 				var newOfferName = prompt("请输入新可教科目名字",offerName);
-				var url = "http://"+rootUrl+"/thinkphp/?m=Search&c=Teacher&a=updateOffer"+"&offerId="+offerId+"&newOfferName="+newOfferName;
-				$.getJSON(url, function(data){
-					if(data.status == 1){
-						$button.text(newOfferName);
-					}
-				});
+				if(newOfferName != null){
+					var url = "http://"+rootUrl+"/thinkphp/?m=Search&c=Teacher&a=updateOffer"+"&offerId="+offerId+"&newOfferName="+newOfferName;
+					$.getJSON(url, function(data){
+						if(data.status == 1){
+							$button.text(newOfferName);
+						}
+					});
+				}
 			}
 		}
 	});
