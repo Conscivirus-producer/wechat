@@ -755,8 +755,8 @@ $(".teachingTimeEvening").children().click(function(){
 	}
 });
 
-var canTeachTime = new Array();
-$("teachingTimeReport").click(function(){
+$("#teachingTimeReport").click(function(){
+	var canTeachTime = new Array();
 	$(".teachingTimeMorning").children().each(function(){
 		if($(this).text() != ""){
 			canTeachTime.push($(this).attr("class"));
