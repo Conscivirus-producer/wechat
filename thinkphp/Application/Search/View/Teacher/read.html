@@ -134,42 +134,44 @@
         <thead>
           <tr>
           	<th style="display:none">ID</th>
-            <th width="10">基本信息</th>
-            <th width="10">注册时间</th>
-            <th width="10"><font color="#48C9B0">个人描述</font></th>
-            <th width="10">可教科目</th>
-            <th width="10"><font color="#48C9B0">时薪</font></th>
-            <th width="10">年级</th>
-            <th width="10">地点</th>
-            <th width="10">证书</th>
-            <th width="10"><font color="#48C9B0">状态</font></th>
-            <th width="10"><font color="#48C9B0">评分</font></th>
+            <th width="9.09">基本信息</th>
+            <th width="9.09">注册时间</th>
+            <th width="9.09"><font color="#48C9B0">个人描述</font></th>
+            <th width="9.09">可教科目</th>
+            <th width="9.09"><font color="#48C9B0">时薪</font></th>
+            <th width="9.09">年级</th>
+            <th width="9.09">地点</th>
+            <th width="9.09">证书</th>
+            <th width="9.09"><font color="#48C9B0">状态</font></th>
+            <th width="9.09"><font color="#48C9B0">评分</font></th>
+            <th width="9.09"><font color="#48C9B0">面试评价</font></th>
           </tr>
         </thead>
         <tbody>
            <volist name="data" id="vo">
 		<tr>
 		<td style="display:none" class="openId">{$vo.openId}</td>
-		<td width="10">姓名：{$vo.name}<br>学院：{$vo.faculty}<br>专业：{$vo.major}<br>性别：{$vo.gender}<br>手机号：{$vo.mobile}<br>学号：{$vo.studentNumber}<br><font color="#48C9B0">openId：{$vo.openId}</font><br></td>
-		<td width="10">{$vo.created_dt}</td>
-		<td width="10" class="description">{$vo.description}</td>
-		<td width="10">
+		<td width="9.09">姓名：{$vo.name}<br>学院：{$vo.faculty}<br>专业：{$vo.major}<br>性别：{$vo.gender}<br>手机号：{$vo.mobile}<br>学号：{$vo.studentNumber}<br><font color="#48C9B0">openId：{$vo.openId}</font><br></td>
+		<td width="9.09">{$vo.created_dt}</td>
+		<td width="9.09" class="description">{$vo.description}</td>
+		<td width="9.09">
 		 <volist name="vo['offer']" id="offer">
 		 	<span class='offerid' style='display:none'>{$offer.offerId}</span> 
 		 	<span class='offercode' style='display:none'>{$offer.code}</span>  
         	<button class='btn btn-info btn-block btn-xs teacheroffer' style='margin-top:1px'>{$offer.name}</button>
    		 </volist>  
 		</td>
-		<td width="10" class="price">{$vo.price}</td>
-		<td width="10">{$vo.highestGrade}</td>
-		<td width="10">{$vo.address}</td>
-		<td width="10">
+		<td width="9.09" class="price">{$vo.price}</td>
+		<td width="9.09">{$vo.highestGrade}</td>
+		<td width="9.09">{$vo.address}</td>
+		<td width="9.09">
 		 <volist name="vo['certificate']" id="certificate">  
         	{$certificate.description}<br>
    		 </volist>
 		</td>
-		<td width="10" class="teacherStatus">{$vo.teacherStatus}</td>
-		<td width="10" class="rating">{$vo.rating}</td>
+		<td width="9.09" class="teacherStatus">{$vo.teacherStatus}</td>
+		<td width="9.09" class="rating">{$vo.rating}</td>
+		<td width="9.09" class="interviewComment">{$vo.interviewComment}</td>
 		</tr>
 		</volist>
         </tbody>
@@ -252,6 +254,34 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
+	$(".interviewComment").click(function(){
+		var item = $(this);
+		if(item.children("button").length == 0){
+			var openId = $(this).prevAll(".openId").text();
+			var field = $(this).attr("class");
+			var val = $(this).text();
+			$(this).html("");
+			$("<textarea>").appendTo($(this)).attr("class","form-control input-sm").attr("rows","5").html(val).bind({
+				click:function(e){
+					e.stopPropagation();
+				}
+			});
+			$("<button>").appendTo($(this)).attr("class","btn btn-info btn-block btn-xs").attr("style","margin-top:5px").html("提交修改").bind({
+				click:function(e){
+					e.stopPropagation();
+					var newVal = $(this).prev().val();
+					var url = "http://"+rootUrl+"/thinkphp/?m=Search&c=Teacher&a=update"+"&openId="+openId+"&field="+field+"&val="+newVal;
+					$.getJSON(url, function(data){
+						if(data.status == 1){
+							item.html(newVal);
+						}
+					});
+				}
+			});
+		}
+	});
+	
 	$(".price").click(function(){
 		var item = $(this);
 		if(item.children("button").length == 0){

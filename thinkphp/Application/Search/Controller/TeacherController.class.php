@@ -39,7 +39,7 @@ class TeacherController extends Controller{
     	$Teacher  =   D('Teacher');
     	$data = "";
     	if(I('code') != ''){
-    		$data =   $Teacher->join(' T_offers ON T_teacher.openId = T_offers.teacherOpenId')->where($map)->field("openId, T_teacher.name,studentNumber,faculty,major,gender,mobile,created_dt,T_teacher.description,price,highestGrade,address,teacherStatus,rating")->order('created_dt desc')->select();
+    		$data =   $Teacher->join(' T_offers ON T_teacher.openId = T_offers.teacherOpenId')->where($map)->field("openId, T_teacher.name,studentNumber,faculty,major,gender,mobile,created_dt,T_teacher.description,price,highestGrade,address,teacherStatus,rating,interviewComment")->order('created_dt desc')->select();
     	}else{
     		$data =   $Teacher->where($map)->order('created_dt desc')->select();
     	}
