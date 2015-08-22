@@ -579,7 +579,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
     			$("."+timeClass).text("√");     
  			});  
  			$.each(teachingTimeArray, function(){     
-    			var timeClass = this;
+    			var timeClass = ""+this;
     			$("."+timeClass).text("√");     
  			});
 			$("#name").text("姓名："+name);
