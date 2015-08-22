@@ -728,15 +728,30 @@ $("#location").change(function(){
     }
 });
 
-$(".teachingTimeMorning").children().click(function(){
+$(".teachingTimeMorning").children().toggle(
+function(){
 	$(this).html("<font color='#48C9B0'>√</font>");
-});
-$(".teachingTimeAfternoon").children().click(function(){
+},
+function(){
+	$(this).html("");
+},
+);
+$(".teachingTimeAfternoon").children().toggle(
+function(){
 	$(this).html("<font color='#48C9B0'>√</font>");
-});
-$(".teachingTimeEvening").children().click(function(){
+},
+function(){
+	$(this).html("");
+},
+);
+$(".teachingTimeEvening").children().toggle(
+function(){
 	$(this).html("<font color='#48C9B0'>√</font>");
-});
+},
+function(){
+	$(this).html("");
+},
+);
 </script>
 </body>
 </html>
