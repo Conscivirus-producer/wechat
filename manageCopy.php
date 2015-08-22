@@ -256,32 +256,32 @@
 					<tr>
 						<td>上</td>
 						<td><font color="#48C9B0">√</font></td>
-						<td>上</td>
-						<td>上</td>
-						<td>上</td>
-						<td>上</td>
-						<td>上</td>
-						<td>上</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>下</td>
-						<td>下</td>
-						<td>下</td>
-						<td>下</td>
-						<td>下</td>
-						<td>下</td>
-						<td>下</td>
-						<td>下</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>晚</td>
-						<td>晚</td>
-						<td>晚</td>
-						<td>晚</td>
-						<td>晚</td>
-						<td>晚</td>
-						<td>晚</td>
-						<td>晚</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 				</tbody>
 				</table>
