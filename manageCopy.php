@@ -236,6 +236,55 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label for="teachingTime">可教学的时间</label>
+				<table class="table table-bordered" id="teachingTime">
+				<thead>
+					<tr>
+						<th>一</th>
+						<th>二</th>
+						<th>三</th>
+						<th>四</th>
+						<th>五</th>
+						<th>六</th>
+						<th>日</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>上</td>
+						<td>上</td>
+						<td>上</td>
+						<td>上</td>
+						<td>上</td>
+						<td>上</td>
+						<td>上</td>
+					</tr>
+					<tr>
+						<td>下</td>
+						<td>下</td>
+						<td>下</td>
+						<td>下</td>
+						<td>下</td>
+						<td>下</td>
+						<td>下</td>
+					</tr>
+					<tr>
+						<td>晚</td>
+						<td>晚</td>
+						<td>晚</td>
+						<td>晚</td>
+						<td>晚</td>
+						<td>晚</td>
+						<td>晚</td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-4 col-md-offset-2" id="image_upload_div">
 			<label>上传头像(要求本人头像，五官清晰):</label><br>
 			<span class="sl-custom-file">
