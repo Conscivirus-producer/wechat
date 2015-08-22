@@ -242,18 +242,18 @@
 				<table class="table table-bordered" id="teachingTime">
 				<thead>
 					<tr>
-						<th>一</th>
-						<th>二</th>
-						<th>三</th>
-						<th>四</th>
-						<th>五</th>
-						<th>六</th>
-						<th>日</th>
+						<th><font color="#48C9B0">一</font></th>
+						<th><font color="#48C9B0">二</font></th>
+						<th><font color="#48C9B0">三</font></th>
+						<th><font color="#48C9B0">四</font></th>
+						<th><font color="#48C9B0">五</font></th>
+						<th><font color="#48C9B0">六</font></th>
+						<th><font color="#48C9B0">日</font></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>上</td>
+						<td class="active">上</td>
 						<td>上</td>
 						<td>上</td>
 						<td>上</td>
