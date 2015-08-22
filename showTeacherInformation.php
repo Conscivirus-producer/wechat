@@ -569,19 +569,21 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
    			price = jsonObj.price;
    			place = jsonObj.address;
    			teachingTime = jsonObj.teachingTime;
-   			teachingTimeArray = teachingTime.split(",");
+   			if(teachingTime != ""){
+   				teachingTimeArray = teachingTime.split(",");
+   				$.each(teachingTimeArray, function(){     
+    				var timeClass = "show"+this;
+    				$("."+timeClass).text("√");     
+ 				});  
+ 				$.each(teachingTimeArray, function(){     
+    				var timeClass = ""+this;
+    				$("."+timeClass).text("√");     
+ 				});
+ 			}
    			certificate = jsonObj.certificate;
    			options = jsonObj.options;
    			imageUrl = jsonObj.imageUrl;
    			
-			$.each(teachingTimeArray, function(){     
-    			var timeClass = "show"+this;
-    			$("."+timeClass).text("√");     
- 			});  
- 			$.each(teachingTimeArray, function(){     
-    			var timeClass = ""+this;
-    			$("."+timeClass).text("√");     
- 			});
 			$("#name").text("姓名："+name);
 			$("#sex").text("性别："+sexArray[sex]);
 			$("#faculty").text("学院名称："+faculty);
