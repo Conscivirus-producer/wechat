@@ -289,6 +289,11 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<button type="button" class="btn btn-primary btn-lg btn-block" name="teachingTimeReport" id="teachingTimeReport">测试</button>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-4 col-md-offset-2" id="image_upload_div">
 			<label>上传头像(要求本人头像，五官清晰):</label><br>
 			<span class="sl-custom-file">
@@ -749,6 +754,27 @@ $(".teachingTimeEvening").children().click(function(){
 		$(this).text("");
 	}
 });
+
+var canTeachTime = new Array();
+$("teachingTimeReport").click(function(){
+	$(".teachingTimeMorning").children().each(function(){
+		if($(this).text() != ""){
+			canTeachTime.push($(this).attr("class"));
+		}
+	});
+	$(".teachingTimeAfternoon").children().each(function(){
+		if($(this).text() != ""){
+			canTeachTime.push($(this).attr("class"));
+		}
+	});
+	$(".teachingTimeEvening").children().each(function(){
+		if($(this).text() != ""){
+			canTeachTime.push($(this).attr("class"));
+		}
+	});
+	
+	alert(canTeachTime.join(","));
+})
 </script>
 </body>
 </html>
