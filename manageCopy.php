@@ -254,7 +254,7 @@
 				</thead>
 				<tbody>
 					<tr class="teachingTimeMorning">
-						<td>上</td>
+						<td class="">上</td>
 						<td class="mon1" style="color:#48C9B0">√</td>
 						<td class="tue1" style="color:#48C9B0"></td>
 						<td class="wed1" style="color:#48C9B0"></td>
@@ -264,7 +264,7 @@
 						<td class="sun1" style="color:#48C9B0"></td>
 					</tr>
 					<tr class="teachingTimeAfternoon">
-						<td>下</td>
+						<td class="">下</td>
 						<td class="mon2" style="color:#48C9B0">√</td>
 						<td class="tue2" style="color:#48C9B0"></td>
 						<td class="wed2" style="color:#48C9B0"></td>
@@ -274,7 +274,7 @@
 						<td class="sun2" style="color:#48C9B0"></td>
 					</tr>
 					<tr class="teachingTimeEvening">
-						<td>晚</td>
+						<td class="">晚</td>
 						<td class="mon3" style="color:#48C9B0">√</td>
 						<td class="tue3" style="color:#48C9B0"></td>
 						<td class="wed3" style="color:#48C9B0"></td>
