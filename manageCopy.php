@@ -242,7 +242,7 @@
 				<table class="table table-bordered" id="teachingTime">
 				<thead>
 					<tr>
-						<th>#</th>
+						<th><font color="#48C9B0">#</font></th>
 						<th><font color="#48C9B0">一</font></th>
 						<th><font color="#48C9B0">二</font></th>
 						<th><font color="#48C9B0">三</font></th>
@@ -255,7 +255,7 @@
 				<tbody>
 					<tr>
 						<td>上</td>
-						<td>上</td>
+						<td><font color="#48C9B0">√</font></td>
 						<td>上</td>
 						<td>上</td>
 						<td>上</td>
