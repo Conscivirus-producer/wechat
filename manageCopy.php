@@ -253,35 +253,35 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<tr class="teachingTimeMorning">
 						<td>上</td>
-						<td><font color="#48C9B0">√</font></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td class="mon1"><font color="#48C9B0">√</font></td>
+						<td class="tue1"></td>
+						<td class="wed1"></td>
+						<td class="thu1"></td>
+						<td class="fri1"></td>
+						<td class="sat1"></td>
+						<td class="sun1"></td>
 					</tr>
-					<tr>
+					<tr class="teachingTimeAfternoon">
 						<td>下</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td class="mon2"><font color="#48C9B0">√</font></td>
+						<td class="tue2"></td>
+						<td class="wed2"></td>
+						<td class="thu2"></td>
+						<td class="fri2"></td>
+						<td class="sat2"></td>
+						<td class="sun2"></td>
 					</tr>
-					<tr>
+					<tr class="teachingTimeEvening">
 						<td>晚</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td class="mon3"><font color="#48C9B0">√</font></td>
+						<td class="tue3"></td>
+						<td class="wed3"></td>
+						<td class="thu3"></td>
+						<td class="fri3"></td>
+						<td class="sat3"></td>
+						<td class="sun3"></td>
 					</tr>
 				</tbody>
 				</table>
@@ -726,6 +726,16 @@ $("#location").change(function(){
     if($.inArray("location0",$(this).val()) != -1){
     	$(this).val(["location0"]);
     }
+});
+
+$(".teachingTimeMorning").children().click(function(){
+	$(this).html("<font color='#48C9B0'>√</font>");
+});
+$(".teachingTimeAfternoon").children().click(function(){
+	$(this).html("<font color='#48C9B0'>√</font>");
+});
+$(".teachingTimeEvening").children().click(function(){
+	$(this).html("<font color='#48C9B0'>√</font>");
 });
 </script>
 </body>
