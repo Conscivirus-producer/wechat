@@ -288,7 +288,7 @@ $token = $auth->uploadToken($bucket);
 				<tbody>
 					<tr class="teachingTimeMorning">
 						<td class="">上</td>
-						<td class="mon1" style="color:#48C9B0">√</td>
+						<td class="mon1" style="color:#48C9B0"></td>
 						<td class="tue1" style="color:#48C9B0"></td>
 						<td class="wed1" style="color:#48C9B0"></td>
 						<td class="thu1" style="color:#48C9B0"></td>
@@ -298,7 +298,7 @@ $token = $auth->uploadToken($bucket);
 					</tr>
 					<tr class="teachingTimeAfternoon">
 						<td class="">下</td>
-						<td class="mon2" style="color:#48C9B0">√</td>
+						<td class="mon2" style="color:#48C9B0"></td>
 						<td class="tue2" style="color:#48C9B0"></td>
 						<td class="wed2" style="color:#48C9B0"></td>
 						<td class="thu2" style="color:#48C9B0"></td>
@@ -308,7 +308,7 @@ $token = $auth->uploadToken($bucket);
 					</tr>
 					<tr class="teachingTimeEvening">
 						<td class="">晚</td>
-						<td class="mon3" style="color:#48C9B0">√</td>
+						<td class="mon3" style="color:#48C9B0"></td>
 						<td class="tue3" style="color:#48C9B0"></td>
 						<td class="wed3" style="color:#48C9B0"></td>
 						<td class="thu3" style="color:#48C9B0"></td>
