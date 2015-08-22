@@ -313,12 +313,13 @@
 			$price = trim($_POST["price"]);
 			$location = $_POST["location"];			//array
 			$location = implode(",",$location);
+			$teachingTime = trim($_POST["teachingTime"]);
 			$highestGrade = trim($_POST["highestGrade"]);
 			
 			//1，存入老师的基本信息，T_teacher，默认wechatAccount为空，extraDescription为空，rating为1，teacherStatus为R
 			$query = "set names utf8";
 			$result = $conn->query($query);
-			$query = "insert into T_teacher values('$openid','','$school','$major','$studentNumber','$name','$sex','$phone','$desc','',sysdate(),'1','$imgUrl','$price','$highestGrade','$location','I')";                       
+			$query = "insert into T_teacher values('$openid','','$school','$major','$studentNumber','$name','$sex','$phone','$desc','',sysdate(),'1','$imgUrl','$price','$highestGrade','$location','I','','$teachingTime')";                       
 			$result = $conn->query($query);
 			
 			//2，存入老师所有能教的科目，兴趣

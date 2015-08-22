@@ -269,6 +269,59 @@ $token = $auth->uploadToken($bucket);
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label for="teachingTime">可教学的时间</label>
+				<table class="table table-bordered" id="teachingTime">
+				<thead>
+					<tr>
+						<th><font color="#48C9B0">#</font></th>
+						<th><font color="#48C9B0">一</font></th>
+						<th><font color="#48C9B0">二</font></th>
+						<th><font color="#48C9B0">三</font></th>
+						<th><font color="#48C9B0">四</font></th>
+						<th><font color="#48C9B0">五</font></th>
+						<th><font color="#48C9B0">六</font></th>
+						<th><font color="#48C9B0">日</font></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="teachingTimeMorning">
+						<td class="">上</td>
+						<td class="mon1" style="color:#48C9B0">√</td>
+						<td class="tue1" style="color:#48C9B0"></td>
+						<td class="wed1" style="color:#48C9B0"></td>
+						<td class="thu1" style="color:#48C9B0"></td>
+						<td class="fri1" style="color:#48C9B0"></td>
+						<td class="sat1" style="color:#48C9B0"></td>
+						<td class="sun1" style="color:#48C9B0"></td>
+					</tr>
+					<tr class="teachingTimeAfternoon">
+						<td class="">下</td>
+						<td class="mon2" style="color:#48C9B0">√</td>
+						<td class="tue2" style="color:#48C9B0"></td>
+						<td class="wed2" style="color:#48C9B0"></td>
+						<td class="thu2" style="color:#48C9B0"></td>
+						<td class="fri2" style="color:#48C9B0"></td>
+						<td class="sat2" style="color:#48C9B0"></td>
+						<td class="sun2" style="color:#48C9B0"></td>
+					</tr>
+					<tr class="teachingTimeEvening">
+						<td class="">晚</td>
+						<td class="mon3" style="color:#48C9B0">√</td>
+						<td class="tue3" style="color:#48C9B0"></td>
+						<td class="wed3" style="color:#48C9B0"></td>
+						<td class="thu3" style="color:#48C9B0"></td>
+						<td class="fri3" style="color:#48C9B0"></td>
+						<td class="sat3" style="color:#48C9B0"></td>
+						<td class="sun3" style="color:#48C9B0"></td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-4 col-md-offset-2" id="image_upload_div">
 			<label>上传头像(要求本人头像，五官清晰):</label><br>
 			<span class="sl-custom-file">
@@ -406,6 +459,29 @@ $("#submit").click(function(){
 			allOptions = allOptions.concat(options);
 		}
 	}
+	var canTeachTime = new Array();
+	$(".teachingTimeMorning").children().each(function(){
+		if($(this).text() != ""){
+			if($(this).attr("class") != ""){
+				canTeachTime.push($(this).attr("class"));
+			}
+		}
+	});
+	$(".teachingTimeAfternoon").children().each(function(){
+		if($(this).text() != ""){
+			if($(this).attr("class") != ""){
+				canTeachTime.push($(this).attr("class"));
+			}
+		}
+	});
+	$(".teachingTimeEvening").children().each(function(){
+		if($(this).text() != ""){
+			if($(this).attr("class") != ""){
+				canTeachTime.push($(this).attr("class"));
+			}
+		}
+	});
+	var canTeachTimeString = canTeachTime.join(",");
 	if(name == ""){
 		alert("请输入姓名");
 		$("#name").focus();
@@ -436,6 +512,8 @@ $("#submit").click(function(){
 	}else if(location == null){
 		alert("请选择可接受的教学地点");
 		$("#location").focus();
+	}else if(canTeachTimeString == ""){
+		alert("请选择可教学的时间");
 	}else{
 		var postData = {
 			openid:"",
@@ -451,6 +529,7 @@ $("#submit").click(function(){
 			otheroptions: [],
 			price: "",
 			location: [],
+			teachingTime: "",
 			highestGrade:"",
 			dataType:"teacherRegistration"
 		};
@@ -471,6 +550,7 @@ $("#submit").click(function(){
 			location = ["location0"];
 		}
 		postData.location = location;
+		postData.teachingTime = canTeachTimeString;
 		postData.highestGrade = highestGrade;
 		if(imageUploaded == true){
 			if(certificateUploaded == true){
@@ -707,6 +787,29 @@ $("#location").change(function(){
     	$(this).val(["location0"]);
     }
 });
+
+$(".teachingTimeMorning").children().click(function(){
+	if($(this).text() == ""){
+		$(this).text("√");
+	}else{
+		$(this).text("");
+	}
+});
+$(".teachingTimeAfternoon").children().click(function(){
+	if($(this).text() == ""){
+		$(this).text("√");
+	}else{
+		$(this).text("");
+	}
+});
+$(".teachingTimeEvening").children().click(function(){
+	if($(this).text() == ""){
+		$(this).text("√");
+	}else{
+		$(this).text("");
+	}
+});
+
 </script>
 </body>
 </html>
