@@ -119,6 +119,55 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			</p>
 			<p class="text-left" id="location">	
 			</p>
+			<p class="text-left" id="location">
+			可教学时间：
+			</p>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th><font color="#48C9B0">#</font></th>
+						<th><font color="#48C9B0">一</font></th>
+						<th><font color="#48C9B0">二</font></th>
+						<th><font color="#48C9B0">三</font></th>
+						<th><font color="#48C9B0">四</font></th>
+						<th><font color="#48C9B0">五</font></th>
+						<th><font color="#48C9B0">六</font></th>
+						<th><font color="#48C9B0">日</font></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>上</td>
+						<td class="showmon1" style="color:#48C9B0"></td>
+						<td class="showtue1" style="color:#48C9B0"></td>
+						<td class="showwed1" style="color:#48C9B0"></td>
+						<td class="showthu1" style="color:#48C9B0"></td>
+						<td class="showfri1" style="color:#48C9B0"></td>
+						<td class="showsat1" style="color:#48C9B0"></td>
+						<td class="showsun1" style="color:#48C9B0"></td>
+					</tr>
+					<tr>
+						<td>下</td>
+						<td class="showmon2" style="color:#48C9B0"></td>
+						<td class="showtue2" style="color:#48C9B0"></td>
+						<td class="showwed2" style="color:#48C9B0"></td>
+						<td class="showthu2" style="color:#48C9B0"></td>
+						<td class="showfri2" style="color:#48C9B0"></td>
+						<td class="showsat2" style="color:#48C9B0"></td>
+						<td class="showsun2" style="color:#48C9B0"></td>
+					</tr>
+					<tr>
+						<td>晚</td>
+						<td class="showmon3" style="color:#48C9B0"></td>
+						<td class="showtue3" style="color:#48C9B0"></td>
+						<td class="showwed3" style="color:#48C9B0"></td>
+						<td class="showthu3" style="color:#48C9B0"></td>
+						<td class="showfri3" style="color:#48C9B0"></td>
+						<td class="showsat3" style="color:#48C9B0"></td>
+						<td class="showsun3" style="color:#48C9B0"></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<div class="row" id="block3" style="display:none">
@@ -331,6 +380,59 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label for="teachingTime">可教学的时间</label>
+				<table class="table table-bordered" id="teachingTime">
+				<thead>
+					<tr>
+						<th><font color="#48C9B0">#</font></th>
+						<th><font color="#48C9B0">一</font></th>
+						<th><font color="#48C9B0">二</font></th>
+						<th><font color="#48C9B0">三</font></th>
+						<th><font color="#48C9B0">四</font></th>
+						<th><font color="#48C9B0">五</font></th>
+						<th><font color="#48C9B0">六</font></th>
+						<th><font color="#48C9B0">日</font></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="teachingTimeMorning">
+						<td class="">上</td>
+						<td class="mon1" style="color:#48C9B0"></td>
+						<td class="tue1" style="color:#48C9B0"></td>
+						<td class="wed1" style="color:#48C9B0"></td>
+						<td class="thu1" style="color:#48C9B0"></td>
+						<td class="fri1" style="color:#48C9B0"></td>
+						<td class="sat1" style="color:#48C9B0"></td>
+						<td class="sun1" style="color:#48C9B0"></td>
+					</tr>
+					<tr class="teachingTimeAfternoon">
+						<td class="">下</td>
+						<td class="mon2" style="color:#48C9B0"></td>
+						<td class="tue2" style="color:#48C9B0"></td>
+						<td class="wed2" style="color:#48C9B0"></td>
+						<td class="thu2" style="color:#48C9B0"></td>
+						<td class="fri2" style="color:#48C9B0"></td>
+						<td class="sat2" style="color:#48C9B0"></td>
+						<td class="sun2" style="color:#48C9B0"></td>
+					</tr>
+					<tr class="teachingTimeEvening">
+						<td class="">晚</td>
+						<td class="mon3" style="color:#48C9B0"></td>
+						<td class="tue3" style="color:#48C9B0"></td>
+						<td class="wed3" style="color:#48C9B0"></td>
+						<td class="thu3" style="color:#48C9B0"></td>
+						<td class="fri3" style="color:#48C9B0"></td>
+						<td class="sat3" style="color:#48C9B0"></td>
+						<td class="sun3" style="color:#48C9B0"></td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-md-4 col-md-offset-2" id="image_upload_div">
 			<label>上传新头像(要求本人头像，五官清晰):</label><br>
 			<span class="sl-custom-file">
@@ -413,6 +515,8 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	var highestGrade = "";
 	var price = "";
 	var place = "";
+	var teachingTime = "";
+	var teachingTimeArray = new Array();
 	var certificate = "";
 	var imageUrl = "";
 	var teacherName = "";
@@ -464,11 +568,20 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
    			highestGrade = jsonObj.highestGrade;
    			price = jsonObj.price;
    			place = jsonObj.address;
+   			teachingTime = jsonObj.teachingTime;
+   			teachingTimeArray = teachingTime.split(",");
    			certificate = jsonObj.certificate;
    			options = jsonObj.options;
    			imageUrl = jsonObj.imageUrl;
    			
-			
+			$.each(teachingTimeArray, function(){     
+    			var timeClass = "show"+this;
+    			$("."+timeClass).text("√");     
+ 			});  
+ 			$.each(teachingTimeArray, function(){     
+    			var timeClass = this;
+    			$("."+timeClass).text("√");     
+ 			});
 			$("#name").text("姓名："+name);
 			$("#sex").text("性别："+sexArray[sex]);
 			$("#faculty").text("学院名称："+faculty);
@@ -616,6 +729,31 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 				allOptions = allOptions.concat(options);
 			}
 		}
+		
+		var canTeachTime = new Array();
+		$(".teachingTimeMorning").children().each(function(){
+			if($(this).text() != ""){
+				if($(this).attr("class") != ""){
+					canTeachTime.push($(this).attr("class"));
+				}
+			}
+		});
+		$(".teachingTimeAfternoon").children().each(function(){
+			if($(this).text() != ""){
+				if($(this).attr("class") != ""){
+					canTeachTime.push($(this).attr("class"));
+				}
+			}
+		});
+		$(".teachingTimeEvening").children().each(function(){
+			if($(this).text() != ""){
+				if($(this).attr("class") != ""){
+					canTeachTime.push($(this).attr("class"));
+				}
+			}
+		});
+		var canTeachTimeString = canTeachTime.join(",");
+		
 		if(name == ""){
 			alert("请输入姓名");
 			$("#update_name").focus();
@@ -646,6 +784,8 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		}else if(location == null){
 			alert("请选择可接受的教学地点");
 			$("#update_location").focus();
+		}else if(canTeachTimeString == ""){
+			alert("请选择可教学的时间");
 		}else{
 			var postData = {
 				openid:"",
@@ -660,6 +800,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 				otheroptions: [],
 				price: "",
 				location: [],
+				teachingTime: "",
 				highestGrade:"",
 				dataType:"updateTeacherInformation"
 			};
@@ -679,6 +820,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 				location = ["location0"];
 			}
 			postData.location = location;
+			postData.teachingTime = canTeachTimeString;
 			postData.highestGrade = highestGrade;
 			$.post("teacherRegistrationService.php", postData,
    				function(data){
@@ -881,6 +1023,28 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
     		$(this).val(["location0"]);
     	}
     });
+    
+    $(".teachingTimeMorning").children().click(function(){
+		if($(this).text() == ""){
+			$(this).text("√");
+		}else{
+			$(this).text("");
+		}
+	});
+	$(".teachingTimeAfternoon").children().click(function(){
+		if($(this).text() == ""){
+			$(this).text("√");
+		}else{
+			$(this).text("");
+		}
+	});
+	$(".teachingTimeEvening").children().click(function(){
+		if($(this).text() == ""){
+			$(this).text("√");
+		}else{
+			$(this).text("");
+		}
+	});
 	</script>
 </div>
 </body>

@@ -157,12 +157,13 @@
 			$price = trim($_POST["price"]);
 			$location = $_POST["location"];
 			$location = implode(",",$location);
+			$teachingTime = trim($_POST["teachingTime"]);
 			$highestGrade = trim($_POST["highestGrade"]);
 			
 			//1，更新个人基本信息
 			$query = "set names utf8";
 			$result = $conn->query($query);
-			$query = "update T_teacher set name='$name', gender='$sex', faculty='$school', major='$major', studentNumber='$studentNumber', mobile='$phone', description='$desc', price='$price', address='$location', highestGrade='$highestGrade' where openId='$openid'";
+			$query = "update T_teacher set name='$name', gender='$sex', faculty='$school', major='$major', studentNumber='$studentNumber', mobile='$phone', description='$desc', price='$price', address='$location', highestGrade='$highestGrade', teachingTime='$teachingTime' where openId='$openid'";
 			$result = $conn->query($query);
 			
 			//2，删除原有offer
