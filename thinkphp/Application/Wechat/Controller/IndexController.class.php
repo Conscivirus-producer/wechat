@@ -4,6 +4,7 @@ use Think\Controller;
 class IndexController extends Controller {
     public function index(){
     	echo "Hello, wechat!";
+		echo session('openid');
     }
 	
 	public function test(){

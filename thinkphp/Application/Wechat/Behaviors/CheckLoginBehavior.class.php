@@ -7,6 +7,7 @@ class CheckLoginBehavior extends \Think\Behavior{
 		//throw new Exception("Error Processing Request", 1);
 		//echo C("APP_ID");
 		//exit("No openid provided.");
+		$openid = "";
 		if (isset($_GET['code'])){
 		    $code = $_GET['code'];
 		    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".C("APP_ID")."&secret=".C("APP_SECRET")."&code=".$code."&grant_type=authorization_code";
@@ -17,7 +18,8 @@ class CheckLoginBehavior extends \Think\Behavior{
 			//need to be modified to show hint and qrcode image
 		    //echo "NO CODE";
 		    $openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
-			exit("OpenId not provided");
+			//exit("OpenId not provided");
 		}
+		session('openid', $openid);
     }
 }
