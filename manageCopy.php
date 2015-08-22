@@ -759,17 +759,23 @@ $("#teachingTimeReport").click(function(){
 	var canTeachTime = new Array();
 	$(".teachingTimeMorning").children().each(function(){
 		if($(this).text() != ""){
-			canTeachTime.push($(this).attr("class"));
+			if($(this).attr("class") != ""){
+				canTeachTime.push($(this).attr("class"));
+			}
 		}
 	});
 	$(".teachingTimeAfternoon").children().each(function(){
 		if($(this).text() != ""){
-			canTeachTime.push($(this).attr("class"));
+			if($(this).attr("class") != ""){
+				canTeachTime.push($(this).attr("class"));
+			}
 		}
 	});
 	$(".teachingTimeEvening").children().each(function(){
 		if($(this).text() != ""){
-			canTeachTime.push($(this).attr("class"));
+			if($(this).attr("class") != ""){
+				canTeachTime.push($(this).attr("class"));
+			}
 		}
 	});
 	
