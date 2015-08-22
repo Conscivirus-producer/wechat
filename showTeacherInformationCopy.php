@@ -1,20 +1,10 @@
 <?php
 require_once("config.php");
 require_once 'vendor/autoload.php';
+require_once "jssdk.php";
 use Qiniu\Auth;
 
-
 $openid = "obS35vs6BGFOYo9w9Aq3q1OYNQjU";
-/*if (isset($_GET['code'])){
-    $code = $_GET['code'];
-    $access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
-    $access_token_json = file_get_contents($access_token_get_url); 
-    $json_obj = json_decode($access_token_json,true);
-    $openid = $json_obj["openid"];
-}else{
-	//need to be modified to show hint and qrcode image
-    exit("NO CODE");
-}*/
 
 $accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
 $secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
@@ -311,7 +301,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
 				<label for="F">趣味课程【可多选】</label>
-				<select name="F" id="F"multiple class="form-control">
+				<select name="F" id="F" multiple class="form-control">
 				</select>
 			</div>
 		</div>
@@ -373,6 +363,59 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
   					<option value="location4">宝安区</option>
   					<option value="location5">龙岗区</option>
 				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="form-group">
+				<label for="teachingTime">可教学的时间</label>
+				<table class="table table-bordered" id="teachingTime">
+				<thead>
+					<tr>
+						<th><font color="#48C9B0">#</font></th>
+						<th><font color="#48C9B0">一</font></th>
+						<th><font color="#48C9B0">二</font></th>
+						<th><font color="#48C9B0">三</font></th>
+						<th><font color="#48C9B0">四</font></th>
+						<th><font color="#48C9B0">五</font></th>
+						<th><font color="#48C9B0">六</font></th>
+						<th><font color="#48C9B0">日</font></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="teachingTimeMorning">
+						<td class="">上</td>
+						<td class="mon1" style="color:#48C9B0"></td>
+						<td class="tue1" style="color:#48C9B0"></td>
+						<td class="wed1" style="color:#48C9B0"></td>
+						<td class="thu1" style="color:#48C9B0"></td>
+						<td class="fri1" style="color:#48C9B0"></td>
+						<td class="sat1" style="color:#48C9B0"></td>
+						<td class="sun1" style="color:#48C9B0"></td>
+					</tr>
+					<tr class="teachingTimeAfternoon">
+						<td class="">下</td>
+						<td class="mon2" style="color:#48C9B0"></td>
+						<td class="tue2" style="color:#48C9B0"></td>
+						<td class="wed2" style="color:#48C9B0"></td>
+						<td class="thu2" style="color:#48C9B0"></td>
+						<td class="fri2" style="color:#48C9B0"></td>
+						<td class="sat2" style="color:#48C9B0"></td>
+						<td class="sun2" style="color:#48C9B0"></td>
+					</tr>
+					<tr class="teachingTimeEvening">
+						<td class="">晚</td>
+						<td class="mon3" style="color:#48C9B0"></td>
+						<td class="tue3" style="color:#48C9B0"></td>
+						<td class="wed3" style="color:#48C9B0"></td>
+						<td class="thu3" style="color:#48C9B0"></td>
+						<td class="fri3" style="color:#48C9B0"></td>
+						<td class="sat3" style="color:#48C9B0"></td>
+						<td class="sun3" style="color:#48C9B0"></td>
+					</tr>
+				</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -463,7 +506,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	var teachingTimeArray = new Array();
 	var certificate = "";
 	var imageUrl = "";
-	
+	var teacherName = "";
 	var sexArray = {
 		"m":"男",
 		"f":"女"
@@ -502,6 +545,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
    			jsonObj = $.parseJSON(data);
    			
    			name = jsonObj.name;
+   			teacherName = jsonObj.name;
    			sex = jsonObj.gender;
    			faculty = jsonObj.faculty;
    			major = jsonObj.major;
@@ -521,6 +565,10 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
     			var timeClass = "show"+this;
     			$("."+timeClass).text("√");     
  			});  
+ 			$.each(teachingTimeArray, function(){     
+    			var timeClass = ""+this;
+    			$("."+timeClass).text("√");     
+ 			});
 			$("#name").text("姓名："+name);
 			$("#sex").text("性别："+sexArray[sex]);
 			$("#faculty").text("学院名称："+faculty);
@@ -603,7 +651,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			
 			$('img[name*="initLoading"]').remove();
 			
-			var newHeadUrl = imageUrl+"?timestamp="+new Date().getTime();
+			var newHeadUrl = imageUrl+"?imageView2/1/w/500/h/500/q/100"+"/timestamp="+new Date().getTime();
 			
 			$("#head").append(
 				$("<img />").attr("src", newHeadUrl).attr("class", "img-responsive img-circle").attr("width", "50%").attr("style", "margin: 0 auto")
@@ -615,7 +663,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			$("#update_name").val(name);$("#update_sex").val(sex);$("#update_school").val(faculty);
 			$("#update_major").val(major);$("#update_studentNumber").val(studentNumber);$("#update_phone").val(phone);
 			$("#update_desc").val(selfDesc);$("#update_grade").val(highestGrade);$("#update_price").val(price);
-			$("#update_location").val(place);
+			$("#update_location").val(place.split(","));
 			function createOptions(typeCode, optionId, selectedOptions){
 				var url = "http://"+rootUrl+"/service.php?typeCode="+typeCode;
 				$.getJSON(url,function(data){
@@ -624,14 +672,17 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 					var code = data.code;
 					var name = data.name;
 					var length = code.length;
+					var choosedOptions = new Array();
 					for(var i = 0;i < length;i++){
 						var optionCode = code[i];
 						var optionName = name[i];
-						if($.inArray(optionCode,selectedOptions) == -1){
-							$("#"+optionId).append("<option value='"+optionCode+"'>"+optionName+"</option>");
-						}else{
-							$("#"+optionId).append("<option value='"+optionCode+"' selected>"+optionName+"</option>");
+						$("#"+optionId).append("<option value='"+optionCode+"'>"+optionName+"</option>");
+						if($.inArray(optionCode,selectedOptions) != -1){
+							choosedOptions.push(optionCode);
 						}
+					}
+					if(choosedOptions.length != 0){
+						$("#"+typeCode).val(choosedOptions);
 					}
 				});
 			}
@@ -665,6 +716,31 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 				allOptions = allOptions.concat(options);
 			}
 		}
+		
+		var canTeachTime = new Array();
+		$(".teachingTimeMorning").children().each(function(){
+			if($(this).text() != ""){
+				if($(this).attr("class") != ""){
+					canTeachTime.push($(this).attr("class"));
+				}
+			}
+		});
+		$(".teachingTimeAfternoon").children().each(function(){
+			if($(this).text() != ""){
+				if($(this).attr("class") != ""){
+					canTeachTime.push($(this).attr("class"));
+				}
+			}
+		});
+		$(".teachingTimeEvening").children().each(function(){
+			if($(this).text() != ""){
+				if($(this).attr("class") != ""){
+					canTeachTime.push($(this).attr("class"));
+				}
+			}
+		});
+		var canTeachTimeString = canTeachTime.join(",");
+		
 		if(name == ""){
 			alert("请输入姓名");
 			$("#update_name").focus();
@@ -695,6 +771,8 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		}else if(location == null){
 			alert("请选择可接受的教学地点");
 			$("#update_location").focus();
+		}else if(canTeachTimeString == ""){
+			alert("请选择可教学的时间");
 		}else{
 			var postData = {
 				openid:"",
@@ -709,6 +787,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 				otheroptions: [],
 				price: "",
 				location: [],
+				teachingTime: "",
 				highestGrade:"",
 				dataType:"updateTeacherInformation"
 			};
@@ -724,7 +803,11 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 		
 			postData.otheroptions = otheroptions;
 			postData.price = price;
+			if($.inArray("location0",location) != -1){
+				location = ["location0"];
+			}
 			postData.location = location;
+			postData.teachingTime = canTeachTimeString;
 			postData.highestGrade = highestGrade;
 			$.post("teacherRegistrationService.php", postData,
    				function(data){
@@ -815,7 +898,7 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
                     imageUploaded = true;
                     $('img[src*="loading_normal.gif"]').remove();
                     $("#image_upload_div").append(
-						$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?timestamp="+new Date().getTime()).attr("class", "img-responsive").attr("style", "margin: 0 auto")
+						$("<img />").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100"+"/timestamp="+new Date().getTime()).attr("class", "img-responsive").attr("width", "50%").attr("style", "margin: 0 auto")
 					);
 					$("#head_upload").prop('disabled', true);
                     alert("头像修改成功");
@@ -927,9 +1010,60 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
     		$(this).val(["location0"]);
     	}
     });
+    
+    $(".teachingTimeMorning").children().click(function(){
+		if($(this).text() == ""){
+			$(this).text("√");
+		}else{
+			$(this).text("");
+		}
+	});
+	$(".teachingTimeAfternoon").children().click(function(){
+		if($(this).text() == ""){
+			$(this).text("√");
+		}else{
+			$(this).text("");
+		}
+	});
+	$(".teachingTimeEvening").children().click(function(){
+		if($(this).text() == ""){
+			$(this).text("√");
+		}else{
+			$(this).text("");
+		}
+	});
 	</script>
 </div>
 </body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+wx.config({
+    debug: false,
+    appId: '<?php echo $signPackage["appId"];?>',
+    timestamp: <?php echo $signPackage["timestamp"];?>,
+    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+    signature: '<?php echo $signPackage["signature"];?>',
+    jsApiList: [
+    'onMenuShareTimeline',
+    'onMenuShareAppMessage'
+    ]
+});
+wx.ready(function () {
+    wx.onMenuShareAppMessage({
+		title: "我教你学老师信息",
+		desc: '你教我学老师信息',
+		link: "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid,
+		imgUrl: "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100"
+	});
+	wx.onMenuShareTimeline({
+		title: "我教你学老师信息",
+		desc: '我教你学老师信息',
+		link: "http://www.ilearnnn.com/teacherInformation.php?openid=" + openid,
+		imgUrl: "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+openid+"_head"+"?imageView2/1/w/500/h/500/q/100"
+	});
+});
+	
+</script>
 </html>
 
 
