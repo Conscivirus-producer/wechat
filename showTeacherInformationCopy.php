@@ -116,6 +116,55 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 			</p>
 			<p class="text-left" id="location">	
 			</p>
+			<p class="text-left" id="location">
+			可教学时间：
+			</p>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th><font color="#48C9B0">#</font></th>
+						<th><font color="#48C9B0">一</font></th>
+						<th><font color="#48C9B0">二</font></th>
+						<th><font color="#48C9B0">三</font></th>
+						<th><font color="#48C9B0">四</font></th>
+						<th><font color="#48C9B0">五</font></th>
+						<th><font color="#48C9B0">六</font></th>
+						<th><font color="#48C9B0">日</font></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>上</td>
+						<td class="showmon1" style="color:#48C9B0"></td>
+						<td class="showtue1" style="color:#48C9B0"></td>
+						<td class="showwed1" style="color:#48C9B0"></td>
+						<td class="showthu1" style="color:#48C9B0"></td>
+						<td class="showfri1" style="color:#48C9B0"></td>
+						<td class="showsat1" style="color:#48C9B0"></td>
+						<td class="showsun1" style="color:#48C9B0"></td>
+					</tr>
+					<tr>
+						<td>下</td>
+						<td class="showmon2" style="color:#48C9B0"></td>
+						<td class="showtue2" style="color:#48C9B0"></td>
+						<td class="showwed2" style="color:#48C9B0"></td>
+						<td class="showthu2" style="color:#48C9B0"></td>
+						<td class="showfri2" style="color:#48C9B0"></td>
+						<td class="showsat2" style="color:#48C9B0"></td>
+						<td class="showsun2" style="color:#48C9B0"></td>
+					</tr>
+					<tr>
+						<td>晚</td>
+						<td class="showmon3" style="color:#48C9B0"></td>
+						<td class="showtue3" style="color:#48C9B0"></td>
+						<td class="showwed3" style="color:#48C9B0"></td>
+						<td class="showthu3" style="color:#48C9B0"></td>
+						<td class="showfri3" style="color:#48C9B0"></td>
+						<td class="showsat3" style="color:#48C9B0"></td>
+						<td class="showsun3" style="color:#48C9B0"></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 	<div class="row" id="block3" style="display:none">
@@ -410,6 +459,8 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
 	var highestGrade = "";
 	var price = "";
 	var place = "";
+	var teachingTime = "";
+	var teachingTimeArray = new Array();
 	var certificate = "";
 	var imageUrl = "";
 	
@@ -460,11 +511,16 @@ $certificate_token = $auth2->uploadToken($bucket2,null,3600,null,true);
    			highestGrade = jsonObj.highestGrade;
    			price = jsonObj.price;
    			place = jsonObj.address;
+   			teachingTime = jsonObj.teachingTime;
+   			teachingTimeArray = teachingTime.split(",");
    			certificate = jsonObj.certificate;
    			options = jsonObj.options;
    			imageUrl = jsonObj.imageUrl;
    			
-			
+			$.each(teachingTimeArray, function(){     
+    			var timeClass = "show"+this;
+    			$("."+timeClass).text("√");     
+ 			});  
 			$("#name").text("姓名："+name);
 			$("#sex").text("性别："+sexArray[sex]);
 			$("#faculty").text("学院名称："+faculty);
