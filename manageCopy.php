@@ -734,7 +734,7 @@ function(){
 },
 function(){
 	$(this).html("");
-},
+}
 );
 $(".teachingTimeAfternoon").children().toggle(
 function(){
@@ -742,7 +742,7 @@ function(){
 },
 function(){
 	$(this).html("");
-},
+}
 );
 $(".teachingTimeEvening").children().toggle(
 function(){
@@ -750,7 +750,7 @@ function(){
 },
 function(){
 	$(this).html("");
-},
+}
 );
 </script>
 </body>
