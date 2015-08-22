@@ -255,33 +255,33 @@
 				<tbody>
 					<tr class="teachingTimeMorning">
 						<td>上</td>
-						<td class="mon1"><font color="#48C9B0">√</font></td>
-						<td class="tue1"></td>
-						<td class="wed1"></td>
-						<td class="thu1"></td>
-						<td class="fri1"></td>
-						<td class="sat1"></td>
-						<td class="sun1"></td>
+						<td class="mon1" style="color:#48C9B0">√</td>
+						<td class="tue1" style="color:#48C9B0"></td>
+						<td class="wed1" style="color:#48C9B0"></td>
+						<td class="thu1" style="color:#48C9B0"></td>
+						<td class="fri1" style="color:#48C9B0"></td>
+						<td class="sat1" style="color:#48C9B0"></td>
+						<td class="sun1" style="color:#48C9B0"></td>
 					</tr>
 					<tr class="teachingTimeAfternoon">
 						<td>下</td>
-						<td class="mon2"><font color="#48C9B0">√</font></td>
-						<td class="tue2"></td>
-						<td class="wed2"></td>
-						<td class="thu2"></td>
-						<td class="fri2"></td>
-						<td class="sat2"></td>
-						<td class="sun2"></td>
+						<td class="mon2" style="color:#48C9B0">√</td>
+						<td class="tue2" style="color:#48C9B0"></td>
+						<td class="wed2" style="color:#48C9B0"></td>
+						<td class="thu2" style="color:#48C9B0"></td>
+						<td class="fri2" style="color:#48C9B0"></td>
+						<td class="sat2" style="color:#48C9B0"></td>
+						<td class="sun2" style="color:#48C9B0"></td>
 					</tr>
 					<tr class="teachingTimeEvening">
 						<td>晚</td>
-						<td class="mon3"><font color="#48C9B0">√</font></td>
-						<td class="tue3"></td>
-						<td class="wed3"></td>
-						<td class="thu3"></td>
-						<td class="fri3"></td>
-						<td class="sat3"></td>
-						<td class="sun3"></td>
+						<td class="mon3" style="color:#48C9B0">√</td>
+						<td class="tue3" style="color:#48C9B0"></td>
+						<td class="wed3" style="color:#48C9B0"></td>
+						<td class="thu3" style="color:#48C9B0"></td>
+						<td class="fri3" style="color:#48C9B0"></td>
+						<td class="sat3" style="color:#48C9B0"></td>
+						<td class="sun3" style="color:#48C9B0"></td>
 					</tr>
 				</tbody>
 				</table>
@@ -728,30 +728,27 @@ $("#location").change(function(){
     }
 });
 
-$(".teachingTimeMorning").children().toggle(
-function(){
-	$(this).html("<font color='#48C9B0'>√</font>");
-},
-function(){
-	$(this).html("");
-}
-);
-$(".teachingTimeAfternoon").children().toggle(
-function(){
-	$(this).html("<font color='#48C9B0'>√</font>");
-},
-function(){
-	$(this).html("");
-}
-);
-$(".teachingTimeEvening").children().toggle(
-function(){
-	$(this).html("<font color='#48C9B0'>√</font>");
-},
-function(){
-	$(this).html("");
-}
-);
+$(".teachingTimeMorning").children().click(function(){
+	if($(this).text() == ""){
+		$(this).text("√");
+	}else{
+		$(this).text("");
+	}
+});
+$(".teachingTimeAfternoon").children().click(function(){
+	if($(this).text() == ""){
+		$(this).text("√");
+	}else{
+		$(this).text("");
+	}
+});
+$(".teachingTimeEvening").children().click(function(){
+	if($(this).text() == ""){
+		$(this).text("√");
+	}else{
+		$(this).text("");
+	}
+});
 </script>
 </body>
 </html>
