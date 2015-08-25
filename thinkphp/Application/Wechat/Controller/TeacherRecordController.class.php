@@ -8,13 +8,13 @@ class TeacherRecordController extends Controller {
     }
 	
 	public function myClassList(){
-		$parent = D("Parent");
-		$data = $parent->select();
+		$transaction = D("Transaction");
+		$data = $transaction->select();
 		//for ($i=0;$i < count($data); $i++){
 			//echo $data[$i]["openid"];
 		//}
-		echo session('openid');
-		$this->assign("name","qop");
+		$userOpenId = session('openid');
+		$this->assign("data",$data);
 		$this->display();
 	}
 }
