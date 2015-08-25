@@ -5,10 +5,10 @@
 <title>我的课堂</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Loading Bootstrap -->
-<link href="http://www.ilearnnn.com/css/vendor/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo "http://".$_SERVER ['HTTP_HOST'] ?>/css/vendor/bootstrap.min.css" rel="stylesheet">
 <!-- Loading Flat UI -->
-<link href="http://www.ilearnnn.com/css/flat-ui.min.css" rel="stylesheet">
-<link href="http://www.ilearnnn.com/css/myrecord.css" rel="stylesheet">
+<link href="<?php echo "http://".$_SERVER ['HTTP_HOST'] ?>/css/flat-ui.min.css" rel="stylesheet">
+<link href="<?php echo "http://".$_SERVER ['HTTP_HOST'] ?>/css/myrecord.css" rel="stylesheet">
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 <!--[if lt IE 9]>
 <script src="js/vendor/html5shiv.js"></script>
@@ -16,8 +16,7 @@
 <![endif]-->
 </head>
 <body>
-<input type="text" name="openid" id="openid" value="<?php echo $openid; ?>" style="display:none">
-<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
+<input type="text" name="styleRoot" id="styleRoot" value="<?php echo C('STYLE_ROOT'); ?>" style="display:none">
 <div class="container">
 	<div class="row" style="" id="q0">
 	</div>
@@ -33,11 +32,11 @@
       </thead>
       <tbody id="records">
 			<volist name="data" id="vo">
-			<tr>
+			<tr id="transid{$vo['transactionId']}">
 				<td>{$vo['transactionId']}</td>
 				<td>{$vo['course']}</td>
 				<td>{$vo['location']}</td>
-				<td>{$vo['status']}</td>
+				<td>{$vo['status']}<div class="arrow"></div></td>
 			</tr>
 			</volist>
       </tbody>
@@ -46,11 +45,20 @@
 </div>
 <!-- /.container -->
 <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
-<script src="js/vendor/jquery.min.js"></script>
+<script src="<?php echo "http://".$_SERVER ['HTTP_HOST'] ?>/js/vendor/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="http://www.ilearnnn.com/js/vendor/video.js"></script>
-<script src="http://www.ilearnnn.com/js/flat-ui.min.js"></script>
+<script src="<?php echo "http://".$_SERVER ['HTTP_HOST'] ?>/js/vendor/video.js"></script>
+<script src="<?php echo "http://".$_SERVER ['HTTP_HOST'] ?>/js/flat-ui.min.js"></script>
 <script type="text/javascript">
+var styleRoot = $("#styleRoot").val();
+$(document).ready(function(){
+	//alert($("#records").attr("id"));
+	$("tr[id^='transid']").click(function(){
+		var transactionId = $(this).attr("id").replace("transid", "");
+		alert(transactionId);
+	//		window.location.href="myRecordDetail.php?transactionId="+$(this).find('th').attr("id");
+	});
+});
 </script>
 </body>
 </html>
