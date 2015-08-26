@@ -1,6 +1,7 @@
 <?php
 namespace Wechat\Controller;
 use Think\Controller;
+use Qiniu\Auth;
 class TeacherRecordController extends Controller {
     public function index(){
     	echo "Hello, wechat!";
