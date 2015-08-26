@@ -55,7 +55,7 @@ $(document).ready(function(){
 	//alert($("#records").attr("id"));
 	$("tr[id^='transid']").click(function(){
 		var transactionId = $(this).attr("id").replace("transid", "");
-		window.location.href='{:U("Wechat/TeachingRecord/teachingRecord")}?transactionId='+transactionId;
+		window.location.href='{:U("Wechat/TeacherRecord/teachingRecord")}?transactionId='+transactionId;
 	});
 });
 </script>

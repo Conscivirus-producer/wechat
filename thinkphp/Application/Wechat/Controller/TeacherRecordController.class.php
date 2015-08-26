@@ -2,6 +2,8 @@
 namespace Wechat\Controller;
 use Think\Controller;
 use Qiniu\Auth;
+use Think\Log;
+
 class TeacherRecordController extends Controller {
     public function index(){
     	echo "Hello, wechat!";
@@ -37,6 +39,12 @@ class TeacherRecordController extends Controller {
 		$this->assign("token",$token);
 		$this->assign("transactionId","58");
 		$this->assign("teachingDt","2015-07-04");
+		$this->display();
+	}
+	
+	public function teachingRecord($transactionId){
+		$teachingRecords = D("TeachingRecord", "Logic")->getTeachingRecord($transactionId);
+		$this->assign("test", json_encode($teachingRecords));
 		$this->display();
 	}
 }
