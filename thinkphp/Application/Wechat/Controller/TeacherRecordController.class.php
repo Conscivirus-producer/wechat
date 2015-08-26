@@ -25,4 +25,10 @@ class TeacherRecordController extends Controller {
 		$this->assign("data",$data);
 		$this->display();
 	}
+	
+	public function uploadTeachingRecord(){
+		$this->assign("transactionId","58");
+		$this->assign("teachingDt","2015-07-04");
+		$this->display();
+	}
 }
