@@ -163,6 +163,8 @@ var overallScore = "";
 var comment = "";
 var teachingPictureTimeTag = "";
 $(document).ready(function(){
+	transactionId = $("#transactionId").val();
+	teachingDt = $("#teachingDt").val();
 	$("#scoreA").find("input").click(function(){
 		$("#scoreA").find("input").attr("class","btn btn-default");
 		$(this).attr("class","btn btn-primary");
@@ -234,7 +236,7 @@ $(document).ready(function(){
                     console && console.log(blkRet);
                   	$('img[name*="loading'+teachingPictureTimeTag+'"]').remove();
                   	$("#teachingPictureGallery").append(
-						$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+transactionId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive").attr("style", "margin: 0 auto")
+						$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+"transactionId_"+transactionId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive").attr("style", "margin: 0 auto")
 					);
                 } else if (xhr.status != 200 && xhr.responseText) {
 					alert("上传教学图片失败");
