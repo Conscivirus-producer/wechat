@@ -27,6 +27,7 @@ class TeacherRecordController extends Controller {
 	}
 	
 	public function uploadTeachingRecord(){
+		Vendor("qiniusdk.autoload");
 		$this->assign("transactionId","58");
 		$this->assign("teachingDt","2015-07-04");
 		$this->display();
