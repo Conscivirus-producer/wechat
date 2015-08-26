@@ -27,8 +27,7 @@ class TeacherRecordController extends Controller {
 	}
 	
 	public function uploadTeachingRecord(){
-		Vendor("qiniusdk.autoload");
-		Vendor("qiniusdk.qiniu.php-sdk.src.Qiniu.Auth");
+		vendor("qiniusdk.autoload");
 		$accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
 		$secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
 		$auth = new Auth($accessKey, $secretKey);
