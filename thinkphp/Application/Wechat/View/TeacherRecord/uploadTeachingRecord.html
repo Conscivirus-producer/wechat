@@ -1,3 +1,12 @@
+<?php
+	require_once 'http://'.$_SERVER ['HTTP_HOST'].'/vendor/autoload.php';
+	use Qiniu\Auth;
+	$accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
+	$secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
+	$auth = new Auth($accessKey, $secretKey);
+	$bucket = 'wojiaonixue';
+	$token = $auth->uploadToken($bucket);
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -37,6 +46,7 @@
 <body>
 <input type="text" name="transactionId" id="transactionId" value="{$transactionId}" style="display:none">
 <input type="text" name="teachingDt" id="teachingDt" value="{$teachingDt}" style="display:none">
+<input type="text" name="token" id="token" value="<?php echo $token; ?>" style="display:none">
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
@@ -136,7 +146,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" style="margin-top:15px; margin-bottom:15px">
+	<div class="row" style="margin-top:15px; margin-bottom:25px">
 		<div class="col-md-4 col-md-offset-4">
 			<button type="button" class="btn btn-primary btn-block" id="submit" name="submit">提交</button>
 		</div>
