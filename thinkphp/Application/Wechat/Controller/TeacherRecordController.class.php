@@ -28,6 +28,13 @@ class TeacherRecordController extends Controller {
 	
 	public function uploadTeachingRecord(){
 		Vendor("qiniusdk.autoload");
+		use Qiniu\Auth;
+		$accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
+		$secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
+		$auth = new Auth($accessKey, $secretKey);
+		$bucket = 'wojiaonixue';
+		$token = $auth->uploadToken($bucket);
+		$this->assign("token",$token);
 		$this->assign("transactionId","58");
 		$this->assign("teachingDt","2015-07-04");
 		$this->display();
