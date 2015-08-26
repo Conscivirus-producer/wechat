@@ -1,12 +1,3 @@
-<?php
-	require_once "http://".$_SERVER ['HTTP_HOST'].'/vendor/autoload.php';
-	use Qiniu\Auth;
-	$accessKey = 'k7HBysPt-HoUz4dwPT6SZpjyiuTdgmiWQE-7qkJ4';
-	$secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
-	$auth = new Auth($accessKey, $secretKey);
-	$bucket = 'wojiaonixue';
-	$token = $auth->uploadToken($bucket);
-?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
