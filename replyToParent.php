@@ -11,7 +11,7 @@ require_once("config.php");
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>获取订单信息</title>
+<title>回复家长后台</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Loading Bootstrap -->
@@ -30,26 +30,40 @@ require_once("config.php");
 	<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
 <div class="container">
 	<div class="row">
-		<div class="col-md-4 col-md-offset-2">
-			家长openid:
-			<input type="text" name="openid" value="" id="openid">
-			<button type="button" class="btn" name="reset" id="reset">默认</button>
+		<div class="col-md-4 col-md-offset-4">
+			<p class="text-center">
+				回复家长后台
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<label for="openid">家长openId:</label>
+				<input type="text" name="openid" value="" id="openid" class="form-control input-sm" placeholder="请输入家长openId">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2 col-md-offset-4">
+			<button type="button" class="btn btn-info btn-sm btn-block" name="reset" id="reset">默认</button>
 		</div>
 	</div>
 	
 	<div class="row">
-		<div class="col-md-4 col-md-offset-2">
-			微信内容:
-		</br>
-			<textarea rows="12" cols="35" style="font-size:12px" id="responseContent"></textarea>
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<label for="responseContent">微信内容:</label>
+				<textarea class="form-control" rows="12" style="font-size:12px" id="responseContent"></textarea>
+			</div>
 		</div>
 	</div>
 	
-	<div class="row" style="margin-top:30px">
+	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<button type="button" class="btn btn-info btn-lg btn-block" name="txtReply" id="txtReply">回复文本信息</button>
-			<button type="button" class="btn btn-info btn-lg btn-block" name="imgMsgReply" id="imgMsgReply">回复图文信息</button>
-			<button type="button" class="btn btn-info btn-lg btn-block" name="back" id="back">返回</button>
+			<button type="button" class="btn btn-info btn-sm btn-block" name="txtReply" id="txtReply">回复文本信息</button>
+			<button type="button" class="btn btn-info btn-sm btn-block" name="imgMsgReply" id="imgMsgReply">回复图文信息</button>
+			<button type="button" class="btn btn-info btn-sm btn-block" name="back" id="back">返回</button>
 		</div>
 	</div>
 </div>
