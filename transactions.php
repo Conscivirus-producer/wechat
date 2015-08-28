@@ -33,7 +33,7 @@ require_once("config.php");
 				订单查询管理后台
 			</h5>
 		</div>
-		<div class="col-md-2 col-md-offset-10">
+		<div class="col-md-2 col-md-offset-5">
 			<a href="login.php?action=logout" class="btn btn-info btn-sm btn-block" role="button">注销登录</a>
 		</div>
 	</div>
@@ -87,6 +87,7 @@ require_once("config.php");
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5">
 			<button type="button" class="btn btn-info btn-sm btn-block" name="submit" id="submit">查询</button>
+			<button type="button" class="btn btn-info btn-sm btn-block" name="back" id="back">返回</button>
 		</div>
 	</div>
 	
@@ -134,6 +135,9 @@ $("#submit").click(function(){
 	renderData($("#status").val(), $("#follower").val());
 });
 
+$("#back").click(function(){
+	window.location.href="login.php";
+});
 
 function renderData(status, follower){
 	$("[id^=resultTr]").each(function(){
