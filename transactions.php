@@ -29,9 +29,9 @@ require_once("config.php");
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<p class="text-center">
+			<h5 class="text-center">
 				订单查询管理后台
-			</p>
+			</h5>
 		</div>
 		<div class="col-md-2 col-md-offset-5">
 			<a href="login.php?action=logout" class="btn btn-info btn-sm btn-block" role="button">注销登录</a>
