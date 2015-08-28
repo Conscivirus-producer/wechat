@@ -12,7 +12,7 @@ require_once("config.php");
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>获取订单信息</title>
+<title>订单查询管理后台</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Loading Bootstrap -->
 <link href="http://www.ilearnnn.com/timepicker/sample in bootstrap v3/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -30,7 +30,7 @@ require_once("config.php");
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<p class="text-center">
-				后台管理
+				订单查询管理后台
 			</p>
 		</div>
 		<div class="col-md-2 col-md-offset-5">
