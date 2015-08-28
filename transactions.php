@@ -15,15 +15,13 @@ require_once("config.php");
 <title>获取订单信息</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Loading Bootstrap -->
-<link href="css/vendor/bootstrap.min.css" rel="stylesheet">
-<!-- Loading Flat UI -->
-<link href="css/flat-ui.min.css" rel="stylesheet">
-<script src="js/vendor/jquery.min.js"></script>
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-<!--[if lt IE 9]>
-<script src="js/vendor/html5shiv.js"></script>
-<script src="js/vendor/respond.min.js"></script>
-<![endif]-->
+<link href="http://www.ilearnnn.com/timepicker/sample in bootstrap v3/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="http://www.ilearnnn.com/timepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<style>
+*{
+	font-size:10px;
+}
+</style>
 </head>
 <body>
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
@@ -33,34 +31,34 @@ require_once("config.php");
 			<p class="text-center">
 				后台管理
 			</p>
-			<p class="text-center">
-				<a href="login.php?action=logout">注销登录</a>
-			</p>
+		</div>
+		<div class="col-md-2 col-md-offset-5">
+			<a href="login.php?action=logout" class="btn btn-info btn-sm btn-block" role="button">注销登录</a>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-2">
+		<div class="col-md-2 col-md-offset-1">
 			<div class="form-group">
-				<label ="startDate">起始日期(比如: 2015-07-03 18:20):</label>
-				<input type="text" class="form-control" name="startDate" value="" id="startDate">
+				<label for="startDate">起始日期:</label>
+				<input type="text" class="form-control input-sm" name="startDate" value="" id="startDate" data-date-format="yyyy-mm-dd hh:ii">
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-2">
 			<div class="form-group">
-				<label ="endDate">结束日期(比如: 2015-07-04 09:20):</label>
-				<input type="text" class="form-control" name="endDate" value="" id="endDate">
+				<label for="endDate">结束日期:</label>
+				<input type="text" class="form-control input-sm" name="endDate" value="" id="endDate" data-date-format="yyyy-mm-dd hh:ii">
 			</div>
 		</div>
-		<div class="col-md-4 col-md-offset-2">
+		<div class="col-md-2">
 			<div class="form-group">
-				<label ="openid">家长 openid:</label>
-				<input type="text" class="form-control" name="openid" value="" id="openid">
+				<label for="openid">家长openId:</label>
+				<input type="text" class="form-control input-sm" name="openid" value="" id="openid">
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-2">
 			<div class="form-group">
 				<label for="status">状态</label>
-				<select class="form-control" name="status" id="status">
+				<select class="form-control input-sm" name="status" id="status">
 					<option value='1'>1.新订单</option>
 					<option value='2'>2.客服已联系家长,家长未确定</option>
 					<option value='3'>3.家长已同意,安排试教中</option>
@@ -71,10 +69,10 @@ require_once("config.php");
 				</select>
 			</div>
 		</div>
-		<div class="col-md-4 col-md-offset-2">
+		<div class="col-md-2">
 			<div class="form-group">
 				<label for="follower">跟踪人员</label>
-				<select class="form-control" name="follower" id="follower">
+				<select class="form-control input-sm" name="follower" id="follower">
 					<option value='All'>All</option>
 					<option value='超超'>超超</option>
 					<option value='王劼'>王劼</option>
@@ -86,9 +84,9 @@ require_once("config.php");
 	</div>
 	
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<button type="button" class="btn btn-info btn-lg btn-block" name="submit" id="submit">提交</button>
-			<button type="button" class="btn btn-info btn-lg btn-block" name="back" id="back">返回</button>
+		<div class="col-md-2 col-md-offset-5">
+			<button type="button" class="btn btn-info btn-sm btn-block" name="submit" id="submit">提交</button>
+			<button type="button" class="btn btn-info btn-sm btn-block" name="back" id="back">返回</button>
 		</div>
 	</div>
 	
@@ -99,18 +97,19 @@ require_once("config.php");
 					<caption>交易记录 (数量:<span id="transCount" name="transCount"></span>)</caption>  
       				<thead>
         				<tr>
-        					<th>交易号</th>
-          					<th>交易时间</th>
-          					<th>老师姓名</th>
-          					<th>老师手机号</th>
-          					<th>试教时间</th>
-          					<th>正式教课时间</th>
-          					<th>费用</th>
-          					<th>地点</th>
-          					<th>跟踪员</th>
-          					<th>状态</th>
-          					<th>备注</th>  
-          					<th>家长信息</th>
+        					<th width="8.33%">交易号</th>
+          					<th width="8.33%">交易时间</th>
+          					<th width="8.33%">老师姓名</th>
+          					<th width="8.33%">老师手机号</th>
+          					<th width="8.33%">试教时间</th>
+          					<th width="8.33%">开始上课时间</th>
+          					<th width="7.69%">每周上课时间</th>
+          					<th width="8.33%">费用</th>
+          					<th width="8.33%">地点</th>
+          					<th width="8.33%">跟踪员</th>
+          					<th width="8.33%">状态</th>
+          					<th width="8.33%">备注</th>  
+          					<th width="8.33%">家长信息</th>
         				</tr>
       				</thead>
     				<tbody>
@@ -125,8 +124,10 @@ require_once("config.php");
 <!-- /.container -->
 <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/vendor/video.js"></script>
-<script src="js/flat-ui.min.js"></script>
+<script type="text/javascript" src="http://www.ilearnnn.com/timepicker/sample in bootstrap v3/jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://www.ilearnnn.com/timepicker/sample in bootstrap v3/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="timepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="timepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
 var rootUrl = $("#rootUrl").val();
 $("#submit").click(function(){
@@ -237,20 +238,32 @@ function renderData(status, follower){
 				}
 			});
 			
+			
+			
+			//开始上课时间
 			$("<td>").appendTo($tr).html("<span>"+data.fixedTime[i]+"</span>").bind({
 				click: function(e){
 					$td = $(this);
 					$(this).children("span").hide();
-					if($(this).children("textarea").length == 0){
-						$("<textarea>").appendTo($(this)).html($(this).children("span").html());
-						$("<button>").appendTo($(this)).html("提交").bind({
+					if($(this).children("input").length == 0){
+						$("<input>").appendTo($(this)).attr("class","form-control input-sm").attr("data-date-format","yyyy-mm-dd").datetimepicker({
+        					language:  'zh-CN',
+       						weekStart: 1,
+        					todayBtn:  1,
+							autoclose: 1,
+							todayHighlight: 1,
+							startView: 2,
+							minView: 2,
+							forceParse: 0
+    					});
+						$("<button>").attr("class","btn btn-info btn-block btn-xs").attr("style","margin-top:5px").appendTo($(this)).html("提交").bind({
 							click: function(e){
 								var transactionId = $td.prevAll(".transactionId").text();
-								var fixedTime = $td.children("textarea").val();
+								var fixedTime = $td.children("input").val();
 								var url = "transactionService.php?dataType=updateFixedTime&transactionId="+transactionId+"&fixedTime="+fixedTime;
 								$.getJSON(url, function(json){
   									if(json.status == "ok"){
-  										$td.children("textarea").hide();
+  										$td.children("input").hide();
   										$td.children("button").hide();
   										$td.children("span").html(fixedTime);
   										$td.children("span").show();
@@ -261,16 +274,61 @@ function renderData(status, follower){
 						});
 					}else{
 						$(this).children("span").hide();
-						$(this).children("textarea").show();
+						$(this).children("input").show();
 						$(this).children("button").show();
 					}
-				},
-				mouseleave: function(e) {
-					$(this).children("textarea").hide();
-					$(this).children("button").hide();
-					$(this).children("span").show();
 				}
 			});
+			
+			//每周上课时间
+			$("<td>").appendTo($tr).html("<span>"+data.teachingFrequency[i]+"</span>").bind({
+				click: function(e){
+					$td = $(this);
+					$(this).children("span").hide();
+					if($(this).children("div").length == 0){
+						$("<div class='checkbox'><label><input type='checkbox' value='1'>周一</label></div>").appendTo($(this));
+						$("<div class='checkbox'><label><input type='checkbox' value='2'>周二</label></div>").appendTo($(this));
+						$("<div class='checkbox'><label><input type='checkbox' value='3'>周三</label></div>").appendTo($(this));
+						$("<div class='checkbox'><label><input type='checkbox' value='4'>周四</label></div>").appendTo($(this));
+						$("<div class='checkbox'><label><input type='checkbox' value='5'>周五</label></div>").appendTo($(this));
+						$("<div class='checkbox'><label><input type='checkbox' value='6'>周六</label></div>").appendTo($(this));
+						$("<div class='checkbox'><label><input type='checkbox' value='7'>周日</label></div>").appendTo($(this));
+						$("<button>").attr("class","btn btn-info btn-block btn-xs").attr("style","margin-top:5px").appendTo($(this)).html("提交").bind({
+							click: function(e){
+								var transactionId = $td.prevAll(".transactionId").text();
+								var checkboxes = $td.find("input[type='checkbox']");
+								var teachingFrequencyArray = new Array();
+								checkboxes.each(function(){
+									if($(this).is(':checked')){
+										teachingFrequencyArray.push($(this).attr("value"));
+									}
+								});
+								var teachingFrequency = teachingFrequencyArray.join(",");
+								var url = "transactionService.php?dataType=updateTeachingFrequency&transactionId="+transactionId+"&teachingFrequency="+teachingFrequency;
+								$.getJSON(url, function(json){
+  									if(json.status == "ok"){
+  										$td.children("div").hide();
+  										$td.children("button").hide();
+  										$td.children("span").html(teachingFrequency);
+  										$td.children("span").show();
+  									}
+								});
+								
+								e.stopPropagation();
+							}
+						});
+					}else{
+						$(this).children("span").hide();
+						$(this).children("div").show();
+						$(this).children("button").show();
+					}
+				}
+			});
+			
+			
+			
+			
+			
 			$("<td>").appendTo($tr).html("<span>"+data.fee[i]+"</span>").bind({
 				click: function(e){
 					$td = $(this);
@@ -456,7 +514,26 @@ function renderData(status, follower){
 		$("#confirmedExcel").show();
 	});
 }
-
+$('#startDate').datetimepicker({
+    language:  'zh-CN',
+    weekStart: 1,
+    todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 2,
+	minView: 1,
+	forceParse: 0
+});
+$('#endDate').datetimepicker({
+    language:  'zh-CN',
+    weekStart: 1,
+    todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 2,
+	minView: 1,
+	forceParse: 0
+});
 </script>
 </body>
 </html>
