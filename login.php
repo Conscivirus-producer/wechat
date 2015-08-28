@@ -55,6 +55,7 @@ if(isset($_POST['submit'])){
 <!-- Loading Flat UI -->
 <link href="css/flat-ui.min.css" rel="stylesheet">
 <script src="js/vendor/jquery.min.js"></script>
+<link rel="shortcut icon" href="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.ico">
 </head>
 <body>
 <input type="text" name="successLogin" id="successLogin" value="<?php echo $successLogin; ?>" style="display:none">
