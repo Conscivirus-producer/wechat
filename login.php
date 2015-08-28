@@ -60,7 +60,7 @@ if(isset($_POST['submit'])){
 <input type="text" name="successLogin" id="successLogin" value="<?php echo $successLogin; ?>" style="display:none">
 <div class="container">
 	<div class="row" style="margin-top: 50px">
-		<div class="col-md-4 col-md-offset-4">
+		<div class="col-md-2 col-md-offset-5">
 			<span style="">登录成功</span>
 			<div class="form-group">
 				<a href="transactions.php" target="_blank">订单管理</a><br />
