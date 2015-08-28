@@ -25,6 +25,7 @@ require_once("config.php");
 <script src="js/vendor/html5shiv.js"></script>
 <script src="js/vendor/respond.min.js"></script>
 <![endif]-->
+<link rel="shortcut icon" href="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.ico">
 </head>
 <body>
 	<input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">

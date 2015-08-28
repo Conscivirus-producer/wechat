@@ -22,6 +22,7 @@ require_once("config.php");
 	font-size:10px;
 }
 </style>
+<link rel="shortcut icon" href="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.ico">
 </head>
 <body>
 <input type="text" name="rootUrl" id="rootUrl" value="<?php echo $rootUrl; ?>" style="display:none">
