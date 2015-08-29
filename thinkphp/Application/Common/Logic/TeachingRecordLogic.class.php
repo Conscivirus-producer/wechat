@@ -1,6 +1,7 @@
 <?php
 	namespace Common\Logic;
 	use Common\Model\TeachingRecordModel;
+	use Common\Model\AssessmentSettingModel;
 	class TeachingRecordLogic extends TeachingRecordModel{
 		public function getTeachingRecord($transactionId){
 			//$teachingRecord = D("TeachingRecord");
@@ -26,6 +27,12 @@
 					$data["teachingDt"] = $teachingTime;
 				}
 			}
+    	}
+    	
+    	public function getAssessmentSettingsByCourseCode($courseCode){
+    		$AssessmentSetting = D("AssessmentSetting");
+    		$condition["courseCode"] = $courseCode;
+    		return $AssessmentSetting->where($condition)->select();
     	}
 	}
 
