@@ -134,9 +134,8 @@ var teachingPictureTimeTag = "";
 $(document).ready(function(){
 	recordId = $("#recordId").val();
 	teachingDt = $("#teachingDt").val();
-	
-	$("col-md-4.col-md-offset-4.assessment").find("input").click(function(){
-		$("col-md-4.col-md-offset-4.assessment").find("input").attr("class","btn btn-default");
+	$(".col-md-4.col-md-offset-4.assessment").find("input").click(function(){
+		$(".col-md-4.col-md-offset-4.assessment").find("input").attr("class","btn btn-default");
 		$(this).attr("class","btn btn-primary");
 	});
 	
