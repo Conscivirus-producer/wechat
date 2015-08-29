@@ -198,8 +198,10 @@ $(document).ready(function(){
 			
 			$.post("http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/insertNewTeachingRecord", postdata,
    				function(data){
-     				alert("课堂记录上传成功！");
-     				window.location.href = "http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/teachingRecord.html?transactionId="+transactionId;
+   					if(data.status == "ok"){
+     					alert("课堂记录上传成功！");
+     					window.location.href = "http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/teachingRecord.html?transactionId="+transactionId;
+     				}
      			}
    			);
 		}else{
@@ -216,7 +218,9 @@ $(document).ready(function(){
 		startView: 2,
 		minView: 2,
 		forceParse: 0
-    });
+    }).on('changeDate', function(ev){
+    	teachingDt = $("#teachingDt").val();
+	});
     
     var Qiniu_UploadUrl = "http://up.qiniu.com";
     $("#teachingPicture").change(function() {
@@ -240,6 +244,7 @@ $(document).ready(function(){
 						$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+"recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
 					);
 					teachingImageArray.push("recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag);
+					alert(teachingDt);
                 } else if (xhr.status != 200 && xhr.responseText) {
 					alert("上传教学图片失败");
 					$('img[name*="loading'+teachingPictureTimeTag+'"]').remove();
