@@ -25,6 +25,8 @@
 					$data["transactionId"] = $transactionId;
 					$data["createdDt"] = date('y-m-d h:i:s',time());
 					$data["teachingDt"] = $teachingTime;
+					$data["status"] = "0";
+					echo $this->add($data);
 				}
 			}
     	}
