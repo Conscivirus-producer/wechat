@@ -6,6 +6,7 @@ if (isset($_GET['code'])){
     $access_token_json = file_get_contents($access_token_get_url); 
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
+	session('openid', $openid);
 }else{
 	//$openid = "11111111";
 	//need to be modified to show hint and qrcode image

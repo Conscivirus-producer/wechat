@@ -14,16 +14,18 @@ class CheckLoginBehavior extends \Think\Behavior{
 		    $access_token_json = file_get_contents($access_token_get_url); 
 		    $json_obj = json_decode($access_token_json,true);
 		    $openid = $json_obj["openid"];
-			
-		}else{
-			//need to be modified to show hint and qrcode image
-		    //echo "NO CODE";
-		    $openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
-			//$this->redirect("ErrorHandling/ErrorHandling/error", array('message'=>'非法访问，请从微信公众号菜单访问'));
+			session('openid', $openid);
+			//检查当前用户是否是老师并且存储到session
+			$result = D("Teacher", "Logic")->isValidateTeacher($openid);
+			session('is_teacher', $result);
+		}else if(session('openid') == ''){
+			//测试模式，手动设openid
+		    /*$openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
+			session('openid', $openid);
+			$result = D("Teacher", "Logic")->isValidateTeacher($openid);
+			session('is_teacher', $result);*/
+			redirect("/thinkphp/ErrorHandling/ErrorHandling/error/message/非法访问");
 		}
-		session('openid', $openid);
-		//检查当前用户是否是老师并且存储到session
-		$result = D("Teacher", "Logic")->isValidateTeacher($openid);
-		session('is_teacher', $result);
+		
     }
 }
