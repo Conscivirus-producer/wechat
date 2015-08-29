@@ -55,12 +55,13 @@ if(isset($_POST['submit'])){
 <!-- Loading Flat UI -->
 <link href="css/flat-ui.min.css" rel="stylesheet">
 <script src="js/vendor/jquery.min.js"></script>
+<link rel="shortcut icon" href="http://7xk9ts.com2.z0.glb.qiniucdn.com/logo.ico">
 </head>
 <body>
 <input type="text" name="successLogin" id="successLogin" value="<?php echo $successLogin; ?>" style="display:none">
 <div class="container">
 	<div class="row" style="margin-top: 50px">
-		<div class="col-md-4 col-md-offset-4">
+		<div class="col-md-2 col-md-offset-5">
 			<span style="">登录成功</span>
 			<div class="form-group">
 				<a href="transactions.php" target="_blank">订单管理</a><br />

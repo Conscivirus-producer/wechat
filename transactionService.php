@@ -91,6 +91,17 @@
 		echo json_encode($jsonArray);
 	}
 	
+	function updateTeachingFrequency($conn,$transactionId,$teachingFrequency){
+		$query = "set names utf8";
+		$result = $conn->query($query);
+		$query = "update T_transaction set teachingFrequency = '$teachingFrequency', updatedDt = sysdate() where transactionId = '$transactionId'";
+		$result = $conn->query($query);
+		$jsonArray = array(
+			"status" => "ok"
+		);
+		echo json_encode($jsonArray);
+	}
+	
 	function updateFee($conn,$transactionId,$fee){
 		$query = "set names utf8";
 		$result = $conn->query($query);
@@ -157,6 +168,11 @@
 			$transactionId = trim($_GET["transactionId"]);
 			$fixedTime = trim($_GET["fixedTime"]);
 			updateFixedTime($conn,$transactionId,$fixedTime);
+		}
+		else if($dataType == "updateTeachingFrequency"){
+			$transactionId = trim($_GET["transactionId"]);
+			$teachingFrequency = trim($_GET["teachingFrequency"]);
+			updateTeachingFrequency($conn,$transactionId,$teachingFrequency);
 		}
 		else if($dataType == "updateFee"){
 			$transactionId = trim($_GET["transactionId"]);

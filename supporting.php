@@ -123,7 +123,7 @@
 			"T_parent.nickname, T_parent.mobile,T_child.subject, T_child.grade, T_child.interest, T_child.expected_price, ".
 			"T_child.expectedTeacherGender, T_child.expectedLocation, T_transaction.teacherOpenid, ".
 			"T_teacher.name as teacherName, T_teacher.mobile as teacherMobile, T_transaction.trialTime, T_transaction.fixedTime, ".
-			"T_transaction.fee, T_transaction.location, T_transaction.status,T_transaction.comment FROM T_parent,  T_child, `T_transaction` ".
+			"T_transaction.teachingFrequency, T_transaction.fee, T_transaction.location, T_transaction.status,T_transaction.comment FROM T_parent,  T_child, `T_transaction` ".
 			"LEFT JOIN T_teacher ON T_transaction.teacherOpenid = T_teacher.openId WHERE T_transaction.parentOpenid = T_parent.openId  and ".
 			"T_transaction.childId = T_child.childId";
 		
@@ -167,6 +167,7 @@
 			'teacherMobile' => array(),
 			'trialTime' => array(),
 			'fixedTime' => array(),
+			'teachingFrequency' => array(),
 			'fee' => array(),
 			'location' => array(),
 			'status' => array(),
@@ -189,6 +190,7 @@
 			array_push($jsonArray["teacherMobile"],$codeParser->handleNullValue($row["teacherMobile"]));
 			array_push($jsonArray["trialTime"],$row["trialTime"]);
 			array_push($jsonArray["fixedTime"],$row["fixedTime"]);
+			array_push($jsonArray["teachingFrequency"],$row["teachingFrequency"]);
 			array_push($jsonArray["fee"],$row["fee"]);
 			array_push($jsonArray["location"],$row["location"]);
 			array_push($jsonArray["status"],$codeParser->getStatusDescription($row["status"]));
