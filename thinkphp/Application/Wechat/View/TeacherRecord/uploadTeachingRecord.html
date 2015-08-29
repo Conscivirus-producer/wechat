@@ -51,13 +51,13 @@
 			<p class="text-center" style="font-size:15px">{$as.code}，{$as.description}</p>
 			<div class="btn-group btn-group-justified" role="group">
   				<div class="btn-group" role="group">
-    				<input type="button" class="btn btn-default" value="一般" name="0">
+    				<input type="button" class="btn btn-default" value="一般" name="1">
   				</div>
   				<div class="btn-group" role="group" style="border-left:1px solid #fff;border-right:1px solid #fff">
-    				<input type="button" class="btn btn-default" value="好" name="1">
+    				<input type="button" class="btn btn-default" value="好" name="2">
   				</div>
  				<div class="btn-group" role="group">
-    				<input type="button" class="btn btn-default" value="优秀" name="2">
+    				<input type="button" class="btn btn-default" value="优秀" name="3">
   				</div>
 			</div>
 		</div>
@@ -126,13 +126,22 @@
 <script type="text/javascript" src="<?php echo "http://".$_SERVER ['HTTP_HOST'] ?>/timepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<?php echo "http://".$_SERVER ['HTTP_HOST'] ?>/timepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
-var recordId = "";
-var teachingDt = "";
-var overallScore = "";
+var recordId = "";   				
+var teachingDt = "";				
+var overallScore = "";				
 var comment = "";
 var teachingPictureTimeTag = "";
-var assessCompleted;
-var assessScore;
+var assessCompleted;						//check whether assessment is completed
+var assessScore;							//array to store the assessment score
+var teachingImageArray = new Array();		//array to store the image keys
+var postdata = {
+	"recordId" : "",
+	"assessmentScore" : "",
+	"teachingDt" : "",
+	"comment" : "",
+	"teachingImage" : "",
+	"overallScore" : ""
+};
 $(document).ready(function(){
 	recordId = $("#recordId").val();
 	teachingDt = $("#teachingDt").val();
@@ -173,8 +182,18 @@ $(document).ready(function(){
 			}else if(overallScore == ""){
 				alert("请为学生打分");
 			}
-			alert(assessScore.join(","));
+			
+			//所有选项都是正确的,就开始POST数据
+			postdata.assessmentScore = assessScore.join(",");
+			postdata.teachingDt = $("#teachingtime").val();
+			postdata.comment = comment;
+			postdata.teachingImage = teachingImageArray.join(",");
+			postdata.overallScore = overallScore;
+			postdata.recordId = recordId;
+			
+			
 		}else{
+			//有测试老师没选择
 			alert("请为学生的测试打分");
 		}
 	});
@@ -210,6 +229,7 @@ $(document).ready(function(){
                   	$("#teachingPictureGallery").append(
 						$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+"recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
 					);
+					teachingImageArray.push("recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag);
                 } else if (xhr.status != 200 && xhr.responseText) {
 					alert("上传教学图片失败");
 					$('img[name*="loading'+teachingPictureTimeTag+'"]').remove();
