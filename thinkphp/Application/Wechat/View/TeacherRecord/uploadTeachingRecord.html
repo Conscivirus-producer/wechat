@@ -117,7 +117,7 @@
 		</div>
 	</div>
 	<div class="row" style="margin-top:15px">
-		<div class="col-md-4 col-md-offset-4" id="teachingPictureGallery">
+		<div class="col-md-4 col-md-offset-4" id="teachingPictureGallery" class="text-center">
 			
 		</div>
 	</div>
@@ -236,7 +236,7 @@ $(document).ready(function(){
                     console && console.log(blkRet);
                   	$('img[name*="loading'+teachingPictureTimeTag+'"]').remove();
                   	$("#teachingPictureGallery").append(
-						$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+"recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag+"?imageView2/1/w/5/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%").attr("style", "margin: 0 auto")
+						$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+"recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag+"?imageView2/1/w/5/h/500/q/100").attr("class", "img-responsive").attr("width", "50%").attr("style", "margin: 0 auto")
 					);
                 } else if (xhr.status != 200 && xhr.responseText) {
 					alert("上传教学图片失败");
