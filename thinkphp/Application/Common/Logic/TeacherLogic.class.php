@@ -6,7 +6,11 @@
 			$map["openId"] = array('eq',$openid);
 			$map["teacherStatus"] = array('eq','R');
 			$data = $this->where($map)->select();
-			return count($data);
+			$returnCode = 0;
+			if(count($data) > 0){
+				$returnCode = $data[0]["teacherStatus"] == "R" ? 2 : 1;
+			}
+			return $returnCode;
 		}
 	}
 

@@ -8,7 +8,7 @@ class TeacherRecordController extends Controller {
     public function _before_myClassList(){
     	//如果不是老师，直接退出
     	if(session('is_teacher') == "0"){
-			$this->error('您没有注册成为老师，不能访问该功能');
+			//$this->error('您没有注册成为老师，不能访问该功能');
     	}
     }
 	

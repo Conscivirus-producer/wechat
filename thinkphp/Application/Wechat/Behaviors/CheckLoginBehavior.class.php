@@ -19,8 +19,8 @@ class CheckLoginBehavior extends \Think\Behavior{
 			//need to be modified to show hint and qrcode image
 		    //echo "NO CODE";
 		    //$openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
-			//exit("OpenId not provided");
-			$this->error('非法访问，请从微信公众号菜单访问。');
+			exit("OpenId not provided");
+			//$this->error('非法访问，请从微信公众号菜单访问。');
 		}
 		session('openid', $openid);
 		//检查当前用户是否是老师并且存储到session
