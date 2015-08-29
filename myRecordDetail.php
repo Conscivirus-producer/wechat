@@ -8,7 +8,7 @@ if (isset($_GET['code'])){
     $access_token_json = file_get_contents($access_token_get_url); 
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
-}else{
+}else if(session('openid') == ''){
 	//$openid = "11111111";
 	//need to be modified to show hint and qrcode image
     //echo "NO CODE";
