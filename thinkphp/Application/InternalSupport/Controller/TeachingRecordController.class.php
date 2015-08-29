@@ -7,7 +7,7 @@ class TeachingRecordController extends Controller {
 	}
 	
 	public function insertTeachingRecord(){
-		$insertTeachingRecord = D("TeachingRecord", "Logic")->insertTeachingRecord(I("transactionId"), I("isInitial"));
+		$insertTeachingRecord = D("TeachingRecord", "Logic")->autoGenerateTeachingRecord(I("transactionId"), I("isInitial"));
 	}
 	
 	public function batchGenerateTeachingRecord(){
@@ -17,7 +17,7 @@ class TeachingRecordController extends Controller {
 		$map["status"] = array('in',array('5','S'));
 		$data = $transaction->where($map)->select();
 		for($i = 0; $i < count($data); $i++){
-			D("TeachingRecord", "Logic")->insertTeachingRecord($data[$i]["transactionId"], 'N');
+			D("TeachingRecord", "Logic")->autoGenerateTeachingRecord($data[$i]["transactionId"], 'N');
 		}
 	}
 }

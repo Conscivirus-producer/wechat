@@ -14,12 +14,17 @@ class CheckLoginBehavior extends \Think\Behavior{
 		    $access_token_json = file_get_contents($access_token_get_url); 
 		    $json_obj = json_decode($access_token_json,true);
 		    $openid = $json_obj["openid"];
+			
 		}else{
 			//need to be modified to show hint and qrcode image
 		    //echo "NO CODE";
-		    $openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
+		    //$openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
 			//exit("OpenId not provided");
+			$this->error('非法访问，请从微信公众号菜单访问。');
 		}
 		session('openid', $openid);
+		//检查当前用户是否是老师并且存储到session
+		$result = D("Teacher", "Logic")->isValidateTeacher($openid);
+		session('is_teacher', $result);
     }
 }

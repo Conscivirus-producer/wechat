@@ -8,7 +8,7 @@
 			return $this->where(array("transactionId" => $transactionId))->select();
 		}
 		
-	    public function insertTeachingRecord($transactionId, $isInitial){
+	    public function autoGenerateTeachingRecord($transactionId, $isInitial){
 	    	$transaction = D("Transaction");
 			$data = $transaction->where(array("transactionId" => $transactionId))->select();
 			$startDate = $isInitial == "Y" ? $data[0]["fixedTime"] : date('y-m-d h:i:s',time());
@@ -54,14 +54,8 @@
     			$AssessmentSetting->add($assessmentData);
     		}
     	}
+		
 	}
-
-
-
-
-
-
-
 
 
 ?>
