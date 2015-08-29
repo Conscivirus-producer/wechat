@@ -36,6 +36,32 @@
     		$condition["courseCode"] = $courseCode;
     		return $AssessmentSetting->where($condition)->select();
     	}
+    	
+    	public function insertTeachingRecord($teachingRecord){
+    		$data["recordId"] = $teachingRecord["recordId"];
+    		$data["teachingDt"] = $teachingRecord["teachingDt"];
+    		$data["overallScore"] = $teachingRecord["overallScore"];
+    		$data["comment"] = $teachingRecord["comment"];
+    		$data["teachingImage"] = $teachingRecord["teachingImage"];
+    		$this->save($data);
+    		$AssessmentSetting = D("AssessmentSetting");
+    		$teachingRecordId = $teachingRecord["recordId"];
+    		$scoreArray = $teachingRecord["assessmentScore"].split(",");
+    		for($i = 0;$i < count($scoreArray);$i++){
+    			$assessmentData["teachingRecordId"] = $teachingRecordId;
+    			$assessmentData["assessCode"] = $i+1;
+    			$assessmentData["score"] = $scoreArray[$i];
+    			$AssessmentSetting->add($assessmentData);
+    		}
+    	}
 	}
+
+
+
+
+
+
+
+
 
 ?>
