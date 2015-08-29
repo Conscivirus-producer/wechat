@@ -50,12 +50,12 @@ class TeacherRecordController extends Controller {
 	
 	public function insertNewTeachingRecord(){
 		$newTeachingRecord = array();
-		$newTeachingRecord["recordId"] = I("post.recordId");
+		$newTeachingRecord["assessmentScore"] = I("post.assessmentScore");
 		$newTeachingRecord["teachingDt"] = I("post.teachingDt");
 		$newTeachingRecord["comment"] = I("post.comment");
-		$newTeachingRecord["overallScore"] = I("post.overallScore");
 		$newTeachingRecord["teachingImage"] = I("post.teachingImage");
-		$newTeachingRecord["assessmentScore"] = I("post.assessmentScore");
+		$newTeachingRecord["overallScore"] = I("post.overallScore");
+		$newTeachingRecord["recordId"] = I("post.recordId");
 		D("TeachingRecord", "Logic")->insertNewTeachingRecord($newTeachingRecord);
 		echo json_encode(array("status"=>"ok"));
 	}
