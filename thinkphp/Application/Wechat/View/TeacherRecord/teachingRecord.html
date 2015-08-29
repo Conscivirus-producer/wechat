@@ -75,7 +75,12 @@
 	    	$("#"+i).on('click', function(){
 	    		var recordId = teachingRecords[i].recordId;
 	    		var teachingDt = teachingRecords[i].teachingDt;
-	    		window.location.href='{:U("Wechat/TeacherRecord/uploadTeachingRecord")}?recordId='+recordId+'&teachingDt='+teachingDt;
+	    		var transactionId = teachingRecords[i].transactionId;
+	    		var status = teachingRecords[i].status;
+	    		window.location.href='{:U("Wechat/TeacherRecord/uploadTeachingRecord")}?recordId='+recordId+
+	    		'&teachingDt='+teachingDt+
+	    		'&transactionId='+transactionId+
+	    		'&status='+status;
 	    	});
 	    	
 			if(i==paging*(index-1) && i!=0){

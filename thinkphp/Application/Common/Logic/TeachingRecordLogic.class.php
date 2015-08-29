@@ -4,7 +4,11 @@
 	class TeachingRecordLogic extends TeachingRecordModel{
 		public function getTeachingRecord($transactionId){
 			//$teachingRecord = D("TeachingRecord");
-			return $this->where(array("transactionId" => $transactionId))->select();
+			$datemap["teachingDt"] = array('gt', date("Y-m-d h:i:s"));
+			$recordId = $this->where($datemap)->getfield('recordId');
+			$map["transactionId"] = $transactionId;
+			$map["recordId"] = array('elt', $recordId);
+			return $this->where($map)->order('recordId desc')->select();
 		}
 		
 	    public function insertTeachingRecord($transactionId, $isInitial){
