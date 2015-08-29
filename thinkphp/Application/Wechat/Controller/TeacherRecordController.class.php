@@ -10,9 +10,9 @@ class TeacherRecordController extends Controller {
     	$isTeacher = session('is_teacher');
 		$message = "";
     	if($isTeacher == "0"){
-			$this->redirect("Wechat/ErrorHandling/error", array('message'=>'您没有注册成为老师，不能访问该功能'));
+			$this->redirect("ErrorHandling/ErrorHandling/error", array('message'=>'您没有注册成为老师，不能访问该功能'));
     	}else if($isTeacher == "1"){
-			$this->redirect("Wechat/ErrorHandling/error", array('message'=>'您的老师资质尚未审核通过，还不能访问该功能'));
+			$this->redirect("ErrorHandling/ErrorHandling/error", array('message'=>'您的老师资质尚未审核通过，还不能访问该功能'));
     	}
     }
 	
