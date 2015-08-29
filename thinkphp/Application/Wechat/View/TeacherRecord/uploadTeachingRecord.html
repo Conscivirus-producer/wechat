@@ -131,7 +131,7 @@ var teachingDt = "";
 var overallScore = "";
 var comment = "";
 var teachingPictureTimeTag = "";
-var assessCompleted = true;
+var assessCompleted;
 var assessScore;
 $(document).ready(function(){
 	recordId = $("#recordId").val();
@@ -154,6 +154,7 @@ $(document).ready(function(){
 	});
 	
 	$("#submit").click(function(){
+		assessCompleted = true;
 		$(".col-md-4.col-md-offset-4.assessment").each(function(){
 			assessScore = new Array();
 			var choosedInput = $(this).find("input[class='btn btn-primary']");
