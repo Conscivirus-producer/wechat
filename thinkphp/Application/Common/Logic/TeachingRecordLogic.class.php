@@ -52,7 +52,8 @@
     		$this->save($data);
     		$TeachingAssessment = D("TeachingAssessment");
     		$teachingRecordId = $teachingRecord["recordId"];
-    		$scoreArray = $teachingRecord["assessmentScore"].split(",");
+    		$assessmentScore = $teachingRecord["assessmentScore"];
+    		$scoreArray = explode(",",$assessmentScore);
     		for($i = 0;$i < count($scoreArray);$i++){
     			$assessmentData["teachingRecordId"] = $teachingRecordId;
     			$assessmentData["assessCode"] = $i+1;
