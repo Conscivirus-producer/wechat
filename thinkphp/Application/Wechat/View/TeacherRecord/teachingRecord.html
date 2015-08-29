@@ -10,11 +10,12 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>课程纪录</title>
   <link rel="stylesheet" href="../../Public/Wechat/js/amazeui/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="../../Public/Wechat/css/teachingRecord.css">
   
 </head>
 <body>
 	<div id="doc-scrollspy-wrapper" data-am-observe>
-	  	<p>教学纪录</p>
+	  	<p class="am-text-center am-margin-top-sm title">教学纪录</p>
 	</div>
 	<!-- <button class="am-btn am-btn-primary" id="doc-scrollspy-insert">加载更多</button> -->
 <script src="../../Public/Wechat/js/amazeui/assets/js/jquery.min.js"></script>
@@ -41,6 +42,7 @@
 			//	$('#doc-scrollspy-insert').hide();	
 			//}
 		}
+		
 		for(var i= paging*(index-1); i<j; i++){
 	     	var panel = '<div class="am-panel am-panel-primary" id="'+i+'" data-am-scrollspy="{animation: \'scale-up\'}">' +
 	     				'<div class="am-panel am-panel-hd">'+teachingRecords[i].teachingDt+'</div>'+
@@ -50,24 +52,30 @@
 	     	}
 	     	panel = panel + '</div>';
 	    	$wrapper.append(panel);
-	    	$("#"+i).on('click', function(){
-	    		var recordId = teachingRecords[i].recordId;
-	    		var teachingDt = teachingRecords[i].teachingDt;
-	    		var transactionId = teachingRecords[i].transactionId;
-	    		var status = teachingRecords[i].status;
-	    		window.location.href='{:U("Wechat/TeacherRecord/uploadTeachingRecord")}?recordId='+recordId+
-	    		'&teachingDt='+teachingDt+
-	    		'&transactionId='+transactionId+
-	    		'&status='+status;
-	    	});
+	    	(function () {
+	    	  var temp=i;     
+		      $("#"+temp).on('click', function(){
+		    		var recordId = teachingRecords[temp].recordId;
+		    		var teachingDt = teachingRecords[temp].teachingDt;
+		    		var transactionId = teachingRecords[temp].transactionId;
+		    		var status = teachingRecords[temp].status;
+		    		window.location.href='{:U("Wechat/TeacherRecord/uploadTeachingRecord")}?recordId='+recordId+
+		    		'&teachingDt='+teachingDt+
+		    		'&transactionId='+transactionId+
+		    		'&status='+status;
+		    	});    
+		    })();     
 	    	
 			if(i==paging*(index-1) && i!=0){
 				$("#"+(i-1)).removeClass("lastRecord");
 			}else if(i == j-1){
 				$("#"+i).addClass("lastRecord");
-				$("#"+i).on('inview.scrollspy.amui', function(){
-					addRecords();
-				});
+				(function(){
+					var temp=i;
+					$("#"+temp).on('inview.scrollspy.amui', function(){
+						addRecords();
+					});
+				})();
 			}
 			if(teachingRecords[i].status == 0){
 				$('#'+i).addClass("notStarted");
