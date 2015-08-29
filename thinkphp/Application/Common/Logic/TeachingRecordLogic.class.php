@@ -1,6 +1,7 @@
 <?php
 	namespace Common\Logic;
 	use Common\Model\TeachingRecordModel;
+	use Common\Model\AssessmentSettingModel;
 	class TeachingRecordLogic extends TeachingRecordModel{
 		public function getTeachingRecord($transactionId){
 			//$teachingRecord = D("TeachingRecord");
@@ -28,9 +29,44 @@
 					$data["transactionId"] = $transactionId;
 					$data["createdDt"] = date('y-m-d h:i:s',time());
 					$data["teachingDt"] = $teachingTime;
+					$data["status"] = "0";
+					echo $this->add($data);
 				}
 			}
     	}
+    	
+    	public function getAssessmentSettingsByCourseCode($courseCode){
+    		$AssessmentSetting = D("AssessmentSetting");
+    		$condition["courseCode"] = $courseCode;
+    		return $AssessmentSetting->where($condition)->select();
+    	}
+    	
+    	public function insertNewTeachingRecord($teachingRecord){
+    		$data["recordId"] = $teachingRecord["recordId"];
+    		$data["teachingDt"] = $teachingRecord["teachingDt"];
+    		$data["overallScore"] = $teachingRecord["overallScore"];
+    		$data["comment"] = $teachingRecord["comment"];
+    		$data["teachingImage"] = $teachingRecord["teachingImage"];
+    		$data["status"] = "1";
+    		$this->save($data);
+    		$AssessmentSetting = D("AssessmentSetting");
+    		$teachingRecordId = $teachingRecord["recordId"];
+    		$scoreArray = $teachingRecord["assessmentScore"].split(",");
+    		for($i = 0;$i < count($scoreArray);$i++){
+    			$assessmentData["teachingRecordId"] = $teachingRecordId;
+    			$assessmentData["assessCode"] = $i+1;
+    			$assessmentData["score"] = $scoreArray[$i];
+    			$AssessmentSetting->add($assessmentData);
+    		}
+    	}
 	}
+
+
+
+
+
+
+
+
 
 ?>
