@@ -40,8 +40,22 @@ class TeacherRecordController extends Controller {
 		$this->assign("token",$token);
 		$this->assign("recordId",I('get.recordId',"58"));
 		$this->assign("teachingDt",I('get.teachingDt',"2014-07-28"));
+		$this->assign("transactionId",I('get.transactionId',""));
+		$this->assign("status",I('get.status',""));
 		$this->assign("assessmentSettings",$assessmentSettings);
 		$this->display();
+	}
+	
+	public function insertNewTeachingRecord(){
+		$newTeachingRecord = [];
+		$newTeachingRecord["recordId"] = I("post.recordId");
+		$newTeachingRecord["teachingDt"] = I("post.teachingDt");
+		$newTeachingRecord["comment"] = I("post.comment");
+		$newTeachingRecord["overallScore"] = I("post.overallScore");
+		$newTeachingRecord["teachingImage"] = I("post.teachingImage");
+		$newTeachingRecord["assessmentScore"] = I("post.assessmentScore");
+		D("TeachingRecord", "Logic")->insertNewTeachingRecord($newTeachingRecord);
+		echo json_encode(array("status"=>"ok"));
 	}
 	
 	public function teachingRecord($transactionId){
