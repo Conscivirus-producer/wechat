@@ -1,5 +1,5 @@
 <?php
-namespace Wechat\Controller;
+namespace ErrorHandling\Controller;
 use Think\Controller;
 
 class ErrorHandlingController extends Controller {
