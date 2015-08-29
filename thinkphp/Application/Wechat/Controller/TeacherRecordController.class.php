@@ -47,7 +47,7 @@ class TeacherRecordController extends Controller {
 	}
 	
 	public function insertNewTeachingRecord(){
-		$newTeachingRecord = [];
+		$newTeachingRecord = array();
 		$newTeachingRecord["recordId"] = I("post.recordId");
 		$newTeachingRecord["teachingDt"] = I("post.teachingDt");
 		$newTeachingRecord["comment"] = I("post.comment");
