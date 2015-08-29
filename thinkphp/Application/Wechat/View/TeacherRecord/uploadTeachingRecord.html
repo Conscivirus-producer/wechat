@@ -155,8 +155,8 @@ $(document).ready(function(){
 	
 	$("#submit").click(function(){
 		assessCompleted = true;
+		assessScore = new Array();
 		$(".col-md-4.col-md-offset-4.assessment").each(function(){
-			assessScore = new Array();
 			var choosedInput = $(this).find("input[class='btn btn-primary']");
 			if(choosedInput.length == 0){
 				assessCompleted = false;
@@ -170,7 +170,6 @@ $(document).ready(function(){
 			comment = $("#comment").val();
 			if(comment == ""){
 				alert("请输入评论");
-				$("#comment").foucs();
 			}else if(overallScore == ""){
 				alert("请为学生打分");
 			}
