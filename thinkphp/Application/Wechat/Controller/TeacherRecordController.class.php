@@ -38,8 +38,8 @@ class TeacherRecordController extends Controller {
 		$token = $auth->uploadToken($bucket);
 		$assessmentSettings = D("TeachingRecord", "Logic")->getAssessmentSettingsByCourseCode(I('get.courseCode',"A1"));
 		$this->assign("token",$token);
-		$this->assign("recordId",I('get.recordId'));
-		$this->assign("teachingDt",I('get.teachingDt'));
+		$this->assign("recordId",I('get.recordId',"58"));
+		$this->assign("teachingDt",I('get.teachingDt',"2014-07-28"));
 		$this->assign("assessmentSettings",$assessmentSettings);
 		$this->display();
 	}
