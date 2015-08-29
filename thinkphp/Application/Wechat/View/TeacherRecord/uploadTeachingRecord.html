@@ -241,7 +241,7 @@ $(document).ready(function(){
                   	$("#teachingPictureGallery").append(
 						$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+"recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
 					);
-					teachingDt = $("#teachingDt").val();
+					teachingDt = $("#teachingtime").val();
 					teachingImageArray.push("recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag);
 					alert(teachingDt);
                 } else if (xhr.status != 200 && xhr.responseText) {
@@ -254,6 +254,7 @@ $(document).ready(function(){
         };
         var token = $("#token").val();
         if ($("#teachingPicture")[0].files.length > 0 && token != "") {
+        	teachingDt = $("#teachingtime").val();
         	teachingPictureTimeTag = new Date().getTime();
         	$("#teachingPictureGallery").append($("<br/>"));
         	$("#teachingPictureGallery").append(
