@@ -47,7 +47,7 @@
 	
 	<volist name="assessmentSettings" id="as">
 	<div class="row" style="margin-top:15px">
-		<div class="col-md-4 col-md-offset-4 assessment">
+		<div class="col-md-4 col-md-offset-4 assessment" name="{$as.code}">
 			<p class="text-center" style="font-size:15px">{$as.code}，{$as.description}</p>
 			<div class="btn-group btn-group-justified" role="group">
   				<div class="btn-group" role="group">
@@ -131,6 +131,8 @@ var teachingDt = "";
 var overallScore = "";
 var comment = "";
 var teachingPictureTimeTag = "";
+var assessCompleted = true;
+var assessScore;
 $(document).ready(function(){
 	recordId = $("#recordId").val();
 	teachingDt = $("#teachingDt").val();
@@ -141,10 +143,6 @@ $(document).ready(function(){
 			$(this).attr("class","btn btn-primary");
 		});
 	});
-	/*$(".col-md-4.col-md-offset-4.assessment").find("input").click(function(){
-		$(".col-md-4.col-md-offset-4.assessment").find("input").attr("class","btn btn-default");
-		$(this).attr("class","btn btn-primary");
-	});*/
 	
 	$("#overallScore").find("button").click(function(){
 		$("#overallScore").find("button").attr("class","btn btn-default");
@@ -156,14 +154,29 @@ $(document).ready(function(){
 	});
 	
 	$("#submit").click(function(){
-		comment = $("#comment").val();
-		if(comment == ""){
-			alert("请输入评论");
-			$("#comment").foucs();
-		}else if(overallScore == ""){
-			alert("请为学生打分");
+		$(".col-md-4.col-md-offset-4.assessment").each(function(){
+			assessScore = new Array();
+			var choosedInput = $(this).find("input[class='btn btn-primary']");
+			if(choosedInput.length == 0){
+				assessCompleted = false;
+			}else{
+				choosedInput.each(function(){
+					assessScore.push($(this).attr("name"));
+				});
+			}
+		});
+		if(assessCompleted == true){
+			comment = $("#comment").val();
+			if(comment == ""){
+				alert("请输入评论");
+				$("#comment").foucs();
+			}else if(overallScore == ""){
+				alert("请为学生打分");
+			}
+			alert(assessScore.join(","));
+		}else{
+			alert("请为学生的测试打分");
 		}
-		alert(comment);
 	});
 	$('#teachingtime').datetimepicker({
         language:  'zh-CN',
