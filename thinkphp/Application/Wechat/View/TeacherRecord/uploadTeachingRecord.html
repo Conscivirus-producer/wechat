@@ -196,7 +196,7 @@ $(document).ready(function(){
 			postdata.overallScore = overallScore;
 			postdata.recordId = recordId;
 			
-			$.post("supporting.php", postdata,
+			$.post("http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/insertNewTeachingRecord", postdata,
    				function(data){
      				alert("课堂记录上传成功！");
      				window.location.href = "http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/teachingRecord.html?transactionId="+transactionId;
