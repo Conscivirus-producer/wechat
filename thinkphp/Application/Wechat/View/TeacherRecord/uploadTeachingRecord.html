@@ -198,7 +198,8 @@ $(document).ready(function(){
 			
 			$.post("http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/insertNewTeachingRecord", postdata,
    				function(data){
-   					if(data.status == "ok"){
+   					var receivedObject = $.parseJSON(data);
+   					if(receivedObject.status == "ok"){
      					alert("课堂记录上传成功！");
      					window.location.href = "http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/teachingRecord.html?transactionId="+transactionId;
      				}
