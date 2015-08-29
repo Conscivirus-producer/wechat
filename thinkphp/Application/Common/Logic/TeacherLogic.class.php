@@ -4,7 +4,6 @@
 	class TeacherLogic extends TeacherModel{
 		public function isValidateTeacher($openid){
 			$map["openId"] = array('eq',$openid);
-			$map["teacherStatus"] = array('eq','R');
 			$data = $this->where($map)->select();
 			$returnCode = 0;
 			if(count($data) > 0){
