@@ -37,12 +37,13 @@
     		return $AssessmentSetting->where($condition)->select();
     	}
     	
-    	public function insertTeachingRecord($teachingRecord){
+    	public function insertNewTeachingRecord($teachingRecord){
     		$data["recordId"] = $teachingRecord["recordId"];
     		$data["teachingDt"] = $teachingRecord["teachingDt"];
     		$data["overallScore"] = $teachingRecord["overallScore"];
     		$data["comment"] = $teachingRecord["comment"];
     		$data["teachingImage"] = $teachingRecord["teachingImage"];
+    		$data["status"] = "1";
     		$this->save($data);
     		$AssessmentSetting = D("AssessmentSetting");
     		$teachingRecordId = $teachingRecord["recordId"];
