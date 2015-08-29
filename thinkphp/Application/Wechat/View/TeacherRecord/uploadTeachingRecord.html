@@ -244,7 +244,6 @@ $(document).ready(function(){
 					);
 					teachingDt = $("#teachingtime").val();
 					teachingImageArray.push("recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag);
-					alert(teachingDt);
                 } else if (xhr.status != 200 && xhr.responseText) {
 					alert("上传教学图片失败");
 					$('img[name*="loading'+teachingPictureTimeTag+'"]').remove();
