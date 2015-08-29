@@ -7,6 +7,7 @@
 		public function getTeachingRecord($transactionId){
 			//$teachingRecord = D("TeachingRecord");
 			$datemap["teachingDt"] = array('gt', date("Y-m-d h:i:s"));
+			$datemap["transactionId"] = array('eq', $transactionId);
 			$recordId = $this->where($datemap)->getfield('recordId');
 			$map["transactionId"] = $transactionId;
 			$map["recordId"] = array('elt', $recordId);
