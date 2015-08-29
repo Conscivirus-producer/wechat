@@ -19,7 +19,7 @@ class CheckLoginBehavior extends \Think\Behavior{
 			//need to be modified to show hint and qrcode image
 		    //echo "NO CODE";
 		    $openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
-			//$this->redirect("ErrorHandling/ErrorHandling/error", array('message'=>'非法访问，请从微信公众号菜单访问'));
+			redirect("/thinkphp/ErrorHandling/ErrorHandling/error/message/非法访问");
 		}
 		session('openid', $openid);
 		//检查当前用户是否是老师并且存储到session
