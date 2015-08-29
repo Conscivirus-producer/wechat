@@ -38,6 +38,8 @@
 <input type="text" name="recordId" id="recordId" value="{$recordId}" style="display:none">
 <input type="text" name="teachingDt" id="teachingDt" value="{$teachingDt}" style="display:none">
 <input type="text" name="token" id="token" value="{$token}" style="display:none">
+<input type="text" name="transactionId" id="transactionId" value="{$transactionId}" style="display:none">
+<input type="text" name="status" id="status" value="{$status}" style="display:none">
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
@@ -126,6 +128,7 @@
 <script type="text/javascript" src="<?php echo "http://".$_SERVER ['HTTP_HOST'] ?>/timepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<?php echo "http://".$_SERVER ['HTTP_HOST'] ?>/timepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
+var transactionId = "";
 var recordId = "";   				
 var teachingDt = "";				
 var overallScore = "";				
@@ -143,6 +146,8 @@ var postdata = {
 	"overallScore" : ""
 };
 $(document).ready(function(){
+	transactionId = $("#transactionId").val();
+	
 	recordId = $("#recordId").val();
 	teachingDt = $("#teachingDt").val();
 	$(".col-md-4.col-md-offset-4.assessment").each(function(){
@@ -191,7 +196,14 @@ $(document).ready(function(){
 			postdata.overallScore = overallScore;
 			postdata.recordId = recordId;
 			
-			
+			$.post("http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/insertNewTeachingRecord", postdata,
+   				function(data){
+   					if(data.status == "ok"){
+     					alert("课堂记录上传成功！");
+     					window.location.href = "http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/teachingRecord.html?transactionId="+transactionId;
+     				}
+     			}
+   			);
 		}else{
 			//有测试老师没选择
 			alert("请为学生的测试打分");
@@ -206,7 +218,7 @@ $(document).ready(function(){
 		startView: 2,
 		minView: 2,
 		forceParse: 0
-    });
+    })
     
     var Qiniu_UploadUrl = "http://up.qiniu.com";
     $("#teachingPicture").change(function() {
@@ -229,7 +241,9 @@ $(document).ready(function(){
                   	$("#teachingPictureGallery").append(
 						$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+"recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
 					);
+					teachingDt = $("#teachingtime").val();
 					teachingImageArray.push("recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag);
+					alert(teachingDt);
                 } else if (xhr.status != 200 && xhr.responseText) {
 					alert("上传教学图片失败");
 					$('img[name*="loading'+teachingPictureTimeTag+'"]').remove();
@@ -240,6 +254,7 @@ $(document).ready(function(){
         };
         var token = $("#token").val();
         if ($("#teachingPicture")[0].files.length > 0 && token != "") {
+        	teachingDt = $("#teachingtime").val();
         	teachingPictureTimeTag = new Date().getTime();
         	$("#teachingPictureGallery").append($("<br/>"));
         	$("#teachingPictureGallery").append(

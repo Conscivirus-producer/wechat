@@ -5,7 +5,11 @@
 	class TeachingRecordLogic extends TeachingRecordModel{
 		public function getTeachingRecord($transactionId){
 			//$teachingRecord = D("TeachingRecord");
-			return $this->where(array("transactionId" => $transactionId))->select();
+			$datemap["teachingDt"] = array('gt', date("Y-m-d h:i:s"));
+			$recordId = $this->where($datemap)->getfield('recordId');
+			$map["transactionId"] = $transactionId;
+			$map["recordId"] = array('elt', $recordId);
+			return $this->where($map)->order('recordId desc')->select();
 		}
 		
 	    public function autoGenerateTeachingRecord($transactionId, $isInitial){
@@ -37,12 +41,13 @@
     		return $AssessmentSetting->where($condition)->select();
     	}
     	
-    	public function insertTeachingRecord($teachingRecord){
+    	public function insertNewTeachingRecord($teachingRecord){
     		$data["recordId"] = $teachingRecord["recordId"];
     		$data["teachingDt"] = $teachingRecord["teachingDt"];
     		$data["overallScore"] = $teachingRecord["overallScore"];
     		$data["comment"] = $teachingRecord["comment"];
     		$data["teachingImage"] = $teachingRecord["teachingImage"];
+    		$data["status"] = "1";
     		$this->save($data);
     		$AssessmentSetting = D("AssessmentSetting");
     		$teachingRecordId = $teachingRecord["recordId"];
