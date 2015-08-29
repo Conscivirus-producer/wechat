@@ -1,17 +1,19 @@
 <?php
 require_once("config.php");
+session_start();
 if (isset($_GET['code'])){
     $code = $_GET['code'];
 	$access_token_get_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$secret."&code=".$code."&grant_type=authorization_code";
     $access_token_json = file_get_contents($access_token_get_url); 
     $json_obj = json_decode($access_token_json,true);
     $openid = $json_obj["openid"];
-	session('openid', $openid);
+	$_SESSION['openid'] = $openid;
 }else{
 	//$openid = "11111111";
 	//need to be modified to show hint and qrcode image
     //echo "NO CODE";
     $openid = 'obS35vk9Hqwl4WZXsosjxm_hckKQ';
+	$_SESSION['openid'] = $openid;
 }
 ?>
 <!DOCTYPE html>
