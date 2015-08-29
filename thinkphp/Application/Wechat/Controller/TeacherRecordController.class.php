@@ -37,7 +37,7 @@ class TeacherRecordController extends Controller {
 		$bucket = 'wojiaonixue';
 		$token = $auth->uploadToken($bucket);
 		$this->assign("token",$token);
-		$this->assign("transactionId","58");
+		$this->assign("recordId","1");
 		$this->assign("teachingDt","2015-07-04");
 		$this->display();
 	}
