@@ -47,7 +47,7 @@
 	
 	<volist name="assessmentSettings" id="as">
 	<div class="row" style="margin-top:15px">
-		<div class="col-md-4 col-md-offset-4">
+		<div class="col-md-4 col-md-offset-4 assessment">
 			<p class="text-center" style="font-size:15px">{$as.code}，{$as.description}</p>
 			<div class="btn-group btn-group-justified" role="group">
   				<div class="btn-group" role="group">
@@ -128,29 +128,16 @@
 <script type="text/javascript">
 var recordId = "";
 var teachingDt = "";
-var scoreA = "";
-var scoreB = "";
-var scoreC = "";
 var overallScore = "";
 var comment = "";
 var teachingPictureTimeTag = "";
 $(document).ready(function(){
 	recordId = $("#recordId").val();
 	teachingDt = $("#teachingDt").val();
-	$("#scoreA").find("input").click(function(){
-		$("#scoreA").find("input").attr("class","btn btn-default");
+	
+	$("col-md-4.col-md-offset-4.assessment").find("input").click(function(){
+		$("col-md-4.col-md-offset-4.assessment").find("input").attr("class","btn btn-default");
 		$(this).attr("class","btn btn-primary");
-		scoreA = $(this).attr("name");
-	});
-	$("#scoreB").find("input").click(function(){
-		$("#scoreB").find("input").attr("class","btn btn-default");
-		$(this).attr("class","btn btn-primary");
-		scoreB = $(this).attr("name");
-	});
-	$("#scoreC").find("input").click(function(){
-		$("#scoreC").find("input").attr("class","btn btn-default");
-		$(this).attr("class","btn btn-primary");
-		scoreC = $(this).attr("name");
 	});
 	
 	$("#overallScore").find("button").click(function(){
@@ -164,13 +151,7 @@ $(document).ready(function(){
 	
 	$("#submit").click(function(){
 		comment = $("#comment").val();
-		if(scoreA == ""){
-			alert("请选择学生课堂专注度");
-		}else if(scoreB == ""){
-			alert("请选择教学练习完成度");
-		}else if(scoreC == ""){
-			alert("请选择新知识点掌握度");
-		}else if(comment == ""){
+		if(comment == ""){
 			alert("请输入评论");
 			$("#comment").foucs();
 		}else if(overallScore == ""){
