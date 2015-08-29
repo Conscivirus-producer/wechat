@@ -135,7 +135,7 @@ $(document).ready(function(){
 	recordId = $("#recordId").val();
 	teachingDt = $("#teachingDt").val();
 	$.each($(".col-md-4.col-md-offset-4.assessment"),function(){
-		$assessmentDiv = $(this);
+		$assessmentDiv = this;
 		$assessmentDiv.find("input").click(function(){
 			$assessmentDiv.find("input").attr("class","btn btn-default");
 			$(this).attr("class","btn btn-primary");
