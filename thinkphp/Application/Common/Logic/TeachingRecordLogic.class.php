@@ -2,6 +2,7 @@
 	namespace Common\Logic;
 	use Common\Model\TeachingRecordModel;
 	use Common\Model\AssessmentSettingModel;
+	use Common\Model\TeachingAssessmentModel;
 	class TeachingRecordLogic extends TeachingRecordModel{
 		public function getTeachingRecord($transactionId){
 			//$teachingRecord = D("TeachingRecord");
@@ -49,14 +50,14 @@
     		$data["teachingImage"] = $teachingRecord["teachingImage"];
     		$data["status"] = "1";
     		$this->save($data);
-    		$AssessmentSetting = D("AssessmentSetting");
+    		$TeachingAssessment = D("TeachingAssessment");
     		$teachingRecordId = $teachingRecord["recordId"];
     		$scoreArray = $teachingRecord["assessmentScore"].split(",");
     		for($i = 0;$i < count($scoreArray);$i++){
     			$assessmentData["teachingRecordId"] = $teachingRecordId;
     			$assessmentData["assessCode"] = $i+1;
     			$assessmentData["score"] = $scoreArray[$i];
-    			$AssessmentSetting->add($assessmentData);
+    			$TeachingAssessment->add($assessmentData);
     		}
     	}
 		
