@@ -17,6 +17,9 @@
 	    public function autoGenerateTeachingRecord($transactionId, $isInitial){
 	    	$transaction = D("Transaction");
 			$data = $transaction->where(array("transactionId" => $transactionId))->select();
+			if($data[0]["fixedTime"] == '' || $data[0]["teachingFrequency"] == ''){
+				return;
+			}
 			$startDate = $isInitial == "Y" ? $data[0]["fixedTime"] : date('y-m-d h:i:s',time());
 	    	$weekFrequency = $data[0]["teachingFrequency"];
 			//$startdate = "2015-09-01 13:40:00";
