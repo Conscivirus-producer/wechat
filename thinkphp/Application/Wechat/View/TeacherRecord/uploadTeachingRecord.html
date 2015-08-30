@@ -74,7 +74,7 @@
 			<div class="form-group">
     			<label for="teachingtime">教学时间：</label>
     			<input type="text" value="{$teachingDt}" class="form-control" id="teachingtime" data-date-format="yyyy-mm-dd" readonly>
-    			<p class="text-left" id="showTeachingTime" style="display:none"><em>{$teachingDt}</em></p>
+    			<p class="text-left" id="showTeachingTime" style="display:none"></p>
   			</div>
 		</div>
 	</div>
@@ -87,7 +87,7 @@
 		<div class="col-md-4 col-md-offset-4">
 			<label>老师评论：</label>
 			<blockquote>
-  				<p style="font-size:15px">学得很好，很认真，很认真，很认真，很认真，很认真，很认真，很认真，很认真，很认真，很认真，很认真</p>
+  				<p style="font-size:15px"></p>
 			</blockquote>
 		</div>
 	</div>
@@ -288,10 +288,12 @@ $(document).ready(function(){
     	//alert(recordInformation["0"]["recordId"]);
     	$("#submit").hide();	//
     	$("#teachingtime").hide();
-    	$("#showTeachingTime").show();
     	$("#comment").hide();
-    	$("#showComment").show();
     	$("#addTeachingPicture").hide();
+    	$("#showTeachingTime").html("<em>"+recordInformation["0"]["teachingDt"].substring(0,9)+"</em>");
+    	$("#showTeachingTime").show();
+    	$("#showComment").find("p").html(recordInformation["0"]["comment"]);
+    	$("#showComment").show();
     	$("#starLabel").show();
     	$("#teachingImageLabel").show();
     	var starScore = parseInt(recordInformation["0"]["overallScore"]);
