@@ -41,15 +41,31 @@ class TeacherRecordController extends Controller {
 		$secretKey = 'BuaBzxTxNsNUBSy1ZvFUAfUbj8GommyWbfJ0eQ2R';
 		$auth = new Auth($accessKey, $secretKey);
 		$bucket = 'wojiaonixue';
-		$token = $auth->uploadToken($bucket);
-		$assessmentSettings = D("TeachingRecord", "Logic")->getAssessmentSettingsByCourseCode(I('get.courseCode',"A1"));
-		$this->assign("token",$token);
-		$this->assign("recordId",I('get.recordId',"58"));
-		$this->assign("teachingDt",I('get.teachingDt',"2014-07-28"));
-		$this->assign("transactionId",I('get.transactionId',""));
-		$this->assign("status",I('get.status',""));
-		$this->assign("assessmentSettings",$assessmentSettings);
-		$this->display();
+		
+		$token = $auth->uploadToken($bucket);			//token,用来上传图片到七牛
+		$courseCode = I('get.courseCode',"A1");			//courseCode,用来拿assessmentSettings
+		$recordId = I('get.recordId',"");				//recordId,主键，用来更新teachingRecord
+		$teachingDt = I('get.teachingDt',"");			//teachingDt,系统设定教学时间，用来显示系统设定教学时间		
+		$transactionId = I('get.transactionId',"");		//transactionId,订单号，用来重导向
+		$status = I('get.status',"");					//status,状态,用来控制显示
+		
+		/*if($recordId == "" || $teachingDt == "" || $transactionId == "" || $status == ""){
+			
+		}else{*/
+			
+			$assessmentSettings = D("TeachingRecord", "Logic")->getAssessmentSettingsByCourseCode($courseCode);
+			$this->assign("token",$token);
+			$this->assign("recordId",$recordId);
+			$this->assign("teachingDt",$teachingDt);
+			$this->assign("transactionId",$transactionId);
+			$this->assign("status",$status);
+			$this->assign("assessmentSettings",$assessmentSettings);
+			if($status == "1"){
+				$recordInformation = D("TeachingRecord", "Logic")->getTeachingRecordInformation($recordId);
+				$this->assign("recordInformation",$recordInformation);
+			}	
+			$this->display();
+		//}
 	}
 	
 	public function insertNewTeachingRecord(){

@@ -62,6 +62,15 @@
     			$TeachingAssessment->add($assessmentData);
     		}
     	}
+    	
+    	public function getTeachingRecordInformation($recordId){
+    		$condition["recordId"] = $recordId;
+    		$data = $this->where($condition)->select();
+    		$TeachingAssessment = D("TeachingAssessment");
+    		$map["teachingRecordId"] = $recordId;
+    		$data["assessmentScore"] = $TeachingAssessment->where($map)->select();
+    		return json_encode($data);
+    	}
 		
 	}
 
