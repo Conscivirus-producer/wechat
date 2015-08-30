@@ -82,7 +82,7 @@
 			<textarea class="form-control" rows="3" placeholder="老师评语" id="comment"></textarea>
 		</div>
 	</div>
-	<div class="row" style="margin-top:15px">
+	<div class="row" style="margin-top:15px" id="addTeachingPicture">
 		<div class="col-md-4 col-md-offset-4">
 			<span class="sl-custom-file">
     			<button type="button" class="btn btn-primary">
@@ -275,7 +275,11 @@ $(document).ready(function(){
     }else{
     	//如果已经上传果记录了，那就只显示记录详情
     	var recordInformation = $.parseJSON($("#recordInformation").text());
-    	alert(recordInformation["0"]["recordId"]);
+    	//alert(recordInformation["0"]["recordId"]);
+    	$("#submit").hide();	//
+    	$("#teachingtime").hide();
+    	$("#comment").hide();
+    	$("#addTeachingPicture").hide();
     }
 });
 </script>
