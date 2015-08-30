@@ -20,25 +20,36 @@
 			if($data[0]["fixedTime"] == '' || $data[0]["teachingFrequency"] == ''){
 				return;
 			}
-			$startDate = $isInitial == "Y" ? $data[0]["fixedTime"] : date('y-m-d h:i:s',time());
+			$startDate;
+			if($isInitial == "Y"){
+				$startDate = $data[0]["fixedTime"];
+				$this->initialSingleTeacherRecord($transactionId, $startDate);
+			} else{
+				$startDate = date('y-m-d h:i:s',time());
+			}
 	    	$weekFrequency = $data[0]["teachingFrequency"];
 			//$startdate = "2015-09-01 13:40:00";
 			$weekMap = array("1"=>"Monday", "2"=>"Tuesday", "3"=>"Wednesday", "4"=>"Thursday", "5"=>"Friday", "6"=>"Saturday", "7"=>"Sunday");
 			$weekCdeArray = explode(',', $weekFrequency);
 			for($i = 0;$i < count($weekCdeArray); $i++){
 				$teachingTime = date("Y-m-d H:i:s", strtotime("next ".$weekMap[$weekCdeArray[$i]], strtotime($startDate)));
-				$map["teachingDt"] = array('eq',$teachingTime);
-				$map["transactionId"] = array('eq',$transactionId);
-				$result = $this->where($map)->select();
-				if(count($result) == 0){
-					$data["transactionId"] = $transactionId;
-					$data["createdDt"] = date('y-m-d h:i:s',time());
-					$data["teachingDt"] = $teachingTime;
-					$data["status"] = "0";
-					echo $this->add($data);
-				}
+				$this->initialSingleTeacherRecord($transactionId, $teachingTime);
 			}
     	}
+
+		protected function initialSingleTeacherRecord($transactionId, $teachingTime)
+		{
+			$map["teachingDt"] = array('eq',$teachingTime);
+			$map["transactionId"] = array('eq',$transactionId);
+			$result = $this->where($map)->select();
+			if(count($result) == 0){
+				$data["transactionId"] = $transactionId;
+				$data["createdDt"] = date('y-m-d h:i:s',time());
+				$data["teachingDt"] = $teachingTime;
+				$data["status"] = "0";
+				echo $this->add($data);
+			}
+		}
     	
     	public function getAssessmentSettingsByCourseCode($courseCode){
     		$AssessmentSetting = D("AssessmentSetting");
