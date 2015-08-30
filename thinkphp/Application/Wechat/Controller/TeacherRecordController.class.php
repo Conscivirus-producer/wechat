@@ -60,7 +60,9 @@ class TeacherRecordController extends Controller {
 			$this->assign("transactionId",$transactionId);
 			$this->assign("status",$status);
 			$this->assign("assessmentSettings",$assessmentSettings);
+			$this->assign("title","上传课堂记录");
 			if($status == "1"){
+				$this->assign("title","课堂记录详情");
 				$recordInformation = D("TeachingRecord", "Logic")->getTeachingRecordInformation($recordId);
 				$this->assign("recordInformation",$recordInformation);
 			}	
