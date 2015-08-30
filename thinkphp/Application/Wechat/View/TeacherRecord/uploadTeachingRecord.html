@@ -74,7 +74,7 @@
 			<div class="form-group">
     			<label for="teachingtime">教学时间：</label>
     			<input type="text" value="{$teachingDt}" class="form-control" id="teachingtime" data-date-format="yyyy-mm-dd" readonly>
-    			<p class="text-left" id="showTeachingTime" style="display:none"><em>{$teachingDt}</em></p>
+    			<p class="text-left" id="showTeachingTime" style="display:none"></p>
   			</div>
 		</div>
 	</div>
@@ -87,7 +87,7 @@
 		<div class="col-md-4 col-md-offset-4">
 			<label>老师评论：</label>
 			<blockquote>
-  				<p style="font-size:15px">学得很好，很认真，很认真，很认真，很认真，很认真，很认真，很认真，很认真，很认真，很认真，很认真</p>
+  				<p style="font-size:15px"></p>
 			</blockquote>
 		</div>
 	</div>
@@ -108,8 +108,8 @@
 		</div>
 	</div>
 	<div class="row" style="margin-top:15px">
-		<label style="display:none" id="starLabel">老师评分：</label>
 		<div class="col-md-4 col-md-offset-4">
+			<label style="display:none" id="starLabel">老师评分：</label>
 			<div class="btn-group btn-group-justified" role="group" id="overallScore">
   				<div class="btn-group" role="group">
     				<button type="button" class="btn btn-default" name="1"><span class="fui-star-2"></span></button>
@@ -132,6 +132,7 @@
 	<div class="row" style="margin-top:15px; margin-bottom:25px">
 		<div class="col-md-4 col-md-offset-4">
 			<button type="button" class="btn btn-primary btn-block" id="submit" name="submit">提交</button>
+			<a href="http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/teachingRecord.html?transactionId={$transactionId}" class="btn btn-primary btn-block" role="button" id="back" name="back" style="display:none;color:#fff">返回教学记录列表</a>
 		</div>
 	</div>
 </div>
@@ -288,12 +289,15 @@ $(document).ready(function(){
     	//alert(recordInformation["0"]["recordId"]);
     	$("#submit").hide();	//
     	$("#teachingtime").hide();
-    	$("#showTeachingTime").show();
     	$("#comment").hide();
-    	$("#showComment").show();
     	$("#addTeachingPicture").hide();
+    	$("#showTeachingTime").html("<em>"+recordInformation["0"]["teachingDt"].substring(0,9)+"</em>");
+    	$("#showTeachingTime").show();
+    	$("#showComment").find("p").html(recordInformation["0"]["comment"]);
+    	$("#showComment").show();
     	$("#starLabel").show();
     	$("#teachingImageLabel").show();
+    	$("#back").show();
     	var starScore = parseInt(recordInformation["0"]["overallScore"]);
     	for(var i = 1; i <= starScore; i++){
 			$("#overallScore").find("button[name="+i+"]").attr("class","btn btn-primary");
@@ -303,11 +307,14 @@ $(document).ready(function(){
 			var score = recordInformation["assessmentScore"][i]["score"];
 			$("div[name='"+assessCode+"']").find("input[name='"+score+"']").attr("class","btn btn-primary");
 		}
-		var teachingImageUrls = recordInformation["0"]["teachingImage"].split(",");
-		for(var i =0; i < teachingImageUrls.length; i++){
-			$("#teachingPictureGallery").append(
-				$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+teachingImageUrls[i]+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
-			);
+		if(recordInformation["0"]["teachingImage"] != ""){
+			var teachingImageUrls = recordInformation["0"]["teachingImage"].split(",");
+			for(var i =0; i < teachingImageUrls.length; i++){
+				$("#teachingPictureGallery").append(
+					$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+teachingImageUrls[i]+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
+				);
+				$("#teachingPictureGallery").append($("<br/>"));
+			}
 		}
     }
 });
