@@ -166,7 +166,6 @@ function renderData(status, follower){
 						$("<button>").appendTo($(this)).html("提交").bind({
 							click: function(e){
 								var transactionId = $td.prevAll(".transactionId").text();
-								transactionId = transactionId.substring(2)
 								var mobile = $td.children("textarea").val();
 								var url = "transactionService.php?dataType=findTeacherByMobile&mobile="+mobile;
 								$.getJSON(url, function(json){
