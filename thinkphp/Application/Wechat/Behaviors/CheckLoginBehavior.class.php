@@ -19,7 +19,7 @@ class CheckLoginBehavior extends \Think\Behavior{
 			$result = D("Teacher", "Logic")->isValidateTeacher($openid);
 			session('is_teacher', $result);
 		}else if(session('openid') == ''){
-			redirect("/thinkphp/ErrorHandling/ErrorHandling/error/message/非法访问");
+			//redirect("/thinkphp/ErrorHandling/ErrorHandling/error/message/非法访问");
 		}
 		//本地测试的时候，打开下面这段代码，并且注释掉上面的redirect方法
 	    /*$openid = "obS35vk9Hqwl4WZXsosjxm_hckKQ";
