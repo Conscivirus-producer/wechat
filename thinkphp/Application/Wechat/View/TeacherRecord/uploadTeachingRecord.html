@@ -307,12 +307,14 @@ $(document).ready(function(){
 			var score = recordInformation["assessmentScore"][i]["score"];
 			$("div[name='"+assessCode+"']").find("input[name='"+score+"']").attr("class","btn btn-primary");
 		}
-		var teachingImageUrls = recordInformation["0"]["teachingImage"].split(",");
-		for(var i =0; i < teachingImageUrls.length; i++){
-			$("#teachingPictureGallery").append(
-				$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+teachingImageUrls[i]+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
-			);
-			$("#teachingPictureGallery").append($("<br/>"));
+		if(recordInformation["0"]["teachingImage"] != ""){
+			var teachingImageUrls = recordInformation["0"]["teachingImage"].split(",");
+			for(var i =0; i < teachingImageUrls.length; i++){
+				$("#teachingPictureGallery").append(
+					$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+teachingImageUrls[i]+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
+				);
+				$("#teachingPictureGallery").append($("<br/>"));
+			}
 		}
     }
 });
