@@ -108,6 +108,7 @@
 		</div>
 	</div>
 	<div class="row" style="margin-top:15px">
+		<p class="text-left" style="display:none" id="starLabel">老师评分：</p>
 		<div class="col-md-4 col-md-offset-4">
 			<div class="btn-group btn-group-justified" role="group" id="overallScore">
   				<div class="btn-group" role="group">
@@ -291,15 +292,22 @@ $(document).ready(function(){
     	$("#comment").hide();
     	$("#showComment").show();
     	$("#addTeachingPicture").hide();
+    	$("#starLabel").show();
     	
     	var starScore = parseInt(recordInformation["0"]["overallScore"]);
     	for(var i = 1; i <= starScore; i++){
 			$("#overallScore").find("button[name="+i+"]").attr("class","btn btn-primary");
 		}
-		for(var i = 0; i <= recordInformation["assessmentScore"].length; i++){
+		for(var i = 0; i < recordInformation["assessmentScore"].length; i++){
 			var assessCode = recordInformation["assessmentScore"][i]["assessCode"];
 			var score = recordInformation["assessmentScore"][i]["score"];
 			$("div[name='"+assessCode+"']").find("input[name='"+score+"']").attr("class","btn btn-primary");
+		}
+		var teachingImageUrls = recordInformation["0"]["teachingImage"].split(",");
+		for(var i =0; i < teachingImageUrls.length; i++){
+			$("#teachingPictureGallery").append(
+				$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+teachingImageUrls[i]+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
+			);
 		}
     }
 });
