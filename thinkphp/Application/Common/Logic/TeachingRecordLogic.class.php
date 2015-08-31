@@ -18,8 +18,15 @@
 									  ->getField('T_child.subject, T_child.interest');
 			//Log::write(json_encode($course),'WARN');
 			$subject = key($course);
+			$courseArray = array();
+			if($subject != ''){
+				array_push($courseArray, $subject); 
+			}
+			if($course[$subject] != ''){
+				array_push($courseArray, $course[$subject]);
+			}
 			$data['result'] = json_encode($result);
-			$data['course'] = json_encode(array("subject"=>$subject, "interest"=>$course[$subject]));
+			$data['course'] = implode(",", $courseArray);
 			return $data;
 		}
 		

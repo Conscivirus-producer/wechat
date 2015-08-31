@@ -25,7 +25,6 @@
 	var paging = 3;
 	var index = 1;
 	var teachingRecords = {$data.result};
-	var course = {$data.course};
 	var length = teachingRecords.length;
 		
 	$(document).ready(function(){
@@ -65,11 +64,10 @@
 		    		var teachingDt = teachingRecords[temp].teachingDt;
 		    		var transactionId = teachingRecords[temp].transactionId;
 		    		var status = teachingRecords[temp].status;
-		    		var courseCode = course.subject+','+course.interest;
 		    		window.location.href='{:U("Wechat/TeacherRecord/uploadTeachingRecord")}?recordId='+recordId+
 		    		'&teachingDt='+teachingDt+
 		    		'&transactionId='+transactionId+
-		    		'&courseCode='+courseCode+
+		    		'&courseCode={$data.course}'+
 		    		'&status='+status;
 		    	});    
 		    })();     
