@@ -54,6 +54,9 @@ class TeacherRecordController extends Controller {
 		}else{*/
 			
 			$assessmentSettings = D("TeachingRecord", "Logic")->getAssessmentSettingsByCourseCode($courseCode);
+			if(count($assessmentSettings) == 0){
+				$assessmentSettings = D("TeachingRecord", "Logic")->getAssessmentSettingsByCourseCode("A1");
+			}
 			$this->assign("token",$token);
 			$this->assign("recordId",$recordId);
 			$this->assign("teachingDt",$teachingDt);
@@ -83,8 +86,10 @@ class TeacherRecordController extends Controller {
 	}
 	
 	public function teachingRecord($transactionId){
-		$teachingRecords = D("TeachingRecord", "Logic")->getTeachingRecord($transactionId);
-		$this->assign("test", json_encode($teachingRecords));
+		$data = D("TeachingRecord", "Logic")->getTeachingRecord($transactionId);
+		//echo $teachingRecords->result["0"]["transactionId"];
+		//echo $teachingRecords->course["interest"];
+		$this->assign("data", $data);
 		$this->display();
 	}
 }
