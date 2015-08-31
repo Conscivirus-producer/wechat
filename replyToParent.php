@@ -63,7 +63,7 @@ require_once("config.php");
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<button type="button" class="btn btn-info btn-sm btn-block" name="txtReply" id="txtReply">推送其它文本信息</button>
-			<button type="button" class="btn btn-info btn-sm btn-block" name="imgMsgReply" id="imgMsgReply">根据openId推送老师图文信息</button>
+			<button type="button" class="btn btn-success btn-sm btn-block" name="imgMsgReply" id="imgMsgReply">根据openId推送老师图文信息</button>
 			<button type="button" class="btn btn-info btn-sm btn-block" name="back" id="back">返回</button>
 		</div>
 	</div>
