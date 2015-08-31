@@ -55,15 +55,15 @@ require_once("config.php");
 		<div class="col-md-4 col-md-offset-4">
 			<div class="form-group">
 				<label for="responseContent">微信内容:</label>
-				<textarea class="form-control" rows="12" style="font-size:12px" id="responseContent"></textarea>
+				<textarea class="form-control" rows="12" style="font-size:12px" id="responseContent" placeholder="推送老师图文信息请输入老师的openId，推送其它文本信息请直接输入信息"></textarea>
 			</div>
 		</div>
 	</div>
 	
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<button type="button" class="btn btn-info btn-sm btn-block" name="txtReply" id="txtReply">回复文本信息</button>
-			<button type="button" class="btn btn-info btn-sm btn-block" name="imgMsgReply" id="imgMsgReply">回复图文信息</button>
+			<button type="button" class="btn btn-info btn-sm btn-block" name="txtReply" id="txtReply">推送其它文本信息</button>
+			<button type="button" class="btn btn-info btn-sm btn-block" name="imgMsgReply" id="imgMsgReply">根据openId推送老师图文信息</button>
 			<button type="button" class="btn btn-info btn-sm btn-block" name="back" id="back">返回</button>
 		</div>
 	</div>
