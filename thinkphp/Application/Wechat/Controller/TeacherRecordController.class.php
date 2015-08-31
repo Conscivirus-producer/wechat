@@ -49,10 +49,9 @@ class TeacherRecordController extends Controller {
 		$transactionId = I('get.transactionId',"");		//transactionId,订单号，用来重导向
 		$status = I('get.status',"");					//status,状态,用来控制显示
 		
-		/*if($recordId == "" || $teachingDt == "" || $transactionId == "" || $status == ""){
-			
-		}else{*/
-			
+		if($recordId == "" || $teachingDt == "" || $transactionId == "" || $status == ""){
+			$this->redirect("ErrorHandling/ErrorHandling/error", array('message'=>'系统错误'));
+		}else{
 			$assessmentSettings = D("TeachingRecord", "Logic")->getAssessmentSettingsByCourseCode($courseCode);
 			$this->assign("token",$token);
 			$this->assign("recordId",$recordId);
@@ -67,7 +66,7 @@ class TeacherRecordController extends Controller {
 				$this->assign("recordInformation",$recordInformation);
 			}	
 			$this->display();
-		//}
+		}
 	}
 	
 	public function insertNewTeachingRecord(){

@@ -3,6 +3,7 @@
 	use Common\Model\TeachingRecordModel;
 	use Common\Model\AssessmentSettingModel;
 	use Common\Model\TeachingAssessmentModel;
+	use Common\Model\TeacherModel;
 	use Think\Log;
 	class TeachingRecordLogic extends TeachingRecordModel{
 		public function getTeachingRecord($transactionId){
@@ -91,8 +92,17 @@
     		$data["assessmentScore"] = $TeachingAssessment->where($map)->select();
     		return json_encode($data);
     	}
-		
+    	
+    	public function isParent($openId){
+    		$condition["openId"] = $openId;
+    		$Teacher = D("Teacher");
+    		if($Teacher->where($condition)->count() == 1){
+    			return true;
+    		}else{
+    			return false;
+    		}
+    	}
+    	
+    	
 	}
-
-
 ?>
