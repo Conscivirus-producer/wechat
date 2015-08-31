@@ -16,9 +16,12 @@
 			$result = $this->where($map)->order('recordId desc')->select();
 			$course = D("Transaction")->join('T_child ON T_child.childId=T_transaction.childId AND T_child.parentOpenid=T_transaction.parentOpenid')
 									  ->where(array('transactionId'=>$transactionId))
-									  ->getField('subject,interest');
-			Log::write(json_encode($course),'WARN');
-			return $result;
+									  ->getField('T_child.subject, T_child.interest');
+			//Log::write(json_encode($course),'WARN');
+			$subject = key($course);
+			$data['result'] = json_encode($result);
+			$data['course'] = json_encode(array("subject"=>$subject, "interest"=>$course[$subject]));
+			return $data;
 		}
 		
 	    public function autoGenerateTeachingRecord($transactionId, $isInitial){
@@ -59,9 +62,10 @@
 		}
     	
     	public function getAssessmentSettingsByCourseCode($courseCode){
+    		$codeArray = explode(",", $courseCode);
     		$AssessmentSetting = D("AssessmentSetting");
-    		$condition["courseCode"] = $courseCode;
-    		return $AssessmentSetting->where($condition)->select();
+			$map["courseCode"] = array('in',$codeArray);
+    		return $AssessmentSetting->distinct(true)->where($map)->select();
     	}
     	
     	public function insertNewTeachingRecord($teachingRecord){
@@ -105,4 +109,8 @@
     	
     	
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 ?>

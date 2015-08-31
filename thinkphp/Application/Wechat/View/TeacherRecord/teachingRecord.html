@@ -24,8 +24,8 @@
 	var $wrapper = $('#doc-scrollspy-wrapper');
 	var paging = 3;
 	var index = 1;
-	var teachingRecords = new Array();
-	var teachingRecords = {$test};
+	var teachingRecords = {$data.result};
+	var course = {$data.course};
 	var length = teachingRecords.length;
 		
 	$(document).ready(function(){
@@ -45,7 +45,7 @@
 		
 		for(var i= paging*(index-1); i<j; i++){
 			var displayDt = teachingRecords[i].teachingDt.substr(0,10);	
-			var displayComment = "表现不错，继续努力！么么哒～";
+			var displayComment = "";
 			if(teachingRecords[i].comment.length!=0){
 				displayComment =teachingRecords[i].comment;
 			}
@@ -65,9 +65,11 @@
 		    		var teachingDt = teachingRecords[temp].teachingDt;
 		    		var transactionId = teachingRecords[temp].transactionId;
 		    		var status = teachingRecords[temp].status;
+		    		var courseCode = course.subject+','+course.interest;
 		    		window.location.href='{:U("Wechat/TeacherRecord/uploadTeachingRecord")}?recordId='+recordId+
 		    		'&teachingDt='+teachingDt+
 		    		'&transactionId='+transactionId+
+		    		'&courseCode='+courseCode+
 		    		'&status='+status;
 		    	});    
 		    })();     
