@@ -214,12 +214,12 @@ $(document).ready(function(){
 				postdata.overallScore = overallScore;
 				postdata.recordId = recordId;
 			
-				$.post("http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/insertNewTeachingRecord", postdata,
+				$.post("../TeacherRecord/insertNewTeachingRecord", postdata,
    					function(data){
    						var receivedObject = $.parseJSON(data);
    						if(receivedObject.status == "ok"){
      						alert("课堂记录上传成功！");
-     						window.location.href = "http://www.ilearnnn.com/thinkphp/Wechat/TeacherRecord/teachingRecord.html?transactionId="+transactionId;
+     						window.location.href = "teachingRecord.html?transactionId="+transactionId;
      					}
      				}
    				);
@@ -291,7 +291,7 @@ $(document).ready(function(){
     	$("#teachingtime").hide();
     	$("#comment").hide();
     	$("#addTeachingPicture").hide();
-    	$("#showTeachingTime").html("<em>"+recordInformation["0"]["teachingDt"].substring(0,9)+"</em>");
+    	$("#showTeachingTime").html("<em>"+recordInformation["0"]["teachingDt"].substring(0,10)+"</em>");
     	$("#showTeachingTime").show();
     	$("#showComment").find("p").html(recordInformation["0"]["comment"]);
     	$("#showComment").show();
