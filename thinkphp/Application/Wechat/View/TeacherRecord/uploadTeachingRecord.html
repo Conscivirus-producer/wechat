@@ -40,6 +40,7 @@
 <input type="text" name="token" id="token" value="{$token}" style="display:none">
 <input type="text" name="transactionId" id="transactionId" value="{$transactionId}" style="display:none">
 <input type="text" name="status" id="status" value="{$status}" style="display:none">
+<input type="text" name="isParent" id="isParent" value="{$isParent}" style="display:none">
 <textarea style="display:none" id="recordInformation">
 {$recordInformation}
 </textarea>
@@ -161,7 +162,7 @@ var postdata = {
 };
 var status = "";
 $(document).ready(function(){
-	
+	alert($("#isParent").val());
 	transactionId = $("#transactionId").val();
 	recordId = $("#recordId").val();
 	teachingDt = $("#teachingDt").val();

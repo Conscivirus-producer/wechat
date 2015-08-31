@@ -101,9 +101,9 @@
     		$condition["openId"] = $openId;
     		$Teacher = D("Teacher");
     		if($Teacher->where($condition)->count() == 1){
-    			return true;
-    		}else{
     			return false;
+    		}else{
+    			return true;
     		}
     	}
     	

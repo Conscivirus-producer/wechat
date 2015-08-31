@@ -48,6 +48,7 @@ class TeacherRecordController extends Controller {
 		$teachingDt = I('get.teachingDt',"");			//teachingDt,系统设定教学时间，用来显示系统设定教学时间		
 		$transactionId = I('get.transactionId',"");		//transactionId,订单号，用来重导向
 		$status = I('get.status',"");					//status,状态,用来控制显示
+		$openId = session('openid');
 		
 		if($recordId == "" || $teachingDt == "" || $transactionId == "" || $status == ""){
 			$this->redirect("ErrorHandling/ErrorHandling/error", array('message'=>'系统错误'));
@@ -63,6 +64,11 @@ class TeacherRecordController extends Controller {
 			$this->assign("status",$status);
 			$this->assign("assessmentSettings",$assessmentSettings);
 			$this->assign("title","上传课堂记录");
+			if(D("TeachingRecord", "Logic")->isParent($openId) == true){
+				$this->assign("isParent","1");
+			}else{
+				$this->assign("isParent","0");
+			}
 			if($status == "1"){
 				$this->assign("title","课堂记录详情");
 				$recordInformation = D("TeachingRecord", "Logic")->getTeachingRecordInformation($recordId);
