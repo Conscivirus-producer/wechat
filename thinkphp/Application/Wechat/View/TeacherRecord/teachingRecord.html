@@ -44,13 +44,19 @@
 		}
 		
 		for(var i= paging*(index-1); i<j; i++){
+			var displayDt = teachingRecords[i].teachingDt.substr(0,10);	
+			var displayComment = "表现不错，继续努力！么么哒～";
+			if(teachingRecords[i].comment.length!=0){
+				displayComment =teachingRecords[i].comment;
+			}
 	     	var panel = '<div class="am-panel am-panel-primary" id="'+i+'" data-am-scrollspy="{animation: \'scale-up\'}">' +
-	     				'<div class="am-panel am-panel-hd">'+teachingRecords[i].teachingDt+'</div>'+
-	     				'<div class="am-panel am-panel-bd">'+teachingRecords[i].comment+'</div>';
+	     				'<div class="am-panel am-panel-hd">'+displayDt+'</div>'+
+	     				'<div class="am-panel am-panel-bd am-sans-serif am-text-center">"'+displayComment+'"</div>'+
+	     				'<div>课堂总评';
 	     	for(var k=0; k<teachingRecords[i].overallScore; k++){
-	     		panel = panel +'<div class="am-icon-star"></div>';
+	     		panel = panel +'<div class="am-fr"><div class="am-icon-star am-icon-sm" style="color: #2cb298"></div>';
 	     	}
-	     	panel = panel + '</div>';
+	     	panel = panel + '</div></div></div>';
 	    	$wrapper.append(panel);
 	    	(function () {
 	    	  var temp=i;     

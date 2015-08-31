@@ -3,6 +3,7 @@
 	use Common\Model\TeachingRecordModel;
 	use Common\Model\AssessmentSettingModel;
 	use Common\Model\TeachingAssessmentModel;
+	use Think\Log;
 	class TeachingRecordLogic extends TeachingRecordModel{
 		public function getTeachingRecord($transactionId){
 			//$teachingRecord = D("TeachingRecord");
@@ -11,7 +12,12 @@
 			$recordId = $this->where($datemap)->getfield('recordId');
 			$map["transactionId"] = $transactionId;
 			$map["recordId"] = array('elt', $recordId);
-			return $this->where($map)->order('recordId desc')->select();
+			$result = $this->where($map)->order('recordId desc')->select();
+			$course = D("Transaction")->join('T_child ON T_child.childId=T_transaction.childId AND T_child.parentOpenid=T_transaction.parentOpenid')
+									  ->where(array('transactionId'=>$transactionId))
+									  ->getField('subject,interest');
+			Log::write(json_encode($course),'WARN');
+			return $result;
 		}
 		
 	    public function autoGenerateTeachingRecord($transactionId, $isInitial){
