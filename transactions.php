@@ -166,7 +166,6 @@ function renderData(status, follower){
 						$("<button>").appendTo($(this)).html("提交").bind({
 							click: function(e){
 								var transactionId = $td.prevAll(".transactionId").text();
-								transactionId = transactionId.substring(2)
 								var mobile = $td.children("textarea").val();
 								var url = "transactionService.php?dataType=findTeacherByMobile&mobile="+mobile;
 								$.getJSON(url, function(json){
@@ -264,6 +263,7 @@ function renderData(status, follower){
 								var url = "transactionService.php?dataType=updateFixedTime&transactionId="+transactionId+"&fixedTime="+fixedTime;
 								$.getJSON(url, function(json){
   									if(json.status == "ok"){
+  										$.getJSON("thinkphp/InternalSupport/TeachingRecord/insertTeachingRecord?transactionId="+transactionId+"&isInitial=Y", function(json){});
   										$td.children("input").hide();
   										$td.children("button").hide();
   										$td.children("span").html(fixedTime);
@@ -308,6 +308,7 @@ function renderData(status, follower){
 								var url = "transactionService.php?dataType=updateTeachingFrequency&transactionId="+transactionId+"&teachingFrequency="+teachingFrequency;
 								$.getJSON(url, function(json){
   									if(json.status == "ok"){
+  										$.getJSON("thinkphp/InternalSupport/TeachingRecord/insertTeachingRecord?transactionId="+transactionId+"&isInitial=Y", function(json){});
   										$td.children("div").hide();
   										$td.children("button").hide();
   										$td.children("span").html(teachingFrequency);

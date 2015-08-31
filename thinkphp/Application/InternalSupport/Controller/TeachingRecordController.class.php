@@ -14,7 +14,7 @@ class TeachingRecordController extends Controller {
 		$transaction = D("Transaction");
 		$map["teachingFrequency"] = array('neq','');
 		$map["fixedTime"] = array('neq','');
-		$map["status"] = array('in',array('5','S'));
+		$map["status"] = array('not in',array('C','E'));
 		$data = $transaction->where($map)->select();
 		for($i = 0; $i < count($data); $i++){
 			D("TeachingRecord", "Logic")->autoGenerateTeachingRecord($data[$i]["transactionId"], 'N');
