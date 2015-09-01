@@ -41,6 +41,7 @@
 <input type="text" name="transactionId" id="transactionId" value="{$transactionId}" style="display:none">
 <input type="text" name="status" id="status" value="{$status}" style="display:none">
 <input type="text" name="isParent" id="isParent" value="{$isParent}" style="display:none">
+<input type="text" name="openId" id="openId" value="{$openId}" style="display:none">
 <textarea style="display:none" id="recordInformation">
 {$recordInformation}
 </textarea>
@@ -152,6 +153,8 @@ var teachingPictureTimeTag = "";
 var assessCompleted;						//check whether assessment is completed
 var assessScore;							//array to store the assessment score
 var teachingImageArray = new Array();		//array to store the image keys
+var openId;
+var isParent;
 var postdata = {
 	"recordId" : "",
 	"assessmentScore" : "",
@@ -162,7 +165,8 @@ var postdata = {
 };
 var status = "";
 $(document).ready(function(){
-	alert($("#isParent").val());
+	openId = $("#openId").val();
+	isParent = $("#isParent").val();
 	transactionId = $("#transactionId").val();
 	recordId = $("#recordId").val();
 	teachingDt = $("#teachingDt").val();
@@ -287,8 +291,7 @@ $(document).ready(function(){
     }else{
     	//如果已经上传果记录了，那就只显示记录详情
     	var recordInformation = $.parseJSON($("#recordInformation").text());
-    	//alert(recordInformation["0"]["recordId"]);
-    	$("#submit").hide();	//
+    	$("#submit").hide();	
     	$("#teachingtime").hide();
     	$("#comment").hide();
     	$("#addTeachingPicture").hide();
@@ -316,6 +319,9 @@ $(document).ready(function(){
 				);
 				$("#teachingPictureGallery").append($("<br/>"));
 			}
+		}
+		if(isParent == "1"){
+			
 		}
     }
 });

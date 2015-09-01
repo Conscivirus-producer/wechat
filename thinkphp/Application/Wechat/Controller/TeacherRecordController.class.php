@@ -64,6 +64,7 @@ class TeacherRecordController extends Controller {
 			$this->assign("status",$status);
 			$this->assign("assessmentSettings",$assessmentSettings);
 			$this->assign("title","上传课堂记录");
+			$this->assign("openId",$openId);
 			if(D("TeachingRecord", "Logic")->isParent($openId) == true){
 				$this->assign("isParent","1");
 			}else{
