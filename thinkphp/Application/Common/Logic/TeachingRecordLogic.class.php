@@ -4,6 +4,7 @@
 	use Common\Model\AssessmentSettingModel;
 	use Common\Model\TeachingAssessmentModel;
 	use Common\Model\TeacherModel;
+	use Common\Model\ParentCommentModel;
 	use Think\Log;
 	class TeachingRecordLogic extends TeachingRecordModel{
 		public function getTeachingRecord($transactionId){
@@ -112,6 +113,17 @@
     		}else{
     			return true;
     		}
+    	}
+    	
+    	//插入家长评论
+    	public function insertParentComment($commentData){
+    		$parentComment = D("ParentComment");
+    		$data["recordId"] = $commentData["recordId"];
+    		$data["transactionId"] = $commentData["transactionId"];
+    		$data["parentOpenId"] = $commentData["parentOpenId"];
+    		$data["content"] = $commentData["content"];
+    		$data["createdDt"] = date('y-m-d h:i:s',time());
+    		$parentComment->save($data);
     	}
     	
     	

@@ -79,6 +79,7 @@ class TeacherRecordController extends Controller {
 		}
 	}
 	
+	//插入新的教学记录
 	public function insertNewTeachingRecord(){
 		$newTeachingRecord = array();
 		$newTeachingRecord["assessmentScore"] = I("post.assessmentScore");
@@ -88,6 +89,17 @@ class TeacherRecordController extends Controller {
 		$newTeachingRecord["overallScore"] = I("post.overallScore");
 		$newTeachingRecord["recordId"] = I("post.recordId");
 		D("TeachingRecord", "Logic")->insertNewTeachingRecord($newTeachingRecord);
+		echo json_encode(array("status"=>"ok"));
+	}
+	
+	//与前端交互，插入家长评论
+	public function insertParentComment(){
+		$newParentComment = array();
+		$newParentComment["recordId"] = I("post.recordId");
+		$newParentComment["transactionId"] = I("post.transactionId");
+		$newParentComment["parentOpenId"] = I("post.parentOpenId");
+		$newParentComment["content"] = I("post.content");
+		D("TeachingRecord", "Logic")->insertParentComment($newParentComment);
 		echo json_encode(array("status"=>"ok"));
 	}
 	
