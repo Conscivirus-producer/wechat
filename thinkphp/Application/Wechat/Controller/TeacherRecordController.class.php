@@ -99,6 +99,7 @@ class TeacherRecordController extends Controller {
 		$newParentComment["transactionId"] = I("post.transactionId");
 		$newParentComment["parentOpenId"] = I("post.parentOpenId");
 		$newParentComment["content"] = I("post.content");
+		$newParentComment["createdDt"] = I("post.createdDt");
 		D("TeachingRecord", "Logic")->insertParentComment($newParentComment);
 		echo json_encode(array("status"=>"ok"));
 	}

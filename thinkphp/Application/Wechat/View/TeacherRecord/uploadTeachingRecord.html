@@ -226,27 +226,29 @@ $(document).ready(function(){
 				comment = $("#comment").val();
 				if(comment == ""){
 					alert("请输入评论");
+					return false;
 				}else if(overallScore == ""){
 					alert("请为学生打分");
-				}
+					return false;
+				}else{
+					//所有选项都是正确的,就开始POST数据
+					postdata.assessmentScore = assessScore.join(",");
+					postdata.teachingDt = $("#teachingtime").val();
+					postdata.comment = comment;
+					postdata.teachingImage = teachingImageArray.join(",");
+					postdata.overallScore = overallScore;
+					postdata.recordId = recordId;
 			
-				//所有选项都是正确的,就开始POST数据
-				postdata.assessmentScore = assessScore.join(",");
-				postdata.teachingDt = $("#teachingtime").val();
-				postdata.comment = comment;
-				postdata.teachingImage = teachingImageArray.join(",");
-				postdata.overallScore = overallScore;
-				postdata.recordId = recordId;
-			
-				$.post("../TeacherRecord/insertNewTeachingRecord", postdata,
-   					function(data){
-   						var receivedObject = $.parseJSON(data);
-   						if(receivedObject.status == "ok"){
-     						alert("课堂记录上传成功！");
-     						window.location.href = "teachingRecord.html?transactionId="+transactionId;
+					$.post("../TeacherRecord/insertNewTeachingRecord", postdata,
+   						function(data){
+   							var receivedObject = $.parseJSON(data);
+   							if(receivedObject.status == "ok"){
+     							alert("课堂记录上传成功！");
+     							window.location.href = "teachingRecord.html?transactionId="+transactionId;
+     						}
      					}
-     				}
-   				);
+   					);
+   				}
 			}else{
 				//有测试老师没选择
 				alert("请为学生的测试打分");
@@ -341,12 +343,40 @@ $(document).ready(function(){
 		}
 		
 		
-		if(isParent == "1"){
+		//if(isParent == "1"){
+			//点击按钮上传家长评论
 			$("#parentCommentSubmit").click(function(){
-				
+				var content = $("#parentCommentContent").val();
+				if(content == ""){
+					alert("请输入评论内容");
+					return false;
+				}else{
+					var commentData = {
+						"recordId" : "",
+						"transactionId" : "",
+						"parentOpenId" : "",
+						"content" : "",
+						"createdDt" : ""
+					};
+					var createdDt = new Date().format("yyyy-MM-dd HH:mm:ss");
+					commentData.recordId = recordId;
+					commentData.transactionId = transactionId;
+					commentData.parentOpenId = openId;
+					commentData.content = content;
+					commentData.createdDt = createdDt;
+					
+					$.post("../TeacherRecord/insertParentComment", commentData,
+   						function(data){
+   							var receivedObject = $.parseJSON(data);
+   							if(receivedObject.status == "ok"){
+     							alert("发表评论成功！");
+     							$("#showParentCommentDiv").append("<blockquote><p>"+content+"</p><footer>家长微信昵称<cite>"+createdDt+"</cite></footer></blockquote>");
+     						}
+     					}
+   					);
+				}
 			});
-			
-		}
+		//}
     }
 });
 </script>
