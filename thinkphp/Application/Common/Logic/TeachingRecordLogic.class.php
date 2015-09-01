@@ -122,8 +122,10 @@
     		$data["transactionId"] = $commentData["transactionId"];
     		$data["parentOpenId"] = $commentData["parentOpenId"];
     		$data["content"] = $commentData["content"];
-    		$data["createdDt"] = $commentData["createdDt"];;
+    		$createdDt = date('y-m-d h:i:s',time());
+    		$data["createdDt"] = $createdDt;
     		$parentComment->save($data);
+    		return $createdDt;
     	}
     	
     	

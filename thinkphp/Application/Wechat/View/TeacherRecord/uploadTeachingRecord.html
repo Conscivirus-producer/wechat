@@ -358,19 +358,18 @@ $(document).ready(function(){
 						"content" : "",
 						"createdDt" : ""
 					};
-					var createdDt = new Date().format("yyyy-MM-dd HH:mm:ss");
 					commentData.recordId = recordId;
 					commentData.transactionId = transactionId;
 					commentData.parentOpenId = openId;
 					commentData.content = content;
-					commentData.createdDt = createdDt;
 					
 					$.post("../TeacherRecord/insertParentComment", commentData,
    						function(data){
    							var receivedObject = $.parseJSON(data);
    							if(receivedObject.status == "ok"){
      							alert("发表评论成功！");
-     							$("#showParentCommentDiv").append("<blockquote><p>"+content+"</p><footer>家长微信昵称<cite>"+createdDt+"</cite></footer></blockquote>");
+     							var createdDt = receivedObject.createdDt;
+     							$("#showParentCommentDiv").append("<blockquote><p>"+content+"</p><footer>家长微信昵称 <cite>"+createdDt+"</cite></footer></blockquote>");
      						}
      					}
    					);
