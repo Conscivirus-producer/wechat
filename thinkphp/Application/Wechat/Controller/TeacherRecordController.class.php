@@ -101,10 +101,15 @@ class TeacherRecordController extends Controller {
 		$newParentComment["content"] = I("post.content");
 		$createdDt = D("TeachingRecord", "Logic")->insertParentComment($newParentComment);
 		$jsonArray = array(
-			"status"=>"ok",
+			"status"=>"",
 			"createdDt"=>""
 		);
 		$jsonArray["createdDt"] = $createdDt;
+		if($createdDt !== false){
+			$jsonArray["status"] = "ok";
+		}else{
+			$jsonArray["status"] = "fail";
+		}
 		echo json_encode($jsonArray);
 	}
 	
@@ -116,3 +121,12 @@ class TeacherRecordController extends Controller {
 		$this->display();
 	}
 }
+
+
+
+
+
+
+
+
+

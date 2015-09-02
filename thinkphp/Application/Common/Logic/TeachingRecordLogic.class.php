@@ -125,10 +125,13 @@
     		$data["transactionId"] = $commentData["transactionId"];
     		$data["parentOpenId"] = $commentData["parentOpenId"];
     		$data["content"] = $commentData["content"];
-    		$createdDt = date('Y-m-d h:i:s',time());
+    		$createdDt = sysdate();
     		$data["createdDt"] = $createdDt;
-    		$parentComment->save($data);
-    		return $createdDt;
+    		if($parentComment->save($data) !== false){
+    			return $createdDt;
+    		}else{
+    			return false;
+    		}
     	}
     	
     	
