@@ -16,8 +16,8 @@
 			$result = $this->where($map)->order('recordId desc')->select();
 			$course = D("Transaction")->join('T_child ON T_child.childId=T_transaction.childId AND T_child.parentOpenid=T_transaction.parentOpenid')
 									  ->where(array('transactionId'=>$transactionId))
-									  ->getField('T_child.subject, T_child.interest');
-			//Log::write(json_encode($course),'WARN');
+									  ->field('T_child.subject, T_child.interest')->select();
+			Log::write(json_encode($course),'WARN');
 			$subject = key($course);
 			$courseArray = array();
 			if($subject != ''){
@@ -28,6 +28,7 @@
 			}
 			$data['result'] = json_encode($result);
 			$data['course'] = implode(",", $courseArray);
+			LOG::write(json_encode($data), 'WARN');
 			return $data;
 		}
 		
