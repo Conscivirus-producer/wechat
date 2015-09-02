@@ -17,7 +17,8 @@
 			$result = $this->where($map)->order('recordId desc')->select();
 			$course = D("Transaction")->join('T_child ON T_child.childId=T_transaction.childId AND T_child.parentOpenid=T_transaction.parentOpenid')
 									  ->where(array('transactionId'=>$transactionId))
-									  ->field('T_child.subject, T_child.interest')->select();
+									  ->getField('T_child.subject, T_child.interest');
+			//Log::write(json_encode($course),'WARN');
 			$subject = key($course);
 			$courseArray = array();
 			if($subject != ''){
@@ -26,12 +27,8 @@
 			if($course[$subject] != ''){
 				array_push($courseArray, $course[$subject]);
 			}
-			$displayCourse = formatCourse($course[0]['subject'],$course[0]['interest']);
 			$data['result'] = json_encode($result);
-			$data['course'] = $course;
-			$data['displayCourse'] = $displayCourse;
-			LOG::write(json_encode($data), 'WARN');
-			LOG::write($course[0]['subject'], 'WARN');
+			$data['course'] = implode(",", $courseArray);
 			return $data;
 		}
 		
@@ -125,7 +122,7 @@
     		$data["transactionId"] = $commentData["transactionId"];
     		$data["parentOpenId"] = $commentData["parentOpenId"];
     		$data["content"] = $commentData["content"];
-    		$createdDt = sysdate();
+    		$createdDt = date('Y-m-d h:i:s',time());
     		$data["createdDt"] = $createdDt;
     		if($parentComment->save($data) !== false){
     			return $createdDt;
