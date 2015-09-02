@@ -64,6 +64,7 @@ class TeacherRecordController extends Controller {
 			$this->assign("status",$status);
 			$this->assign("assessmentSettings",$assessmentSettings);
 			$this->assign("title","上传课堂记录");
+			$this->assign("openId",$openId);
 			if(D("TeachingRecord", "Logic")->isParent($openId) == true){
 				$this->assign("isParent","1");
 			}else{
@@ -78,6 +79,7 @@ class TeacherRecordController extends Controller {
 		}
 	}
 	
+	//插入新的教学记录
 	public function insertNewTeachingRecord(){
 		$newTeachingRecord = array();
 		$newTeachingRecord["assessmentScore"] = I("post.assessmentScore");
@@ -88,6 +90,22 @@ class TeacherRecordController extends Controller {
 		$newTeachingRecord["recordId"] = I("post.recordId");
 		D("TeachingRecord", "Logic")->insertNewTeachingRecord($newTeachingRecord);
 		echo json_encode(array("status"=>"ok"));
+	}
+	
+	//与前端交互，插入家长评论
+	public function insertParentComment(){
+		$newParentComment = array();
+		$newParentComment["recordId"] = I("post.recordId");
+		$newParentComment["transactionId"] = I("post.transactionId");
+		$newParentComment["parentOpenId"] = I("post.parentOpenId");
+		$newParentComment["content"] = I("post.content");
+		$createdDt = D("TeachingRecord", "Logic")->insertParentComment($newParentComment);
+		$jsonArray = array(
+			"status"=>"ok",
+			"createdDt"=>""
+		);
+		$jsonArray["createdDt"] = $createdDt;
+		echo json_encode($jsonArray);
 	}
 	
 	public function teachingRecord($transactionId){

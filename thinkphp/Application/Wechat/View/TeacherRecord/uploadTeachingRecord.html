@@ -41,13 +41,14 @@
 <input type="text" name="transactionId" id="transactionId" value="{$transactionId}" style="display:none">
 <input type="text" name="status" id="status" value="{$status}" style="display:none">
 <input type="text" name="isParent" id="isParent" value="{$isParent}" style="display:none">
+<input type="text" name="openId" id="openId" value="{$openId}" style="display:none">
 <textarea style="display:none" id="recordInformation">
 {$recordInformation}
 </textarea>
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<h5 class="text-center"><font color="#48C9B0">{$title}</font></h5>
+			<h4 class="text-center"><font color="#48C9B0">{$title}</font></h4>
 		</div>
 	</div>
 	
@@ -130,6 +131,25 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 家长评论显示区域 -->
+	<div class="row" style="margin-top:10px">
+		<div class="col-md-4 col-md-offset-4" id="showParentCommentDiv" >
+			<label>家长评论：</label>
+		</div>
+	</div>
+	
+	<!-- 提交家长评论区域 -->
+	<div class="row" id="parentCommentDiv" style="margin-top:10px">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="form-group">
+				<textarea class="form-control" rows="3" id="parentCommentContent" placeholder="说说你对老师的评价吧"></textarea>
+				<button type="button" class="btn btn-primary btn-block" id="parentCommentSubmit" name="parentCommentSubmit" style="margin-top:5px">提交</button>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 提交按钮与返回按钮-->
 	<div class="row" style="margin-top:15px; margin-bottom:25px">
 		<div class="col-md-4 col-md-offset-4">
 			<button type="button" class="btn btn-primary btn-block" id="submit" name="submit">提交</button>
@@ -152,6 +172,8 @@ var teachingPictureTimeTag = "";
 var assessCompleted;						//check whether assessment is completed
 var assessScore;							//array to store the assessment score
 var teachingImageArray = new Array();		//array to store the image keys
+var openId;
+var isParent;
 var postdata = {
 	"recordId" : "",
 	"assessmentScore" : "",
@@ -162,7 +184,8 @@ var postdata = {
 };
 var status = "";
 $(document).ready(function(){
-	alert($("#isParent").val());
+	openId = $("#openId").val();
+	isParent = $("#isParent").val();
 	transactionId = $("#transactionId").val();
 	recordId = $("#recordId").val();
 	teachingDt = $("#teachingDt").val();
@@ -203,27 +226,29 @@ $(document).ready(function(){
 				comment = $("#comment").val();
 				if(comment == ""){
 					alert("请输入评论");
+					return false;
 				}else if(overallScore == ""){
 					alert("请为学生打分");
-				}
+					return false;
+				}else{
+					//所有选项都是正确的,就开始POST数据
+					postdata.assessmentScore = assessScore.join(",");
+					postdata.teachingDt = $("#teachingtime").val();
+					postdata.comment = comment;
+					postdata.teachingImage = teachingImageArray.join(",");
+					postdata.overallScore = overallScore;
+					postdata.recordId = recordId;
 			
-				//所有选项都是正确的,就开始POST数据
-				postdata.assessmentScore = assessScore.join(",");
-				postdata.teachingDt = $("#teachingtime").val();
-				postdata.comment = comment;
-				postdata.teachingImage = teachingImageArray.join(",");
-				postdata.overallScore = overallScore;
-				postdata.recordId = recordId;
-			
-				$.post("../TeacherRecord/insertNewTeachingRecord", postdata,
-   					function(data){
-   						var receivedObject = $.parseJSON(data);
-   						if(receivedObject.status == "ok"){
-     						alert("课堂记录上传成功！");
-     						window.location.href = "teachingRecord.html?transactionId="+transactionId;
+					$.post("../TeacherRecord/insertNewTeachingRecord", postdata,
+   						function(data){
+   							var receivedObject = $.parseJSON(data);
+   							if(receivedObject.status == "ok"){
+     							alert("课堂记录上传成功！");
+     							window.location.href = "teachingRecord.html?transactionId="+transactionId;
+     						}
      					}
-     				}
-   				);
+   					);
+   				}
 			}else{
 				//有测试老师没选择
 				alert("请为学生的测试打分");
@@ -287,8 +312,7 @@ $(document).ready(function(){
     }else{
     	//如果已经上传果记录了，那就只显示记录详情
     	var recordInformation = $.parseJSON($("#recordInformation").text());
-    	//alert(recordInformation["0"]["recordId"]);
-    	$("#submit").hide();	//
+    	$("#submit").hide();	
     	$("#teachingtime").hide();
     	$("#comment").hide();
     	$("#addTeachingPicture").hide();
@@ -317,6 +341,41 @@ $(document).ready(function(){
 				$("#teachingPictureGallery").append($("<br/>"));
 			}
 		}
+		
+		
+		//if(isParent == "1"){
+			//点击按钮上传家长评论
+			$("#parentCommentSubmit").click(function(){
+				var content = $("#parentCommentContent").val();
+				if(content == ""){
+					alert("请输入评论内容");
+					return false;
+				}else{
+					var commentData = {
+						"recordId" : "",
+						"transactionId" : "",
+						"parentOpenId" : "",
+						"content" : "",
+						"createdDt" : ""
+					};
+					commentData.recordId = recordId;
+					commentData.transactionId = transactionId;
+					commentData.parentOpenId = openId;
+					commentData.content = content;
+					
+					$.post("../TeacherRecord/insertParentComment", commentData,
+   						function(data){
+   							var receivedObject = $.parseJSON(data);
+   							if(receivedObject.status == "ok"){
+     							alert("发表评论成功！");
+     							var createdDt = receivedObject.createdDt;
+     							$("#showParentCommentDiv").append("<blockquote><p style='font-size:15px'>"+content+"</p><footer>家长微信昵称 <cite>"+createdDt+"</cite></footer></blockquote>");
+     						}
+     					}
+   					);
+				}
+			});
+		//}
     }
 });
 </script>
