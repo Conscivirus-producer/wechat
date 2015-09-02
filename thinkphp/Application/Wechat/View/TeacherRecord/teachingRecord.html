@@ -49,9 +49,18 @@
 				displayComment =teachingRecords[i].comment;
 			}
 	     	var panel = '<div class="am-panel am-panel-primary" id="'+i+'" data-am-scrollspy="{animation: \'scale-up\'}">' +
-	     				'<div class="am-panel am-panel-hd">'+displayDt+'</div>'+
-	     				'<div class="am-panel am-panel-bd am-sans-serif am-text-center">"'+displayComment+'"</div>'+
+	     				'<div class="am-panel am-panel-hd">'+displayDt+" {$data.displayCourse}"+'</div>';
+	     	if(teachingRecords[i].status == 0){
+	     		panel = panel + '<span class="not-updated">未更新</span>';
+	     	}
+	     	panel = panel + '<div class="am-panel am-panel-bd am-sans-serif am-text-center">';
+	     	if(teachingRecords[i].status == 0){
+	     		panel = panel + '"请更新您的教学纪录"'+'</div>'+
 	     				'<div>课堂总评';
+	     	}else{
+	     		panel = panel +'"'+ displayComment + '"</div>'+
+	     				'<div>课堂总评';
+	     	}
 	     	for(var k=0; k<teachingRecords[i].overallScore; k++){
 	     		panel = panel +'<div class="am-fr"><div class="am-icon-star am-icon-sm" style="color: #2cb298"></div>';
 	     	}

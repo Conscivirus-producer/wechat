@@ -18,7 +18,6 @@
 			$course = D("Transaction")->join('T_child ON T_child.childId=T_transaction.childId AND T_child.parentOpenid=T_transaction.parentOpenid')
 									  ->where(array('transactionId'=>$transactionId))
 									  ->field('T_child.subject, T_child.interest')->select();
-			Log::write(json_encode($course),'WARN');
 			$subject = key($course);
 			$courseArray = array();
 			if($subject != ''){
@@ -27,9 +26,12 @@
 			if($course[$subject] != ''){
 				array_push($courseArray, $course[$subject]);
 			}
+			$displayCourse = formatCourse($course[0]['subject'],$course[0]['interest']);
 			$data['result'] = json_encode($result);
-			$data['course'] = implode(",", $courseArray);
+			$data['course'] = $course;
+			$data['displayCourse'] = $displayCourse;
 			LOG::write(json_encode($data), 'WARN');
+			LOG::write($course[0]['subject'], 'WARN');
 			return $data;
 		}
 		

@@ -1,4 +1,5 @@
 <?php
+use Think\Log;
 	function getGradeName($grade){
 		$gradeArray = array(
 			'grade1' => "小学一年级",
@@ -20,14 +21,16 @@
 	function formatCourse($subject, $interest){
 		$subject = getSubject($subject);
 		$interest = getInterestName($interest);
+		
 		$course = "";
 		if($subject != "" && $interest != ""){
-			$course = $subject + "," + $interest;
+			$course = $subject.",".$interest;
 		}else if($subject != ""){
 			$course = $subject;
 		}else if($interest != ""){
 			$course = $interest;
 		}
+		LOG::write($course, 'WARN');
 		return $course;
 	}
 	

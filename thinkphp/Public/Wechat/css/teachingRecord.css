@@ -2,3 +2,25 @@ p.title{
 	color:#2CB298;
 }
 
+span.not-updated{
+	position:absolute;
+	top:6px;
+	left:-18px;
+	display:block;
+	width:60px;
+	height:14px;
+	line-height:14px;
+	font-size:10px;
+	color:#fff;
+	text-align:center;
+	-webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	background-color:#f37082;
+}
+
+div.notStarted{
+	overflow: hidden;
+}
