@@ -124,7 +124,7 @@
     		$data["content"] = $commentData["content"];
     		$createdDt = date('Y-m-d h:i:s',time());
     		$data["createdDt"] = $createdDt;
-    		if($parentComment->save($data) !== false){
+    		if($parentComment->add($data) !== false){
     			return $createdDt;
     		}else{
     			return false;
