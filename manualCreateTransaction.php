@@ -19,6 +19,7 @@ if (isset($_GET['code'])){
 }
 
 $globalData = new GlobalData();
+echo "openid is: ". $openid." test";
 if (strpos($globalData->getWhiteList(),$openid) == ''){
 	exit("该功能目前尚未开放.");
 }
