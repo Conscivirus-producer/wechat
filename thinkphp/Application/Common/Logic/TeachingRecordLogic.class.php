@@ -131,6 +131,11 @@
     		}
     	}
     	
+    	public function getParentCommentsByRecordId($recordId){
+    		$parentComment = D("ParentComment");
+    		$map["recordId"] = $recordId;
+    		return json_encode($parentComment->where($map)->select());
+    	}
     	
 	}
 ?>

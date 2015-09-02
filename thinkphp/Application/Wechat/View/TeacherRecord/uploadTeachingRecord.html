@@ -45,6 +45,9 @@
 <textarea style="display:none" id="recordInformation">
 {$recordInformation}
 </textarea>
+<textarea style="display:none" id="parentComments">
+{$parentComments}
+</textarea>
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
@@ -345,6 +348,7 @@ $(document).ready(function(){
 		
 		//if(isParent == "1"){
 			//点击按钮上传家长评论
+			
 			$("#parentCommentSubmit").click(function(){
 				var content = $("#parentCommentContent").val();
 				if(content == ""){
@@ -366,7 +370,7 @@ $(document).ready(function(){
    						function(data){
    							var receivedObject = $.parseJSON(data);
    							if(receivedObject.status == "ok"){
-     							alert("发表评论成功！");
+   								$("#parentCommentContent").val("");
      							var createdDt = receivedObject.createdDt;
      							$("#showParentCommentDiv").append("<blockquote><p style='font-size:15px'>"+content+"</p><footer>家长微信昵称 <cite>"+createdDt+"</cite></footer></blockquote>");
      						}
