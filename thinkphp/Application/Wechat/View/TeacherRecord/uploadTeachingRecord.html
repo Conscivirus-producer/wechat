@@ -346,8 +346,12 @@ $(document).ready(function(){
 		}
 		
 		//把之前的家长评论显示出来
-		alert($("#parentComments").text());
-		
+		var parentComments = $.parseJSON($("#parentComments").text());
+		for(var i = 0; i < parentComments.length; i++){
+			var commentContent = parentComments[i]["content"];
+			var commentCreatedDt = parentComments[i]["createdDt"];
+			$("#showParentCommentDiv").append("<blockquote><p style='font-size:15px'>"+commentContent+"</p><footer>家长微信昵称 <cite>"+commentCreatedDt+"</cite></footer></blockquote>");
+		}
 		
 		
 		
