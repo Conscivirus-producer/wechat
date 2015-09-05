@@ -16,8 +16,8 @@
 			$map["teachingDt"] = array('elt', $teachingDt);
 			$result = $this->where($map)->order('teachingDt desc')->select();
 			$course = D("Transaction")->join('T_child ON T_child.childId=T_transaction.childId AND T_child.parentOpenid=T_transaction.parentOpenid')
-									  ->where(array('transactionId'=>$transactionId))
-									  ->getField('T_child.subject, T_child.interest');
+					  ->where(array('transactionId'=>$transactionId))
+					  ->field('T_child.subject, T_child.interest')->select();
 			//Log::write(json_encode($course),'WARN');
 			$subject = key($course);
 			$courseArray = array();
@@ -27,8 +27,10 @@
 			if($course[$subject] != ''){
 				array_push($courseArray, $course[$subject]);
 			}
+			$displayCourse = formatCourse($course[0]['subject'],$course[0]['interest']);
 			$data['result'] = json_encode($result);
-			$data['course'] = implode(",", $courseArray);
+			$data['course'] = $course;
+			$data['displayCourse'] = $displayCourse;
 			return $data;
 		}
 		
