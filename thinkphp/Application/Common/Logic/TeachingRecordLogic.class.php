@@ -11,10 +11,10 @@
 			//$teachingRecord = D("TeachingRecord");
 			$datemap["teachingDt"] = array('gt', date("Y-m-d h:i:s"));
 			$datemap["transactionId"] = array('eq', $transactionId);
-			$recordId = $this->where($datemap)->getfield('recordId');
+			$teachingDt = $this->where($datemap)->getfield('teachingDt');
 			$map["transactionId"] = $transactionId;
-			$map["recordId"] = array('elt', $recordId);
-			$result = $this->where($map)->order('recordId desc')->select();
+			$map["teachingDt"] = array('elt', $teachingDt);
+			$result = $this->where($map)->order('teachingDt desc')->select();
 			$course = D("Transaction")->join('T_child ON T_child.childId=T_transaction.childId AND T_child.parentOpenid=T_transaction.parentOpenid')
 									  ->where(array('transactionId'=>$transactionId))
 									  ->getField('T_child.subject, T_child.interest');
