@@ -1,404 +1,406 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<title>{$title}</title>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
-<!-- Loading Bootstrap -->
-<link href="/css/vendor/bootstrap.min.css" rel="stylesheet">
-<!-- Loading Flat UI -->
-<link href="/css/flat-ui.min.css" rel="stylesheet">
-<link href="/timepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-<script src="/js/vendor/jquery.min.js"></script>
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-<!--[if lt IE 9]>
-<script src="http://localhost/wechat/js/vendor/html5shiv.js"></script>
-<script src="http://localhost/wechat/js/vendor/respond.min.js"></script>
-<![endif]-->
-<style>
-*{
-	font-size:15px;
-}
-.sl-custom-file{
-	display:inline-block;
-	text-align:center;
-	overflow:hidden;
-	position:relative;
-}
-.ui-input-file{
-	opacity:0;
-	filter:alpha(opacity=0);
-	position:absolute;
-	top:0;
-	right:0;
-}
-</style>
-</head>
-<body>
-<input type="text" name="recordId" id="recordId" value="{$recordId}" style="display:none">
-<input type="text" name="teachingDt" id="teachingDt" value="{$teachingDt}" style="display:none">
-<input type="text" name="token" id="token" value="{$token}" style="display:none">
-<input type="text" name="transactionId" id="transactionId" value="{$transactionId}" style="display:none">
-<input type="text" name="status" id="status" value="{$status}" style="display:none">
-<input type="text" name="isParent" id="isParent" value="{$isParent}" style="display:none">
-<input type="text" name="openId" id="openId" value="{$openId}" style="display:none">
-<textarea style="display:none" id="recordInformation">
+	<head>
+		<meta charset="utf-8">
+		<title>{$title}</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<!-- Loading Bootstrap -->
+		<link href="/css/vendor/bootstrap.min.css" rel="stylesheet">
+		<!-- Loading Flat UI -->
+		<link href="/css/flat-ui.min.css" rel="stylesheet">
+		<link href="/timepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+		<script src="/js/vendor/jquery.min.js"></script>
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+		<!--[if lt IE 9]>
+		<script src="http://localhost/wechat/js/vendor/html5shiv.js"></script>
+		<script src="http://localhost/wechat/js/vendor/respond.min.js"></script>
+		<![endif]-->
+		<style>
+			* {
+				font-size: 15px;
+			}
+			.sl-custom-file {
+				display: inline-block;
+				text-align: center;
+				overflow: hidden;
+				position: relative;
+			}
+			.ui-input-file {
+				opacity: 0;
+				filter: alpha(opacity=0);
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" name="recordId" id="recordId" value="{$recordId}" style="display:none">
+		<input type="text" name="teachingDt" id="teachingDt" value="{$teachingDt}" style="display:none">
+		<input type="text" name="token" id="token" value="{$token}" style="display:none">
+		<input type="text" name="transactionId" id="transactionId" value="{$transactionId}" style="display:none">
+		<input type="text" name="status" id="status" value="{$status}" style="display:none">
+		<input type="text" name="isParent" id="isParent" value="{$isParent}" style="display:none">
+		<input type="text" name="openId" id="openId" value="{$openId}" style="display:none">
+		<textarea style="display:none" id="recordInformation">
 {$recordInformation}
 </textarea>
-<textarea style="display:none" id="parentComments">
+		<textarea style="display:none" id="parentComments">
 {$parentComments}
 </textarea>
-<div class="container">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<h4 class="text-center"><font color="#48C9B0">{$title}</font></h4>
-		</div>
-	</div>
-	
-	<volist name="assessmentSettings" id="as">
-	<div class="row" style="margin-top:15px">
-		<div class="col-md-4 col-md-offset-4 assessment" name="{$as.code}">
-			<p class="text-center" style="font-size:15px">{$as.code}，{$as.description}</p>
-			<div class="btn-group btn-group-justified" role="group">
-  				<div class="btn-group" role="group">
-    				<input type="button" class="btn btn-default" value="一般" name="1">
-  				</div>
-  				<div class="btn-group" role="group" style="border-left:1px solid #fff;border-right:1px solid #fff">
-    				<input type="button" class="btn btn-default" value="好" name="2">
-  				</div>
- 				<div class="btn-group" role="group">
-    				<input type="button" class="btn btn-default" value="优秀" name="3">
-  				</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<h4 class="text-center"><font color="#48C9B0">{$title}</font></h4>
+				</div>
+			</div>
+
+			<volist name="assessmentSettings" id="as">
+				<div class="row" style="margin-top:15px">
+					<div class="col-md-4 col-md-offset-4 assessment" name="{$as.code}">
+						<p class="text-center" style="font-size:15px">
+							{$as.code}，{$as.description}
+						</p>
+						<div class="btn-group btn-group-justified" role="group">
+							<div class="btn-group" role="group">
+								<input type="button" class="btn btn-default" value="一般" name="1">
+							</div>
+							<div class="btn-group" role="group" style="border-left:1px solid #fff;border-right:1px solid #fff">
+								<input type="button" class="btn btn-default" value="好" name="2">
+							</div>
+							<div class="btn-group" role="group">
+								<input type="button" class="btn btn-default" value="优秀" name="3">
+							</div>
+						</div>
+					</div>
+				</div>
+			</volist>
+
+			<div class="row" style="margin-top:15px">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="form-group">
+						<label for="teachingtime">教学时间：</label>
+						<input type="text" value="{$teachingDt}" class="form-control" id="teachingtime" data-date-format="yyyy-mm-dd" readonly>
+						<p class="text-left" id="showTeachingTime" style="display:none"></p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<textarea class="form-control" rows="3" placeholder="老师评语" id="comment"></textarea>
+				</div>
+			</div>
+			<div class="row" style="display:none" id="showComment">
+				<div class="col-md-4 col-md-offset-4">
+					<label>老师评论：</label>
+					<blockquote>
+						<p style="font-size:15px"></p>
+					</blockquote>
+				</div>
+			</div>
+			<div class="row" style="margin-top:15px" id="addTeachingPicture">
+				<div class="col-md-4 col-md-offset-4">
+					<span class="sl-custom-file">
+						<button type="button" class="btn btn-primary">
+							添加教学图片<span class="fui-document"></span>
+							<span class="fui-plus"></span>
+						</button>
+						<input type="file" class="ui-input-file" name="teachingPicture" id="teachingPicture"/>
+					</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4" id="teachingPictureGallery">
+					<label style="display:none" id="teachingImageLabel">教学图片：</label>
+				</div>
+			</div>
+			<div class="row" style="margin-top:15px">
+				<div class="col-md-4 col-md-offset-4">
+					<label style="display:none" id="starLabel">老师评分：</label>
+					<div class="btn-group btn-group-justified" role="group" id="overallScore">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default" name="1">
+								<span class="fui-star-2"></span>
+							</button>
+						</div>
+						<div class="btn-group" role="group" style="border-left:1px solid #fff;border-right:1px solid #fff">
+							<button type="button" class="btn btn-default" name="2">
+								<span class="fui-star-2"></span>
+							</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default" name="3">
+								<span class="fui-star-2"></span>
+							</button>
+						</div>
+						<div class="btn-group" role="group" style="border-left:1px solid #fff;border-right:1px solid #fff">
+							<button type="button" class="btn btn-default" name="4">
+								<span class="fui-star-2"></span>
+							</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default" name="5">
+								<span class="fui-star-2"></span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 家长评论显示区域 -->
+			<div class="row" style="margin-top:10px;display:none" id="showParentCommentOuterDiv">
+				<div class="col-md-4 col-md-offset-4" id="showParentCommentDiv" >
+					<label>家长评论：</label>
+				</div>
+			</div>
+
+			<!-- 提交家长评论区域 -->
+			<div class="row" id="parentCommentDiv" style="margin-top:10px;display:none">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="form-group">
+						<textarea class="form-control" rows="3" id="parentCommentContent" placeholder="说说你对老师的评价吧"></textarea>
+						<button type="button" class="btn btn-primary btn-block" id="parentCommentSubmit" name="parentCommentSubmit" style="margin-top:5px">
+							提交
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- 提交按钮与返回按钮-->
+			<div class="row" style="margin-top:15px; margin-bottom:25px">
+				<div class="col-md-4 col-md-offset-4">
+					<button type="button" class="btn btn-primary btn-block" id="submit" name="submit">
+						提交
+					</button>
+					<a href="teachingRecord.html?transactionId={$transactionId}" class="btn btn-primary btn-block" role="button" id="back" name="back" style="display:none;color:#fff">返回教学记录列表</a>
+				</div>
 			</div>
 		</div>
-	</div>
-	</volist>
-	
-	<div class="row" style="margin-top:15px">
-		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
-    			<label for="teachingtime">教学时间：</label>
-    			<input type="text" value="{$teachingDt}" class="form-control" id="teachingtime" data-date-format="yyyy-mm-dd" readonly>
-    			<p class="text-left" id="showTeachingTime" style="display:none"></p>
-  			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<textarea class="form-control" rows="3" placeholder="老师评语" id="comment"></textarea>
-		</div>
-	</div>
-	<div class="row" style="display:none" id="showComment">
-		<div class="col-md-4 col-md-offset-4">
-			<label>老师评论：</label>
-			<blockquote>
-  				<p style="font-size:15px"></p>
-			</blockquote>
-		</div>
-	</div>
-	<div class="row" style="margin-top:15px" id="addTeachingPicture">
-		<div class="col-md-4 col-md-offset-4">
-			<span class="sl-custom-file">
-    			<button type="button" class="btn btn-primary">
-  					添加教学图片<span class="fui-document"></span>
-  				<span class="fui-plus"></span>
-				</button>
-   			 	<input type="file" class="ui-input-file" name="teachingPicture" id="teachingPicture"/>
-			</span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4" id="teachingPictureGallery">
-			<label style="display:none" id="teachingImageLabel">教学图片：</label>
-		</div>
-	</div>
-	<div class="row" style="margin-top:15px">
-		<div class="col-md-4 col-md-offset-4">
-			<label style="display:none" id="starLabel">老师评分：</label>
-			<div class="btn-group btn-group-justified" role="group" id="overallScore">
-  				<div class="btn-group" role="group">
-    				<button type="button" class="btn btn-default" name="1"><span class="fui-star-2"></span></button>
-  				</div>
-  				<div class="btn-group" role="group" style="border-left:1px solid #fff;border-right:1px solid #fff">
-    				<button type="button" class="btn btn-default" name="2"><span class="fui-star-2"></span></button>
-  				</div>
- 				<div class="btn-group" role="group">
-    				<button type="button" class="btn btn-default" name="3"><span class="fui-star-2"></span></button>
-  				</div>
-  				<div class="btn-group" role="group" style="border-left:1px solid #fff;border-right:1px solid #fff">
-    				<button type="button" class="btn btn-default" name="4"><span class="fui-star-2"></span></button>
-  				</div>
-  				<div class="btn-group" role="group">
-    				<button type="button" class="btn btn-default" name="5"><span class="fui-star-2"></span></button>
-  				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 家长评论显示区域 -->
-	<div class="row" style="margin-top:10px">
-		<div class="col-md-4 col-md-offset-4" id="showParentCommentDiv" >
-			<label>家长评论：</label>
-		</div>
-	</div>
-	
-	<!-- 提交家长评论区域 -->
-	<div class="row" id="parentCommentDiv" style="margin-top:10px">
-		<div class="col-md-4 col-md-offset-4">
-			<div class="form-group">
-				<textarea class="form-control" rows="3" id="parentCommentContent" placeholder="说说你对老师的评价吧"></textarea>
-				<button type="button" class="btn btn-primary btn-block" id="parentCommentSubmit" name="parentCommentSubmit" style="margin-top:5px">提交</button>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 提交按钮与返回按钮-->
-	<div class="row" style="margin-top:15px; margin-bottom:25px">
-		<div class="col-md-4 col-md-offset-4">
-			<button type="button" class="btn btn-primary btn-block" id="submit" name="submit">提交</button>
-			<a href="teachingRecord.html?transactionId={$transactionId}" class="btn btn-primary btn-block" role="button" id="back" name="back" style="display:none;color:#fff">返回教学记录列表</a>
-		</div>
-	</div>
-</div>
-</body>
-<script src="/js/flat-ui.min.js"></script>
-<script src="/assets/js/application.js"></script>
-<script type="text/javascript" src="/timepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/timepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
-<script type="text/javascript">
-var transactionId = "";
-var recordId = "";   				
-var teachingDt = "";				
-var overallScore = "";				
-var comment = "";
-var teachingPictureTimeTag = "";
-var assessCompleted;						//check whether assessment is completed
-var assessScore;							//array to store the assessment score
-var teachingImageArray = new Array();		//array to store the image keys
-var openId;
-var isParent;
-var postdata = {
-	"recordId" : "",
-	"assessmentScore" : "",
-	"teachingDt" : "",
-	"comment" : "",
-	"teachingImage" : "",
-	"overallScore" : ""
-};
-var status = "";
-$(document).ready(function(){
-	openId = $("#openId").val();
-	isParent = $("#isParent").val();
-	transactionId = $("#transactionId").val();
-	recordId = $("#recordId").val();
-	teachingDt = $("#teachingDt").val();
-	status = $("#status").val();
-	if(status == "0"){
-		//如果还没上传过记录，就绑定事件用于上传记录
-		$(".col-md-4.col-md-offset-4.assessment").each(function(){
-			var assessmentDiv = $(this);
-			assessmentDiv.find("input").click(function(){
-				assessmentDiv.find("input").attr("class","btn btn-default");
-				$(this).attr("class","btn btn-primary");
-			});
-		});
-	
-		$("#overallScore").find("button").click(function(){
-			$("#overallScore").find("button").attr("class","btn btn-default");
-			var name = parseInt($(this).attr("name"));
-			for(var i = 1; i <= name; i++){
-				$("#overallScore").find("button[name="+i+"]").attr("class","btn btn-primary");
-			}
-			overallScore = name;
-		});
-	
-		$("#submit").click(function(){
-			assessCompleted = true;
-			assessScore = new Array();
-			$(".col-md-4.col-md-offset-4.assessment").each(function(){
-				var choosedInput = $(this).find("input[class='btn btn-primary']");
-				if(choosedInput.length == 0){
-					assessCompleted = false;
-				}else{
-					choosedInput.each(function(){
-						assessScore.push($(this).attr("name"));
+	</body>
+	<script src="/js/flat-ui.min.js"></script>
+	<script src="/assets/js/application.js"></script>
+	<script type="text/javascript" src="/timepicker/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="/timepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+		var transactionId = "";
+		var recordId = "";
+		var teachingDt = "";
+		var overallScore = "";
+		var comment = "";
+		var teachingPictureTimeTag = "";
+		var assessCompleted;
+		//check whether assessment is completed
+		var assessScore;
+		//array to store the assessment score
+		var teachingImageArray = new Array();
+		//array to store the image keys
+		var openId;
+		var isParent;
+		var postdata = {
+			"recordId" : "",
+			"assessmentScore" : "",
+			"teachingDt" : "",
+			"comment" : "",
+			"teachingImage" : "",
+			"overallScore" : ""
+		};
+		var status = "";
+		$(document).ready(function() {
+			openId = $("#openId").val();
+			isParent = $("#isParent").val();
+			transactionId = $("#transactionId").val();
+			recordId = $("#recordId").val();
+			teachingDt = $("#teachingDt").val();
+			status = $("#status").val();
+			if (status == "0") {
+				//如果还没上传过记录，就绑定事件用于上传记录
+				$(".col-md-4.col-md-offset-4.assessment").each(function() {
+					var assessmentDiv = $(this);
+					assessmentDiv.find("input").click(function() {
+						assessmentDiv.find("input").attr("class", "btn btn-default");
+						$(this).attr("class", "btn btn-primary");
 					});
+				});
+
+				$("#overallScore").find("button").click(function() {
+					$("#overallScore").find("button").attr("class", "btn btn-default");
+					var name = parseInt($(this).attr("name"));
+					for (var i = 1; i <= name; i++) {
+						$("#overallScore").find("button[name=" + i + "]").attr("class", "btn btn-primary");
+					}
+					overallScore = name;
+				});
+
+				$("#submit").click(function() {
+					assessCompleted = true;
+					assessScore = new Array();
+					$(".col-md-4.col-md-offset-4.assessment").each(function() {
+						var choosedInput = $(this).find("input[class='btn btn-primary']");
+						if (choosedInput.length == 0) {
+							assessCompleted = false;
+						} else {
+							choosedInput.each(function() {
+								assessScore.push($(this).attr("name"));
+							});
+						}
+					});
+					if (assessCompleted == true) {
+						comment = $("#comment").val();
+						if (comment == "") {
+							alert("请输入评论");
+							return false;
+						} else if (overallScore == "") {
+							alert("请为学生打分");
+							return false;
+						} else {
+							//所有选项都是正确的,就开始POST数据
+							postdata.assessmentScore = assessScore.join(",");
+							postdata.teachingDt = $("#teachingtime").val();
+							postdata.comment = comment;
+							postdata.teachingImage = teachingImageArray.join(",");
+							postdata.overallScore = overallScore;
+							postdata.recordId = recordId;
+
+							$.post("../TeacherRecord/insertNewTeachingRecord", postdata, function(data) {
+								var receivedObject = $.parseJSON(data);
+								if (receivedObject.status == "ok") {
+									alert("课堂记录上传成功！");
+									window.location.href = "teachingRecord.html?transactionId=" + transactionId;
+								}
+							});
+						}
+					} else {
+						//有测试老师没选择
+						alert("请为学生的测试打分");
+					}
+				});
+				$('#teachingtime').datetimepicker({
+					language : 'zh-CN',
+					weekStart : 1,
+					todayBtn : 1,
+					autoclose : 1,
+					todayHighlight : 1,
+					startView : 2,
+					minView : 2,
+					forceParse : 0
+				})
+
+				var Qiniu_UploadUrl = "http://up.qiniu.com";
+				$("#teachingPicture").change(function() {
+					//普通上传
+					var Qiniu_upload = function(f, token, key) {
+						var xhr = new XMLHttpRequest();
+						xhr.open('POST', Qiniu_UploadUrl, true);
+						var formData,
+						    startDate;
+						formData = new FormData();
+						if (key !== null && key !== undefined)
+							formData.append('key', key);
+						formData.append('token', token);
+						formData.append('file', f);
+						var taking;
+
+						xhr.onreadystatechange = function(response) {
+							if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
+								var blkRet = JSON.parse(xhr.responseText);
+								console && console.log(blkRet);
+								$('img[name*="loading' + teachingPictureTimeTag + '"]').remove();
+								$("#teachingPictureGallery").append($("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/" + "recordId_" + recordId + "_teachingDt_" + teachingDt + "_" + teachingPictureTimeTag + "?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%"));
+								teachingDt = $("#teachingtime").val();
+								teachingImageArray.push("recordId_" + recordId + "_teachingDt_" + teachingDt + "_" + teachingPictureTimeTag);
+							} else if (xhr.status != 200 && xhr.responseText) {
+								alert("上传教学图片失败");
+								$('img[name*="loading' + teachingPictureTimeTag + '"]').remove();
+							}
+						};
+						startDate = new Date().getTime();
+						xhr.send(formData);
+					};
+					var token = $("#token").val();
+					if ($("#teachingPicture")[0].files.length > 0 && token != "") {
+						teachingDt = $("#teachingtime").val();
+						teachingPictureTimeTag = new Date().getTime();
+						$("#teachingPictureGallery").append($("<br/>"));
+						$("#teachingPictureGallery").append($("<img />").attr("src", "http://www.ilearnnn.com/image/loading_normal.gif").attr("class", "img-responsive").attr("style", "margin: 0 auto").attr("name", "loading" + teachingPictureTimeTag));
+						Qiniu_upload($("#teachingPicture")[0].files[0], token, "recordId_" + recordId + "_teachingDt_" + teachingDt + "_" + teachingPictureTimeTag);
+					} else {
+						console && console.log("form input error");
+					}
+				});
+			} else {
+				//如果已经上传果记录了，那就只显示记录详情
+				var recordInformation = $.parseJSON($("#recordInformation").text());
+				$("#submit").hide();
+				$("#teachingtime").hide();
+				$("#comment").hide();
+				$("#addTeachingPicture").hide();
+				$("#showTeachingTime").html("<em>" + recordInformation["0"]["teachingDt"].substring(0, 10) + "</em>");
+				$("#showTeachingTime").show();
+				$("#showComment").find("p").html(recordInformation["0"]["comment"]);
+				$("#showComment").show();
+				$("#starLabel").show();
+				$("#teachingImageLabel").show();
+				$("#back").show();
+				$("#showParentCommentOuterDiv").show();
+				$("#parentCommentDiv").show();
+				var starScore = parseInt(recordInformation["0"]["overallScore"]);
+				for (var i = 1; i <= starScore; i++) {
+					$("#overallScore").find("button[name=" + i + "]").attr("class", "btn btn-primary");
 				}
-			});
-			if(assessCompleted == true){
-				comment = $("#comment").val();
-				if(comment == ""){
-					alert("请输入评论");
-					return false;
-				}else if(overallScore == ""){
-					alert("请为学生打分");
-					return false;
-				}else{
-					//所有选项都是正确的,就开始POST数据
-					postdata.assessmentScore = assessScore.join(",");
-					postdata.teachingDt = $("#teachingtime").val();
-					postdata.comment = comment;
-					postdata.teachingImage = teachingImageArray.join(",");
-					postdata.overallScore = overallScore;
-					postdata.recordId = recordId;
-			
-					$.post("../TeacherRecord/insertNewTeachingRecord", postdata,
-   						function(data){
-   							var receivedObject = $.parseJSON(data);
-   							if(receivedObject.status == "ok"){
-     							alert("课堂记录上传成功！");
-     							window.location.href = "teachingRecord.html?transactionId="+transactionId;
-     						}
-     					}
-   					);
-   				}
-			}else{
-				//有测试老师没选择
-				alert("请为学生的测试打分");
+				for (var i = 0; i < recordInformation["assessmentScore"].length; i++) {
+					var assessCode = recordInformation["assessmentScore"][i]["assessCode"];
+					var score = recordInformation["assessmentScore"][i]["score"];
+					$("div[name='" + assessCode + "']").find("input[name='" + score + "']").attr("class", "btn btn-primary");
+				}
+				if (recordInformation["0"]["teachingImage"] != "") {
+					var teachingImageUrls = recordInformation["0"]["teachingImage"].split(",");
+					for (var i = 0; i < teachingImageUrls.length; i++) {
+						$("#teachingPictureGallery").append($("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/" + teachingImageUrls[i] + "?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%"));
+						$("#teachingPictureGallery").append($("<br/>"));
+					}
+				}
+
+				//把之前的家长评论显示出来
+				var parentComments = $.parseJSON($("#parentComments").text());
+				for (var i = 0; i < parentComments.length; i++) {
+					var commentContent = parentComments[i]["content"];
+					var commentCreatedDt = parentComments[i]["createdDt"];
+					$("#showParentCommentDiv").append("<blockquote><p style='font-size:15px'>" + commentContent + "</p><footer>家长微信昵称 <cite>" + commentCreatedDt + "</cite></footer></blockquote>");
+				}
+
+				//if(isParent == "1"){
+				//点击按钮上传家长评论
+
+				$("#parentCommentSubmit").click(function() {
+					var content = $("#parentCommentContent").val();
+					if (content == "") {
+						alert("请输入评论内容");
+						return false;
+					} else {
+						var commentData = {
+							"recordId" : "",
+							"transactionId" : "",
+							"parentOpenId" : "",
+							"content" : ""
+						};
+						commentData.recordId = recordId;
+						commentData.transactionId = transactionId;
+						commentData.parentOpenId = openId;
+						commentData.content = content;
+
+						$.post("../TeacherRecord/insertParentComment", commentData, function(data) {
+							var receivedObject = $.parseJSON(data);
+							if (receivedObject.status == "ok") {
+								$("#parentCommentContent").val("");
+								var createdDt = receivedObject.createdDt;
+								$("#showParentCommentDiv").append("<blockquote><p style='font-size:15px'>" + content + "</p><footer>家长微信昵称 <cite>" + createdDt + "</cite></footer></blockquote>");
+							}
+						});
+					}
+				});
+				//}
 			}
 		});
-		$('#teachingtime').datetimepicker({
-        	language:  'zh-CN',
-        	weekStart: 1,
-        	todayBtn:  1,
-			autoclose: 1,
-			todayHighlight: 1,
-			startView: 2,
-			minView: 2,
-			forceParse: 0
-   		})
-    
-    	var Qiniu_UploadUrl = "http://up.qiniu.com";
-    	$("#teachingPicture").change(function() {
-        //普通上传
-        	var Qiniu_upload = function(f, token, key) {
-            	var xhr = new XMLHttpRequest();
-            	xhr.open('POST', Qiniu_UploadUrl, true);
-            	var formData, startDate;
-            	formData = new FormData();
-            	if (key !== null && key !== undefined) formData.append('key', key);
-            	formData.append('token', token);
-            	formData.append('file', f);
-            	var taking;
-
-            	xhr.onreadystatechange = function(response) {
-                	if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseText != "") {
-                    	var blkRet = JSON.parse(xhr.responseText);
-                    	console && console.log(blkRet);
-                  		$('img[name*="loading'+teachingPictureTimeTag+'"]').remove();
-                  		$("#teachingPictureGallery").append(
-							$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+"recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
-						);
-						teachingDt = $("#teachingtime").val();
-						teachingImageArray.push("recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag);
-                	} else if (xhr.status != 200 && xhr.responseText) {
-						alert("上传教学图片失败");
-						$('img[name*="loading'+teachingPictureTimeTag+'"]').remove();
-                	}
-            	};
-            	startDate = new Date().getTime();
-            	xhr.send(formData);
-        	};
-        	var token = $("#token").val();
-        	if ($("#teachingPicture")[0].files.length > 0 && token != "") {
-        		teachingDt = $("#teachingtime").val();
-        		teachingPictureTimeTag = new Date().getTime();
-        		$("#teachingPictureGallery").append($("<br/>"));
-        		$("#teachingPictureGallery").append(
-					$("<img />").attr("src", "http://www.ilearnnn.com/image/loading_normal.gif").attr("class", "img-responsive").attr("style", "margin: 0 auto").attr("name", "loading"+teachingPictureTimeTag)
-				);
-            	Qiniu_upload($("#teachingPicture")[0].files[0], token, "recordId_"+recordId+"_teachingDt_"+teachingDt+"_"+teachingPictureTimeTag);
-        	} else {
-            	console && console.log("form input error");
-        	}
-    	});
-    }else{
-    	//如果已经上传果记录了，那就只显示记录详情
-    	var recordInformation = $.parseJSON($("#recordInformation").text());
-    	$("#submit").hide();	
-    	$("#teachingtime").hide();
-    	$("#comment").hide();
-    	$("#addTeachingPicture").hide();
-    	$("#showTeachingTime").html("<em>"+recordInformation["0"]["teachingDt"].substring(0,10)+"</em>");
-    	$("#showTeachingTime").show();
-    	$("#showComment").find("p").html(recordInformation["0"]["comment"]);
-    	$("#showComment").show();
-    	$("#starLabel").show();
-    	$("#teachingImageLabel").show();
-    	$("#back").show();
-    	var starScore = parseInt(recordInformation["0"]["overallScore"]);
-    	for(var i = 1; i <= starScore; i++){
-			$("#overallScore").find("button[name="+i+"]").attr("class","btn btn-primary");
-		}
-		for(var i = 0; i < recordInformation["assessmentScore"].length; i++){
-			var assessCode = recordInformation["assessmentScore"][i]["assessCode"];
-			var score = recordInformation["assessmentScore"][i]["score"];
-			$("div[name='"+assessCode+"']").find("input[name='"+score+"']").attr("class","btn btn-primary");
-		}
-		if(recordInformation["0"]["teachingImage"] != ""){
-			var teachingImageUrls = recordInformation["0"]["teachingImage"].split(",");
-			for(var i =0; i < teachingImageUrls.length; i++){
-				$("#teachingPictureGallery").append(
-					$("<img/>").attr("src", "http://7xk9ts.com2.z0.glb.qiniucdn.com/"+teachingImageUrls[i]+"?imageView2/1/w/500/h/500/q/100").attr("class", "img-responsive img-rounded").attr("width", "50%")
-				);
-				$("#teachingPictureGallery").append($("<br/>"));
-			}
-		}
-		
-		//把之前的家长评论显示出来
-		var parentComments = $.parseJSON($("#parentComments").text());
-		for(var i = 0; i < parentComments.length; i++){
-			var commentContent = parentComments[i]["content"];
-			var commentCreatedDt = parentComments[i]["createdDt"];
-			$("#showParentCommentDiv").append("<blockquote><p style='font-size:15px'>"+commentContent+"</p><footer>家长微信昵称 <cite>"+commentCreatedDt+"</cite></footer></blockquote>");
-		}
-		
-		
-		
-		//if(isParent == "1"){
-			//点击按钮上传家长评论
-			
-			$("#parentCommentSubmit").click(function(){
-				var content = $("#parentCommentContent").val();
-				if(content == ""){
-					alert("请输入评论内容");
-					return false;
-				}else{
-					var commentData = {
-						"recordId" : "",
-						"transactionId" : "",
-						"parentOpenId" : "",
-						"content" : ""
-					};
-					commentData.recordId = recordId;
-					commentData.transactionId = transactionId;
-					commentData.parentOpenId = openId;
-					commentData.content = content;
-					
-					$.post("../TeacherRecord/insertParentComment", commentData,
-   						function(data){
-   							var receivedObject = $.parseJSON(data);
-   							if(receivedObject.status == "ok"){
-   								$("#parentCommentContent").val("");
-     							var createdDt = receivedObject.createdDt;
-     							$("#showParentCommentDiv").append("<blockquote><p style='font-size:15px'>"+content+"</p><footer>家长微信昵称 <cite>"+createdDt+"</cite></footer></blockquote>");
-     						}
-     					}
-   					);
-				}
-			});
-		//}
-    }
-});
-</script>
+	</script>
 </html>
-
-
-
-
-
-
-
-
-
 
