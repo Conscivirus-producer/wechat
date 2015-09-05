@@ -77,7 +77,7 @@ class TeacherRecordController extends Controller {
 				$this->assign("title","课堂记录详情");
 				$recordInformation = D("TeachingRecord", "Logic")->getTeachingRecordInformation($recordId);
 				$this->assign("recordInformation",$recordInformation);
-				$this->assign("parentComments",D("ParentComment", "Logic")->getParentCommentsByRecordId($recordId));
+				$this->assign("parentComments",D("TeachingRecord", "Logic")->getParentCommentsByRecordId($recordId));
 			}	
 			$this->display();
 		}
