@@ -13,7 +13,11 @@
 			$datemap["transactionId"] = array('eq', $transactionId);
 			$teachingDt = $this->where($datemap)->getfield('teachingDt');
 			$map["transactionId"] = $transactionId;
-			$map["teachingDt"] = array('elt', $teachingDt);
+			if($teachingDt == null){
+				$map["teachingDt"] = array('elt', date("Y-m-d h:i:s"));
+			}else{
+				$map["teachingDt"] = array('elt', $teachingDt);
+			}
 			$result = $this->where($map)->order('teachingDt desc')->select();
 			$course = D("Transaction")->join('T_child ON T_child.childId=T_transaction.childId AND T_child.parentOpenid=T_transaction.parentOpenid')
 					  ->where(array('transactionId'=>$transactionId))
