@@ -117,8 +117,8 @@ class TeacherRecordController extends Controller {
 		echo json_encode($jsonArray);
 	}
 	
-	public function teachingRecord($transactionId){
-		$data = D("TeachingRecord", "Logic")->getTeachingRecord($transactionId);
+	public function teachingRecord(){
+		$data = D("TeachingRecord", "Logic")->getTeachingRecord(I('get.transactionId',""));
 		//echo $teachingRecords->result["0"]["transactionId"];
 		//echo $teachingRecords->course["interest"];
 		$this->assign("data", $data);
