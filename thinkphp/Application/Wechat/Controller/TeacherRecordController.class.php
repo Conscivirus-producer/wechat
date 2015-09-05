@@ -66,7 +66,7 @@ class TeacherRecordController extends Controller {
 			$this->assign("title","上传课堂记录");
 			$this->assign("openId",$openId);
 			//之后需要修改
-			$this->assign("parentComments",D("ParentComment", "Logic")->getParentCommentsByRecordId($recordId));
+			$this->assign("parentComments","");
 			if(D("TeachingRecord", "Logic")->isParent($openId) == true){
 				$this->assign("isParent","1");
 				//$this->assign("parentComments",D("ParentComment", "Logic")->getParentCommentsByRecordId($recordId));
@@ -77,6 +77,7 @@ class TeacherRecordController extends Controller {
 				$this->assign("title","课堂记录详情");
 				$recordInformation = D("TeachingRecord", "Logic")->getTeachingRecordInformation($recordId);
 				$this->assign("recordInformation",$recordInformation);
+				$this->assign("parentComments",D("ParentComment", "Logic")->getParentCommentsByRecordId($recordId));
 			}	
 			$this->display();
 		}
